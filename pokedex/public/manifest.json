@@ -1,0 +1,15 @@
+{
+  "short_name": "Pokedex",
+  "name": "Pokedex By Eliseu Batista",
+  "icons": [
+    {
+      "src": "icon-pokeball.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
