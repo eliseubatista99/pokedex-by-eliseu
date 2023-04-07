@@ -1,9 +1,6 @@
-[build]
-  command = "npm run build"
-  publish=".next/"
-  base = "pokedex/"
+[[plugins]]
+package = "@netlify/plugin-nextjs"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build]
+command = "yarn next build"
+publish = ".next"
