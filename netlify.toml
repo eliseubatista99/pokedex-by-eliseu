@@ -3,7 +3,5 @@
   publish=".next/"
   base = "pokedex/"
 
-[[redirects]]
-  from = "/*"
-  to = "/pages/index.tsx"
-  status = 200
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
