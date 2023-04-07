@@ -4,7 +4,6 @@ import { ResponsiveRenderElement, ResponsiveRenderProps } from ".";
 export const useResponsiveRenderHelper = ({
   elements,
 }: ResponsiveRenderProps) => {
-  const [width, setWidth] = React.useState<number>(0);
   const [currentElement, setCurrentElement] =
     React.useState<ResponsiveRenderElement>({
       breakpoint: 0,
@@ -12,20 +11,24 @@ export const useResponsiveRenderHelper = ({
     });
 
   const onWindowResize = () => {
-    setWidth(window.innerWidth);
+    const width = window.innerWidth;
 
-    updateCurrentElement();
+    updateCurrentElement(width);
   };
 
-  const updateCurrentElement = () => {
+  const updateCurrentElement = (width: number) => {
     let newElem: ResponsiveRenderElement = {
       breakpoint: 0,
       content: undefined,
     };
 
+    console.log("ZAU", width);
+
     elements.forEach((elem) => {
       if (width >= elem.breakpoint) {
-        newElem = elem;
+        if (newElem.breakpoint <= elem.breakpoint) {
+          newElem = elem;
+        }
       }
     });
 
@@ -33,6 +36,7 @@ export const useResponsiveRenderHelper = ({
   };
 
   React.useEffect(() => {
+    onWindowResize();
     window.addEventListener("resize", onWindowResize);
 
     return () => {

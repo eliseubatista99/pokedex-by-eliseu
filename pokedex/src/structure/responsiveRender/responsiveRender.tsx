@@ -12,5 +12,5 @@ export interface ResponsiveRenderProps {
 export const ResponsiveRender = (props: ResponsiveRenderProps) => {
   const { currentElement } = useResponsiveRenderHelper(props);
 
-  return <>{currentElement}</>;
+  return <>{currentElement.content}</>;
 };

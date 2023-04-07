@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <AppLayout>
-        <p></p>
+        <p>OLA</p>
       </AppLayout>
     </div>
   );
