@@ -22,8 +22,6 @@ export const useResponsiveRenderHelper = ({
       content: undefined,
     };
 
-    console.log("ZAU", width);
-
     elements.forEach((elem) => {
       if (width >= elem.breakpoint) {
         if (newElem.breakpoint <= elem.breakpoint) {
@@ -42,6 +40,7 @@ export const useResponsiveRenderHelper = ({
     return () => {
       window.removeEventListener("resize", onWindowResize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
