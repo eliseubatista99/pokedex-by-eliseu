@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish="build/"
+  base = "pokedex/"
 
-[[plugins]]
-  package = "netlify-plugin-cypress"
+[[redirects]]
+  from = "/*"
+  to = "/pages/index.tsx"
+  status = 200
