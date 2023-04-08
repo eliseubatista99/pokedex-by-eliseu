@@ -6,7 +6,7 @@ function App() {
       className="App"
       style={{ position: "relative", width: "100%", height: "100%" }}
     >
-      <AppLayout>
+      <AppLayout withoutNavigation>
         <p>OLA</p>
       </AppLayout>
     </div>
