@@ -1,5 +1,10 @@
 import { ImageAssets } from "../../assets";
-import { CustomButton, CustomImage, Typography } from "../../components";
+import {
+  CustomButton,
+  CustomImage,
+  Stepper,
+  Typography,
+} from "../../components";
 import { AppLayout } from "../../structure";
 
 export const Onboarding1MobileScreen = () => {
@@ -28,34 +33,11 @@ export const Onboarding1MobileScreen = () => {
           Access a vast list of Pokémon from every generation ever made by
           Nintendo
         </Typography>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "45px",
-            margin: "24px auto 0 auto",
-          }}
-        >
-          <div
-            style={{
-              width: "28px",
-              height: "9px",
-              borderRadius: "11px",
-              background: "#173EA5",
-            }}
-          />
-
-          <div
-            style={{
-              width: "9px",
-              height: "9px",
-              borderRadius: "50%",
-              background: "#4565B7",
-              opacity: 0.25,
-            }}
-          />
-        </div>
+        <Stepper
+          numberOfSteps={2}
+          currentStep={0}
+          containerProps={{ margin: "24px auto 0 auto" }}
+        />
         <CustomButton
           appearance={"primary"}
           middleContent={"Continuar"}
