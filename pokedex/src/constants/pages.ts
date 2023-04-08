@@ -1,4 +1,6 @@
 export const Pages = {
-  splash: "splash",
-  loginOrRegister: "loginOrRegister",
+  splash: "/",
+  onboarding1: "/onboarding1",
+  onboarding2: "/onboarding2",
+  loginOrRegister: "/loginOrRegister",
 };
