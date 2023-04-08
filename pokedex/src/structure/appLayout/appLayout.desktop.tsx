@@ -10,6 +10,7 @@ export const AppLayoutDesktop = ({
         width: "100%",
         height: "100%",
         display: "grid",
+        position: "relative",
         gridTemplateColumns: withoutNavigation ? "1fr" : "0.22fr 0.78fr",
       }}
     >
