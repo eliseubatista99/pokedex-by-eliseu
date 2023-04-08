@@ -1,6 +1,9 @@
 import { AppNavigation, AppLayoutProps } from "..";
 
-export const AppLayoutMobile = ({ children }: AppLayoutProps) => {
+export const AppLayoutMobile = ({
+  withoutNavigation,
+  children,
+}: AppLayoutProps) => {
   return (
     <div
       style={{
@@ -10,7 +13,7 @@ export const AppLayoutMobile = ({ children }: AppLayoutProps) => {
       }}
     >
       <div style={{ width: "100%", flex: 1 }}>{children}</div>
-      <AppNavigation />
+      {!withoutNavigation && <AppNavigation />}
     </div>
   );
 };
