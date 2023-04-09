@@ -3,6 +3,7 @@ import { Pages } from "./constants";
 import {
   LoginOrRegisterScreen,
   Onboarding1Screen,
+  Onboarding2Screen,
   SplashScreen,
 } from "./pages";
 
@@ -19,6 +20,7 @@ function App() {
           element={<LoginOrRegisterScreen />}
         />
         <Route path={Pages.onboarding1} element={<Onboarding1Screen />} />
+        <Route path={Pages.onboarding2} element={<Onboarding2Screen />} />
       </Routes>
     </div>
   );

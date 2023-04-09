@@ -5,12 +5,12 @@ type CustomButtonAppearance = "primary" | "secondary";
 type CustomButtonSize = "large" | "medium" | "small";
 
 export interface CustomButtonProps {
-  text?: string;
   appearance?: CustomButtonAppearance;
   size?: CustomButtonSize;
   startContent?: React.ReactNode;
   middleContent?: React.ReactNode | string;
   endContent?: React.ReactNode;
+  onClick?: () => void;
   containerProps?: CSSProperties;
 }
 
@@ -20,6 +20,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   startContent,
   middleContent,
   endContent,
+  onClick,
   containerProps,
 }) => {
   const customButtonHover = useHover();
@@ -79,6 +80,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         padding: "17px",
         borderRadius: "50px",
         width: "80%",
+        userSelect: "none",
         ...getSize(),
         ...getStyle(),
         ...getHoveredStyle(),
@@ -86,6 +88,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       }}
       onPointerEnter={customButtonHover.hover}
       onPointerLeave={customButtonHover.unhover}
+      onClick={onClick}
     >
       {startContent}
       {typeof middleContent === "string" ? (

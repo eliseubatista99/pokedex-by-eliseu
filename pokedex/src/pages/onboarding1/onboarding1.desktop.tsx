@@ -6,8 +6,11 @@ import {
   Typography,
 } from "../../components";
 import { AppLayout } from "../../structure";
+import { Onboarding1HelperOutputProps } from "./onboarding1.hook";
 
-export const Onboarding1DesktopScreen = () => {
+export const Onboarding1DesktopScreen = ({
+  onClickContinue,
+}: Onboarding1HelperOutputProps) => {
   return (
     <AppLayout withoutNavigation>
       <CustomImage
@@ -41,7 +44,8 @@ export const Onboarding1DesktopScreen = () => {
         <CustomButton
           appearance={"primary"}
           middleContent={"Continuar"}
-          containerProps={{ margin: "24px auto 120px auto" }}
+          containerProps={{ margin: "24px auto 80px auto" }}
+          onClick={onClickContinue}
         />
       </div>
     </AppLayout>
