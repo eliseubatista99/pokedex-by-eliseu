@@ -1,5 +1,5 @@
-import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "../../constants";
-import { ResponsiveRender } from "../../structure";
+import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "@constants";
+import { ResponsiveRender } from "@structure";
 import { Onboarding2DesktopScreen } from "./onboarding2.desktop";
 import { useOnboarding2Helper } from "./onboarding2.hook";
 import { Onboarding2MobileScreen } from "./onboarding2.mobile";

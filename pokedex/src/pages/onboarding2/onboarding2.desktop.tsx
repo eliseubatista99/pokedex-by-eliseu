@@ -1,11 +1,6 @@
-import { ImageAssets } from "../../assets";
-import {
-  CustomButton,
-  CustomImage,
-  Stepper,
-  Typography,
-} from "../../components";
-import { AppLayout } from "../../structure";
+import { ImageAssets } from "@assets";
+import { CustomButton, CustomImage, Stepper, Typography } from "@components";
+import { AppLayout } from "@structure";
 import { Onboarding2HelperOutputProps } from "./onboarding2.hook";
 
 export const Onboarding2DesktopScreen = ({

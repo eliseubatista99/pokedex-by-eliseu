@@ -1,5 +1,5 @@
+import { useHover } from "@hooks";
 import { CSSProperties } from "react";
-import { useHover } from "../../hooks";
 
 type CustomButtonAppearance = "primary" | "secondary";
 type CustomButtonSize = "large" | "medium" | "small";

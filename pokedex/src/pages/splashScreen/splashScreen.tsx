@@ -1,4 +1,4 @@
-import { AppLayout } from "../../structure";
+import { AppLayout } from "@structure";
 import { useSplashScreenHelper } from "./splashScreen.hook";
 
 export const SplashScreen = () => {

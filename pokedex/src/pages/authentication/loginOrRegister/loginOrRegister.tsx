@@ -1,4 +1,4 @@
-import { AppLayout } from "../../../structure";
+import { AppLayout } from "@structure";
 
 export const LoginOrRegisterScreen = () => {
   return (

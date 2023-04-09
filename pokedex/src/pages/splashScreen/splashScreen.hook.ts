@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Pages } from "../../constants";
+import { Pages } from "@constants";
 
 export const useSplashScreenHelper = () => {
   const navigate = useNavigate();
