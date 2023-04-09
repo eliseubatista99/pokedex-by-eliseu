@@ -1,20 +1,25 @@
-import { ImageAssets } from "@assets";
-import { CustomButton, CustomImage, Stepper, Typography } from "@components";
-import { AppLayout } from "@structure";
-import { Onboarding1HelperOutputProps } from "./onboarding1.hook";
+import { ImageAssets } from "../../assets";
+import {
+  CustomButton,
+  CustomImage,
+  Stepper,
+  Typography,
+} from "../../components";
+import { AppLayout } from "../../structure";
+import { Onboarding2HelperOutputProps } from "./onboarding2.hook";
 
-export const Onboarding1MobileScreen = ({
+export const Onboarding2MobileScreen = ({
   onClickContinue,
-}: Onboarding1HelperOutputProps) => {
+}: Onboarding2HelperOutputProps) => {
   return (
     <AppLayout withoutNavigation>
       <CustomImage
-        src={ImageAssets.Onboarding1Figure}
-        alt={"A scientis and a boy with a straw hat"}
+        src={ImageAssets.Onboarding2Figure}
+        alt={"A girl with a confident pose"}
         containerStyles={{
           margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          maxWidth: "251px",
+          maxHeight: "258px",
         }}
       />
       <div style={{ width: "100%", margin: "auto auto 0 auto" }}>
@@ -22,18 +27,18 @@ export const Onboarding1MobileScreen = ({
           appearance="headline_100"
           containerProps={{ margin: "0 auto", textAlign: "center" }}
         >
-          All Pokémon in One Place
+          keep your pokedex updated
         </Typography>
         <Typography
           appearance="body_secondary"
           containerProps={{ margin: "16px auto 0 auto", textAlign: "center" }}
         >
-          Access a vast list of Pokémon from every generation ever made by
-          Nintendo
+          Sign up and keep your profile, favorite pokémon, settings and more,
+          saved in the app, even without an internet connection.
         </Typography>
         <Stepper
           numberOfSteps={2}
-          currentStep={0}
+          currentStep={1}
           containerProps={{ margin: "24px auto 0 auto" }}
         />
         <CustomButton

@@ -1,4 +1,4 @@
-import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "../../constants";
+import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "@constants";
 import { ResponsiveRender } from "../responsiveRender";
 import { AppNavigationDesktop } from "./appNavigation.desktop";
 import { useAppNavigationHelper } from "./appNavigation.hook";
