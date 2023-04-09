@@ -43,7 +43,7 @@ export const Onboarding2DesktopScreen = ({
         />
         <CustomButton
           appearance={"primary"}
-          middleContent={"Continuar"}
+          middleContent={"Continue"}
           containerProps={{ margin: "24px auto 80px auto" }}
           onClick={onClickContinue}
         />

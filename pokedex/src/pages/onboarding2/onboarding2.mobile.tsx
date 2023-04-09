@@ -43,7 +43,7 @@ export const Onboarding2MobileScreen = ({
         />
         <CustomButton
           appearance={"primary"}
-          middleContent={"Continuar"}
+          middleContent={"Continue"}
           containerProps={{ margin: "24px auto 40px auto" }}
           onClick={onClickContinue}
         />
