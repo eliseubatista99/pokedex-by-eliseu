@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
-import React from "react";
 
 export interface RegisterDataHelperOutputProps {
   onClickBack: () => void;
@@ -10,12 +9,12 @@ export interface RegisterDataHelperOutputProps {
 export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = React.useState<string | undefined>(undefined);
-  const [name, setName] = React.useState<string | undefined>(undefined);
-  const [password, setPassword] = React.useState<string | undefined>(undefined);
-  const [confirmPassword, setConfirmPassword] = React.useState<
-    string | undefined
-  >(undefined);
+  // const [email, setEmail] = React.useState<string | undefined>(undefined);
+  // const [name, setName] = React.useState<string | undefined>(undefined);
+  // const [password, setPassword] = React.useState<string | undefined>(undefined);
+  // const [confirmPassword, setConfirmPassword] = React.useState<
+  //   string | undefined
+  // >(undefined);
 
   const handleGoBack = () => {
     navigate(-1);
