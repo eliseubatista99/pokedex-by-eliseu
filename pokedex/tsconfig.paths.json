@@ -10,6 +10,7 @@
       "@fonts": ["src/fonts"],
       "@helpers": ["src/helpers"],
       "@hooks": ["src/hooks"],
+      "@iconography": ["src/iconography"],
       "@pages": ["src/pages"],
       "@structure": ["src/structure"]
     }

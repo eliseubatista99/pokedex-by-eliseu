@@ -11,6 +11,7 @@ module.exports = function override(config, env) {
       ["@constants"]: path.resolve(__dirname, "src/constants"),
       ["@fonts"]: path.resolve(__dirname, "src/fonts"),
       ["@hooks"]: path.resolve(__dirname, "src/hooks"),
+      ["@iconography"]: path.resolve(__dirname, "src/iconography"),
       ["@pages"]: path.resolve(__dirname, "src/pages"),
       ["@structure"]: path.resolve(__dirname, "src/structure"),
     },

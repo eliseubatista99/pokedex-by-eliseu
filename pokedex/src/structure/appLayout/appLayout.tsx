@@ -1,10 +1,14 @@
 import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "@constants";
+import { CSSProperties } from "react";
 import { ResponsiveRender } from "../responsiveRender";
 import { AppLayoutDesktop } from "./appLayout.desktop";
 import { AppLayoutMobile } from "./appLayout.mobile";
 
 export interface AppLayoutProps {
   withoutNavigation?: boolean;
+  topContent?: React.ReactNode;
+  bottomContent?: React.ReactNode;
+  screenContainerProps?: CSSProperties;
   children?: React.ReactNode;
 }
 
