@@ -7,6 +7,7 @@ import { AppLayoutMobile } from "./appLayout.mobile";
 export interface AppLayoutProps {
   withoutNavigation?: boolean;
   topContent?: React.ReactNode;
+  bottomContent?: React.ReactNode;
   screenContainerProps?: CSSProperties;
   children?: React.ReactNode;
 }
