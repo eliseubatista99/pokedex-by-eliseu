@@ -1,5 +1,4 @@
 import { useHover } from "@hooks";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { CSSProperties } from "react";
 
 type CustomButtonAppearance = "primary" | "secondary";
