@@ -1,4 +1,5 @@
 import { useHover } from "@hooks";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { CSSProperties } from "react";
 
 type CustomButtonAppearance = "primary" | "secondary";
@@ -10,6 +11,7 @@ export interface CustomButtonProps {
   startContent?: React.ReactNode;
   middleContent?: React.ReactNode | string;
   endContent?: React.ReactNode;
+  isDisabled?: boolean;
   onClick?: () => void;
   containerProps?: CSSProperties;
 }
@@ -20,6 +22,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   startContent,
   middleContent,
   endContent,
+  isDisabled,
   onClick,
   containerProps,
 }) => {
@@ -31,10 +34,12 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         return {
           background: "#FFFFFF00",
           border: "2px solid #DBDCDD",
+          color: "#000000",
         };
       default:
         return {
           background: "#173EA5",
+          color: "#FFFFFF",
         };
     }
   };
@@ -57,6 +62,10 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   };
 
   const getHoveredStyle = (): CSSProperties => {
+    if (!customButtonHover.isHovered) {
+      return {};
+    }
+
     switch (appearance) {
       case "secondary":
         return {
@@ -72,10 +81,20 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     }
   };
 
+  const getDisabledStyle = (): CSSProperties => {
+    return isDisabled
+      ? {
+          pointerEvents: "none",
+          filter: "grayscale(100%)",
+        }
+      : {};
+  };
+
   return (
     <div
       style={{
         position: "relative",
+        flexDirection: "row",
         cursor: "pointer",
         padding: "17px",
         borderRadius: "50px",
@@ -84,29 +103,50 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         ...getSize(),
         ...getStyle(),
         ...getHoveredStyle(),
+        ...getDisabledStyle(),
         ...containerProps,
       }}
       onPointerEnter={customButtonHover.hover}
       onPointerLeave={customButtonHover.unhover}
       onClick={onClick}
     >
-      {startContent}
-      {typeof middleContent === "string" ? (
-        <p
+      <div
+        style={{ width: "100%", position: "relative", ...getDisabledStyle() }}
+      >
+        <div
           style={{
-            fontFamily: "PoppinsSemiBold",
-            fontSize: "16px",
-            lineHeight: "24px",
-            textAlign: "center",
-            color: "inherit",
+            position: "absolute",
+            left: 0,
           }}
         >
-          {middleContent}
-        </p>
-      ) : (
-        middleContent
-      )}
-      {endContent}
+          {startContent}
+        </div>
+        <div style={{ width: "80%", margin: "0 auto" }}>
+          {typeof middleContent === "string" ? (
+            <p
+              style={{
+                fontFamily: "PoppinsSemiBold",
+                fontSize: "16px",
+                lineHeight: "24px",
+                textAlign: "center",
+                color: "inherit",
+              }}
+            >
+              {middleContent}
+            </p>
+          ) : (
+            middleContent
+          )}
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+          }}
+        >
+          {endContent}
+        </div>
+      </div>
     </div>
   );
 };

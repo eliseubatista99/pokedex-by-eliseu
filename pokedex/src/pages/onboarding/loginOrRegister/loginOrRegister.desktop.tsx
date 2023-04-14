@@ -20,13 +20,15 @@ export const LoginOrRegisterDesktopScreen = ({
       />
       <div style={{ width: "100%", margin: "auto auto 0 auto" }}>
         <Typography
-          appearance="headline_100"
+          size="headline_26"
+          weight="medium"
           containerProps={{ margin: "0 auto 16px auto", textAlign: "center" }}
         >
           Are you ready for this adventure?
         </Typography>
         <Typography
-          appearance="body_secondary"
+          size="body_14"
+          color="secondary"
           containerProps={{ margin: "0 auto 32px auto", textAlign: "center" }}
         >
           Just create an account and start exploring the world of Pokémon today!

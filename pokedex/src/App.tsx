@@ -4,6 +4,7 @@ import {
   LoginOrRegisterScreen,
   Onboarding1Screen,
   Onboarding2Screen,
+  RegisterScreen,
   SplashScreen,
 } from "./pages";
 
@@ -21,6 +22,7 @@ function App() {
         />
         <Route path={Pages.onboarding1} element={<Onboarding1Screen />} />
         <Route path={Pages.onboarding2} element={<Onboarding2Screen />} />
+        <Route path={Pages.register} element={<RegisterScreen />} />
       </Routes>
     </div>
   );

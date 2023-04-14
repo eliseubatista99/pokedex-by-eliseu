@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
 
 export interface RegisterHelperOutputProps {
+  onClickBack: () => void;
   onClickGoogle: () => void;
   onClickApple: () => void;
   onClickEmail: () => void;
@@ -10,8 +11,12 @@ export interface RegisterHelperOutputProps {
 export const useRegisterHelper = (): RegisterHelperOutputProps => {
   const navigate = useNavigate();
 
-  const handleGoToRegisterEmail = () => {
-    navigate(Pages.registerEmail);
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const handleGoToRegisterData = () => {
+    navigate(Pages.registerData);
   };
 
   const handleRegisterWithGoogle = () => {
@@ -23,8 +28,9 @@ export const useRegisterHelper = (): RegisterHelperOutputProps => {
   };
 
   return {
+    onClickBack: handleGoBack,
     onClickGoogle: handleRegisterWithGoogle,
     onClickApple: handleRegisterWithApple,
-    onClickEmail: handleGoToRegisterEmail,
+    onClickEmail: handleGoToRegisterData,
   };
 };

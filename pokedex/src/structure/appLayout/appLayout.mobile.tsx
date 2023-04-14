@@ -2,6 +2,8 @@ import { AppNavigation, AppLayoutProps } from "..";
 
 export const AppLayoutMobile = ({
   withoutNavigation,
+  topContent,
+  screenContainerProps,
   children,
 }: AppLayoutProps) => {
   return (
@@ -13,7 +15,10 @@ export const AppLayoutMobile = ({
         position: "relative",
       }}
     >
-      <div style={{ width: "100%", flex: 1 }}>{children}</div>
+      {topContent && <>{topContent}</>}
+      <div style={{ width: "100%", flex: 1, ...screenContainerProps }}>
+        {children}
+      </div>
       {!withoutNavigation && <AppNavigation />}
     </div>
   );

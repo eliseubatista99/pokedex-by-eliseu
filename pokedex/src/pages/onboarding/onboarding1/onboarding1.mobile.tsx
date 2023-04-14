@@ -19,13 +19,15 @@ export const Onboarding1MobileScreen = ({
       />
       <div style={{ width: "100%", margin: "auto auto 0 auto" }}>
         <Typography
-          appearance="headline_100"
+          size="headline_26"
+          weight="medium"
           containerProps={{ margin: "0 auto", textAlign: "center" }}
         >
           All Pokémon in One Place
         </Typography>
         <Typography
-          appearance="body_secondary"
+          size="body_14"
+          color="secondary"
           containerProps={{ margin: "16px auto 0 auto", textAlign: "center" }}
         >
           Access a vast list of Pokémon from every generation ever made by

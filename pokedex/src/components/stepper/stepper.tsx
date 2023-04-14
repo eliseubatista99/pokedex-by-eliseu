@@ -18,6 +18,7 @@ export const Stepper = ({
       if (i === currentStep) {
         steps.push(
           <div
+            key={i}
             style={{
               width: "28px",
               height: "9px",
@@ -29,6 +30,7 @@ export const Stepper = ({
       } else {
         steps.push(
           <div
+            key={i}
             style={{
               width: "9px",
               height: "9px",
