@@ -10,10 +10,6 @@ export const RegisterDataDesktopScreen = () => {
     confirmPassword,
     onClickBack,
     onClickContinue,
-    onFormNameChanged,
-    onFormEmailChanged,
-    onFormPasswordChanged,
-    onFormConfirmPasswordChanged,
   } = useRegisterDataHelper();
 
   return (

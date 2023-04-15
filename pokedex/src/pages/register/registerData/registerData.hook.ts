@@ -13,16 +13,16 @@ export interface RegisterDataHelperOutputProps {
   email: RegisterFormField;
   password: RegisterFormField;
   confirmPassword: RegisterFormField;
+  formRef: React.RefObject<HTMLFormElement>;
   onClickBack: () => void;
   onClickContinue: () => void;
-  onFormNameChanged: (value: string) => void;
-  onFormEmailChanged: (value: string) => void;
-  onFormPasswordChanged: (value: string) => void;
-  onFormConfirmPasswordChanged: (value: string) => void;
+  onSubmitForm: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   const navigate = useNavigate();
+
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   const [name, setName] = React.useState<RegisterFormField>({});
   const [email, setEmail] = React.useState<RegisterFormField>({});
@@ -35,10 +35,14 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   };
 
   const handleClickContinue = () => {
-    navigate(Pages.login);
+    //navigate(Pages.login);
+
+    if (formRef.current) {
+      formRef.current.requestSubmit();
+    }
   };
 
-  const handleFormNameChanged = (value: string) => {
+  const handleValidateName = (value: string) => {
     const error = value.trim().length < 1;
 
     setName((prevState) => ({
@@ -49,7 +53,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     }));
   };
 
-  const handleFormEmailChanged = (value: string) => {
+  const handleValidateEmail = (value: string) => {
     const error = !value.match(EMAIL_REGEX);
 
     setEmail((prevState) => ({
@@ -60,7 +64,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     }));
   };
 
-  const handleFormPasswordChanged = (value: string) => {
+  const handleValidatePassword = (value: string) => {
     const error = value.length < 8;
 
     setPassword((prevState) => ({
@@ -71,8 +75,11 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     }));
   };
 
-  const handleFormConfirmPasswordChanged = (value: string) => {
-    const error = value !== password.value;
+  const handleValidateConfirmPasswordChanged = (
+    value: string,
+    comparePassword: string
+  ) => {
+    const error = value !== comparePassword;
 
     setConfirmPassword((prevState) => ({
       ...prevState,
@@ -82,18 +89,29 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     }));
   };
 
-  const validateName = () => {};
+  const handleSubmitForm = (event: any) => {
+    // Preventing the page from reloading
+    event.preventDefault();
+
+    const formName = event.currentTarget.elements[0].value as string;
+    const formEmail = event.currentTarget.elements[1].value as string;
+    const formPassword = event.currentTarget.elements[2].value as string;
+    const formConfirmPassword = event.currentTarget.elements[3].value as string;
+
+    handleValidateName(formName);
+    handleValidateEmail(formEmail);
+    handleValidatePassword(formPassword);
+    handleValidateConfirmPasswordChanged(formConfirmPassword, formPassword);
+  };
 
   return {
     name,
     email,
     password,
     confirmPassword,
+    formRef,
     onClickBack: handleGoBack,
     onClickContinue: handleClickContinue,
-    onFormNameChanged: handleFormNameChanged,
-    onFormEmailChanged: handleFormEmailChanged,
-    onFormPasswordChanged: handleFormPasswordChanged,
-    onFormConfirmPasswordChanged: handleFormConfirmPasswordChanged,
+    onSubmitForm: handleSubmitForm,
   };
 };

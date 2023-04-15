@@ -77,6 +77,7 @@ export const Typography: React.FC<TypographyProps> = ({
         };
       case "error":
         return {
+          fontFamily: "PoppinsSemiBold",
           color: "#a51717",
         };
       default:
@@ -131,6 +132,7 @@ export const Typography: React.FC<TypographyProps> = ({
         overflow: "hidden",
         textAlign: "left",
         color: "#000000",
+        fontFamily: "Poppins",
         ...sizeStyle,
         ...weightStyle,
         ...colorStyle,

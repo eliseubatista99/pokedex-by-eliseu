@@ -5,7 +5,6 @@ import {
   Typography,
 } from "@components";
 import { AppLayout } from "@structure";
-import { useState } from "react";
 import { useRegisterDataHelper } from "./registerData.hook";
 
 export const RegisterDataMobileScreen = () => {
@@ -13,13 +12,11 @@ export const RegisterDataMobileScreen = () => {
     name,
     email,
     password,
+    formRef,
     confirmPassword,
     onClickBack,
     onClickContinue,
-    onFormNameChanged,
-    onFormEmailChanged,
-    onFormPasswordChanged,
-    onFormConfirmPasswordChanged,
+    onSubmitForm,
   } = useRegisterDataHelper();
 
   return (
@@ -45,60 +42,60 @@ export const RegisterDataMobileScreen = () => {
         }
         screenContainerProps={{ paddingTop: "50px", paddingBottom: "50px" }}
       >
-        <Typography
-          size="headline_26"
-          containerProps={{ margin: "0 auto", textAlign: "center" }}
-        >
-          Let's start...
-        </Typography>
-        <Typography
-          size="headline_26"
-          weight="semi-bold"
-          containerProps={{ margin: "0 auto", textAlign: "center" }}
-        >
-          Fill in some data!
-        </Typography>
-        <CustomInputField
-          label="Name"
-          placeHolder="Username"
-          bottomMessage={name.bottomMessage || "This will be your app nickname"}
-          error={name.error}
-          value={name.value}
-          onChange={(value) => onFormNameChanged(value)}
-          containerProps={{ margin: "24px auto 0 auto" }}
-        />
-        <CustomInputField
-          label="Email"
-          bottomMessage={email.bottomMessage || "Use a valid email address"}
-          placeHolder="Email"
-          value={email.value}
-          error={email.error}
-          onChange={(value) => onFormEmailChanged(value)}
-          containerProps={{ margin: "16px auto 0 auto" }}
-        />
-        <CustomInputField
-          type="password"
-          label="Password"
-          placeHolder="Password"
-          bottomMessage={
-            password.bottomMessage ||
-            "Your password must have at least 8 characters"
-          }
-          value={password.value}
-          error={password.error}
-          onChange={(value) => onFormPasswordChanged(value)}
-          containerProps={{ margin: "16px auto 0 auto" }}
-        />
-        <CustomInputField
-          type="password"
-          label="Confirm Password"
-          placeHolder="Confirm Password"
-          bottomMessage={confirmPassword.bottomMessage}
-          value={confirmPassword.value}
-          error={confirmPassword.error}
-          onChange={(value) => onFormConfirmPasswordChanged(value)}
-          containerProps={{ margin: "16px auto 0 auto" }}
-        />
+        <form ref={formRef} onSubmit={onSubmitForm}>
+          <Typography
+            size="headline_26"
+            containerProps={{ margin: "0 auto", textAlign: "center" }}
+          >
+            Let's start...
+          </Typography>
+          <Typography
+            size="headline_26"
+            weight="semi-bold"
+            containerProps={{ margin: "0 auto", textAlign: "center" }}
+          >
+            Fill in some data!
+          </Typography>
+          <CustomInputField
+            name="name"
+            label="Name"
+            placeHolder="Username"
+            bottomMessage={
+              name.bottomMessage || "This will be your app nickname"
+            }
+            error={name.error}
+            containerProps={{ margin: "24px auto 0 auto" }}
+          />
+          <CustomInputField
+            name="email"
+            label="Email"
+            bottomMessage={email.bottomMessage || "Use a valid email address"}
+            placeHolder="Email"
+            error={email.error}
+            containerProps={{ margin: "16px auto 0 auto" }}
+          />
+          <CustomInputField
+            name="password"
+            type="password"
+            label="Password"
+            placeHolder="Password"
+            bottomMessage={
+              password.bottomMessage ||
+              "Your password must have at least 8 characters"
+            }
+            error={password.error}
+            containerProps={{ margin: "16px auto 0 auto" }}
+          />
+          <CustomInputField
+            name="confirmPassword"
+            type="password"
+            label="Confirm Password"
+            placeHolder="Confirm Password"
+            bottomMessage={confirmPassword.bottomMessage}
+            error={confirmPassword.error}
+            containerProps={{ margin: "16px auto 0 auto" }}
+          />
+        </form>
       </AppLayout>
     </>
   );

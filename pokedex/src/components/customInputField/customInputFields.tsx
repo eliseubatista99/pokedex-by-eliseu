@@ -2,6 +2,7 @@ import { ChangeEvent, CSSProperties, HTMLInputTypeAttribute } from "react";
 import { Typography } from "../typography";
 
 export interface CustomInputFieldProps {
+  name: string;
   label?: string;
   bottomMessage?: string;
   placeHolder?: string;
@@ -13,6 +14,7 @@ export interface CustomInputFieldProps {
 }
 
 export const CustomInputField = ({
+  name,
   label,
   bottomMessage,
   placeHolder,
@@ -36,6 +38,7 @@ export const CustomInputField = ({
         </Typography>
       )}
       <input
+        name={name}
         type={type}
         style={{
           width: "100%",
