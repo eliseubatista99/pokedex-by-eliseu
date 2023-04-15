@@ -1,17 +1,17 @@
 import { CustomButton, OnboardingHeader, Typography } from "@components";
 import { AppLayout } from "@structure";
-import { useRegisterDataHelper } from "./registerData.hook";
+import { RegisterDataHelperOutputProps } from "./registerData.hook";
 
-export const RegisterDataDesktopScreen = () => {
-  const {
-    name,
-    email,
-    password,
-    confirmPassword,
-    onClickBack,
-    onClickContinue,
-  } = useRegisterDataHelper();
-
+export const RegisterDataDesktopScreen = ({
+  name,
+  email,
+  password,
+  formRef,
+  confirmPassword,
+  onClickBack,
+  onClickContinue,
+  onSubmitForm,
+}: RegisterDataHelperOutputProps) => {
   return (
     <AppLayout
       withoutNavigation

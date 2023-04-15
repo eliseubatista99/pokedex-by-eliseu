@@ -54,7 +54,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   };
 
   const handleValidateEmail = (value: string) => {
-    const error = !value.match(EMAIL_REGEX);
+    const error = !EMAIL_REGEX.test(value);
 
     setEmail((prevState) => ({
       ...prevState,

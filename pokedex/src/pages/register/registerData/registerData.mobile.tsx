@@ -5,20 +5,18 @@ import {
   Typography,
 } from "@components";
 import { AppLayout } from "@structure";
-import { useRegisterDataHelper } from "./registerData.hook";
+import { RegisterDataHelperOutputProps } from "./registerData.hook";
 
-export const RegisterDataMobileScreen = () => {
-  const {
-    name,
-    email,
-    password,
-    formRef,
-    confirmPassword,
-    onClickBack,
-    onClickContinue,
-    onSubmitForm,
-  } = useRegisterDataHelper();
-
+export const RegisterDataMobileScreen = ({
+  name,
+  email,
+  password,
+  formRef,
+  confirmPassword,
+  onClickBack,
+  onClickContinue,
+  onSubmitForm,
+}: RegisterDataHelperOutputProps) => {
   return (
     <>
       <AppLayout
