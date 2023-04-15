@@ -4,19 +4,15 @@ import { ResponsiveRenderElement, ResponsiveRenderProps } from ".";
 export const useResponsiveRenderHelper = ({
   elements,
 }: ResponsiveRenderProps) => {
-  const [currentElement, setCurrentElement] =
-    React.useState<ResponsiveRenderElement>({
-      breakpoint: 0,
-      content: undefined,
-    });
+  const [width, setWidth] = React.useState<number>(0);
 
   const onWindowResize = () => {
-    const width = window.innerWidth;
+    const newWidth = window.innerWidth;
 
-    updateCurrentElement(width);
+    setWidth(newWidth);
   };
 
-  const updateCurrentElement = (width: number) => {
+  const getCurrentElement = () => {
     let newElem: ResponsiveRenderElement = {
       breakpoint: 0,
       content: undefined,
@@ -30,7 +26,7 @@ export const useResponsiveRenderHelper = ({
       }
     });
 
-    setCurrentElement(newElem);
+    return newElem;
   };
 
   React.useEffect(() => {
@@ -44,6 +40,6 @@ export const useResponsiveRenderHelper = ({
   }, []);
 
   return {
-    currentElement,
+    currentElement: getCurrentElement(),
   };
 };

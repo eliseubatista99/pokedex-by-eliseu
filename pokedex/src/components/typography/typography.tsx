@@ -1,9 +1,14 @@
 import React from "react";
 import { CSSProperties } from "react";
 
-export type TypographySize = "headline_26" | "subtitle" | "body_14" | "body_18";
+export type TypographySize =
+  | "body_12"
+  | "body_14"
+  | "body_18"
+  | "headline_26"
+  | "subtitle";
 
-export type TypographyColor = "primary" | "secondary";
+export type TypographyColor = "primary" | "secondary" | "info" | "error";
 
 export type TypographyWeight =
   | "thin"
@@ -32,6 +37,11 @@ export const Typography: React.FC<TypographyProps> = ({
 }) => {
   const sizeStyle = React.useMemo((): CSSProperties => {
     switch (appearance) {
+      case "body_12":
+        return {
+          fontSize: "12px",
+          lineHeight: 1.5,
+        };
       case "body_18":
         return {
           fontSize: "18px",
@@ -61,7 +71,14 @@ export const Typography: React.FC<TypographyProps> = ({
         return {
           color: "#666666",
         };
-
+      case "info":
+        return {
+          color: "#4D4D4D",
+        };
+      case "error":
+        return {
+          color: "#a51717",
+        };
       default:
         return {
           color: "#000000",
