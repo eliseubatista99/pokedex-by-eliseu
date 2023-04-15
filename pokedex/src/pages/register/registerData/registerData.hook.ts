@@ -34,6 +34,10 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     navigate(-1);
   };
 
+  const handleGoToRegisterDone = () => {
+    navigate(Pages.registerDone);
+  };
+
   const handleClickContinue = () => {
     //navigate(Pages.login);
 
@@ -51,6 +55,8 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
       bottomMessage: error ? "Your name can't be empty" : undefined,
       error,
     }));
+
+    return error;
   };
 
   const handleValidateEmail = (value: string) => {
@@ -62,6 +68,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
       bottomMessage: "Use a valid email address",
       error,
     }));
+    return error;
   };
 
   const handleValidatePassword = (value: string) => {
@@ -73,6 +80,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
       bottomMessage: "Your password must have at least 8 characters",
       error,
     }));
+    return error;
   };
 
   const handleValidateConfirmPasswordChanged = (
@@ -87,6 +95,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
       bottomMessage: error ? "Your passwords must match" : undefined,
       error,
     }));
+    return error;
   };
 
   const handleSubmitForm = (event: any) => {
@@ -98,10 +107,19 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     const formPassword = event.currentTarget.elements[2].value as string;
     const formConfirmPassword = event.currentTarget.elements[3].value as string;
 
-    handleValidateName(formName);
-    handleValidateEmail(formEmail);
-    handleValidatePassword(formPassword);
-    handleValidateConfirmPasswordChanged(formConfirmPassword, formPassword);
+    let error = false;
+
+    error = error || handleValidateName(formName);
+    error = error || handleValidateEmail(formEmail);
+    error = error || handleValidatePassword(formPassword);
+    error =
+      error ||
+      handleValidateConfirmPasswordChanged(formConfirmPassword, formPassword);
+
+    if (!error) {
+      //TODO: Register to firebase
+      handleGoToRegisterDone();
+    }
   };
 
   return {
