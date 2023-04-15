@@ -8,21 +8,23 @@ export const RegisterDataScreen = () => {
   const props = useRegisterDataHelper();
 
   return (
-    <ResponsiveRender
-      elements={[
-        {
-          breakpoint: 0,
-          content: <RegisterDataMobileScreen {...props} />,
-        },
-        {
-          breakpoint: TABLET_BREAKPOINT,
-          content: <RegisterDataMobileScreen {...props} />,
-        },
-        {
-          breakpoint: DESKTOP_BREAKPOINT,
-          content: <RegisterDataDesktopScreen {...props} />,
-        },
-      ]}
-    />
+    <>
+      <ResponsiveRender
+        elements={[
+          {
+            breakpoint: 0,
+            content: <RegisterDataMobileScreen {...props} />,
+          },
+          {
+            breakpoint: TABLET_BREAKPOINT,
+            content: <RegisterDataMobileScreen {...props} />,
+          },
+          {
+            breakpoint: DESKTOP_BREAKPOINT,
+            content: <RegisterDataDesktopScreen {...props} />,
+          },
+        ]}
+      />
+    </>
   );
 };

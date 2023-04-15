@@ -3,8 +3,14 @@ import { AppLayout } from "@structure";
 import { RegisterDataHelperOutputProps } from "./registerData.hook";
 
 export const RegisterDataDesktopScreen = ({
+  name,
+  email,
+  password,
+  formRef,
+  confirmPassword,
   onClickBack,
   onClickContinue,
+  onSubmitForm,
 }: RegisterDataHelperOutputProps) => {
   return (
     <AppLayout
