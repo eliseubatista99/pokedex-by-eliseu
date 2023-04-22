@@ -8,7 +8,12 @@ export type TypographySize =
   | "headline_26"
   | "subtitle";
 
-export type TypographyColor = "primary" | "secondary" | "info" | "error";
+export type TypographyColor =
+  | "primary-light"
+  | "primary-dark"
+  | "secondary"
+  | "info"
+  | "error";
 
 export type TypographyWeight =
   | "thin"
@@ -24,13 +29,13 @@ export interface TypographyProps {
   size?: TypographySize;
   color?: TypographyColor;
   weight?: TypographyWeight;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   containerProps?: CSSProperties;
 }
 
 export const Typography: React.FC<TypographyProps> = ({
   size: appearance = "body_14",
-  color = "primary",
+  color = "primary-light",
   weight = "regular",
   children,
   containerProps,
@@ -67,6 +72,10 @@ export const Typography: React.FC<TypographyProps> = ({
 
   const colorStyle = React.useMemo((): CSSProperties => {
     switch (color) {
+      case "primary-dark":
+        return {
+          color: "#FFFFFF",
+        };
       case "secondary":
         return {
           color: "#666666",
@@ -133,13 +142,14 @@ export const Typography: React.FC<TypographyProps> = ({
         textAlign: "left",
         color: "#000000",
         fontFamily: "Poppins",
+        height: "fit-content",
         ...sizeStyle,
         ...weightStyle,
         ...colorStyle,
         ...containerProps,
       }}
     >
-      {children}
+      {typeof children === "string" ? <p>{children}</p> : children}
     </div>
   );
 };

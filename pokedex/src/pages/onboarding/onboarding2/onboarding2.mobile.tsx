@@ -38,7 +38,7 @@ export const Onboarding2MobileScreen = ({
           />
         </div>
       }
-      screenContainerProps={{ paddingTop: "50px" }}
+      screenContainerProps={{ padding: "50px 16px 37px 16px" }}
       withoutNavigation
     >
       <CustomImage

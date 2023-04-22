@@ -1,12 +1,12 @@
 import { ImageAssets } from "@assets";
 import { CustomButton, CustomImage, CustomLink, Typography } from "@components";
 import { AppLayout } from "@structure";
-import { LoginOrRegisterHelperOutputProps } from "./loginOrRegister.hook";
+import { PokedexHelperOutputProps } from "./pokedex.hook";
 
-export const LoginOrRegisterMobileScreen = ({
+export const PokedexMobileScreen = ({
   onClickRegister,
   onClickAlreadyHaveAnAccount,
-}: LoginOrRegisterHelperOutputProps) => {
+}: PokedexHelperOutputProps) => {
   return (
     <AppLayout
       withoutNavigation

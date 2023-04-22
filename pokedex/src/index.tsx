@@ -38,7 +38,7 @@ root.render(
           }
 
           p {
-            color: "inherit";
+            color: inherit;
           }
         `}
       />

@@ -8,11 +8,8 @@ import { AppLayout } from "@structure";
 import { RegisterDataHelperOutputProps } from "./registerData.hook";
 
 export const RegisterDataMobileScreen = ({
-  name,
-  email,
-  password,
+  registerFormData,
   formRef,
-  confirmPassword,
   onClickBack,
   onClickContinue,
   onSubmitForm,
@@ -38,7 +35,7 @@ export const RegisterDataMobileScreen = ({
             />
           </div>
         }
-        screenContainerProps={{ paddingTop: "50px", paddingBottom: "50px" }}
+        screenContainerProps={{ padding: "50px 16px" }}
       >
         <form ref={formRef} onSubmit={onSubmitForm}>
           <Typography
@@ -59,17 +56,21 @@ export const RegisterDataMobileScreen = ({
             label="Name"
             placeHolder="Username"
             bottomMessage={
-              name.bottomMessage || "This will be your app nickname"
+              registerFormData.name.bottomMessage ||
+              "This will be your app nickname"
             }
-            error={name.error}
+            error={registerFormData.name.error}
             containerProps={{ margin: "24px auto 0 auto" }}
           />
           <CustomInputField
             name="email"
             label="Email"
-            bottomMessage={email.bottomMessage || "Use a valid email address"}
+            bottomMessage={
+              registerFormData.email.bottomMessage ||
+              "Use a valid email address"
+            }
             placeHolder="Email"
-            error={email.error}
+            error={registerFormData.email.error}
             containerProps={{ margin: "16px auto 0 auto" }}
           />
           <CustomInputField
@@ -78,10 +79,10 @@ export const RegisterDataMobileScreen = ({
             label="Password"
             placeHolder="Password"
             bottomMessage={
-              password.bottomMessage ||
+              registerFormData.password.bottomMessage ||
               "Your password must have at least 8 characters"
             }
-            error={password.error}
+            error={registerFormData.password.error}
             containerProps={{ margin: "16px auto 0 auto" }}
           />
           <CustomInputField
@@ -89,8 +90,8 @@ export const RegisterDataMobileScreen = ({
             type="password"
             label="Confirm Password"
             placeHolder="Confirm Password"
-            bottomMessage={confirmPassword.bottomMessage}
-            error={confirmPassword.error}
+            bottomMessage={registerFormData.confirmPassword.bottomMessage}
+            error={registerFormData.confirmPassword.error}
             containerProps={{ margin: "16px auto 0 auto" }}
           />
         </form>

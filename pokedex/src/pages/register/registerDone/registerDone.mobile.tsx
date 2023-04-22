@@ -1,11 +1,12 @@
 import { ImageAssets } from "@assets";
-import { CustomButton, CustomImage, Stepper, Typography } from "@components";
+import { CustomButton, CustomImage, Typography } from "@components";
 import { AppLayout } from "@structure";
-import { Onboarding1HelperOutputProps } from "./onboarding1.hook";
+import { RegisterDoneHelperOutputProps } from "./registerDone.hook";
 
-export const Onboarding1MobileScreen = ({
+export const RegisterDoneMobileScreen = ({
+  onClickBack,
   onClickContinue,
-}: Onboarding1HelperOutputProps) => {
+}: RegisterDoneHelperOutputProps) => {
   return (
     <AppLayout
       bottomContent={
@@ -15,21 +16,15 @@ export const Onboarding1MobileScreen = ({
             weight="medium"
             containerProps={{ margin: "0 auto", textAlign: "center" }}
           >
-            All Pokémon in One Place
+            Your account was successfully created!
           </Typography>
           <Typography
             size="body_14"
             color="secondary"
             containerProps={{ margin: "16px auto 0 auto", textAlign: "center" }}
           >
-            Access a vast list of Pokémon from every generation ever made by
-            Nintendo
+            Welcome, trainer! We are excited to follow your journey.
           </Typography>
-          <Stepper
-            numberOfSteps={2}
-            currentStep={0}
-            containerProps={{ margin: "24px auto 0 auto" }}
-          />
           <CustomButton
             appearance={"primary"}
             middleContent={"Continue"}
@@ -42,8 +37,8 @@ export const Onboarding1MobileScreen = ({
       screenContainerProps={{ padding: "50px 16px 37px 16px" }}
     >
       <CustomImage
-        src={ImageAssets.Onboarding1Figure}
-        alt={"A scientis and a boy with a straw hat"}
+        src={ImageAssets.RegisterDoneFigure}
+        alt={"Two trainers posing"}
         containerStyles={{
           margin: "auto auto 37px auto",
           maxWidth: "342px",

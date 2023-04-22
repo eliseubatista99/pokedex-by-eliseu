@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { EMAIL_REGEX, Pages } from "@constants";
-import React from "react";
+import React, { useState } from "react";
+import { useAuthContext } from "@contexts";
+import { useBaseStore } from "@store";
+import { FirebaseError } from "firebase/app";
 
 export interface RegisterFormField {
   value?: string;
@@ -8,11 +11,15 @@ export interface RegisterFormField {
   bottomMessage?: string;
 }
 
-export interface RegisterDataHelperOutputProps {
+export interface RegisterFormData {
   name: RegisterFormField;
   email: RegisterFormField;
   password: RegisterFormField;
   confirmPassword: RegisterFormField;
+}
+
+export interface RegisterDataHelperOutputProps {
+  registerFormData: RegisterFormData;
   formRef: React.RefObject<HTMLFormElement>;
   onClickBack: () => void;
   onClickContinue: () => void;
@@ -21,14 +28,17 @@ export interface RegisterDataHelperOutputProps {
 
 export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   const navigate = useNavigate();
+  const setStoreState = useBaseStore((state) => state.setPartialState);
+  const { signUp } = useAuthContext();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const [name, setName] = React.useState<RegisterFormField>({});
-  const [email, setEmail] = React.useState<RegisterFormField>({});
-  const [password, setPassword] = React.useState<RegisterFormField>({});
-  const [confirmPassword, setConfirmPassword] =
-    React.useState<RegisterFormField>({});
+  const [registerFormData, setRegisterFormData] = useState<RegisterFormData>({
+    name: {},
+    email: {},
+    password: {},
+    confirmPassword: {},
+  });
 
   const handleGoBack = () => {
     navigate(-1);
@@ -36,6 +46,29 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
 
   const handleGoToRegisterDone = () => {
     navigate(Pages.registerDone);
+  };
+
+  const handleCreateAccount = async (
+    email: string,
+    password: string,
+    username: string
+  ) => {
+    try {
+      setStoreState({
+        loader: { style: "transparent", text: "Creating User Account..." },
+      });
+      await signUp(email, password, username);
+      setStoreState({
+        loader: undefined,
+      });
+      handleGoToRegisterDone();
+    } catch (error: unknown) {
+      const firebaseError = error as FirebaseError;
+      console.error("Failed to create an account. Error: ", firebaseError.code);
+      setStoreState({
+        loader: undefined,
+      });
+    }
   };
 
   const handleClickContinue = () => {
@@ -49,37 +82,18 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   const handleValidateName = (value: string) => {
     const error = value.trim().length < 1;
 
-    setName((prevState) => ({
-      ...prevState,
-      value,
-      bottomMessage: error ? "Your name can't be empty" : undefined,
-      error,
-    }));
-
     return error;
   };
 
   const handleValidateEmail = (value: string) => {
     const error = !EMAIL_REGEX.test(value);
 
-    setEmail((prevState) => ({
-      ...prevState,
-      value,
-      bottomMessage: "Use a valid email address",
-      error,
-    }));
     return error;
   };
 
   const handleValidatePassword = (value: string) => {
     const error = value.length < 8;
 
-    setPassword((prevState) => ({
-      ...prevState,
-      value,
-      bottomMessage: "Your password must have at least 8 characters",
-      error,
-    }));
     return error;
   };
 
@@ -89,12 +103,6 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   ) => {
     const error = value !== comparePassword;
 
-    setConfirmPassword((prevState) => ({
-      ...prevState,
-      value,
-      bottomMessage: error ? "Your passwords must match" : undefined,
-      error,
-    }));
     return error;
   };
 
@@ -107,26 +115,51 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     const formPassword = event.currentTarget.elements[2].value as string;
     const formConfirmPassword = event.currentTarget.elements[3].value as string;
 
-    let error = false;
+    const nameError = handleValidateName(formName);
+    const emailError = handleValidateEmail(formEmail);
+    const passwordError = handleValidatePassword(formPassword);
+    const confirmPasswordError = handleValidateConfirmPasswordChanged(
+      formConfirmPassword,
+      formPassword
+    );
 
-    error = error || handleValidateName(formName);
-    error = error || handleValidateEmail(formEmail);
-    error = error || handleValidatePassword(formPassword);
-    error =
-      error ||
-      handleValidateConfirmPasswordChanged(formConfirmPassword, formPassword);
+    setRegisterFormData((prevState) => ({
+      ...prevState,
+      name: {
+        ...prevState.name,
+        value: formName,
+        bottomMessage: nameError ? "Your name can't be empty" : undefined,
+        error: nameError,
+      },
+      email: {
+        ...prevState.email,
+        value: formEmail,
+        bottomMessage: "Use a valid email address",
+        error: emailError,
+      },
+      password: {
+        ...prevState.password,
+        value: formPassword,
+        bottomMessage: "Your password must have at least 8 characters",
+        error: passwordError,
+      },
+      confirmPassword: {
+        ...prevState.confirmPassword,
+        value: formConfirmPassword,
+        bottomMessage: confirmPasswordError
+          ? "Your passwords must match"
+          : undefined,
+        error: confirmPasswordError,
+      },
+    }));
 
-    if (!error) {
-      //TODO: Register to firebase
-      handleGoToRegisterDone();
+    if (!nameError && !emailError && !passwordError && !confirmPasswordError) {
+      handleCreateAccount(formEmail, formPassword, formName);
     }
   };
 
   return {
-    name,
-    email,
-    password,
-    confirmPassword,
+    registerFormData,
     formRef,
     onClickBack: handleGoBack,
     onClickContinue: handleClickContinue,
