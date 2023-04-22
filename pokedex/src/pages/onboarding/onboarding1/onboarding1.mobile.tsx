@@ -39,7 +39,7 @@ export const Onboarding1MobileScreen = ({
         </div>
       }
       withoutNavigation
-      screenContainerProps={{ paddingTop: "50px" }}
+      screenContainerProps={{ padding: "50px 16px 37px 16px" }}
     >
       <CustomImage
         src={ImageAssets.Onboarding1Figure}

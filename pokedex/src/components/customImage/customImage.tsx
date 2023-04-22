@@ -37,7 +37,7 @@ export const CustomImage: React.FC<CustomImageProps> = ({
           height: "100%",
           objectFit: "cover",
           borderRadius: borderRadius,
-          mixBlendMode: mixBlendMode || "multiply",
+          mixBlendMode: mixBlendMode,
           ...imgStyles,
         }}
       />

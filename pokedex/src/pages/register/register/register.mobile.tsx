@@ -85,7 +85,7 @@ export const RegisterMobileScreen = ({
           />
         </div>
       }
-      screenContainerProps={{ paddingTop: "50px" }}
+      screenContainerProps={{ padding: "50px 16px" }}
     >
       <CustomImage
         src={ImageAssets.RegisterFigura}

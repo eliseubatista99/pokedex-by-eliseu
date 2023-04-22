@@ -40,7 +40,7 @@ export const LoginOrRegisterMobileScreen = ({
           />
         </div>
       }
-      screenContainerProps={{ paddingTop: "50px" }}
+      screenContainerProps={{ padding: "50px 16px 37px 16px" }}
     >
       <CustomImage
         src={ImageAssets.LoginOrRegisterFigure}
