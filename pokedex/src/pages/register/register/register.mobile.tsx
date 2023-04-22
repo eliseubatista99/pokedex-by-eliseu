@@ -88,7 +88,7 @@ export const RegisterMobileScreen = ({
       screenContainerProps={{ padding: "50px 16px" }}
     >
       <CustomImage
-        src={ImageAssets.RegisterFigura}
+        src={ImageAssets.RegisterFigure}
         alt={"A girl with a long hair with her right hand up in the air"}
         containerStyles={{
           margin: "auto auto 37px auto",

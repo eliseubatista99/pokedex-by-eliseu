@@ -3,6 +3,7 @@ import { EMAIL_REGEX, Pages } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
 import { useBaseStore } from "@store";
+import { FirebaseError } from "firebase/app";
 
 export interface RegisterFormField {
   value?: string;
@@ -47,6 +48,29 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     navigate(Pages.registerDone);
   };
 
+  const handleCreateAccount = async (
+    email: string,
+    password: string,
+    username: string
+  ) => {
+    try {
+      setStoreState({
+        loader: { style: "transparent", text: "Creating User Account..." },
+      });
+      await signUp(email, password, username);
+      setStoreState({
+        loader: undefined,
+      });
+      handleGoToRegisterDone();
+    } catch (error: unknown) {
+      const firebaseError = error as FirebaseError;
+      console.error("Failed to create an account. Error: ", firebaseError.code);
+      setStoreState({
+        loader: undefined,
+      });
+    }
+  };
+
   const handleClickContinue = () => {
     //navigate(Pages.login);
 
@@ -82,7 +106,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     return error;
   };
 
-  const handleSubmitForm = async (event: any) => {
+  const handleSubmitForm = (event: any) => {
     // Preventing the page from reloading
     event.preventDefault();
 
@@ -130,16 +154,7 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     }));
 
     if (!nameError && !emailError && !passwordError && !confirmPasswordError) {
-      setStoreState({
-        loader: { style: "transparent", text: "Creating User Account..." },
-      });
-      // try {
-      //   await signUp(formEmail, formPassword, formName);
-      // } catch (error) {
-      //   console.error("Failed to create an account. Error: ", error);
-      // }
-      //TODO: Register to firebase
-      //handleGoToRegisterDone();
+      handleCreateAccount(formEmail, formPassword, formName);
     }
   };
 

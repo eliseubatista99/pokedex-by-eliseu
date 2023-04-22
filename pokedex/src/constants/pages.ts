@@ -10,4 +10,5 @@ export const Pages = {
   loginData: "/loginData",
   loginDone: "/loginDone",
   forgotPassword: "/forgotPassword",
+  pokedex: "/pokedex",
 };

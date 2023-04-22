@@ -5,15 +5,22 @@ import {
   Onboarding1Screen,
   Onboarding2Screen,
   RegisterDataScreen,
+  RegisterDoneScreen,
   RegisterScreen,
   SplashScreen,
 } from "@pages";
 import { AuthProvider } from "@contexts";
 import { AppLoader } from "@structure";
 import { useBaseStore } from "@store";
+import React from "react";
 
 function App() {
   const loader = useBaseStore((state) => state.loader);
+  const setBaseStoreState = useBaseStore((state) => state.setPartialState);
+
+  React.useEffect(() => {
+    setBaseStoreState({ loader: undefined });
+  }, []);
 
   return (
     <AuthProvider>
@@ -31,6 +38,7 @@ function App() {
           <Route path={Pages.onboarding2} element={<Onboarding2Screen />} />
           <Route path={Pages.register} element={<RegisterScreen />} />
           <Route path={Pages.registerData} element={<RegisterDataScreen />} />
+          <Route path={Pages.registerDone} element={<RegisterDoneScreen />} />
         </Routes>
       </div>
       {loader && (
