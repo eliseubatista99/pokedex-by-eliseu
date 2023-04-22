@@ -1,11 +1,5 @@
 import { ImageAssets } from "@assets";
-import {
-  CustomButton,
-  CustomImage,
-  CustomInputField,
-  OnboardingHeader,
-  Typography,
-} from "@components";
+import { CustomButton, CustomImage, Typography } from "@components";
 import { AppLayout } from "@structure";
 import { RegisterDoneHelperOutputProps } from "./registerDone.hook";
 
