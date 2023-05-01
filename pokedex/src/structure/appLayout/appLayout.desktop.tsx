@@ -19,19 +19,21 @@ export const AppLayoutDesktop = ({
       }}
     >
       {!withoutNavigation && <AppNavigation />}
-      {topContent && (
-        <div style={{ width: "100%", margin: "0 auto 0 auto" }}>
-          {topContent}
+      <div>
+        {topContent && (
+          <div style={{ width: "100%", margin: "0 auto 0 auto" }}>
+            {topContent}
+          </div>
+        )}
+        <div style={{ width: "100%", flex: 1, ...screenContainerProps }}>
+          {children}
         </div>
-      )}
-      <div style={{ width: "100%", flex: 1, ...screenContainerProps }}>
-        {children}
+        {bottomContent && (
+          <div style={{ width: "100%", margin: "auto auto 0 auto" }}>
+            {bottomContent}
+          </div>
+        )}
       </div>
-      {bottomContent && (
-        <div style={{ width: "100%", margin: "auto auto 0 auto" }}>
-          {bottomContent}
-        </div>
-      )}
     </div>
   );
 };

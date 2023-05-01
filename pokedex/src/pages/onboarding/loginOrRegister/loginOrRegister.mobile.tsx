@@ -1,9 +1,12 @@
 import { ImageAssets } from "@assets";
 import { CustomButton, CustomImage, CustomLink, Typography } from "@components";
+import { Iconography } from "@iconography";
 import { AppLayout } from "@structure";
+import { ArrowRight } from "src/iconography/icons";
 import { LoginOrRegisterHelperOutputProps } from "./loginOrRegister.hook";
 
 export const LoginOrRegisterMobileScreen = ({
+  onClickSkip,
   onClickRegister,
   onClickAlreadyHaveAnAccount,
 }: LoginOrRegisterHelperOutputProps) => {
@@ -40,7 +43,27 @@ export const LoginOrRegisterMobileScreen = ({
           />
         </div>
       }
-      screenContainerProps={{ padding: "50px 16px 37px 16px" }}
+      topContent={
+        <div style={{ width: "100%" }}>
+          <CustomLink
+            middleContent={
+              <Typography size="body_14" color="link">
+                Skip
+              </Typography>
+            }
+            endContent={
+              <Iconography.ArrowRight
+                width="27px"
+                height="27px"
+                stroke="#173EA5"
+              />
+            }
+            onClick={onClickSkip}
+            containerProps={{ margin: "40px 16px 0 auto" }}
+          />
+        </div>
+      }
+      screenContainerProps={{ padding: "40px 16px 0 16px" }}
     >
       <CustomImage
         src={ImageAssets.LoginOrRegisterFigure}

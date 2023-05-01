@@ -2,6 +2,7 @@ import { Pages } from "@constants";
 import { useCustomNavigation } from "@hooks";
 
 export interface LoginOrRegisterHelperOutputProps {
+  onClickSkip: () => void;
   onClickRegister: () => void;
   onClickAlreadyHaveAnAccount: () => void;
 }
@@ -9,6 +10,10 @@ export interface LoginOrRegisterHelperOutputProps {
 export const useLoginOrRegisterHelper =
   (): LoginOrRegisterHelperOutputProps => {
     const { goBack, goTo } = useCustomNavigation();
+
+    const handleGoToPokedex = () => {
+      goTo(Pages.pokedex);
+    };
 
     const handleGoToRegister = () => {
       goTo(Pages.register);
@@ -19,6 +24,7 @@ export const useLoginOrRegisterHelper =
     };
 
     return {
+      onClickSkip: handleGoToPokedex,
       onClickRegister: handleGoToRegister,
       onClickAlreadyHaveAnAccount: handleGoToLogin,
     };

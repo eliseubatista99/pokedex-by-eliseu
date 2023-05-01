@@ -9,7 +9,6 @@ export const PokedexMobileScreen = ({
 }: PokedexHelperOutputProps) => {
   return (
     <AppLayout
-      withoutNavigation
       bottomContent={
         <div style={{ width: "100%" }}>
           <Typography
@@ -36,7 +35,7 @@ export const PokedexMobileScreen = ({
           <CustomLink
             middleContent="I already have and account"
             onClick={onClickAlreadyHaveAnAccount}
-            containerProps={{ margin: "0 auto 55px auto" }}
+            containerProps={{ margin: "0 auto 15px auto" }}
           />
         </div>
       }
