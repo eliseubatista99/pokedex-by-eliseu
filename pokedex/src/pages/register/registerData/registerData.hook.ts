@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { EMAIL_REGEX, Pages } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
-import { useBaseStore } from "@store";
+import { useBaseStore, useUserStore } from "@store";
 import { FirebaseError } from "firebase/app";
 
 export interface RegisterFormField {
@@ -28,8 +28,9 @@ export interface RegisterDataHelperOutputProps {
 
 export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   const navigate = useNavigate();
-  const setStoreState = useBaseStore((state) => state.setPartialState);
-  const { signUp } = useAuthContext();
+  const setBaseStoreState = useBaseStore((state) => state.setPartialState);
+  const setUserStoreState = useUserStore((state) => state.setPartialState);
+  const { signUp, currentUser } = useAuthContext();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -54,18 +55,22 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
     username: string
   ) => {
     try {
-      setStoreState({
+      setBaseStoreState({
         loader: { style: "transparent", text: "Creating User Account..." },
       });
       await signUp(email, password, username);
-      setStoreState({
+      setBaseStoreState({
         loader: undefined,
+      });
+      setUserStoreState({
+        name: currentUser?.displayName,
+        email: currentUser?.email,
       });
       handleGoToRegisterDone();
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError;
       console.error("Failed to create an account. Error: ", firebaseError.code);
-      setStoreState({
+      setBaseStoreState({
         loader: undefined,
       });
     }

@@ -5,6 +5,8 @@ import Onboarding1Figure from "./onboarding1_figure.png";
 import Onboarding2Figure from "./onboarding2_figure.png";
 import RegisterFigure from "./register_figure.png";
 import RegisterDoneFigure from "./registerDone_figure.png";
+import LoginFigure from "./login_figure.png";
+import LoginDoneFigure from "./loginDone_figure.png";
 
 export const ImageAssets = {
   IconPokeball,
@@ -14,4 +16,6 @@ export const ImageAssets = {
   Onboarding2Figure,
   RegisterFigure,
   RegisterDoneFigure,
+  LoginFigure,
+  LoginDoneFigure,
 };
