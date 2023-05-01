@@ -13,53 +13,62 @@ export const AppNavigationDesktop = (props: AppNavigationOutputProps) => {
     <div
       style={{
         width: "100%",
-        height: "95%",
-        padding: "10px",
-        backgroundColor: "#ffffff",
-        margin: "auto 0 auto 15px",
-        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+        height: "100%",
+        padding: "20px 10px",
       }}
     >
-      <NavigationItem
-        text={"Pokedéx"}
-        icon={<Iconography.NavigationPokedex />}
-        onClick={() => setPokedexStoreState({ pokedexPage: "Pokedex" })}
-        isSelected={pokedexPage === "Pokedex"}
-        containerProps={{ margin: "0 auto", padding: "20px", width: "100%" }}
-      />
-      <NavigationItem
-        text={"Regions"}
-        icon={<Iconography.NavigationRegions />}
-        onClick={() => setPokedexStoreState({ pokedexPage: "Regions" })}
-        isSelected={pokedexPage === "Regions"}
-        containerProps={{
-          margin: "15px auto 0 auto",
-          padding: "20px",
+      <div
+        style={{
           width: "100%",
+          height: "100%",
+          padding: "10px",
+          backgroundColor: "#ffffff",
+          margin: "auto auto",
+          boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+          borderRadius: "10px",
         }}
-      />
-      <NavigationItem
-        text={"Favorites"}
-        icon={<Iconography.NavigationFavorite />}
-        onClick={() => setPokedexStoreState({ pokedexPage: "Favorites" })}
-        isSelected={pokedexPage === "Favorites"}
-        containerProps={{
-          margin: "15px auto 0 auto",
-          padding: "20px",
-          width: "100%",
-        }}
-      />
-      <NavigationItem
-        text={"Account"}
-        icon={<Iconography.NavigationAccount />}
-        onClick={() => setPokedexStoreState({ pokedexPage: "Account" })}
-        isSelected={pokedexPage === "Account"}
-        containerProps={{
-          margin: "15px auto 0 auto",
-          padding: "20px",
-          width: "100%",
-        }}
-      />
+      >
+        <NavigationItem
+          text={"Pokedéx"}
+          icon={<Iconography.NavigationPokedex />}
+          onClick={() => setPokedexStoreState({ pokedexPage: "Pokedex" })}
+          isSelected={pokedexPage === "Pokedex"}
+          containerProps={{ margin: "0 auto", padding: "20px", width: "100%" }}
+        />
+        <NavigationItem
+          text={"Regions"}
+          icon={<Iconography.NavigationRegions />}
+          onClick={() => setPokedexStoreState({ pokedexPage: "Regions" })}
+          isSelected={pokedexPage === "Regions"}
+          containerProps={{
+            margin: "15px auto 0 auto",
+            padding: "20px",
+            width: "100%",
+          }}
+        />
+        <NavigationItem
+          text={"Favorites"}
+          icon={<Iconography.NavigationFavorite />}
+          onClick={() => setPokedexStoreState({ pokedexPage: "Favorites" })}
+          isSelected={pokedexPage === "Favorites"}
+          containerProps={{
+            margin: "15px auto 0 auto",
+            padding: "20px",
+            width: "100%",
+          }}
+        />
+        <NavigationItem
+          text={"Account"}
+          icon={<Iconography.NavigationAccount />}
+          onClick={() => setPokedexStoreState({ pokedexPage: "Account" })}
+          isSelected={pokedexPage === "Account"}
+          containerProps={{
+            margin: "15px auto 0 auto",
+            padding: "20px",
+            width: "100%",
+          }}
+        />
+      </div>
     </div>
   );
 };

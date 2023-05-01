@@ -1,6 +1,27 @@
+import { usePokedexStore } from "@store";
+import { AppLayout } from "@structure";
 import { PokedexHelperOutputProps } from "./pokedex.hook";
-import { PokedexMobileScreen } from "./pokedex.mobile";
+import { PokedexSection } from "./sections";
 
 export const PokedexDesktopScreen = (props: PokedexHelperOutputProps) => {
-  return <PokedexMobileScreen {...props} />;
+  const pokedexPage = usePokedexStore((state) => state.pokedexPage);
+
+  const renderPokedexPage = () => {
+    switch (pokedexPage) {
+      case "Regions":
+        return <PokedexSection />;
+      case "Favorites":
+        return <PokedexSection />;
+      case "Account":
+        return <PokedexSection />;
+      default:
+        return <PokedexSection />;
+    }
+  };
+
+  return (
+    <AppLayout screenContainerProps={{ padding: "0 16px 37px 16px" }}>
+      {renderPokedexPage()}
+    </AppLayout>
+  );
 };
