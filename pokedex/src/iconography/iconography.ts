@@ -1,6 +1,15 @@
 import { Property } from "csstype";
 import { CSSProperties } from "react";
-import { NavLeft, Apple, Google } from "./icons";
+import {
+  NavLeft,
+  Apple,
+  Google,
+  ArrowRight,
+  NavigationAccount,
+  NavigationFavorite,
+  NavigationPokedex,
+  NavigationRegions,
+} from "./icons";
 
 export interface IconographyProps {
   width?: Property.Width;
@@ -15,4 +24,9 @@ export const Iconography = {
   NavLeft,
   Apple,
   Google,
+  ArrowRight,
+  NavigationAccount,
+  NavigationFavorite,
+  NavigationPokedex,
+  NavigationRegions,
 };

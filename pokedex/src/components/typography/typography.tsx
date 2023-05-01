@@ -13,7 +13,8 @@ export type TypographyColor =
   | "primary-dark"
   | "secondary"
   | "info"
-  | "error";
+  | "error"
+  | "link";
 
 export type TypographyWeight =
   | "thin"
@@ -88,6 +89,11 @@ export const Typography: React.FC<TypographyProps> = ({
         return {
           fontFamily: "PoppinsSemiBold",
           color: "#a51717",
+        };
+      case "link":
+        return {
+          fontFamily: "PoppinsSemiBold",
+          color: "#173EA5",
         };
       default:
         return {

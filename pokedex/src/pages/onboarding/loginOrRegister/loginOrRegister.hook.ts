@@ -1,24 +1,30 @@
-import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
+import { useCustomNavigation } from "@hooks";
 
 export interface LoginOrRegisterHelperOutputProps {
+  onClickSkip: () => void;
   onClickRegister: () => void;
   onClickAlreadyHaveAnAccount: () => void;
 }
 
 export const useLoginOrRegisterHelper =
   (): LoginOrRegisterHelperOutputProps => {
-    const navigate = useNavigate();
+    const { goTo } = useCustomNavigation();
+
+    const handleGoToPokedex = () => {
+      goTo(Pages.pokedex);
+    };
 
     const handleGoToRegister = () => {
-      navigate(Pages.register);
+      goTo(Pages.register);
     };
 
     const handleGoToLogin = () => {
-      navigate(Pages.login);
+      goTo(Pages.login);
     };
 
     return {
+      onClickSkip: handleGoToPokedex,
       onClickRegister: handleGoToRegister,
       onClickAlreadyHaveAnAccount: handleGoToLogin,
     };

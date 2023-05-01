@@ -18,10 +18,11 @@ export const CustomLink: React.FC<CustomLinkProps> = ({
   return (
     <div
       style={{
+        flexDirection: "row",
         position: "relative",
         cursor: "pointer",
-        width: "80%",
         color: "#173EA5",
+        alignItems: "center",
         ...containerProps,
       }}
       onClick={onClick}

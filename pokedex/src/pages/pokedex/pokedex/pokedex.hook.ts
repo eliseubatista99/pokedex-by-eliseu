@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
+import { useCustomNavigation } from "@hooks";
 
 export interface PokedexHelperOutputProps {
   onClickRegister: () => void;
@@ -7,14 +7,14 @@ export interface PokedexHelperOutputProps {
 }
 
 export const usePokedexScreenHelper = (): PokedexHelperOutputProps => {
-  const navigate = useNavigate();
+  const { goTo } = useCustomNavigation();
 
   const handleGoToRegister = () => {
-    navigate(Pages.register);
+    goTo(Pages.register);
   };
 
   const handleGoToLogin = () => {
-    navigate(Pages.login);
+    goTo(Pages.login);
   };
 
   return {

@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { auth } from "@configs";
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  updateProfile,
   User,
-  UserCredential,
 } from "firebase/auth";
 
 interface AuthContextInputProps {
@@ -18,17 +19,21 @@ interface AuthContextOutputProps {
     email: string,
     password: string,
     username: string
-  ) => Promise<UserCredential>;
-  logIn: (email: string, password: string) => Promise<UserCredential>;
+  ) => Promise<string | undefined>;
+  logIn: (email: string, password: string) => Promise<string | undefined>;
+  resetPassword: (email: string) => Promise<string | undefined>;
 }
 
 const AuthContext = React.createContext<AuthContextOutputProps>({
   currentUser: null,
   signUp: (email: string, password: string, username: string) => {
-    return new Promise((res) => console.log("Initializing auth signup method"));
+    return new Promise((res) => undefined);
   },
   logIn: (email: string, password: string) => {
-    return new Promise((res) => console.log("Initializing auth login method"));
+    return new Promise((res) => undefined);
+  },
+  resetPassword: (email: string) => {
+    return new Promise((res) => undefined);
   },
 });
 
@@ -36,12 +41,53 @@ export const AuthProvider = ({ children }: AuthContextInputProps) => {
   const [currentUser, setCurrentUser] = React.useState<User | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const signUp = (email: string, password: string, username: string) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const signUp = async (
+    email: string,
+    password: string,
+    username: string
+  ): Promise<string | undefined> => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await updateProfile(userCredential.user, { displayName: username });
+
+      return undefined;
+    } catch (error) {
+      console.log("Error signing up: ", error);
+
+      return "error";
+    }
   };
 
-  const logIn = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const logIn = async (
+    email: string,
+    password: string
+  ): Promise<string | undefined> => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      return undefined;
+    } catch (error) {
+      console.log("Error loggin in: ", error);
+
+      return "error";
+    }
+  };
+
+  const resetPassword = async (email: string): Promise<string | undefined> => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+
+      return undefined;
+    } catch (error) {
+      console.log("Error reseting password in: ", error);
+
+      return "error";
+    }
   };
 
   React.useEffect(() => {
@@ -54,7 +100,7 @@ export const AuthProvider = ({ children }: AuthContextInputProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser, signUp, logIn }}>
+    <AuthContext.Provider value={{ currentUser, signUp, logIn, resetPassword }}>
       {!isLoading && children}
     </AuthContext.Provider>
   );
