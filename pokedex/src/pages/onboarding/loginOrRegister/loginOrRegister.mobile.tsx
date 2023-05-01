@@ -2,7 +2,6 @@ import { ImageAssets } from "@assets";
 import { CustomButton, CustomImage, CustomLink, Typography } from "@components";
 import { Iconography } from "@iconography";
 import { AppLayout } from "@structure";
-import { ArrowRight } from "src/iconography/icons";
 import { LoginOrRegisterHelperOutputProps } from "./loginOrRegister.hook";
 
 export const LoginOrRegisterMobileScreen = ({

@@ -3,7 +3,7 @@ import { AppLayout } from "@structure";
 import { PokedexHelperOutputProps } from "./pokedex.hook";
 import { PokedexSection } from "./sections";
 
-export const PokedexMobileScreen = ({}: PokedexHelperOutputProps) => {
+export const PokedexMobileScreen = (props: PokedexHelperOutputProps) => {
   const pokedexPage = usePokedexStore((state) => state.pokedexPage);
 
   const renderPokedexPage = () => {

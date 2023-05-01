@@ -7,7 +7,7 @@ export interface PokedexHelperOutputProps {
 }
 
 export const usePokedexScreenHelper = (): PokedexHelperOutputProps => {
-  const { goBack, goTo } = useCustomNavigation();
+  const { goTo } = useCustomNavigation();
 
   const handleGoToRegister = () => {
     goTo(Pages.register);

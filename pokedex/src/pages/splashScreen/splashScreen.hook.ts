@@ -3,7 +3,7 @@ import { Pages } from "@constants";
 import { useCustomNavigation } from "@hooks";
 
 export const useSplashScreenHelper = () => {
-  const { goBack, goTo } = useCustomNavigation();
+  const { goTo } = useCustomNavigation();
 
   const goToOnboarding1 = () => {
     goTo(Pages.onboarding1);

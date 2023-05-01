@@ -9,7 +9,7 @@ export interface LoginOrRegisterHelperOutputProps {
 
 export const useLoginOrRegisterHelper =
   (): LoginOrRegisterHelperOutputProps => {
-    const { goBack, goTo } = useCustomNavigation();
+    const { goTo } = useCustomNavigation();
 
     const handleGoToPokedex = () => {
       goTo(Pages.pokedex);

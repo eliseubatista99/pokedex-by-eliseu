@@ -1,4 +1,3 @@
-import React, { CSSProperties } from "react";
 import { AppNavigation, AppLayoutProps } from "..";
 
 export const AppLayoutMobile = ({

@@ -6,7 +6,7 @@ export interface Onboarding1HelperOutputProps {
 }
 
 export const useOnboarding1Helper = (): Onboarding1HelperOutputProps => {
-  const { goBack, goTo } = useCustomNavigation();
+  const { goTo } = useCustomNavigation();
 
   const handleGoToOnboarding2 = () => {
     goTo(Pages.onboarding2);

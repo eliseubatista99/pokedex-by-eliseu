@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, Pages } from "@constants";
+import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
 import { useBaseStore } from "@store";
