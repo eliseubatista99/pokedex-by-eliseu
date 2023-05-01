@@ -1,5 +1,5 @@
 import { Pages } from "@constants";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigation } from "@hooks";
 
 export interface LoginDoneHelperOutputProps {
   onClickBack: () => void;
@@ -7,14 +7,14 @@ export interface LoginDoneHelperOutputProps {
 }
 
 export const useLoginDoneHelper = (): LoginDoneHelperOutputProps => {
-  const navigate = useNavigate();
+  const { goTo } = useCustomNavigation();
 
   const handleGoBack = () => {
-    navigate(-3);
+    goTo(Pages.loginOrRegister);
   };
 
   const handleClickContinue = () => {
-    navigate(Pages.pokedex);
+    goTo(Pages.pokedex);
   };
 
   return {

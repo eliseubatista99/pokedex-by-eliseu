@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
+import { useCustomNavigation } from "@hooks";
 
 export interface LoginOrRegisterHelperOutputProps {
   onClickRegister: () => void;
@@ -8,14 +8,14 @@ export interface LoginOrRegisterHelperOutputProps {
 
 export const useLoginOrRegisterHelper =
   (): LoginOrRegisterHelperOutputProps => {
-    const navigate = useNavigate();
+    const { goBack, goTo } = useCustomNavigation();
 
     const handleGoToRegister = () => {
-      navigate(Pages.register);
+      goTo(Pages.register);
     };
 
     const handleGoToLogin = () => {
-      navigate(Pages.login);
+      goTo(Pages.login);
     };
 
     return {

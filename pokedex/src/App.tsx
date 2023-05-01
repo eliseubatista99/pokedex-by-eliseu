@@ -13,22 +13,29 @@ import {
   RegisterScreen,
   SplashScreen,
 } from "@pages";
-import { AuthProvider } from "@contexts";
+import { useAuthContext } from "@contexts";
 import { AppLoader } from "@structure";
 import { useBaseStore } from "@store";
 import React from "react";
+import { useCustomNavigation } from "@hooks";
 
 function App() {
   const loader = useBaseStore((state) => state.loader);
+  const { goTo } = useCustomNavigation();
   const setBaseStoreState = useBaseStore((state) => state.setPartialState);
+  const { currentUser } = useAuthContext();
 
   React.useEffect(() => {
+    console.log("App started");
+
+    currentUser ? goTo(Pages.pokedex) : goTo(Pages.onboarding1);
+
     setBaseStoreState({ loader: undefined });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <AuthProvider>
+    <>
       <div
         className="App"
         style={{ position: "relative", width: "100%", height: "100%" }}
@@ -56,7 +63,7 @@ function App() {
       {loader && (
         <AppLoader loaderStyle={loader.style} loadingText={loader.text} />
       )}
-    </AuthProvider>
+    </>
   );
 }
 

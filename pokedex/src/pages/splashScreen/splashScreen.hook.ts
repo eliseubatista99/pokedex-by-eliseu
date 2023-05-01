@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
+import { useCustomNavigation } from "@hooks";
 
 export const useSplashScreenHelper = () => {
-  const navigate = useNavigate();
+  const { goBack, goTo } = useCustomNavigation();
 
   const goToOnboarding1 = () => {
-    navigate(Pages.onboarding1);
+    goTo(Pages.onboarding1);
   };
 
   const goToNextScreen = () => {

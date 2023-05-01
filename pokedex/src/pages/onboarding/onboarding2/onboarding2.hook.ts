@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
 import { Pages } from "@constants";
+import { useCustomNavigation } from "@hooks";
 
 export interface Onboarding2HelperOutputProps {
   onClickContinue: () => void;
 }
 
 export const useOnboarding2Helper = (): Onboarding2HelperOutputProps => {
-  const navigate = useNavigate();
+  const { goBack, goTo } = useCustomNavigation();
 
   const handleGoToLoginOrRegister = () => {
-    navigate(Pages.loginOrRegister);
+    goTo(Pages.loginOrRegister);
   };
 
   return {

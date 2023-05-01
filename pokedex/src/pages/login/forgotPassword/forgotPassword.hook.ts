@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { EMAIL_REGEX, Pages } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
-import { useBaseStore, useUserStore } from "@store";
+import { useBaseStore } from "@store";
 import { FirebaseError } from "firebase/app";
+import { useCustomNavigation } from "@hooks";
 
 export interface ForgotPasswordFormField {
   value?: string;
@@ -24,7 +24,7 @@ export interface ForgotPasswordHelperOutputProps {
 }
 
 export const useForgotPasswordHelper = (): ForgotPasswordHelperOutputProps => {
-  const navigate = useNavigate();
+  const { goBack } = useCustomNavigation();
   const setBaseStoreState = useBaseStore((state) => state.setPartialState);
   const { resetPassword } = useAuthContext();
 
@@ -36,7 +36,7 @@ export const useForgotPasswordHelper = (): ForgotPasswordHelperOutputProps => {
     });
 
   const handleGoBack = () => {
-    navigate(-1);
+    goBack(-1);
   };
 
   const handleForgotPassword = async (email: string) => {
@@ -63,8 +63,6 @@ export const useForgotPasswordHelper = (): ForgotPasswordHelperOutputProps => {
   };
 
   const handleClickContinue = () => {
-    //navigate(Pages.login);
-
     if (formRef.current) {
       formRef.current.requestSubmit();
     }

@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { EMAIL_REGEX, Pages } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
 import { useBaseStore, useUserStore } from "@store";
 import { FirebaseError } from "firebase/app";
+import { useCustomNavigation } from "@hooks";
 
 export interface RegisterFormField {
   value?: string;
@@ -27,7 +27,7 @@ export interface RegisterDataHelperOutputProps {
 }
 
 export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
-  const navigate = useNavigate();
+  const { goBack, goTo } = useCustomNavigation();
   const setBaseStoreState = useBaseStore((state) => state.setPartialState);
   const setUserStoreState = useUserStore((state) => state.setPartialState);
   const { signUp, currentUser } = useAuthContext();
@@ -42,11 +42,11 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   });
 
   const handleGoBack = () => {
-    navigate(-1);
+    goBack(-1);
   };
 
   const handleGoToRegisterDone = () => {
-    navigate(Pages.registerDone);
+    goTo(Pages.registerDone);
   };
 
   const handleCreateAccount = async (
@@ -77,8 +77,6 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
   };
 
   const handleClickContinue = () => {
-    //navigate(Pages.login);
-
     if (formRef.current) {
       formRef.current.requestSubmit();
     }

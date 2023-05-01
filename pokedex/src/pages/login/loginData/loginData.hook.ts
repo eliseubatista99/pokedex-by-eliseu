@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { EMAIL_REGEX, Pages } from "@constants";
 import React, { useState } from "react";
 import { useAuthContext } from "@contexts";
 import { useBaseStore, useUserStore } from "@store";
 import { FirebaseError } from "firebase/app";
+import { useCustomNavigation } from "@hooks";
 
 export interface LoginFormField {
   value?: string;
@@ -26,7 +26,7 @@ export interface LoginDataHelperOutputProps {
 }
 
 export const useLoginDataHelper = (): LoginDataHelperOutputProps => {
-  const navigate = useNavigate();
+  const { goBack, goTo } = useCustomNavigation();
   const setBaseStoreState = useBaseStore((state) => state.setPartialState);
   const setUserStoreState = useUserStore((state) => state.setPartialState);
   const { logIn, currentUser } = useAuthContext();
@@ -39,11 +39,11 @@ export const useLoginDataHelper = (): LoginDataHelperOutputProps => {
   });
 
   const handleGoBack = () => {
-    navigate(-1);
+    goBack(-1);
   };
 
   const handleGoToLoginDone = () => {
-    navigate(Pages.loginDone);
+    goTo(Pages.loginDone);
   };
 
   const handleLogin = async (email: string, password: string) => {
@@ -73,15 +73,13 @@ export const useLoginDataHelper = (): LoginDataHelperOutputProps => {
   };
 
   const handleClickContinue = () => {
-    //navigate(Pages.login);
-
     if (formRef.current) {
       formRef.current.requestSubmit();
     }
   };
 
   const handleClickForgotPassword = () => {
-    navigate(Pages.forgotPassword);
+    goTo(Pages.forgotPassword);
   };
 
   const handleValidateEmail = (value: string) => {
