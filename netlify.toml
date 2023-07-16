@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish="build/"
-  base = "pokedex/"
+  base = "/"
 
 [[redirects]]
   from = "/*"

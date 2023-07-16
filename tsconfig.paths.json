@@ -1,0 +1,21 @@
+// tsconfig.paths.json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@assets": ["src/assets"],
+      "@components": ["src/components"],
+      "@configs": ["src/configs"],
+      "@constants": ["src/constants"],
+      "@contexts": ["src/contexts"],
+      "@fonts": ["src/fonts"],
+      "@helpers": ["src/helpers"],
+      "@hooks": ["src/hooks"],
+      "@iconography": ["src/iconography"],
+      "@screens": ["src/screens"],
+      "@store": ["src/store"],
+      "@structure": ["src/structure"]
+    }
+  }
+}
