@@ -1,14 +1,20 @@
-import { ImageAssets } from "@assets";
-import { useAppHeaderHelper } from "./appHeader.hook";
+import { AppHeaderDefault, AppHeaderDetails } from "./blocks";
 
-export interface AppHeaderProps {
+export type AppHeaderDefaultProps = {
+  type: "default";
   title: string;
   hideBack?: boolean;
-}
+};
 
-export const AppHeader = ({ title, hideBack }: AppHeaderProps) => {
-  const { onClickBack } = useAppHeaderHelper();
+export type AppHeaderDetailsProps = {
+  type: "details";
+  theme: "light" | "dark";
+  onClickFavorite: () => void;
+};
 
+export type AppHeaderProps = AppHeaderDefaultProps | AppHeaderDetailsProps;
+
+export const AppHeader = (props: AppHeaderProps) => {
   const maskTopScroll = (
     <div
       style={{
@@ -26,8 +32,8 @@ export const AppHeader = ({ title, hideBack }: AppHeaderProps) => {
     <div
       style={{
         width: "100%",
-        height: "55px",
-        padding: "5px 30px",
+        height: "70px",
+        padding: "16px",
         boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 0",
         position: "sticky",
         background: "#ffffff",
@@ -36,41 +42,8 @@ export const AppHeader = ({ title, hideBack }: AppHeaderProps) => {
       }}
     >
       {maskTopScroll}
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 1,
-        }}
-      >
-        {!hideBack && (
-          <img
-            alt=""
-            src={ImageAssets.back}
-            style={{
-              width: "15px",
-              height: "15px",
-              position: "absolute",
-              left: "15px",
-              cursor: "pointer",
-            }}
-            onClick={() => onClickBack()}
-          />
-        )}
-
-        <p
-          style={{
-            width: "100%",
-            textAlign: "center",
-            textTransform: "uppercase",
-            fontWeight: 700,
-          }}
-        >
-          {title}
-        </p>
-      </div>
+      {props.type === "default" && <AppHeaderDefault {...props} />}
+      {props.type === "details" && <AppHeaderDetails {...props} />}
     </div>
   );
 };

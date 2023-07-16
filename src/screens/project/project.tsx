@@ -5,7 +5,7 @@ export const Project = () => {
   const { sayHello } = useProjectHelper();
 
   return (
-    <AppScreen header={{ title: "Project" }}>
+    <AppScreen header={{ type: "default", title: "Project" }}>
       <CustomButton
         text="Say Hello"
         onClick={() => sayHello()}

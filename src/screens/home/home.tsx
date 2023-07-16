@@ -6,7 +6,7 @@ export const HomeScreen = () => {
     useHomeHelper();
 
   return (
-    <AppScreen header={{ title: "Home", hideBack: true }}>
+    <AppScreen header={{ type: "default", title: "Home", hideBack: true }}>
       <CustomButton
         text="Challenge 1"
         onClick={() => goToChallenge1()}

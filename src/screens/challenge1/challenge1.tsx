@@ -5,7 +5,7 @@ export const Challenge1 = () => {
   const { sayHello } = useChallenge1Helper();
 
   return (
-    <AppScreen header={{ title: "Challenge 1" }}>
+    <AppScreen header={{ type: "default", title: "Challenge 1" }}>
       <CustomButton
         text="Say Hello"
         onClick={() => sayHello()}
