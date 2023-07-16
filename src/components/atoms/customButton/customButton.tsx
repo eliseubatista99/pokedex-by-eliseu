@@ -23,7 +23,7 @@ export const CustomButton = (props: CustomButtonProps) => {
       style={{
         display: "flex",
         flexDirection: "row",
-        padding: "10px 8px",
+        padding: "10px 32px",
         borderRadius: "50px",
         width: "90%",
         maxWidth: "328px",

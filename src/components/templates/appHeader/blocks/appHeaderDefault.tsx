@@ -3,12 +3,10 @@ import { useAppHeaderHelper } from "../appHeader.hook";
 import { AppHeaderDefaultProps } from "..";
 import { Iconography } from "@components";
 
-export const AppHeaderDefault = ({
-  hideBack,
-  title,
-  rightContent,
-}: AppHeaderDefaultProps) => {
-  const { onClickBack } = useAppHeaderHelper();
+export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
+  const { hideBack, title, rightContent } = props;
+
+  const { onClickBack } = useAppHeaderHelper(props);
 
   return (
     <div

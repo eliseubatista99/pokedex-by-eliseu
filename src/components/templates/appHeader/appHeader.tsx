@@ -1,13 +1,17 @@
 import { AppHeaderDefault, AppHeaderDetails } from "./blocks";
 
-export type AppHeaderDefaultProps = {
+export type AppHeaderCommonProps = {
+  stepsToGoBack?: number;
+};
+
+export type AppHeaderDefaultProps = AppHeaderCommonProps & {
   type: "default";
   title?: string;
   hideBack?: boolean;
   rightContent?: React.ReactNode;
 };
 
-export type AppHeaderDetailsProps = {
+export type AppHeaderDetailsProps = AppHeaderCommonProps & {
   type: "details";
   theme: "light" | "dark";
   onClickFavorite: () => void;

@@ -1,11 +1,7 @@
 import { ScreenPaths } from "@constants";
 import { useCustomNavigation } from "@hooks";
 
-export interface Onboarding1HelperOutputProps {
-  onClickContinue: () => void;
-}
-
-export const useOnboarding1Helper = (): Onboarding1HelperOutputProps => {
+export const useOnboarding1Helper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleGoToOnboarding2 = () => {

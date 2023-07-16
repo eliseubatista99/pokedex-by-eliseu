@@ -9,15 +9,25 @@ export interface CustomImageProps {
 
 export const CustomImage = ({ src, alt, styles }: CustomImageProps) => {
   return (
-    <img
-      src={src}
-      alt={alt}
+    <div
       style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
         ...styles,
       }}
-    />
+    >
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+    </div>
   );
 };

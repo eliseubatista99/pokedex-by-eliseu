@@ -3,11 +3,9 @@ import { useAppHeaderHelper } from "../appHeader.hook";
 import { AppHeaderDetailsProps } from "..";
 import { Iconography } from "@components";
 
-export const AppHeaderDetails = ({
-  onClickFavorite,
-  theme,
-}: AppHeaderDetailsProps) => {
-  const { onClickBack } = useAppHeaderHelper();
+export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
+  const { onClickFavorite, theme } = props;
+  const { onClickBack } = useAppHeaderHelper(props);
 
   return (
     <div

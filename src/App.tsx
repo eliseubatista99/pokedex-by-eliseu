@@ -4,7 +4,7 @@ import {
   Onboarding2,
   LoginOrRegister,
   HomeScreen,
-  Project,
+  Register,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
@@ -43,7 +43,7 @@ export const App = () => {
           path={ScreenPaths.loginOrRegister}
           element={<LoginOrRegister />}
         />
-        <Route path={ScreenPaths.onboarding2} element={<Project />} />
+        <Route path={ScreenPaths.register} element={<Register />} />
       </Routes>
     </div>
   );
