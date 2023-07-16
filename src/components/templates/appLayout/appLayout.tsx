@@ -7,10 +7,15 @@ import {
 import { useBaseStore } from "@store";
 export interface AppLayoutProps {
   header: AppHeaderProps;
+  bottomContent?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-export const AppLayout = ({ header, children }: AppLayoutProps) => {
+export const AppLayout = ({
+  header,
+  children,
+  bottomContent,
+}: AppLayoutProps) => {
   const { isLoading } = useBaseStore();
 
   return (
@@ -27,6 +32,11 @@ export const AppLayout = ({ header, children }: AppLayoutProps) => {
       >
         <AppHeader {...header} />
         <AppScreen>{children}</AppScreen>
+        {bottomContent && (
+          <div style={{ position: "sticky", bottom: 0, width: "100%" }}>
+            {bottomContent}
+          </div>
+        )}
       </div>
     </>
   );

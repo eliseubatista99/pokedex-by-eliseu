@@ -77,15 +77,12 @@ export const CustomButton = (props: CustomButtonProps) => {
         )}
         {text && (
           <Typography
+            overflowEllipsis
             styles={{
               fontFamily: "PoppinsSemiBold",
               textAlign: "center",
               flex: 1,
               maxHeight: "24px",
-              fontSize: "16px",
-              fontStyle: "normal",
-              lineHeight: "normal",
-              color: "inherit",
             }}
           >
             {text}

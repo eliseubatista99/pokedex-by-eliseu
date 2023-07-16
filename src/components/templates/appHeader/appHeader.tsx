@@ -4,6 +4,7 @@ export type AppHeaderDefaultProps = {
   type: "default";
   title: string;
   hideBack?: boolean;
+  rightContent?: React.ReactNode;
 };
 
 export type AppHeaderDetailsProps = {

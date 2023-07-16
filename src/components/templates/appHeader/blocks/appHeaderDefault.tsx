@@ -6,6 +6,7 @@ import { Iconography } from "@components";
 export const AppHeaderDefault = ({
   hideBack,
   title,
+  rightContent,
 }: AppHeaderDefaultProps) => {
   const { onClickBack } = useAppHeaderHelper();
 
@@ -43,6 +44,12 @@ export const AppHeaderDefault = ({
         >
           {title}
         </p>
+      )}
+
+      {rightContent && (
+        <div style={{ height: "100%", position: "absolute", right: "16px" }}>
+          {rightContent}
+        </div>
       )}
     </div>
   );
