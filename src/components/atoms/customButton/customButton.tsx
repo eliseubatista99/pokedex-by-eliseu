@@ -1,9 +1,10 @@
 import { Typography } from "@components";
 import React from "react";
 import { CSSProperties } from "react";
+import { useCustomButtonHelper } from "./customButton.hook";
 
 export interface CustomButtonProps {
-  type: "primary" | "secondary";
+  type: "primary" | "secondary" | "ghost";
   isDisabled?: boolean;
   text?: string;
   startContent?: React.ReactNode;
@@ -14,60 +15,35 @@ export interface CustomButtonProps {
 
 export const CustomButton = (props: CustomButtonProps) => {
   const { text, startContent, endContent, onClick, styles } = props;
-  const [buttonHovered, setButtonHovered] = React.useState<boolean>(false);
-
-  const primaryButtonStyles: CSSProperties = {
-    border: "2px solid #173EA5",
-    background: buttonHovered ? "#1a2564" : "#173EA5",
-    color: "#ffffff",
-  };
-
-  const secondaryButtonStyles: CSSProperties = {
-    border: "2px solid #DBDCDD",
-    background: buttonHovered ? "#DBDCDD" : "#ffffff",
-    color: "#000000",
-  };
-
-  const disabledStyles: CSSProperties = props.isDisabled
-    ? {
-        pointerEvents: "none",
-        filter: "grayscale(100%)",
-      }
-    : {};
-
-  const buttonStyles =
-    props.type === "primary" ? primaryButtonStyles : secondaryButtonStyles;
+  const { buttonStyles, isHovered, onButtonHovered, onButtonUnhovered } =
+    useCustomButtonHelper(props);
 
   return (
     <button
       style={{
         display: "flex",
         flexDirection: "row",
-        border: "2px solid #173EA5",
-        background: buttonHovered ? "#1a2564" : "#173EA5",
         padding: "10px 8px",
         borderRadius: "50px",
-        color: "#ffffff",
         width: "90%",
         maxWidth: "328px",
         height: "58px",
         cursor: "pointer",
         ...buttonStyles,
-        ...disabledStyles,
         ...styles,
       }}
-      onPointerEnter={() => setButtonHovered(true)}
-      onPointerLeave={() => setButtonHovered(false)}
+      onPointerEnter={() => onButtonHovered()}
+      onPointerLeave={() => onButtonUnhovered()}
       onClick={() => onClick()}
     >
       <div
         style={{
           width: "100%",
           height: "100%",
+          flexDirection: "row",
           position: "relative",
           justifyContent: "center",
           verticalAlign: "middle",
-          ...disabledStyles,
         }}
       >
         {startContent && (
@@ -83,6 +59,7 @@ export const CustomButton = (props: CustomButtonProps) => {
               textAlign: "center",
               flex: 1,
               maxHeight: "24px",
+              margin: "auto",
             }}
           >
             {text}

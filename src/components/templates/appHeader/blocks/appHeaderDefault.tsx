@@ -47,7 +47,16 @@ export const AppHeaderDefault = ({
       )}
 
       {rightContent && (
-        <div style={{ height: "100%", position: "absolute", right: "16px" }}>
+        <div
+          style={{
+            height: "100%",
+            position: "absolute",
+            right: "16px",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
           {rightContent}
         </div>
       )}

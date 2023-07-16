@@ -6,7 +6,7 @@ import {
 } from "@components";
 import { useBaseStore } from "@store";
 export interface AppLayoutProps {
-  header: AppHeaderProps;
+  header?: AppHeaderProps;
   bottomContent?: React.ReactNode;
   children?: React.ReactNode;
 }
@@ -30,7 +30,7 @@ export const AppLayout = ({
           position: "relative",
         }}
       >
-        <AppHeader {...header} />
+        {header && <AppHeader {...header} />}
         <AppScreen>{children}</AppScreen>
         {bottomContent && (
           <div style={{ position: "sticky", bottom: 0, width: "100%" }}>

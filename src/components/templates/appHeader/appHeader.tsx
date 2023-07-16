@@ -2,7 +2,7 @@ import { AppHeaderDefault, AppHeaderDetails } from "./blocks";
 
 export type AppHeaderDefaultProps = {
   type: "default";
-  title: string;
+  title?: string;
   hideBack?: boolean;
   rightContent?: React.ReactNode;
 };
@@ -35,7 +35,6 @@ export const AppHeader = (props: AppHeaderProps) => {
         width: "100%",
         height: "70px",
         padding: "16px",
-        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 0",
         position: "sticky",
         background: "#ffffff",
         top: "0px",

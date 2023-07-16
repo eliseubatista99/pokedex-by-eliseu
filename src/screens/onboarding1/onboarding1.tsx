@@ -7,12 +7,11 @@ import {
 } from "@components";
 import { useOnboarding1Helper } from "./onboarding1.hook";
 
-export const Challenge1 = () => {
+export const Onboarding1 = () => {
   const { onClickContinue } = useOnboarding1Helper();
 
   return (
     <AppLayout
-      header={{ type: "default", title: "Challenge 1" }}
       bottomContent={
         <OnboardingBottomContent
           title="All Pokémon in One Place"

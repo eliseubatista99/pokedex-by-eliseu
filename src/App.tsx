@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import {
-  Challenge1,
-  Challenge2,
-  Challenge2_5,
+  Onboarding1,
+  Onboarding2,
+  LoginOrRegister,
   HomeScreen,
   Project,
 } from "@screens";
@@ -37,9 +37,12 @@ export const App = () => {
     >
       <Routes>
         <Route path={ScreenPaths.splash} element={<HomeScreen />} />
-        <Route path={ScreenPaths.onboarding1} element={<Challenge1 />} />
-        <Route path={ScreenPaths.onboarding2} element={<Challenge2 />} />
-        <Route path={ScreenPaths.onboarding2} element={<Challenge2_5 />} />
+        <Route path={ScreenPaths.onboarding1} element={<Onboarding1 />} />
+        <Route path={ScreenPaths.onboarding2} element={<Onboarding2 />} />
+        <Route
+          path={ScreenPaths.loginOrRegister}
+          element={<LoginOrRegister />}
+        />
         <Route path={ScreenPaths.onboarding2} element={<Project />} />
       </Routes>
     </div>
