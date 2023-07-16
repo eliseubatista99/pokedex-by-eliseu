@@ -40,7 +40,7 @@ export const AppHeaderDetails = ({
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}
-        onClick={() => onClickBack()}
+        onClick={() => onClickFavorite()}
       />
     </div>
   );

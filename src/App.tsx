@@ -20,7 +20,7 @@ export const App = () => {
     console.log("App started");
 
     if (history.length < 1) {
-      goTo(ScreenPaths.home);
+      goTo(ScreenPaths.splash);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,11 +36,11 @@ export const App = () => {
       }}
     >
       <Routes>
-        <Route path={ScreenPaths.home} element={<HomeScreen />} />
-        <Route path={ScreenPaths.challenge1} element={<Challenge1 />} />
-        <Route path={ScreenPaths.challenge2} element={<Challenge2 />} />
-        <Route path={ScreenPaths.challenge2_5} element={<Challenge2_5 />} />
-        <Route path={ScreenPaths.project} element={<Project />} />
+        <Route path={ScreenPaths.splash} element={<HomeScreen />} />
+        <Route path={ScreenPaths.onboarding1} element={<Challenge1 />} />
+        <Route path={ScreenPaths.onboarding2} element={<Challenge2 />} />
+        <Route path={ScreenPaths.onboarding2} element={<Challenge2_5 />} />
+        <Route path={ScreenPaths.onboarding2} element={<Project />} />
       </Routes>
     </div>
   );

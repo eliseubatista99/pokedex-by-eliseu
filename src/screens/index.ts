@@ -1,5 +1,5 @@
-export * from "./challenge1";
+export * from "./onboarding1";
 export * from "./challenge2";
 export * from "./challenge2_5";
-export * from "./home";
+export * from "./splashScreen";
 export * from "./project";
