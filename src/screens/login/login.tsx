@@ -6,20 +6,20 @@ import {
   Iconography,
   OnboardingBottomContent,
 } from "@components";
-import { useRegisterHelper } from "./register.hook";
+import { useLoginHelper } from "./login.hook";
 
-export const Register = () => {
-  const { onClickEmail, onClickApple, onClickGoogle } = useRegisterHelper();
+export const Login = () => {
+  const { onClickEmail, onClickApple, onClickGoogle } = useLoginHelper();
 
   return (
     <AppLayout
       header={{
         type: "default",
-        title: "Create Account",
+        title: "Log In",
       }}
       bottomContent={
         <OnboardingBottomContent
-          title="Almost ready to explore this world"
+          title="Good to see you again!"
           description="How do you wish to connect?"
           buttons={[
             {
@@ -58,8 +58,8 @@ export const Register = () => {
       }
     >
       <CustomImage
-        src={ImageAssets.registerFigure}
-        alt={"A girl with a long hair with her right hand up in the air"}
+        src={ImageAssets.loginFigure}
+        alt={"A girl and a boy pointing up"}
         styles={{
           margin: "auto auto 37px auto",
           maxWidth: "342px",

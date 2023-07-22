@@ -9,7 +9,7 @@ export const RegisterDone = () => {
     <AppLayout
       header={{
         type: "default",
-        title: "Create Account",
+        hideBack: true,
         stepsToGoBack: 3,
       }}
       bottomContent={

@@ -1,3 +1,5 @@
+export * from "./login";
+export * from "./loginData";
 export * from "./loginOrRegister";
 export * from "./onboarding1";
 export * from "./onboarding2";
