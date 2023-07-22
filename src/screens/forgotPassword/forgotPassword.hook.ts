@@ -27,30 +27,33 @@ export const useForgotPasswordHelper = () => {
       email: {},
     });
 
-  const handleForgotPassword = async (email: string) => {
-    try {
-      setLoading({
-        isLoading: true,
-        loadingText: "Sending password recovery email...",
-        style: "opaque",
-      });
+  const handleForgotPassword = React.useCallback(
+    async (email: string) => {
+      try {
+        setLoading({
+          isLoading: true,
+          loadingText: "Sending password recovery email...",
+          style: "opaque",
+        });
 
-      goBack();
+        goBack();
 
-      await resetPassword?.(email);
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
-    } catch (error: unknown) {
-      const firebaseError = error as FirebaseError;
-      console.error("Failed to reset password. Error: ", firebaseError.code);
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
-    }
-  };
+        await resetPassword?.(email);
+        setLoading({
+          isLoading: false,
+          loadingText: undefined,
+        });
+      } catch (error: unknown) {
+        const firebaseError = error as FirebaseError;
+        console.error("Failed to reset password. Error: ", firebaseError.code);
+        setLoading({
+          isLoading: false,
+          loadingText: undefined,
+        });
+      }
+    },
+    [goBack, resetPassword, setLoading]
+  );
 
   const handleClickContinue = () => {
     if (formRef.current) {
@@ -64,28 +67,31 @@ export const useForgotPasswordHelper = () => {
     return error;
   };
 
-  const handleSubmitForm = (event: any) => {
-    // Preventing the page from reloading
-    event.preventDefault();
+  const handleSubmitForm = React.useCallback(
+    (event: any) => {
+      // Preventing the page from reloading
+      event.preventDefault();
 
-    const formEmail = event.currentTarget.elements[0].value as string;
+      const formEmail = event.currentTarget.elements[0].value as string;
 
-    const emailError = handleValidateEmail(formEmail);
+      const emailError = handleValidateEmail(formEmail);
 
-    setForgotPasswordFormData((prevState) => ({
-      ...prevState,
-      email: {
-        ...prevState.email,
-        value: formEmail,
-        bottomMessage: "Use a valid email address",
-        error: emailError,
-      },
-    }));
+      setForgotPasswordFormData((prevState) => ({
+        ...prevState,
+        email: {
+          ...prevState.email,
+          value: formEmail,
+          bottomMessage: "Use a valid email address",
+          error: emailError,
+        },
+      }));
 
-    if (!emailError) {
-      handleForgotPassword(formEmail);
-    }
-  };
+      if (!emailError) {
+        handleForgotPassword(formEmail);
+      }
+    },
+    [handleForgotPassword]
+  );
 
   return {
     forgotPasswordFormData,

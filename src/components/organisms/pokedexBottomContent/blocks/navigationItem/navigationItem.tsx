@@ -21,6 +21,7 @@ export const NavigationItem = ({
       style={{
         alignItems: "center",
         justifyContent: "center",
+        cursor: "pointer",
         ...containerProps,
       }}
       onClick={onClick}

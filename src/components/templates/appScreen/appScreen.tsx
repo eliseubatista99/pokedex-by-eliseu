@@ -12,7 +12,7 @@ export const AppScreen = ({ children, styles }: AppScreenProps) => {
         width: "100%",
         height: "fit-content",
         alignItems: "center",
-        padding: "10px 10px 30px 10px",
+        padding: "10px 16px 30px 16px",
         flex: 1,
         ...styles,
       }}

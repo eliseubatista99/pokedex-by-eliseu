@@ -8,8 +8,8 @@ export const NameAndPhoto = () => {
   return (
     <div
       style={{
-        width: "100%",
-        padding: "6px",
+        width: "calc(100% + 32px)",
+        padding: "6px 16px",
         flexDirection: "row",
         alignItems: "center",
         gap: "12px",

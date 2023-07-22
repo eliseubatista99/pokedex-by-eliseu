@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   User,
+  UserCredential,
 } from "firebase/auth";
 
 interface FirebaseContextInputProps {
@@ -19,82 +20,50 @@ interface FirebaseContextOutputProps {
     email: string,
     password: string,
     username: string
-  ) => Promise<string | undefined>;
-  logIn?: (email: string, password: string) => Promise<string | undefined>;
-  logout?: () => Promise<string | undefined>;
-  resetPassword?: (email: string) => Promise<string | undefined>;
+  ) => Promise<UserCredential | undefined>;
+  logIn?: (
+    email: string,
+    password: string
+  ) => Promise<UserCredential | undefined>;
+  logout?: () => Promise<void>;
+  resetPassword?: (email: string) => Promise<void>;
 }
 
 const FirebaseContext = React.createContext<FirebaseContextOutputProps>({});
 
 export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
-  const [currentUser, setCurrentUser] = React.useState<User | null>(null);
+  const currentUser = React.useRef<User | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const signUp = async (
-    email: string,
-    password: string,
-    username: string
-  ): Promise<string | undefined> => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+  const signUp = async (email: string, password: string, username: string) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-      await updateProfile(userCredential.user, { displayName: username });
+    await updateProfile(userCredential.user, {
+      displayName: username,
+    });
 
-      return undefined;
-    } catch (error) {
-      console.log("Error signing up: ", error);
-
-      return "error";
-    }
+    return userCredential;
   };
 
-  const logIn = async (
-    email: string,
-    password: string
-  ): Promise<string | undefined> => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-
-      return undefined;
-    } catch (error) {
-      console.log("Error loggin in: ", error);
-
-      return "error";
-    }
+  const logIn = async (email: string, password: string) => {
+    return await signInWithEmailAndPassword(auth, email, password);
   };
 
   const logout = async () => {
-    try {
-      auth.signOut();
-
-      return undefined;
-    } catch (error) {
-      console.log("Error logging out: ", error);
-
-      return "error";
-    }
+    return auth.signOut();
   };
 
-  const resetPassword = async (email: string): Promise<string | undefined> => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-
-      return undefined;
-    } catch (error) {
-      console.log("Error reseting password in: ", error);
-
-      return "error";
-    }
+  const resetPassword = async (email: string) => {
+    return await sendPasswordResetEmail(auth, email);
   };
 
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      setCurrentUser(user);
+      currentUser.current = user;
       setIsLoading(false);
     });
 
@@ -103,7 +72,13 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
 
   return (
     <FirebaseContext.Provider
-      value={{ currentUser, signUp, logIn, logout, resetPassword }}
+      value={{
+        currentUser: currentUser.current,
+        signUp,
+        logIn,
+        logout,
+        resetPassword,
+      }}
     >
       {!isLoading && children}
     </FirebaseContext.Provider>

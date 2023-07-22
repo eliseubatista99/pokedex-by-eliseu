@@ -10,7 +10,7 @@ export const useSplashScreenHelper = () => {
   const { currentUser } = useFirebaseContext();
   const { setPartialState: setUserData } = useUserStore();
 
-  const goToNextScreen = () => {
+  const goToNextScreen = React.useCallback(() => {
     setLoading({
       isLoading: false,
       loadingText: undefined,
@@ -27,7 +27,7 @@ export const useSplashScreenHelper = () => {
     }
 
     goTo(ScreenPaths.onboarding1);
-  };
+  }, [currentUser, goTo, setLoading, setUserData]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {

@@ -17,7 +17,9 @@ export const AccountInfo = () => {
           flexDirection: "row",
           alignItems: "center",
           padding: "12px 0",
+          cursor: "pointer",
         }}
+        onClick={() => onClick?.()}
       >
         <div style={{ flex: 1, flexDirection: "column" }}>
           <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>

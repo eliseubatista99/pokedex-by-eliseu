@@ -68,9 +68,11 @@ export const GlobalLoader = ({
         style={{
           width: "100%",
           maxWidth: `${APP_MAX_WIDTH}px`,
-          minHeight: "100vh",
+          minHeight: "100%",
+          left: 0,
+          top: 0,
           background: style === "opaque" ? "#000029" : "#00000068",
-          position: "fixed",
+          position: "absolute",
           zIndex: 1000,
           display: "flex",
           flexDirection: "column",

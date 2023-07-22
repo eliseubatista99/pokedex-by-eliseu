@@ -4,6 +4,7 @@ import { Property } from "csstype";
 export interface CustomImageProps {
   src: string;
   alt: string;
+  onClick?: () => void;
   containerStyles?: CSSProperties;
   imageStyles?: CSSProperties;
 }
@@ -11,6 +12,7 @@ export interface CustomImageProps {
 export const CustomImage = ({
   src,
   alt,
+  onClick,
   containerStyles,
   imageStyles,
 }: CustomImageProps) => {
@@ -24,6 +26,7 @@ export const CustomImage = ({
         justifyContent: "center",
         ...containerStyles,
       }}
+      onClick={() => onClick?.()}
     >
       <img
         src={src}

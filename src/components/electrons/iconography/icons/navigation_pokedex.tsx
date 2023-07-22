@@ -30,21 +30,21 @@ export const NavigationPokedex = ({
       <path
         d="M13 23.8327C18.9832 23.8327 23.8333 18.9826 23.8333 12.9993C23.8333 7.0161 18.9832 2.16602 13 2.16602C7.01671 2.16602 2.16663 7.0161 2.16663 12.9993C2.16663 18.9826 7.01671 23.8327 13 23.8327Z"
         stroke="#173EA5"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12.9999 16.249C13.8618 16.249 14.6885 15.9066 15.298 15.2971C15.9075 14.6876 16.2499 13.861 16.2499 12.999C16.2499 12.1371 15.9075 11.3104 15.298 10.7009C14.6885 10.0914 13.8618 9.74902 12.9999 9.74902C12.1379 9.74902 11.3113 10.0914 10.7018 10.7009C10.0923 11.3104 9.74988 12.1371 9.74988 12.999C9.74988 13.861 10.0923 14.6876 10.7018 15.2971C11.3113 15.9066 12.1379 16.249 12.9999 16.249V16.249Z"
         stroke="#173EA5"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M2.16663 12.999H9.74996M16.25 12.999H23.8333"
         stroke="#173EA5"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
   );

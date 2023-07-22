@@ -1,5 +1,4 @@
-import { ImageAssets } from "@assets";
-import { AppLayout, CustomImage, PokedexBottomContent } from "@components";
+import { AppLayout, PokedexBottomContent } from "@components";
 import { useAccountHelper } from "./account.hook";
 import { Blocks } from "./blocks";
 
@@ -10,6 +9,7 @@ export const Account = () => {
     <AppLayout bottomContent={<PokedexBottomContent />}>
       <Blocks.NameAndPhoto />
       <Blocks.AccountInfo />
+      <Blocks.Logout />
     </AppLayout>
   );
 };

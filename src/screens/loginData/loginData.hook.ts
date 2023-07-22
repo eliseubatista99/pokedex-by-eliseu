@@ -2,7 +2,6 @@ import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useFirebaseContext } from "@contexts";
 import { useBaseStore, useUserStore } from "@store";
-import { FirebaseError } from "firebase/app";
 import { useCustomNavigation } from "@hooks";
 
 export interface LoginFormField {
@@ -29,42 +28,44 @@ export const useLoginDataHelper = () => {
     password: {},
   });
 
-  const handleGoBack = () => {
+  const handleGoBack = React.useCallback(() => {
     goBack(-1);
-  };
+  }, [goBack]);
 
-  const handleGoToLoginDone = () => {
+  const handleGoToLoginDone = React.useCallback(() => {
     goTo(ScreenPaths.loginDone);
-  };
+  }, [goTo]);
 
-  const handleLogin = async (email: string, password: string) => {
-    try {
-      setLoading({
-        isLoading: true,
-        loadingText: "Logging in...",
-        style: "opaque",
-      });
-      await logIn?.(email, password);
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
-      console.log(currentUser);
+  const handleLogin = React.useCallback(
+    async (email: string, password: string) => {
+      try {
+        setLoading({
+          isLoading: true,
+          loadingText: "Logging in...",
+          style: "opaque",
+        });
+        await logIn?.(email, password);
+        setLoading({
+          isLoading: false,
+          loadingText: undefined,
+        });
+        console.log(currentUser);
 
-      setUserData({
-        name: currentUser?.displayName,
-        email: currentUser?.email,
-      });
-      handleGoToLoginDone();
-    } catch (error: unknown) {
-      const firebaseError = error as FirebaseError;
-      console.error("Failed to login. Error: ", firebaseError.code);
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
-    }
-  };
+        setUserData({
+          name: currentUser?.displayName,
+          email: currentUser?.email,
+        });
+        handleGoToLoginDone();
+      } catch (error: unknown) {
+        console.error("Failed to login. Error: ", error);
+        setLoading({
+          isLoading: false,
+          loadingText: undefined,
+        });
+      }
+    },
+    [currentUser, handleGoToLoginDone, logIn, setLoading, setUserData]
+  );
 
   const handleClickContinue = () => {
     if (formRef.current) {
@@ -72,9 +73,9 @@ export const useLoginDataHelper = () => {
     }
   };
 
-  const handleClickForgotPassword = () => {
+  const handleClickForgotPassword = React.useCallback(() => {
     goTo(ScreenPaths.forgotPassword);
-  };
+  }, [goTo]);
 
   const handleValidateEmail = (value: string) => {
     const error = !EMAIL_REGEX.test(value);
@@ -88,36 +89,39 @@ export const useLoginDataHelper = () => {
     return error;
   };
 
-  const handleSubmitForm = (event: any) => {
-    // Preventing the page from reloading
-    event.preventDefault();
+  const handleSubmitForm = React.useCallback(
+    (event: any) => {
+      // Preventing the page from reloading
+      event.preventDefault();
 
-    const formEmail = event.currentTarget.elements[0].value as string;
-    const formPassword = event.currentTarget.elements[1].value as string;
+      const formEmail = event.currentTarget.elements[0].value as string;
+      const formPassword = event.currentTarget.elements[1].value as string;
 
-    const emailError = handleValidateEmail(formEmail);
-    const passwordError = handleValidatePasswordData(formPassword);
+      const emailError = handleValidateEmail(formEmail);
+      const passwordError = handleValidatePasswordData(formPassword);
 
-    setloginFormData((prevState) => ({
-      ...prevState,
-      email: {
-        ...prevState.email,
-        value: formEmail,
-        bottomMessage: "Use a valid email address",
-        error: emailError,
-      },
-      password: {
-        ...prevState.password,
-        value: formPassword,
-        bottomMessage: "Your password must have at least 8 characters",
-        error: passwordError,
-      },
-    }));
+      setloginFormData((prevState) => ({
+        ...prevState,
+        email: {
+          ...prevState.email,
+          value: formEmail,
+          bottomMessage: "Use a valid email address",
+          error: emailError,
+        },
+        password: {
+          ...prevState.password,
+          value: formPassword,
+          bottomMessage: "Your password must have at least 8 characters",
+          error: passwordError,
+        },
+      }));
 
-    if (!emailError && !passwordError) {
-      handleLogin(formEmail, formPassword);
-    }
-  };
+      if (!emailError && !passwordError) {
+        handleLogin(formEmail, formPassword);
+      }
+    },
+    [handleLogin]
+  );
 
   return {
     loginFormData,
