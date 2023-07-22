@@ -52,7 +52,7 @@ export const LoginOrRegister = () => {
       <CustomImage
         src={ImageAssets.loginOrRegisterFigure}
         alt={"A boy and a girl"}
-        styles={{
+        containerStyles={{
           margin: "auto auto 37px auto",
           maxWidth: "356px",
           maxHeight: "272px",

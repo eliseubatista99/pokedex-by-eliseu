@@ -27,7 +27,7 @@ export const Onboarding1 = () => {
       <CustomImage
         src={ImageAssets.onboarding1Figure}
         alt={"A scientis and a boy with a straw hat"}
-        styles={{
+        containerStyles={{
           margin: "auto auto 37px auto",
           maxWidth: "342px",
           maxHeight: "265px",

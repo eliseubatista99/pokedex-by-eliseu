@@ -1,3 +1,4 @@
+import accountIcon from "./account-icon.png";
 import back from "./back.png";
 import iconPokeballBlue from "./icon-pokeball-blue.png";
 import iconPokeballRed from "./icon-pokeball.png";
@@ -10,6 +11,7 @@ import registerFigure from "./register_figure.png";
 import registerDoneFigure from "./registerDone_figure.png";
 
 export const ImageAssets = {
+  accountIcon,
   back,
   iconPokeballBlue,
   iconPokeballRed,

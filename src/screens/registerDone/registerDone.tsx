@@ -29,7 +29,7 @@ export const RegisterDone = () => {
       <CustomImage
         src={ImageAssets.registerDoneFigure}
         alt={"Two trainers posing"}
-        styles={{
+        containerStyles={{
           margin: "auto auto 37px auto",
           maxWidth: "342px",
           maxHeight: "265px",

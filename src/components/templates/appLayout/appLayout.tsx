@@ -2,17 +2,20 @@ import {
   AppHeader,
   AppHeaderProps,
   AppScreen,
+  AppScreenProps,
   GlobalLoader,
 } from "@components";
 import { useBaseStore } from "@store";
 export interface AppLayoutProps {
   header?: AppHeaderProps;
+  screen?: AppScreenProps;
   bottomContent?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 export const AppLayout = ({
   header,
+  screen,
   children,
   bottomContent,
 }: AppLayoutProps) => {
@@ -33,7 +36,7 @@ export const AppLayout = ({
         }}
       >
         {header && <AppHeader {...header} />}
-        <AppScreen>{children}</AppScreen>
+        <AppScreen {...screen}>{children}</AppScreen>
         {bottomContent && (
           <div style={{ position: "sticky", bottom: 0, width: "100%" }}>
             {bottomContent}

@@ -60,7 +60,7 @@ export const Register = () => {
       <CustomImage
         src={ImageAssets.registerFigure}
         alt={"A girl with a long hair with her right hand up in the air"}
-        styles={{
+        containerStyles={{
           margin: "auto auto 37px auto",
           maxWidth: "342px",
           maxHeight: "265px",
