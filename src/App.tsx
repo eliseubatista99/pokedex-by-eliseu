@@ -9,6 +9,7 @@ import {
   RegisterDone,
   Login,
   LoginData,
+  LoginDone,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
@@ -41,7 +42,6 @@ export const App = () => {
         width: "100%",
         height: "100%",
         position: "relative",
-        // overflow: "hidden",
       }}
     >
       <Routes>
@@ -57,6 +57,7 @@ export const App = () => {
         <Route path={ScreenPaths.registerDone} element={<RegisterDone />} />
         <Route path={ScreenPaths.login} element={<Login />} />
         <Route path={ScreenPaths.loginData} element={<LoginData />} />
+        <Route path={ScreenPaths.loginDone} element={<LoginDone />} />
       </Routes>
     </div>
   );

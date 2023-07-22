@@ -23,6 +23,7 @@ export const OnboardingBottomContent = ({
     const marginTop = index === 0 ? 0 : 12;
     return (
       <CustomButton
+        key={index}
         {...btn}
         styles={{ margin: `${marginTop}px auto 0 auto`, ...btn.styles }}
       />
