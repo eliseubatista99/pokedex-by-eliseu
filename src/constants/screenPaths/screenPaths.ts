@@ -11,4 +11,7 @@ export const ScreenPaths = {
   loginDone: "/loginDone",
   forgotPassword: "/forgotPassword",
   pokedex: "/pokedex",
+  regions: "/regions",
+  favorites: "/favorites",
+  account: "/account",
 };

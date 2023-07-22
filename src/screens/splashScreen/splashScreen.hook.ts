@@ -21,7 +21,7 @@ export const useSplashScreenHelper = () => {
         name: currentUser.displayName,
         email: currentUser.email,
       });
-      goTo(ScreenPaths.pokedex);
+      goTo(ScreenPaths.account);
     } else {
       goTo(ScreenPaths.onboarding1);
     }

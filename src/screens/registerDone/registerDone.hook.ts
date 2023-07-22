@@ -5,7 +5,7 @@ export const useRegisterDoneHelper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleClickContinue = () => {
-    goTo(ScreenPaths.pokedex);
+    goTo(ScreenPaths.account);
   };
 
   return {
