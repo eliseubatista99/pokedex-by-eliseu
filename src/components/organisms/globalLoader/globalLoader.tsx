@@ -1,3 +1,4 @@
+import { Typography } from "@components";
 import { APP_MAX_WIDTH } from "@constants";
 import { css, Global } from "@emotion/react";
 import { LoadingState } from "@store";
@@ -16,7 +17,6 @@ export const GlobalLoader = ({
             border-radius: 50%;
             position: relative;
             animation: rotate 1s linear infinite;
-            margin: auto;
           }
           .globalLoader::before,
           .globalLoader::after {
@@ -31,7 +31,7 @@ export const GlobalLoader = ({
           .globalLoader::after {
             inset: 8px;
             transform: rotate3d(90, 90, 0, 180deg);
-            border-color: #3e56df;
+            border-color: #cd3131;
           }
 
           @keyframes rotate {
@@ -68,14 +68,25 @@ export const GlobalLoader = ({
         style={{
           width: "100%",
           maxWidth: `${APP_MAX_WIDTH}px`,
-          height: "100vh",
-          maxHeight: "90%",
-          background: "#00000068",
+          minHeight: "100vh",
+          background: style === "opaque" ? "#000029" : "#00000068",
           position: "fixed",
           zIndex: 1000,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "30px",
         }}
       >
         <span className="globalLoader"></span>
+        {loadingText && (
+          <Typography
+            styles={{ width: "100%", color: "#ffffff", textAlign: "center" }}
+          >
+            {loadingText}
+          </Typography>
+        )}
       </div>
     </>
   );

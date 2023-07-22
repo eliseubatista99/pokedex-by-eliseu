@@ -58,10 +58,10 @@ export const useRegisterDataHelper = (): RegisterDataHelperOutputProps => {
       setLoading({
         isLoading: true,
         loadingText: "Creating User Account...",
-        style: "transparent",
+        style: "opaque",
       });
 
-      await signUp(email, password, username);
+      await signUp?.(email, password, username);
       setLoading({
         isLoading: false,
         loadingText: undefined,

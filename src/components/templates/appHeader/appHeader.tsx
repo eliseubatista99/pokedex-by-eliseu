@@ -26,6 +26,7 @@ export const AppHeader = (props: AppHeaderProps) => {
         width: "100%",
         position: "absolute",
         top: "-5px",
+        left: 0,
         height: "100%",
         background: "#ffffff",
         zIndex: 0,

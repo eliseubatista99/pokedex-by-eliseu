@@ -2,7 +2,7 @@ import { ScreenPaths } from "@constants";
 import { useCustomNavigation } from "@hooks";
 
 export const useRegisterHelper = () => {
-  const { goBack, goTo } = useCustomNavigation();
+  const { goTo } = useCustomNavigation();
 
   const handleGoToRegisterData = () => {
     goTo(ScreenPaths.registerData);

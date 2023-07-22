@@ -5,17 +5,18 @@ import {
   LoginOrRegister,
   HomeScreen,
   Register,
+  RegisterData,
+  RegisterDone,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
-import { useHistoryStore } from "@store";
+import { useBaseStore, useHistoryStore } from "@store";
 import { useCustomNavigation } from "@hooks";
-import { GlobalLoader } from "@components";
-import { RegisterData } from "./screens/registerData";
 
 export const App = () => {
   const { goTo } = useCustomNavigation();
   const { history } = useHistoryStore();
+  const { setLoading } = useBaseStore();
 
   React.useEffect(() => {
     console.log("App started");
@@ -23,6 +24,11 @@ export const App = () => {
     if (history.length < 1) {
       goTo(ScreenPaths.splash);
     }
+
+    setLoading({
+      isLoading: false,
+      loadingText: undefined,
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history]);
@@ -46,6 +52,7 @@ export const App = () => {
         />
         <Route path={ScreenPaths.register} element={<Register />} />
         <Route path={ScreenPaths.registerData} element={<RegisterData />} />
+        <Route path={ScreenPaths.registerDone} element={<RegisterDone />} />
       </Routes>
     </div>
   );

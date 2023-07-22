@@ -29,7 +29,7 @@ export const LoginOrRegister = () => {
                 stroke="#173EA5"
               />
             }
-            styles={{ width: "fit-content", color: "#000000" }}
+            styles={{ width: "fit-content", color: "#000000", padding: 0 }}
           />
         ),
       }}

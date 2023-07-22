@@ -14,28 +14,18 @@ interface FirebaseContextInputProps {
 }
 
 interface FirebaseContextOutputProps {
-  currentUser: User | null;
-  signUp: (
+  currentUser?: User | null;
+  signUp?: (
     email: string,
     password: string,
     username: string
   ) => Promise<string | undefined>;
-  logIn: (email: string, password: string) => Promise<string | undefined>;
-  resetPassword: (email: string) => Promise<string | undefined>;
+  logIn?: (email: string, password: string) => Promise<string | undefined>;
+  logout?: () => Promise<void>;
+  resetPassword?: (email: string) => Promise<string | undefined>;
 }
 
-const FirebaseContext = React.createContext<FirebaseContextOutputProps>({
-  currentUser: null,
-  signUp: (email: string, password: string, username: string) => {
-    return new Promise((res) => undefined);
-  },
-  logIn: (email: string, password: string) => {
-    return new Promise((res) => undefined);
-  },
-  resetPassword: (email: string) => {
-    return new Promise((res) => undefined);
-  },
-});
+const FirebaseContext = React.createContext<FirebaseContextOutputProps>({});
 
 export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
   const [currentUser, setCurrentUser] = React.useState<User | null>(null);
@@ -78,6 +68,10 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
     }
   };
 
+  const logout = async () => {
+    return auth.signOut();
+  };
+
   const resetPassword = async (email: string): Promise<string | undefined> => {
     try {
       await sendPasswordResetEmail(auth, email);
@@ -101,7 +95,7 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
 
   return (
     <FirebaseContext.Provider
-      value={{ currentUser, signUp, logIn, resetPassword }}
+      value={{ currentUser, signUp, logIn, logout, resetPassword }}
     >
       {!isLoading && children}
     </FirebaseContext.Provider>
