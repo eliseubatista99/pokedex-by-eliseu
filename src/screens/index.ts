@@ -7,4 +7,5 @@ export * from "./onboarding2";
 export * from "./register";
 export * from "./registerData";
 export * from "./registerDone";
+export * from "./forgotPassword";
 export * from "./splashScreen";

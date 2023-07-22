@@ -21,7 +21,7 @@ interface FirebaseContextOutputProps {
     username: string
   ) => Promise<string | undefined>;
   logIn?: (email: string, password: string) => Promise<string | undefined>;
-  logout?: () => Promise<void>;
+  logout?: () => Promise<string | undefined>;
   resetPassword?: (email: string) => Promise<string | undefined>;
 }
 
@@ -69,7 +69,15 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
   };
 
   const logout = async () => {
-    return auth.signOut();
+    try {
+      auth.signOut();
+
+      return undefined;
+    } catch (error) {
+      console.log("Error logging out: ", error);
+
+      return "error";
+    }
   };
 
   const resetPassword = async (email: string): Promise<string | undefined> => {

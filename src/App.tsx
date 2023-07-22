@@ -10,6 +10,7 @@ import {
   Login,
   LoginData,
   LoginDone,
+  ForgotPassword,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
@@ -51,6 +52,7 @@ export const App = () => {
         <Route path={ScreenPaths.login} element={<Login />} />
         <Route path={ScreenPaths.loginData} element={<LoginData />} />
         <Route path={ScreenPaths.loginDone} element={<LoginDone />} />
+        <Route path={ScreenPaths.forgotPassword} element={<ForgotPassword />} />
       </Routes>
     </div>
   );
