@@ -11,6 +11,7 @@ const initialState: HistoryState = {
 };
 
 interface UseHistoryStoreOutput extends HistoryState {
+  clearHistory: () => void;
   addToHistory: (entry: string) => void;
   popFromHistory: (count: number) => void;
 }
@@ -36,6 +37,16 @@ export const useHistoryStore = StoreHelper.createStore<UseHistoryStoreOutput>(
         })),
         false,
         "popFromHistory"
+      );
+    },
+    clearHistory: function () {
+      set(
+        produce((state: HistoryState) => ({
+          ...state,
+          history: [],
+        })),
+        false,
+        "clearHistory"
       );
     },
   }),

@@ -2,14 +2,18 @@ import { useHistoryStore } from "@store";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export interface UseCustomNavigationProps {
-  goBack: (steps?: number) => void;
-  goTo: (screenPath: string) => void;
-}
-
-export const useCustomNavigation = (): UseCustomNavigationProps => {
+export const useCustomNavigation = () => {
   const navigate = useNavigate();
-  const { addToHistory, popFromHistory, history } = useHistoryStore();
+  const { addToHistory, popFromHistory, clearHistory, history } =
+    useHistoryStore();
+
+  const cleanAndGoTo = React.useCallback(
+    (screenPath: string, alsoAddToHistory = true) => {
+      clearHistory();
+      goTo(screenPath, alsoAddToHistory);
+    },
+    [addToHistory, navigate]
+  );
 
   const goTo = React.useCallback(
     (screenPath: string, alsoAddToHistory = true) => {
@@ -34,6 +38,7 @@ export const useCustomNavigation = (): UseCustomNavigationProps => {
   );
 
   return {
+    cleanAndGoTo,
     goBack,
     goTo,
   };

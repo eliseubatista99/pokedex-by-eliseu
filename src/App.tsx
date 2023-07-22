@@ -17,16 +17,14 @@ import { useBaseStore, useHistoryStore } from "@store";
 import { useCustomNavigation } from "@hooks";
 
 export const App = () => {
-  const { goTo } = useCustomNavigation();
+  const { cleanAndGoTo } = useCustomNavigation();
   const { history } = useHistoryStore();
   const { setLoading } = useBaseStore();
 
   React.useEffect(() => {
     console.log("App started");
 
-    if (history.length < 1) {
-      goTo(ScreenPaths.splash);
-    }
+    cleanAndGoTo(ScreenPaths.splash);
 
     setLoading({
       isLoading: false,
@@ -34,7 +32,7 @@ export const App = () => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history]);
+  }, []);
 
   return (
     <div
