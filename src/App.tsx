@@ -11,6 +11,7 @@ import React from "react";
 import { useHistoryStore } from "@store";
 import { useCustomNavigation } from "@hooks";
 import { GlobalLoader } from "@components";
+import { RegisterData } from "./screens/registerData";
 
 export const App = () => {
   const { goTo } = useCustomNavigation();
@@ -44,6 +45,7 @@ export const App = () => {
           element={<LoginOrRegister />}
         />
         <Route path={ScreenPaths.register} element={<Register />} />
+        <Route path={ScreenPaths.registerData} element={<RegisterData />} />
       </Routes>
     </div>
   );

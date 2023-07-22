@@ -1,7 +1,7 @@
 import { ImageAssets } from "@assets";
 import { useAppHeaderHelper } from "../appHeader.hook";
 import { AppHeaderDefaultProps } from "..";
-import { Iconography } from "@components";
+import { Iconography, Typography } from "@components";
 
 export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
   const { hideBack, title, rightContent } = props;
@@ -32,8 +32,8 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
       )}
 
       {title && (
-        <p
-          style={{
+        <Typography
+          styles={{
             width: "100%",
             textAlign: "center",
             textTransform: "uppercase",
@@ -41,7 +41,7 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
           }}
         >
           {title}
-        </p>
+        </Typography>
       )}
 
       {rightContent && (

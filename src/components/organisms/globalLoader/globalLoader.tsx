@@ -1,7 +1,11 @@
 import { APP_MAX_WIDTH } from "@constants";
 import { css, Global } from "@emotion/react";
+import { LoadingState } from "@store";
 
-export const GlobalLoader = () => {
+export const GlobalLoader = ({
+  loadingText,
+  style,
+}: Omit<LoadingState, "isLoading">) => {
   return (
     <>
       <Global

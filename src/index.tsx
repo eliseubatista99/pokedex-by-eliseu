@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { css, Global } from "@emotion/react";
+import { FirebaseProvider } from "@contexts";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,6 +17,7 @@ root.render(
         * {
           margin: 0;
           padding: 0;
+          box-sizing: border-box;
         }
 
         html {
@@ -52,6 +54,9 @@ root.render(
         p {
           color: inherit;
           font-size: 16px;
+          font-style: normal;
+          line-height: normal;
+          font-family: Poppins;
         }
 
         @media only screen and (min-width: 769px) {
@@ -62,9 +67,11 @@ root.render(
         }
       `}
     />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <FirebaseProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FirebaseProvider>
   </React.StrictMode>
 );
 

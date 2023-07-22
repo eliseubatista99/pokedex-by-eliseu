@@ -1,11 +1,8 @@
-import { useBaseStore } from "@store";
 export interface AppScreenProps {
   children?: React.ReactNode;
 }
 
 export const AppScreen = ({ children }: AppScreenProps) => {
-  const { isLoading } = useBaseStore();
-
   return (
     <div
       style={{

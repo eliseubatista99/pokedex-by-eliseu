@@ -16,11 +16,13 @@ export const AppLayout = ({
   children,
   bottomContent,
 }: AppLayoutProps) => {
-  const { isLoading } = useBaseStore();
+  const { loading } = useBaseStore();
 
   return (
     <>
-      {isLoading && <GlobalLoader />}
+      {loading.isLoading && (
+        <GlobalLoader loadingText={loading.loadingText} style={loading.style} />
+      )}
       <div
         style={{
           width: "100%",

@@ -2,30 +2,41 @@ import produce from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 
-export interface BaseState {
+export interface LoadingState {
   isLoading: boolean;
+  loadingText?: string;
+  style?: "transparent" | "opaque";
+}
+
+export interface BaseState {
+  loading: LoadingState;
 }
 
 const initialState: BaseState = {
-  isLoading: false,
+  loading: {
+    isLoading: false,
+  },
 };
 
 interface UseBaseStoreOutput extends BaseState {
-  setIsLoading: (value: boolean) => void;
+  setLoading: (value: LoadingState) => void;
   //TODO: Create remove favorite
 }
 
 export const useBaseStore = StoreHelper.createStore<UseBaseStoreOutput>(
   (set) => ({
     ...initialState,
-    setIsLoading: function (value: boolean) {
+    setLoading: function (value: LoadingState) {
       set(
         produce((state: BaseState) => ({
           ...state,
-          isLoading: value,
+          loading: {
+            ...state.loading,
+            ...value,
+          },
         })),
         false,
-        "setIsLoading"
+        "setLoading"
       );
     },
   }),
