@@ -13,26 +13,21 @@ import {
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
-import { useBaseStore, useHistoryStore } from "@store";
 import { useCustomNavigation } from "@hooks";
-
 export const App = () => {
-  const { cleanAndGoTo } = useCustomNavigation();
-  const { history } = useHistoryStore();
-  const { setLoading } = useBaseStore();
+  const { currentPath, goTo } = useCustomNavigation();
+
+  const appInitialized = React.useRef<boolean>(false);
 
   React.useEffect(() => {
-    console.log("App started");
+    if (!appInitialized.current) {
+      if (currentPath !== ScreenPaths.splash) {
+        goTo(ScreenPaths.splash);
+      }
 
-    cleanAndGoTo(ScreenPaths.splash);
-
-    setLoading({
-      isLoading: false,
-      loadingText: undefined,
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      appInitialized.current = true;
+    }
+  }, [currentPath, goTo]);
 
   return (
     <div

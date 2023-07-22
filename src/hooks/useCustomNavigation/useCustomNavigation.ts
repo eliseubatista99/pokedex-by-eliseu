@@ -1,19 +1,12 @@
 import { useHistoryStore } from "@store";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const useCustomNavigation = () => {
   const navigate = useNavigate();
-  const { addToHistory, popFromHistory, clearHistory, history } =
-    useHistoryStore();
+  const location = useLocation();
 
-  const cleanAndGoTo = React.useCallback(
-    (screenPath: string, alsoAddToHistory = true) => {
-      clearHistory();
-      goTo(screenPath, alsoAddToHistory);
-    },
-    [addToHistory, navigate]
-  );
+  const { addToHistory, popFromHistory, history } = useHistoryStore();
 
   const goTo = React.useCallback(
     (screenPath: string, alsoAddToHistory = true) => {
@@ -38,7 +31,7 @@ export const useCustomNavigation = () => {
   );
 
   return {
-    cleanAndGoTo,
+    currentPath: location.pathname,
     goBack,
     goTo,
   };
