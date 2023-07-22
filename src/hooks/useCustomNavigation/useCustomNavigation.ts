@@ -6,7 +6,8 @@ export const useCustomNavigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { addToHistory, popFromHistory, history } = useHistoryStore();
+  const { addToHistory, popFromHistory, history, clearHistory } =
+    useHistoryStore();
 
   const goTo = React.useCallback(
     (screenPath: string, alsoAddToHistory = true) => {
@@ -30,9 +31,18 @@ export const useCustomNavigation = () => {
     [goTo, history, popFromHistory]
   );
 
+  const cleanAndGoTo = React.useCallback(
+    (screenPath: string, alsoAddToHistory = true) => {
+      clearHistory();
+      goTo(screenPath, alsoAddToHistory);
+    },
+    [clearHistory, goTo]
+  );
+
   return {
     currentPath: location.pathname,
     goBack,
     goTo,
+    cleanAndGoTo,
   };
 };
