@@ -1,16 +1,16 @@
 import React from "react";
 
-export interface BaseModalProps {
+export interface BaseDrawerProps {
   isVisible: boolean;
   children?: React.ReactNode;
-  onClickOutsideModal: () => void;
+  onCloseDrawer: () => void;
 }
 
-export const BaseModal = ({
+export const BaseDrawer = ({
   isVisible,
   children,
-  onClickOutsideModal,
-}: BaseModalProps) => {
+  onCloseDrawer,
+}: BaseDrawerProps) => {
   return (
     <>
       {isVisible && (
@@ -29,7 +29,7 @@ export const BaseModal = ({
             justifyContent: "center",
           }}
           onClick={() => {
-            onClickOutsideModal();
+            onCloseDrawer?.();
           }}
         >
           <div
@@ -52,6 +52,24 @@ export const BaseModal = ({
               e.stopPropagation();
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "absolute",
+                top: "0px",
+              }}
+            >
+              <div
+                style={{
+                  width: "38px",
+                  height: "3px",
+                  background: "#e6e6e6",
+                  borderRadius: "27px",
+                }}
+              />
+            </div>
             {children}
           </div>
         </div>
