@@ -12,6 +12,10 @@ export const Register = () => {
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
         type: "default",
         title: "Create Account",
@@ -60,9 +64,9 @@ export const Register = () => {
         src={ImageAssets.registerFigure}
         alt={"A girl with a long hair with her right hand up in the air"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

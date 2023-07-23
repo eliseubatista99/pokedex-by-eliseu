@@ -7,6 +7,10 @@ export const Onboarding2 = () => {
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       bottomContent={
         <OnboardingBottomContent
           title="Keep your Pokedex updated"
@@ -27,9 +31,9 @@ export const Onboarding2 = () => {
         src={ImageAssets.onboarding2Figure}
         alt={"A girl with a confident pose"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "251px",
-          maxHeight: "258px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

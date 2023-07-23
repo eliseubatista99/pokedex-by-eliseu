@@ -12,6 +12,10 @@ export const Login = () => {
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
         type: "default",
         title: "Log In",
@@ -60,9 +64,9 @@ export const Login = () => {
         src={ImageAssets.loginFigure}
         alt={"A girl and a boy pointing up"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

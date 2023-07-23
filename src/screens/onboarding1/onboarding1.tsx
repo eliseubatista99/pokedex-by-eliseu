@@ -7,6 +7,10 @@ export const Onboarding1 = () => {
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       bottomContent={
         <OnboardingBottomContent
           title="All Pokémon in One Place"
@@ -27,9 +31,9 @@ export const Onboarding1 = () => {
         src={ImageAssets.onboarding1Figure}
         alt={"A scientis and a boy with a straw hat"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

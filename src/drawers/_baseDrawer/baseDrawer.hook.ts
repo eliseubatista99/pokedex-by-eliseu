@@ -23,6 +23,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     }
 
     if (isDragging.current) {
+      console.log("DRAG");
       const screenHeight = drawerParentRef.current?.clientHeight || 0;
       const pointerHeight = e.clientY;
       const drawerHeight = drawerRef.current?.clientHeight || 0;

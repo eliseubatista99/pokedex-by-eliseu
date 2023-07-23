@@ -14,7 +14,12 @@ export const LoginOrRegister = () => {
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
+        hideBack: true,
         type: "default",
         rightContent: (
           <CustomButton
@@ -56,9 +61,9 @@ export const LoginOrRegister = () => {
         src={ImageAssets.loginOrRegisterFigure}
         alt={"A boy and a girl"}
         containerStyles={{
-          margin: "auto auto 37px auto",
+          margin: "auto",
           maxWidth: "356px",
-          maxHeight: "272px",
+          height: "auto",
         }}
       />
     </AppLayout>
