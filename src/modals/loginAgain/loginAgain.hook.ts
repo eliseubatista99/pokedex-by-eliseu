@@ -75,7 +75,7 @@ export const useLoginAgainModalHelper = ({
         handleLogin(formPassword);
       }
     },
-    [handleValidatePassword]
+    [handleLogin]
   );
 
   return {
