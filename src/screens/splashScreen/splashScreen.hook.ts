@@ -5,21 +5,18 @@ import { useBaseStore, useUserStore } from "@store";
 
 export const useSplashScreenHelper = () => {
   const { goTo } = useCustomNavigation();
-  const { setLoading } = useBaseStore();
+  const { showLoader, hideLoader } = useBaseStore();
   const { firebaseUser } = useUserStore();
 
   const goToNextScreen = React.useCallback(() => {
-    setLoading({
-      isLoading: false,
-      loadingText: undefined,
-    });
+    hideLoader();
 
     if (firebaseUser) {
       goTo(ScreenPaths.account);
     } else {
       goTo(ScreenPaths.onboarding1);
     }
-  }, [firebaseUser, goTo, setLoading]);
+  }, [firebaseUser, goTo, hideLoader]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {

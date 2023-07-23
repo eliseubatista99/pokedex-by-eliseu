@@ -1,7 +1,7 @@
-import { useFirebaseContext } from "@contexts";
+import { useFirebase } from "@hooks";
 
 export const useNameAndPhotoHelper = () => {
-  const { currentUser } = useFirebaseContext();
+  const { currentUser } = useFirebase();
 
   return {
     username: currentUser?.displayName,

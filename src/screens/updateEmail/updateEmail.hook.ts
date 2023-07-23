@@ -1,50 +1,40 @@
 import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { FirebaseError } from "firebase/app";
 import { useCustomNavigation, useFirebase } from "@hooks";
+import { FormFieldData } from "@types";
 
-export interface ForgotPasswordFormField {
-  value?: string;
-  error?: boolean;
-  bottomMessage?: string;
+export interface UpdateEmailFormData {
+  email: FormFieldData;
 }
 
-export interface ForgotPasswordFormData {
-  email: ForgotPasswordFormField;
-}
-
-export const useForgotPasswordHelper = () => {
+export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { resetPassword } = useFirebase();
+  const { updateEmail } = useFirebase();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const [forgotPasswordFormData, setForgotPasswordFormData] =
-    useState<ForgotPasswordFormData>({
-      email: {},
-    });
+  const [formData, setFormData] = useState<UpdateEmailFormData>({
+    email: {},
+  });
 
-  const handleForgotPassword = React.useCallback(
+  const handleUpdateEmail = React.useCallback(
     async (email: string) => {
       try {
         showLoader({
-          loadingText: "Sending password recovery email...",
+          loadingText: "Logging in...",
           style: "opaque",
         });
-
-        goBack();
-
-        await resetPassword?.(email);
+        await updateEmail?.(email);
         hideLoader();
+        goBack();
       } catch (error: unknown) {
-        const firebaseError = error as FirebaseError;
-        console.error("Failed to reset password. Error: ", firebaseError.code);
+        console.error("Failed to change Email. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, resetPassword, showLoader]
+    [goBack, hideLoader, showLoader, updateEmail]
   );
 
   const handleClickContinue = () => {
@@ -68,7 +58,7 @@ export const useForgotPasswordHelper = () => {
 
       const emailError = handleValidateEmail(formEmail);
 
-      setForgotPasswordFormData((prevState) => ({
+      setFormData((prevState) => ({
         ...prevState,
         email: {
           ...prevState.email,
@@ -79,14 +69,14 @@ export const useForgotPasswordHelper = () => {
       }));
 
       if (!emailError) {
-        handleForgotPassword(formEmail);
+        handleUpdateEmail(formEmail);
       }
     },
-    [handleForgotPassword]
+    [handleUpdateEmail]
   );
 
   return {
-    forgotPasswordFormData,
+    formData,
     formRef,
     onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,

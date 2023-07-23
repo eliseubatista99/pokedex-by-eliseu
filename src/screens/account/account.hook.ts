@@ -5,21 +5,21 @@ import React from "react";
 export const useAccountHelper = () => {
   const { goTo } = useCustomNavigation();
 
-  const handleGoToLoginData = React.useCallback(() => {
-    goTo(ScreenPaths.loginData);
+  const handleGoToUpdateName = React.useCallback(() => {
+    goTo(ScreenPaths.updateName);
   }, [goTo]);
 
-  const handleLoginWithGoogle = React.useCallback(() => {
-    goTo(ScreenPaths.login);
+  const handleGoToUpdateEmail = React.useCallback(() => {
+    goTo(ScreenPaths.updateEmail);
   }, [goTo]);
 
-  const handleLoginWithApple = React.useCallback(() => {
-    goTo(ScreenPaths.login);
+  const handleGoToUpdatePassword = React.useCallback(() => {
+    goTo(ScreenPaths.updatePassword);
   }, [goTo]);
 
   return {
-    onClickGoogle: handleLoginWithGoogle,
-    onClickApple: handleLoginWithApple,
-    onClickEmail: handleGoToLoginData,
+    onClickName: handleGoToUpdateName,
+    onClickEmail: handleGoToUpdateEmail,
+    onClickPassword: handleGoToUpdatePassword,
   };
 };

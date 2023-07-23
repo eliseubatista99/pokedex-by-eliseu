@@ -19,24 +19,40 @@ const initialState: BaseState = {
 };
 
 interface UseBaseStoreOutput extends BaseState {
-  setLoading: (value: LoadingState) => void;
-  //TODO: Create remove favorite
+  showLoader: (value: Omit<LoadingState, "isLoading">) => void;
+  hideLoader: () => void;
 }
 
 export const useBaseStore = StoreHelper.createStore<UseBaseStoreOutput>(
   (set) => ({
     ...initialState,
-    setLoading: function (value: LoadingState) {
+    showLoader: function (value: Omit<LoadingState, "isLoading">) {
       set(
         produce((state: BaseState) => ({
           ...state,
           loading: {
             ...state.loading,
+            isLoading: true,
             ...value,
           },
         })),
         false,
-        "setLoading"
+        "showLoader"
+      );
+    },
+    hideLoader: function () {
+      set(
+        produce((state: BaseState) => ({
+          ...state,
+          loading: {
+            ...state.loading,
+            isLoading: false,
+            loadingText: undefined,
+            style: "transparent",
+          },
+        })),
+        false,
+        "hideLoader"
       );
     },
   }),

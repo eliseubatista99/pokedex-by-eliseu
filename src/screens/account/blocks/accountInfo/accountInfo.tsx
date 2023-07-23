@@ -3,7 +3,8 @@ import { CustomImage, Typography } from "@components";
 import { useAccountInfoHelper } from "./accountInfo.hook";
 
 export const AccountInfo = () => {
-  const { username, email } = useAccountInfoHelper();
+  const { username, email, onClickName, onClickEmail, onClickPassword } =
+    useAccountInfoHelper();
 
   const getAccountEntry = (
     title: string,
@@ -57,9 +58,9 @@ export const AccountInfo = () => {
       >
         {"Account information"}
       </Typography>
-      {getAccountEntry("Name", username)}
-      {getAccountEntry("Email", email)}
-      {getAccountEntry("Password", "••••••••••••••••")}
+      {getAccountEntry("Name", username, onClickName)}
+      {getAccountEntry("Email", email, onClickEmail)}
+      {getAccountEntry("Password", "••••••••••••••••", onClickPassword)}
     </div>
   );
 };
