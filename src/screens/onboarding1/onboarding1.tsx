@@ -1,10 +1,5 @@
 import { ImageAssets } from "@assets";
-import {
-  AppLayout,
-  CustomButton,
-  CustomImage,
-  OnboardingBottomContent,
-} from "@components";
+import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useOnboarding1Helper } from "./onboarding1.hook";
 
 export const Onboarding1 = () => {
