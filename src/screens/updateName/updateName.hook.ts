@@ -10,7 +10,7 @@ interface FormData {
 
 export const useUpdateNameHelper = () => {
   const { goBack } = useCustomNavigation();
-  const { showLoader, hideLoader } = useBaseStore();
+  const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateName } = useFirebaseAuth();
   const { updateUserName } = useFirebaseFirestore();
 
@@ -35,13 +35,16 @@ export const useUpdateNameHelper = () => {
         updateUserName(currentUser, name);
 
         hideLoader();
+        setToastData({
+          text: "Action performed successfully",
+        });
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change name. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updateName, updateUserName]
+    [goBack, hideLoader, setToastData, showLoader, updateName, updateUserName]
   );
 
   const handleClickContinue = () => {

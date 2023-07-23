@@ -6,6 +6,7 @@ import {
   GlobalLoader,
 } from "@components";
 import { useBaseStore } from "@store";
+import { BaseToast } from "@toasts";
 export interface AppLayoutProps {
   header?: AppHeaderProps;
   screen?: AppScreenProps;
@@ -19,12 +20,19 @@ export const AppLayout = ({
   children,
   bottomContent,
 }: AppLayoutProps) => {
-  const { loading } = useBaseStore();
+  const { loading, toast } = useBaseStore();
 
   return (
     <>
-      {loading.isLoading && (
+      {loading && (
         <GlobalLoader loadingText={loading.loadingText} style={loading.style} />
+      )}
+      {toast && (
+        <BaseToast
+          duration={toast.duration || 3}
+          icon={toast.icon}
+          text={toast.text}
+        />
       )}
       <div
         style={{

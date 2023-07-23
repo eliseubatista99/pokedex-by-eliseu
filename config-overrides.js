@@ -20,6 +20,7 @@ module.exports = function override(config, env) {
       "@types": path.resolve(__dirname, "src/types"),
       "@modals": path.resolve(__dirname, "src/modals"),
       "@drawers": path.resolve(__dirname, "src/drawers"),
+      "@toasts": path.resolve(__dirname, "src/toasts"),
     },
   };
 

@@ -11,7 +11,7 @@ interface FormData {
 
 export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
-  const { showLoader, hideLoader } = useBaseStore();
+  const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateEmail } = useFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
 
@@ -36,13 +36,16 @@ export const useUpdateEmailHelper = () => {
         updateUserEmail(currentUser, email);
 
         hideLoader();
+        setToastData({
+          text: "Action performed successfully",
+        });
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change Email. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updateEmail, updateUserEmail]
+    [goBack, hideLoader, setToastData, showLoader, updateEmail, updateUserEmail]
   );
 
   const handleClickContinue = () => {

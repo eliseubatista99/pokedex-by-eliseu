@@ -10,7 +10,7 @@ interface FormData {
 
 export const useUpdatePasswordHelper = () => {
   const { goBack } = useCustomNavigation();
-  const { showLoader, hideLoader } = useBaseStore();
+  const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updatePassword } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -29,13 +29,16 @@ export const useUpdatePasswordHelper = () => {
         await updatePassword?.(name);
 
         hideLoader();
+        setToastData({
+          text: "Action performed successfully",
+        });
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change password. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updatePassword]
+    [goBack, hideLoader, setToastData, showLoader, updatePassword]
   );
 
   const handleClickContinue = () => {
