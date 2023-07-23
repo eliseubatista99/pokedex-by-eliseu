@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import { Property } from "csstype";
 
 export interface CustomImageProps {
   src: string;

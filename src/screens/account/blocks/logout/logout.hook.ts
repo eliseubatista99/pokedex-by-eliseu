@@ -1,6 +1,5 @@
 import { ScreenPaths } from "@constants";
 import { useFirebaseContext } from "@contexts";
-import { FirebaseError } from "@firebase/app";
 import { useCustomNavigation } from "@hooks";
 import { useBaseStore, useUserStore } from "@store";
 import React from "react";
@@ -25,8 +24,7 @@ export const useLogoutHelper = () => {
       });
 
       setUserData({
-        name: undefined,
-        email: undefined,
+        firebaseUser: undefined,
       });
 
       cleanAndGoTo(ScreenPaths.loginOrRegister);

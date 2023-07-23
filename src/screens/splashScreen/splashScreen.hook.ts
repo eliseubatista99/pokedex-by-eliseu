@@ -2,13 +2,11 @@ import React from "react";
 import { ScreenPaths } from "@constants";
 import { useCustomNavigation } from "@hooks";
 import { useBaseStore, useUserStore } from "@store";
-import { useFirebaseContext } from "@contexts";
 
 export const useSplashScreenHelper = () => {
   const { goTo } = useCustomNavigation();
   const { setLoading } = useBaseStore();
-  const { currentUser } = useFirebaseContext();
-  const { setPartialState: setUserData } = useUserStore();
+  const { firebaseUser } = useUserStore();
 
   const goToNextScreen = React.useCallback(() => {
     setLoading({
@@ -16,18 +14,12 @@ export const useSplashScreenHelper = () => {
       loadingText: undefined,
     });
 
-    if (currentUser) {
-      setUserData({
-        name: currentUser.displayName,
-        email: currentUser.email,
-      });
+    if (firebaseUser) {
       goTo(ScreenPaths.account);
     } else {
       goTo(ScreenPaths.onboarding1);
     }
-
-    goTo(ScreenPaths.onboarding1);
-  }, [currentUser, goTo, setLoading, setUserData]);
+  }, [firebaseUser, goTo, setLoading]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {

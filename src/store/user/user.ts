@@ -1,13 +1,13 @@
+import { User } from "firebase/auth";
 import produce from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 
 export interface UserState {
-  email?: string | null;
-  name?: string | null;
+  firebaseUser?: User;
 }
 
-export const initialUserState: UserState = { name: null, email: null };
+export const initialUserState: UserState = { firebaseUser: undefined };
 
 interface UseUserStoreOutput extends UserState {
   setPartialState: (data: Partial<UserState>) => void;
@@ -18,7 +18,10 @@ export const useUserStore = StoreHelper.createStore<UseUserStoreOutput>(
     ...initialUserState,
     setPartialState: function (data: Partial<UserState>) {
       set(
-        produce((state: UserState) => ({ ...state, ...data })),
+        produce((state: UserState) => {
+          console.log("UPDATING USER: ", data);
+          return { ...state, ...data };
+        }),
         false,
         "setPartialState"
       );

@@ -1,4 +1,3 @@
-import { ImageAssets } from "@assets";
 import { useAppHeaderHelper } from "../appHeader.hook";
 import { AppHeaderDetailsProps } from "..";
 import { Iconography } from "@components";

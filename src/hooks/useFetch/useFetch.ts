@@ -1,5 +1,3 @@
-import React from "react";
-
 type runFetchOptions = Record<string, any>;
 
 export const useFetch = () => {

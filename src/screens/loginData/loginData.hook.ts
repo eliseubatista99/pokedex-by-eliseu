@@ -19,7 +19,7 @@ export const useLoginDataHelper = () => {
   const { goBack, goTo } = useCustomNavigation();
   const { setLoading } = useBaseStore();
   const { setPartialState: setUserData } = useUserStore();
-  const { logIn, currentUser } = useFirebaseContext();
+  const { logIn } = useFirebaseContext();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -44,16 +44,15 @@ export const useLoginDataHelper = () => {
           loadingText: "Logging in...",
           style: "opaque",
         });
-        await logIn?.(email, password);
+        const currentUser = await logIn?.(email, password);
+        console.log(currentUser?.user);
+
+        setUserData({
+          firebaseUser: currentUser?.user,
+        });
         setLoading({
           isLoading: false,
           loadingText: undefined,
-        });
-        console.log(currentUser);
-
-        setUserData({
-          name: currentUser?.displayName,
-          email: currentUser?.email,
         });
         handleGoToLoginDone();
       } catch (error: unknown) {
@@ -64,7 +63,7 @@ export const useLoginDataHelper = () => {
         });
       }
     },
-    [currentUser, handleGoToLoginDone, logIn, setLoading, setUserData]
+    [handleGoToLoginDone, logIn, setLoading, setUserData]
   );
 
   const handleClickContinue = () => {

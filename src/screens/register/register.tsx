@@ -1,7 +1,6 @@
 import { ImageAssets } from "@assets";
 import {
   AppLayout,
-  CustomButton,
   CustomImage,
   Iconography,
   OnboardingBottomContent,

@@ -2,7 +2,6 @@ import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useFirebaseContext } from "@contexts";
 import { useBaseStore, useUserStore } from "@store";
-import { FirebaseError } from "firebase/app";
 import { useCustomNavigation } from "@hooks";
 
 export interface RegisterFormField {
@@ -22,7 +21,7 @@ export const useRegisterDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { setLoading } = useBaseStore();
   const { setPartialState: setUserData } = useUserStore();
-  const { signUp, currentUser } = useFirebaseContext();
+  const { signUp } = useFirebaseContext();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -46,14 +45,13 @@ export const useRegisterDataHelper = () => {
           style: "opaque",
         });
 
-        await signUp?.(email, password, username);
+        const currentUser = await signUp?.(email, password, username);
         setLoading({
           isLoading: false,
           loadingText: undefined,
         });
         setUserData({
-          name: currentUser?.displayName,
-          email: currentUser?.email,
+          firebaseUser: currentUser?.user,
         });
         handleGoToRegisterDone();
       } catch (error: unknown) {
@@ -64,14 +62,7 @@ export const useRegisterDataHelper = () => {
         });
       }
     },
-    [
-      currentUser?.displayName,
-      currentUser?.email,
-      handleGoToRegisterDone,
-      setLoading,
-      setUserData,
-      signUp,
-    ]
+    [handleGoToRegisterDone, setLoading, setUserData, signUp]
   );
 
   const handleClickContinue = () => {
