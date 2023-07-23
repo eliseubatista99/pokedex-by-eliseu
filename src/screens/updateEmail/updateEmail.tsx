@@ -1,6 +1,5 @@
 import {
   AppLayout,
-  CustomButton,
   CustomInputField,
   OnboardingBottomContent,
   Typography,

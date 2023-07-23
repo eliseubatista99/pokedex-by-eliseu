@@ -5,7 +5,7 @@ import { useBaseStore, useUserStore } from "@store";
 
 export const useSplashScreenHelper = () => {
   const { goTo } = useCustomNavigation();
-  const { showLoader, hideLoader } = useBaseStore();
+  const { hideLoader } = useBaseStore();
   const { firebaseUser } = useUserStore();
   const { getUser } = useFirebaseFirestore();
 
