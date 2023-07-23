@@ -13,9 +13,11 @@ interface FormData {
 }
 
 export const useUpdateEmailHelper = () => {
+  const [showLoginAgainModal, setShowLoginAgainModal] =
+    React.useState<boolean>(false);
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { updateEmail } = useFirebaseAuth();
+  const { updateEmail, currentUser } = useFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -89,6 +91,10 @@ export const useUpdateEmailHelper = () => {
   return {
     formData,
     formRef,
+    loginAgainModal: {
+      isVisible: showLoginAgainModal,
+      currentUser: currentUser,
+    },
     onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };

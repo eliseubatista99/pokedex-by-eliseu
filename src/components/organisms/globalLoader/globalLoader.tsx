@@ -67,7 +67,6 @@ export const GlobalLoader = ({
       <div
         style={{
           width: "100%",
-          maxWidth: `${APP_MAX_WIDTH}px`,
           minHeight: "100%",
           left: 0,
           top: 0,
