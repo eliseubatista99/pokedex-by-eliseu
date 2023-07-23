@@ -8,6 +8,8 @@ import {
   updateProfile,
   User,
   UserCredential,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 
 interface FirebaseContextInputProps {
@@ -27,6 +29,9 @@ interface FirebaseContextOutputProps {
   ) => Promise<UserCredential | undefined>;
   logout?: () => Promise<void>;
   resetPassword?: (email: string) => Promise<void>;
+  updateEmail?: (email: string) => Promise<void>;
+  updatePassword?: (password: string) => Promise<void>;
+  updateName?: (name: string) => Promise<void>;
 }
 
 const FirebaseContext = React.createContext<FirebaseContextOutputProps>({});
@@ -61,6 +66,26 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
     return await sendPasswordResetEmail(auth, email);
   };
 
+  const updateUserEmail = async (email: string) => {
+    if (currentUser.current) {
+      await updateEmail(currentUser.current, email);
+    }
+  };
+
+  const updateUserPassword = async (password: string) => {
+    if (currentUser.current) {
+      await updatePassword(currentUser.current, password);
+    }
+  };
+
+  const updateUserName = async (name: string) => {
+    if (currentUser.current) {
+      await updateProfile(currentUser.current, {
+        displayName: name,
+      });
+    }
+  };
+
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
       currentUser.current = user;
@@ -78,6 +103,9 @@ export const FirebaseProvider = ({ children }: FirebaseContextInputProps) => {
         logIn,
         logout,
         resetPassword,
+        updateEmail: updateUserEmail,
+        updatePassword: updateUserPassword,
+        updateName: updateUserName,
       }}
     >
       {!isLoading && children}
