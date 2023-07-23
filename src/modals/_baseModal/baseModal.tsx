@@ -28,12 +28,14 @@ export const BaseModal = ({
             alignItems: "center",
             justifyContent: "center",
           }}
-          onClick={() => onClickOutsideModal?.()}
+          onClick={() => {
+            onClickOutsideModal?.();
+          }}
         >
           <div
             style={{
-              width: "100%",
-              maxWidth: "300px",
+              width: "90%",
+              maxWidth: "500px",
               height: "fit-content",
               maxHeight: "50%",
               background: "#ffffff",
@@ -42,6 +44,11 @@ export const BaseModal = ({
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              padding: "32px",
+              zIndex: 1001,
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
             }}
           >
             {children}

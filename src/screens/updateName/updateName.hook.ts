@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import {
-  useCustomNavigation,
-  useFirebaseAuth,
-  useFirebaseFirestore,
-} from "@hooks";
+import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
 import { FormFieldData } from "@types";
+import { useFirebaseAuth } from "@contexts";
 
 interface FormData {
   name: FormFieldData;

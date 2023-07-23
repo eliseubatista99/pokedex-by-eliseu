@@ -1,5 +1,6 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
+import { useCustomNavigation } from "@hooks";
 import { useBaseStore } from "@store";
 import React from "react";
 

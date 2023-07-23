@@ -1,11 +1,8 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import {
-  useCustomNavigation,
-  useFirebaseAuth,
-  useFirebaseFirestore,
-} from "@hooks";
+import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
 
 export interface RegisterFormField {
   value?: string;
@@ -48,6 +45,11 @@ export const useRegisterDataHelper = () => {
         });
 
         const newUser = await signUp?.(email, password, username);
+
+        if (!newUser) {
+          throw new Error("");
+        }
+
         createUser(newUser.user);
         hideLoader();
         handleGoToRegisterDone();

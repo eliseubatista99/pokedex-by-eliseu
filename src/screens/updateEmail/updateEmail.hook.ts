@@ -1,23 +1,18 @@
 import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import {
-  useCustomNavigation,
-  useFirebaseAuth,
-  useFirebaseFirestore,
-} from "@hooks";
+import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
 import { FormFieldData } from "@types";
+import { useFirebaseAuth } from "@contexts";
 
 interface FormData {
   email: FormFieldData;
 }
 
 export const useUpdateEmailHelper = () => {
-  const [showLoginAgainModal, setShowLoginAgainModal] =
-    React.useState<boolean>(false);
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { updateEmail, currentUser } = useFirebaseAuth();
+  const { updateEmail } = useFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -91,10 +86,6 @@ export const useUpdateEmailHelper = () => {
   return {
     formData,
     formRef,
-    loginAgainModal: {
-      isVisible: showLoginAgainModal,
-      currentUser: currentUser,
-    },
     onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };

@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation } from "@hooks";
 import { FormFieldData } from "@types";
 import { useFirebaseAuth } from "@contexts";
+import { ModalLoginAgainProps } from "./loginAgain";
 
 interface FormData {
   password: FormFieldData;
 }
 
-export const useUpdatePasswordHelper = () => {
-  const { goBack } = useCustomNavigation();
+export const useLoginAgainModalHelper = ({
+  onLoginDone,
+}: ModalLoginAgainProps) => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { updatePassword } = useFirebaseAuth();
+  const { currentUser, logIn } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -19,23 +20,24 @@ export const useUpdatePasswordHelper = () => {
     password: {},
   });
 
-  const handleUpdatePassword = React.useCallback(
-    async (name: string) => {
+  const handleLogin = React.useCallback(
+    async (password: string) => {
       try {
         showLoader({
-          loadingText: "Updating password...",
+          loadingText: "Logging in...",
           style: "opaque",
         });
-        await updatePassword?.(name);
-
+        const user = await logIn?.(currentUser?.email || "", password);
         hideLoader();
-        goBack();
+        if (user) {
+          onLoginDone?.(user.user);
+        }
       } catch (error: unknown) {
-        console.error("Failed to change password. Error: ", error);
+        console.error("Failed to login. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updatePassword]
+    [currentUser?.email, hideLoader, logIn, onLoginDone, showLoader]
   );
 
   const handleClickContinue = () => {
@@ -70,10 +72,10 @@ export const useUpdatePasswordHelper = () => {
       }));
 
       if (!error) {
-        handleUpdatePassword(formPassword);
+        handleLogin(formPassword);
       }
     },
-    [handleUpdatePassword]
+    [handleValidatePassword]
   );
 
   return {

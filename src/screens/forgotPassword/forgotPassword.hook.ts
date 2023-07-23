@@ -2,7 +2,8 @@ import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
 import { FirebaseError } from "firebase/app";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import { useCustomNavigation } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
 
 export interface ForgotPasswordFormField {
   value?: string;

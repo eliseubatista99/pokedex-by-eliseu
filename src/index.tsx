@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { css, Global } from "@emotion/react";
+import { FirebaseAuthProvider } from "./contexts/firebaseAuth";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -66,9 +67,11 @@ root.render(
         }
       `}
     />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <FirebaseAuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FirebaseAuthProvider>
   </React.StrictMode>
 );
 
