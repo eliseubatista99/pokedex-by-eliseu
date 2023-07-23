@@ -26,7 +26,7 @@ export const BaseDrawer = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-end",
           }}
           onClick={() => {
             onCloseDrawer?.();
@@ -34,12 +34,12 @@ export const BaseDrawer = ({
         >
           <div
             style={{
-              width: "90%",
-              maxWidth: "500px",
+              width: "100%",
               height: "fit-content",
-              maxHeight: "50%",
+              maxHeight: "90%",
               background: "#ffffff",
-              borderRadius: "16px",
+              borderTopLeftRadius: "16px",
+              borderTopRightRadius: "16px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -59,6 +59,8 @@ export const BaseDrawer = ({
                 justifyContent: "center",
                 position: "absolute",
                 top: "0px",
+                height: "32px",
+                width: "100%",
               }}
             >
               <div

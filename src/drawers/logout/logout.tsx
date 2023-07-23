@@ -25,7 +25,8 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
         styles={{
           margin: "24px auto 0 auto",
           height: "50px",
-          maxWidth: "200px",
+          maxWidth: "300px",
+          border: "none",
           background: "#CD3131",
         }}
       />
@@ -34,9 +35,9 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
         text="No, go back"
         onClick={onCloseDrawer}
         styles={{
-          margin: "24px auto 0 auto",
+          margin: "10px auto 0 auto",
           height: "50px",
-          maxWidth: "200px",
+          maxWidth: "300px",
         }}
       />
     </BaseDrawer>

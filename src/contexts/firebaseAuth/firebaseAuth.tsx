@@ -48,6 +48,7 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
   const hideLoginAgainModal = () => {
     setLoginAgainModal({
       isVisible: false,
+      onClickOutsideModal: () => null,
     });
   };
 

@@ -24,6 +24,8 @@ export const useCustomButtonStyles = ({
   const ghostButtonStyles: CSSProperties = {
     border: "none",
     background: "none",
+    padding: 0,
+    height: "fit-content",
     color: isHovered ? "#0c112e" : "#173EA5",
   };
 
