@@ -8,7 +8,7 @@ import { ScreenPaths } from "@constants";
 export const useLogoutDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const { logout } = useFirebaseAuth();
   const { showLoader, hideLoader } = useBaseStore();
-  const { cleanAndGoTo } = useCustomNavigation();
+  const { replaceHistory, goTo } = useCustomNavigation();
 
   const handleLogout = React.useCallback(async () => {
     try {
@@ -20,12 +20,13 @@ export const useLogoutDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
       hideLoader();
 
       onCloseDrawer?.();
-      cleanAndGoTo(ScreenPaths.loginOrRegister);
+      replaceHistory([ScreenPaths.onboarding1, ScreenPaths.onboarding2]);
+      goTo(ScreenPaths.loginOrRegister);
     } catch (error: unknown) {
       console.error("Failed to logout. Error: ", error);
       hideLoader();
     }
-  }, [cleanAndGoTo, hideLoader, logout, onCloseDrawer, showLoader]);
+  }, [goTo, hideLoader, logout, onCloseDrawer, replaceHistory, showLoader]);
 
   return {
     onPointerDownLogout: handleLogout,

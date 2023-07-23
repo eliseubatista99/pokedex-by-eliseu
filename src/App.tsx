@@ -20,19 +20,20 @@ import { ScreenPaths } from "@constants";
 import React from "react";
 import { useCustomNavigation } from "@hooks";
 export const App = () => {
-  const { currentPath, cleanAndGoTo } = useCustomNavigation();
+  const { currentPath, replaceHistory, goTo } = useCustomNavigation();
 
   const appInitialized = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     if (!appInitialized.current) {
       if (currentPath !== ScreenPaths.splash) {
-        cleanAndGoTo(ScreenPaths.splash);
+        replaceHistory([]);
+        goTo(ScreenPaths.splash, false);
       }
 
       appInitialized.current = true;
     }
-  }, [cleanAndGoTo, currentPath]);
+  }, [currentPath, goTo, replaceHistory]);
 
   return (
     <div
