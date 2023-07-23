@@ -24,8 +24,7 @@ export const useLogoutHelper = () => {
       });
 
       setUserData({
-        name: undefined,
-        email: undefined,
+        firebaseUser: undefined,
       });
 
       cleanAndGoTo(ScreenPaths.loginOrRegister);
