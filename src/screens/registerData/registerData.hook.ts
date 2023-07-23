@@ -1,7 +1,7 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 
 export interface RegisterFormField {
   value?: string;
@@ -19,7 +19,7 @@ export interface RegisterFormData {
 export const useRegisterDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { signUp } = useFirebase();
+  const { signUp } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 

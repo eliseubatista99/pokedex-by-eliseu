@@ -1,7 +1,7 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 
 export interface LoginFormField {
   value?: string;
@@ -17,7 +17,7 @@ export interface loginFormData {
 export const useLoginDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { logIn } = useFirebase();
+  const { logIn } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 

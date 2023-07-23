@@ -1,7 +1,7 @@
 import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 import { FormFieldData } from "@types";
 
 export interface UpdateEmailFormData {
@@ -11,7 +11,7 @@ export interface UpdateEmailFormData {
 export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { updateEmail } = useFirebase();
+  const { updateEmail } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 

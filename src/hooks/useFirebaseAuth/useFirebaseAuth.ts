@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import { useUserStore } from "@store";
 
-export const useFirebase = () => {
+export const useFirebaseAuth = () => {
   const { setFirebaseUser } = useUserStore();
 
   const currentUser = React.useRef<User | null>(null);

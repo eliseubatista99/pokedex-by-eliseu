@@ -1,9 +1,9 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 import React from "react";
 
 export const useAccountInfoHelper = () => {
-  const { currentUser } = useFirebase();
+  const { currentUser } = useFirebaseAuth();
 
   const { goTo } = useCustomNavigation();
 

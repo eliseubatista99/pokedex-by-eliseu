@@ -1,10 +1,10 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 import { useBaseStore } from "@store";
 import React from "react";
 
 export const useLogoutHelper = () => {
-  const { currentUser, logout } = useFirebase();
+  const { currentUser, logout } = useFirebaseAuth();
   const { showLoader, hideLoader } = useBaseStore();
   const { cleanAndGoTo } = useCustomNavigation();
 

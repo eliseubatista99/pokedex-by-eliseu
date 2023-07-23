@@ -2,7 +2,7 @@ import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
 import { FirebaseError } from "firebase/app";
-import { useCustomNavigation, useFirebase } from "@hooks";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 
 export interface ForgotPasswordFormField {
   value?: string;
@@ -17,7 +17,7 @@ export interface ForgotPasswordFormData {
 export const useForgotPasswordHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { resetPassword } = useFirebase();
+  const { resetPassword } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
