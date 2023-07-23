@@ -1,8 +1,7 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
-import { useFirebaseContext } from "@contexts";
-import { useBaseStore, useUserStore } from "@store";
-import { useCustomNavigation } from "@hooks";
+import { useBaseStore } from "@store";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
 
 export interface LoginFormField {
   value?: string;
@@ -16,10 +15,9 @@ export interface loginFormData {
 }
 
 export const useLoginDataHelper = () => {
-  const { goBack, goTo } = useCustomNavigation();
-  const { setLoading } = useBaseStore();
-  const { setPartialState: setUserData } = useUserStore();
-  const { logIn } = useFirebaseContext();
+  const { goTo } = useCustomNavigation();
+  const { showLoader, hideLoader } = useBaseStore();
+  const { logIn } = useFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -28,10 +26,6 @@ export const useLoginDataHelper = () => {
     password: {},
   });
 
-  const handleGoBack = React.useCallback(() => {
-    goBack(-1);
-  }, [goBack]);
-
   const handleGoToLoginDone = React.useCallback(() => {
     goTo(ScreenPaths.loginDone);
   }, [goTo]);
@@ -39,31 +33,19 @@ export const useLoginDataHelper = () => {
   const handleLogin = React.useCallback(
     async (email: string, password: string) => {
       try {
-        setLoading({
-          isLoading: true,
+        showLoader({
           loadingText: "Logging in...",
           style: "opaque",
         });
-        const currentUser = await logIn?.(email, password);
-        console.log(currentUser?.user);
-
-        setUserData({
-          firebaseUser: currentUser?.user,
-        });
-        setLoading({
-          isLoading: false,
-          loadingText: undefined,
-        });
+        await logIn?.(email, password);
+        hideLoader();
         handleGoToLoginDone();
       } catch (error: unknown) {
         console.error("Failed to login. Error: ", error);
-        setLoading({
-          isLoading: false,
-          loadingText: undefined,
-        });
+        hideLoader();
       }
     },
-    [handleGoToLoginDone, logIn, setLoading, setUserData]
+    [handleGoToLoginDone, hideLoader, logIn, showLoader]
   );
 
   const handleClickContinue = () => {
@@ -125,7 +107,6 @@ export const useLoginDataHelper = () => {
   return {
     loginFormData,
     formRef,
-    onClickBack: handleGoBack,
     onClickContinue: handleClickContinue,
     onClickForgotPassword: handleClickForgotPassword,
     onSubmitForm: handleSubmitForm,

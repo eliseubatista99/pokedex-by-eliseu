@@ -1,29 +1,34 @@
 import React from "react";
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
+import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
 import { useBaseStore, useUserStore } from "@store";
 
 export const useSplashScreenHelper = () => {
   const { goTo } = useCustomNavigation();
-  const { setLoading } = useBaseStore();
+  const { hideLoader } = useBaseStore();
   const { firebaseUser } = useUserStore();
+  const { getUser } = useFirebaseFirestore();
 
   const goToNextScreen = React.useCallback(() => {
-    setLoading({
-      isLoading: false,
-      loadingText: undefined,
-    });
+    hideLoader();
 
     if (firebaseUser) {
       goTo(ScreenPaths.account);
     } else {
       goTo(ScreenPaths.onboarding1);
     }
-  }, [firebaseUser, goTo, setLoading]);
+  }, [firebaseUser, goTo, hideLoader]);
+
+  const initializeApp = React.useCallback(async () => {
+    if (firebaseUser) {
+      getUser();
+    }
+    goToNextScreen();
+  }, [firebaseUser, getUser, goToNextScreen]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      goToNextScreen();
+      initializeApp();
     }, 2000);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps

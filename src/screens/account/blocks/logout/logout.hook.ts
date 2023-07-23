@@ -1,41 +1,28 @@
 import { ScreenPaths } from "@constants";
-import { useFirebaseContext } from "@contexts";
-import { useCustomNavigation } from "@hooks";
-import { useBaseStore, useUserStore } from "@store";
+import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import { useBaseStore } from "@store";
 import React from "react";
 
 export const useLogoutHelper = () => {
-  const { currentUser, logout } = useFirebaseContext();
-  const { setLoading } = useBaseStore();
-  const { setPartialState: setUserData } = useUserStore();
+  const { currentUser, logout } = useFirebaseAuth();
+  const { showLoader, hideLoader } = useBaseStore();
   const { cleanAndGoTo } = useCustomNavigation();
 
   const handleLogout = React.useCallback(async () => {
     try {
-      setLoading({
-        isLoading: true,
+      showLoader({
         loadingText: "Logging out...",
         style: "opaque",
       });
       await logout?.();
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
-
-      setUserData({
-        firebaseUser: undefined,
-      });
+      hideLoader();
 
       cleanAndGoTo(ScreenPaths.loginOrRegister);
     } catch (error: unknown) {
       console.error("Failed to login. Error: ", error);
-      setLoading({
-        isLoading: false,
-        loadingText: undefined,
-      });
+      hideLoader();
     }
-  }, [cleanAndGoTo, logout, setLoading, setUserData]);
+  }, [cleanAndGoTo, hideLoader, logout, showLoader]);
 
   return {
     username: currentUser?.displayName,

@@ -14,4 +14,7 @@ export const ScreenPaths = {
   regions: "/regions",
   favorites: "/favorites",
   account: "/account",
+  updateEmail: "/updateEmail",
+  updatePassword: "/updatePassword",
+  updateName: "/updateName",
 };

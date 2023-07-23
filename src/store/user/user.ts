@@ -4,26 +4,39 @@ import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 
 export interface UserState {
-  firebaseUser?: User;
+  lastUpdateTime?: number;
+  firebaseUser?: User | null;
+  favorites?: number[];
 }
 
 export const initialUserState: UserState = { firebaseUser: undefined };
 
 interface UseUserStoreOutput extends UserState {
-  setPartialState: (data: Partial<UserState>) => void;
+  setFirebaseUser: (data: User | null | undefined) => void;
+  setUserFavorites: (data: number[]) => void;
 }
 
 export const useUserStore = StoreHelper.createStore<UseUserStoreOutput>(
   (set) => ({
     ...initialUserState,
-    setPartialState: function (data: Partial<UserState>) {
+    setFirebaseUser: function (data: User | null | undefined) {
       set(
         produce((state: UserState) => {
-          console.log("UPDATING USER: ", data);
-          return { ...state, ...data };
+          //console.log("UPDATING USER: ", data);
+          return { ...state, firebaseUser: data };
         }),
         false,
-        "setPartialState"
+        "setFirebaseUser"
+      );
+    },
+    setUserFavorites: function (data: number[]) {
+      set(
+        produce((state: UserState) => {
+          const currentTime = Date.now();
+          return { ...state, favorites: data, lastUpdateTime: currentTime };
+        }),
+        false,
+        "setUserFavorites"
       );
     },
   }),

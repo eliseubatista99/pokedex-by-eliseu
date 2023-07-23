@@ -10,3 +10,4 @@ export * from "./registerData";
 export * from "./registerDone";
 export * from "./forgotPassword";
 export * from "./splashScreen";
+export * from "./updateEmail";

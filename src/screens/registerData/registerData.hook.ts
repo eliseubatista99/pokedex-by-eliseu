@@ -1,8 +1,11 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
-import { useFirebaseContext } from "@contexts";
-import { useBaseStore, useUserStore } from "@store";
-import { useCustomNavigation } from "@hooks";
+import { useBaseStore } from "@store";
+import {
+  useCustomNavigation,
+  useFirebaseAuth,
+  useFirebaseFirestore,
+} from "@hooks";
 
 export interface RegisterFormField {
   value?: string;
@@ -19,9 +22,9 @@ export interface RegisterFormData {
 
 export const useRegisterDataHelper = () => {
   const { goTo } = useCustomNavigation();
-  const { setLoading } = useBaseStore();
-  const { setPartialState: setUserData } = useUserStore();
-  const { signUp } = useFirebaseContext();
+  const { showLoader, hideLoader } = useBaseStore();
+  const { signUp } = useFirebaseAuth();
+  const { createUser } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -39,30 +42,21 @@ export const useRegisterDataHelper = () => {
   const handleCreateAccount = React.useCallback(
     async (email: string, password: string, username: string) => {
       try {
-        setLoading({
-          isLoading: true,
+        showLoader({
           loadingText: "Creating User Account...",
           style: "opaque",
         });
 
-        const currentUser = await signUp?.(email, password, username);
-        setLoading({
-          isLoading: false,
-          loadingText: undefined,
-        });
-        setUserData({
-          firebaseUser: currentUser?.user,
-        });
+        const newUser = await signUp?.(email, password, username);
+        createUser(newUser.user);
+        hideLoader();
         handleGoToRegisterDone();
       } catch (error: unknown) {
         console.error("Failed to create an account. Error: ", error);
-        setLoading({
-          isLoading: false,
-          loadingText: undefined,
-        });
+        hideLoader();
       }
     },
-    [handleGoToRegisterDone, setLoading, setUserData, signUp]
+    [createUser, handleGoToRegisterDone, hideLoader, showLoader, signUp]
   );
 
   const handleClickContinue = () => {
