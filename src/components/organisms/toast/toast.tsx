@@ -1,15 +1,15 @@
 import { Typography } from "@components";
-import { useBaseToastHelper } from "./baseToast.hook";
+import { useToastHelper } from "./toast.hook";
 
-export interface BaseToastProps {
+export interface ToastProps {
   duration: number;
   icon?: React.ReactNode;
   text: string;
 }
 
-export const BaseToast = (props: BaseToastProps) => {
+export const Toast = (props: ToastProps) => {
   const { icon, text } = props;
-  useBaseToastHelper(props);
+  useToastHelper(props);
   return (
     <div
       style={{

@@ -17,8 +17,7 @@
       "@store": ["src/store"],
       "@types": ["src/types"],
       "@modals": ["src/modals"],
-      "@drawers": ["src/drawers"],
-      "@toasts": ["src/toasts"]
+      "@drawers": ["src/drawers"]
     }
   }
 }

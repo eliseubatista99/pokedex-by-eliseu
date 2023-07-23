@@ -1,8 +1,8 @@
 import { useBaseStore } from "@store";
 import React from "react";
-import { BaseToastProps } from "./baseToast";
+import { ToastProps } from "./toast";
 
-export const useBaseToastHelper = ({ duration }: BaseToastProps) => {
+export const useToastHelper = ({ duration }: ToastProps) => {
   const hideStarted = React.useRef<boolean>(false);
   const { setToastData } = useBaseStore();
 
