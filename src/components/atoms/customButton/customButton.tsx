@@ -15,7 +15,7 @@ export interface CustomButtonProps {
 
 export const CustomButton = (props: CustomButtonProps) => {
   const { text, startContent, endContent, onClick, styles } = props;
-  const { buttonStyles, isHovered, onButtonHovered, onButtonUnhovered } =
+  const { buttonStyles, onButtonHovered, onButtonUnhovered } =
     useCustomButtonHelper(props);
 
   return (

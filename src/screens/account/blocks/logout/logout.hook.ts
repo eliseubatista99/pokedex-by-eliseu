@@ -1,6 +1,5 @@
 import { ScreenPaths } from "@constants";
 import { useFirebaseContext } from "@contexts";
-import { FirebaseError } from "@firebase/app";
 import { useCustomNavigation } from "@hooks";
 import { useBaseStore, useUserStore } from "@store";
 import React from "react";

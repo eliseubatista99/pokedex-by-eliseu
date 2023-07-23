@@ -5,7 +5,6 @@ import {
   CustomImage,
   Iconography,
   OnboardingBottomContent,
-  Typography,
 } from "@components";
 import { useLoginOrRegisterHelper } from "./loginOrRegister.hook";
 
