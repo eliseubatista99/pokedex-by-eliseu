@@ -7,28 +7,11 @@ export const RegisterDone = () => {
 
   return (
     <AppLayout
-      styles={{ height: "100%" }}
-      screen={{
-        styles: { overflow: "hidden" },
-      }}
       header={{
         type: "default",
         hideBack: true,
         stepsToGoBack: 3,
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          title="Your account was successfully created!"
-          description="Welcome, trainer! We are excited to follow your journey."
-          buttons={[
-            {
-              type: "primary",
-              text: "Continue",
-              onClick: onClickContinue,
-            },
-          ]}
-        />
-      }
     >
       <CustomImage
         src={ImageAssets.registerDoneFigure}
@@ -38,6 +21,17 @@ export const RegisterDone = () => {
           maxWidth: "356px",
           height: "auto",
         }}
+      />
+      <OnboardingBottomContent
+        title="Your account was successfully created!"
+        description="Welcome, trainer! We are excited to follow your journey."
+        buttons={[
+          {
+            type: "primary",
+            text: "Continue",
+            onClick: onClickContinue,
+          },
+        ]}
       />
     </AppLayout>
   );

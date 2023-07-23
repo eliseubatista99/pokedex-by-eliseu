@@ -49,11 +49,11 @@ export const AppLayout = ({
       >
         {header && <AppHeader {...header} />}
         <AppScreen {...screen}>{children}</AppScreen>
-        {bottomContent && (
+        {/* {bottomContent && (
           <div style={{ position: "sticky", bottom: 0, width: "100%" }}>
             {bottomContent}
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

@@ -27,7 +27,7 @@ export const CustomButton = (props: CustomButtonProps) => {
         borderRadius: "50px",
         width: "90%",
         maxWidth: "328px",
-        height: "48px",
+        height: "58px",
         cursor: "pointer",
         ...buttonStyles,
         ...styles,

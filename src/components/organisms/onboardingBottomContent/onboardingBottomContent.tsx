@@ -37,13 +37,17 @@ export const OnboardingBottomContent = ({
         position: "relative",
         flexDirection: "column",
         alignItems: "center",
-        padding: "17px 17px 40px 17px",
+        padding: "17px 0px 0px 0px",
         background: "#ffffff",
       }}
     >
       {title && (
         <Typography
-          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
+          styles={{
+            textAlign: "center",
+            fontSize: "26px",
+            fontWeight: 800,
+          }}
         >
           {title}
         </Typography>

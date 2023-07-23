@@ -7,28 +7,11 @@ export const LoginDone = () => {
 
   return (
     <AppLayout
-      styles={{ height: "100%" }}
-      screen={{
-        styles: { overflow: "hidden" },
-      }}
       header={{
         type: "default",
         hideBack: true,
         stepsToGoBack: 3,
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          title="Welcome back, trainer!"
-          description="I hope you've had a long journey since you last visited us."
-          buttons={[
-            {
-              type: "primary",
-              text: "Continue",
-              onClick: onClickContinue,
-            },
-          ]}
-        />
-      }
     >
       <CustomImage
         src={ImageAssets.loginDoneFigure}
@@ -38,6 +21,17 @@ export const LoginDone = () => {
           maxWidth: "356px",
           height: "auto",
         }}
+      />
+      <OnboardingBottomContent
+        title="Welcome back, trainer!"
+        description="I hope you've had a long journey since you last visited us."
+        buttons={[
+          {
+            type: "primary",
+            text: "Continue",
+            onClick: onClickContinue,
+          },
+        ]}
       />
     </AppLayout>
   );

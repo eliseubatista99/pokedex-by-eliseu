@@ -12,53 +12,10 @@ export const Login = () => {
 
   return (
     <AppLayout
-      styles={{ height: "100%" }}
-      screen={{
-        styles: { overflow: "hidden" },
-      }}
       header={{
         type: "default",
         title: "Log In",
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          title="Good to see you again!"
-          description="How do you wish to connect?"
-          buttons={[
-            {
-              type: "secondary",
-              text: "Continue With Apple",
-              startContent: (
-                <Iconography.Apple
-                  width="22px"
-                  height="28px"
-                  containerProps={{ margin: "-4px 0 0 0" }}
-                />
-              ),
-              onClick: onClickApple,
-              isDisabled: true,
-            },
-            {
-              type: "secondary",
-              text: "Continue With Google",
-              startContent: (
-                <Iconography.Google
-                  width="26px"
-                  height="26px"
-                  containerProps={{ margin: "0 0 0 -6px" }}
-                />
-              ),
-              onClick: onClickGoogle,
-              isDisabled: true,
-            },
-            {
-              type: "primary",
-              text: "Continue With Email",
-              onClick: onClickEmail,
-            },
-          ]}
-        />
-      }
     >
       <CustomImage
         src={ImageAssets.loginFigure}
@@ -68,6 +25,43 @@ export const Login = () => {
           maxWidth: "356px",
           height: "auto",
         }}
+      />
+      <OnboardingBottomContent
+        title="Good to see you again!"
+        description="How do you wish to connect?"
+        buttons={[
+          {
+            type: "secondary",
+            text: "Continue With Apple",
+            startContent: (
+              <Iconography.Apple
+                width="22px"
+                height="28px"
+                containerProps={{ margin: "-4px 0 0 0" }}
+              />
+            ),
+            onClick: onClickApple,
+            isDisabled: true,
+          },
+          {
+            type: "secondary",
+            text: "Continue With Google",
+            startContent: (
+              <Iconography.Google
+                width="26px"
+                height="26px"
+                containerProps={{ margin: "0 0 0 -6px" }}
+              />
+            ),
+            onClick: onClickGoogle,
+            isDisabled: true,
+          },
+          {
+            type: "primary",
+            text: "Continue With Email",
+            onClick: onClickEmail,
+          },
+        ]}
       />
     </AppLayout>
   );

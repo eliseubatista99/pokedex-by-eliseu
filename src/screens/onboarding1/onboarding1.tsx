@@ -6,27 +6,7 @@ export const Onboarding1 = () => {
   const { onClickContinue } = useOnboarding1Helper();
 
   return (
-    <AppLayout
-      styles={{ height: "100%" }}
-      screen={{
-        styles: { overflow: "hidden" },
-      }}
-      bottomContent={
-        <OnboardingBottomContent
-          title="All Pokémon in One Place"
-          description="Access a vast list of Pokémon from every generation ever made by
-            Nintendo"
-          stepper={{ numberOfSteps: 2, currentStep: 0 }}
-          buttons={[
-            {
-              type: "primary",
-              text: "Continue",
-              onClick: onClickContinue,
-            },
-          ]}
-        />
-      }
-    >
+    <AppLayout>
       <CustomImage
         src={ImageAssets.onboarding1Figure}
         alt={"A scientis and a boy with a straw hat"}
@@ -35,6 +15,19 @@ export const Onboarding1 = () => {
           maxWidth: "356px",
           height: "auto",
         }}
+      />
+      <OnboardingBottomContent
+        title="All Pokémon in One Place"
+        description="Access a vast list of Pokémon from every generation ever made by
+            Nintendo"
+        stepper={{ numberOfSteps: 2, currentStep: 0 }}
+        buttons={[
+          {
+            type: "primary",
+            text: "Continue",
+            onClick: onClickContinue,
+          },
+        ]}
       />
     </AppLayout>
   );

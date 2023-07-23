@@ -16,17 +16,6 @@ export const RegisterData = () => {
         type: "default",
         title: "Create Account",
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          buttons={[
-            {
-              type: "primary",
-              text: "Continue",
-              onClick: onClickContinue,
-            },
-          ]}
-        />
-      }
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
@@ -87,6 +76,15 @@ export const RegisterData = () => {
           containerProps={{ margin: "16px auto 0 auto" }}
         />
       </form>
+      <OnboardingBottomContent
+        buttons={[
+          {
+            type: "primary",
+            text: "Continue",
+            onClick: onClickContinue,
+          },
+        ]}
+      />
     </AppLayout>
   );
 };
