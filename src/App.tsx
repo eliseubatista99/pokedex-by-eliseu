@@ -13,6 +13,8 @@ import {
   ForgotPassword,
   Account,
   UpdateEmail,
+  UpdateName,
+  UpdatePassword,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
@@ -57,6 +59,8 @@ export const App = () => {
         <Route path={ScreenPaths.forgotPassword} element={<ForgotPassword />} />
         <Route path={ScreenPaths.account} element={<Account />} />
         <Route path={ScreenPaths.updateEmail} element={<UpdateEmail />} />
+        <Route path={ScreenPaths.updateName} element={<UpdateName />} />
+        <Route path={ScreenPaths.updatePassword} element={<UpdatePassword />} />
       </Routes>
     </div>
   );

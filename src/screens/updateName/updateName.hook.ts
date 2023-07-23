@@ -1,4 +1,3 @@
-import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
 import {
@@ -9,43 +8,43 @@ import {
 import { FormFieldData } from "@types";
 
 interface FormData {
-  email: FormFieldData;
+  name: FormFieldData;
 }
 
-export const useUpdateEmailHelper = () => {
+export const useUpdateNameHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { updateEmail } = useFirebaseAuth();
-  const { updateUserEmail } = useFirebaseFirestore();
+  const { updateName } = useFirebaseAuth();
+  const { updateUserName } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const [formData, setFormData] = useState<FormData>({
-    email: {},
+    name: {},
   });
 
-  const handleUpdateEmail = React.useCallback(
-    async (email: string) => {
+  const handleUpdateName = React.useCallback(
+    async (name: string) => {
       try {
         showLoader({
-          loadingText: "Updating email...",
+          loadingText: "Updating name...",
           style: "opaque",
         });
-        const currentUser = await updateEmail?.(email);
+        const currentUser = await updateName?.(name);
 
         if (!currentUser) {
           throw new Error("");
         }
-        updateUserEmail(currentUser, email);
+        updateUserName(currentUser, name);
 
         hideLoader();
         goBack();
       } catch (error: unknown) {
-        console.error("Failed to change Email. Error: ", error);
+        console.error("Failed to change name. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updateEmail, updateUserEmail]
+    [goBack, hideLoader, showLoader, updateName, updateUserName]
   );
 
   const handleClickContinue = () => {
@@ -54,8 +53,8 @@ export const useUpdateEmailHelper = () => {
     }
   };
 
-  const handleValidateEmail = (value: string) => {
-    const error = !EMAIL_REGEX.test(value);
+  const handleValidateName = (value: string) => {
+    const error = value.trim().length < 1;
 
     return error;
   };
@@ -65,25 +64,25 @@ export const useUpdateEmailHelper = () => {
       // Preventing the page from reloading
       event.preventDefault();
 
-      const formEmail = event.currentTarget.elements[0].value as string;
+      const formName = event.currentTarget.elements[0].value as string;
 
-      const emailError = handleValidateEmail(formEmail);
+      const error = handleValidateName(formName);
 
       setFormData((prevState) => ({
         ...prevState,
-        email: {
-          ...prevState.email,
-          value: formEmail,
-          bottomMessage: "Use a valid email address",
-          error: emailError,
+        name: {
+          ...prevState.name,
+          value: formName,
+          bottomMessage: error ? "Your name can't be empty" : undefined,
+          error,
         },
       }));
 
-      if (!emailError) {
-        handleUpdateEmail(formEmail);
+      if (!error) {
+        handleUpdateName(formName);
       }
     },
-    [handleUpdateEmail]
+    [handleUpdateName]
   );
 
   return {

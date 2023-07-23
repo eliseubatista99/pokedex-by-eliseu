@@ -11,3 +11,5 @@ export * from "./registerDone";
 export * from "./forgotPassword";
 export * from "./splashScreen";
 export * from "./updateEmail";
+export * from "./updateName";
+export * from "./updatePassword";

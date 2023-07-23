@@ -4,11 +4,11 @@ import {
   OnboardingBottomContent,
   Typography,
 } from "@components";
-import { useUpdateEmailHelper } from "./updateEmail.hook";
+import { useUpdateNameHelper } from "./updateName.hook";
 
-export const UpdateEmail = () => {
+export const UpdateName = () => {
   const { formRef, onSubmitForm, formData, onClickContinue } =
-    useUpdateEmailHelper();
+    useUpdateNameHelper();
 
   return (
     <AppLayout
@@ -42,16 +42,14 @@ export const UpdateEmail = () => {
             color: "#4D4D4D",
           }}
         >
-          {"What's your new email?"}
+          {"What's your new name?"}
         </Typography>
         <CustomInputField
-          name="email"
-          label="Email"
-          bottomMessage={
-            formData.email.bottomMessage || "Use a valid email address"
-          }
-          placeHolder="Email"
-          error={formData.email.error}
+          name="name"
+          label="Name"
+          bottomMessage={formData.name.bottomMessage || "Use a valid name"}
+          placeHolder="Name"
+          error={formData.name.error}
           containerProps={{ margin: "16px auto 0 auto" }}
         />
       </form>

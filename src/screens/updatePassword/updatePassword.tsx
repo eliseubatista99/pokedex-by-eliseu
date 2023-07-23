@@ -4,11 +4,11 @@ import {
   OnboardingBottomContent,
   Typography,
 } from "@components";
-import { useUpdateEmailHelper } from "./updateEmail.hook";
+import { useUpdatePasswordHelper } from "./updatePassword.hook";
 
-export const UpdateEmail = () => {
+export const UpdatePassword = () => {
   const { formRef, onSubmitForm, formData, onClickContinue } =
-    useUpdateEmailHelper();
+    useUpdatePasswordHelper();
 
   return (
     <AppLayout
@@ -42,16 +42,18 @@ export const UpdateEmail = () => {
             color: "#4D4D4D",
           }}
         >
-          {"What's your new email?"}
+          {"What's your new password?"}
         </Typography>
         <CustomInputField
-          name="email"
-          label="Email"
+          name="password"
+          type="password"
+          label="Password"
+          placeHolder="Password"
           bottomMessage={
-            formData.email.bottomMessage || "Use a valid email address"
+            formData.password.bottomMessage ||
+            "Your password must have at least 8 characters"
           }
-          placeHolder="Email"
-          error={formData.email.error}
+          error={formData.password.error}
           containerProps={{ margin: "16px auto 0 auto" }}
         />
       </form>
