@@ -21,18 +21,8 @@ export const LoginData = () => {
       header={{
         type: "default",
         title: "Log In",
+        stepsToGoBack: 2,
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          buttons={[
-            {
-              type: "primary",
-              text: "Continue",
-              onClick: onClickContinue,
-            },
-          ]}
-        />
-      }
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
@@ -78,6 +68,15 @@ export const LoginData = () => {
         onClick={onClickForgotPassword}
         text="Forgot your password?"
         styles={{ margin: "32px auto 0 auto", fontSize: "14px" }}
+      />
+      <OnboardingBottomContent
+        buttons={[
+          {
+            type: "primary",
+            text: "Continue",
+            onClick: onClickContinue,
+          },
+        ]}
       />
     </AppLayout>
   );

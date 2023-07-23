@@ -14,10 +14,6 @@ export const LoginOrRegister = () => {
 
   return (
     <AppLayout
-      styles={{ height: "100%" }}
-      screen={{
-        styles: { overflow: "hidden" },
-      }}
       header={{
         hideBack: true,
         type: "default",
@@ -37,25 +33,6 @@ export const LoginOrRegister = () => {
           />
         ),
       }}
-      bottomContent={
-        <OnboardingBottomContent
-          title="Are you ready for this adventure?"
-          description="Just create an account and start exploring the world of Pokémon
-            today!"
-          buttons={[
-            {
-              type: "primary",
-              text: "Register",
-              onClick: onClickRegister,
-            },
-            {
-              type: "ghost",
-              text: "I already have and account",
-              onClick: onClickAlreadyHaveAnAccount,
-            },
-          ]}
-        />
-      }
     >
       <CustomImage
         src={ImageAssets.loginOrRegisterFigure}
@@ -65,6 +42,23 @@ export const LoginOrRegister = () => {
           maxWidth: "356px",
           height: "auto",
         }}
+      />
+      <OnboardingBottomContent
+        title="Are you ready for this adventure?"
+        description="Just create an account and start exploring the world of Pokémon
+            today!"
+        buttons={[
+          {
+            type: "primary",
+            text: "Register",
+            onClick: onClickRegister,
+          },
+          {
+            type: "ghost",
+            text: "I already have and account",
+            onClick: onClickAlreadyHaveAnAccount,
+          },
+        ]}
       />
     </AppLayout>
   );
