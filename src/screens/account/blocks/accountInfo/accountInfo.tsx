@@ -3,13 +3,18 @@ import { CustomImage, Typography } from "@components";
 import { useAccountInfoHelper } from "./accountInfo.hook";
 
 export const AccountInfo = () => {
-  const { username, email, onClickName, onClickEmail, onClickPassword } =
-    useAccountInfoHelper();
+  const {
+    username,
+    email,
+    onPointerDownName,
+    onPointerDownEmail,
+    onPointerDownPassword,
+  } = useAccountInfoHelper();
 
   const getAccountEntry = (
     title: string,
     content: string | null | undefined,
-    onClick?: () => void
+    onPointerDown?: () => void
   ) => {
     return (
       <div
@@ -20,7 +25,7 @@ export const AccountInfo = () => {
           padding: "12px 0",
           cursor: "pointer",
         }}
-        onClick={() => onClick?.()}
+        onPointerDown={() => onPointerDown?.()}
       >
         <div style={{ flex: 1, flexDirection: "column" }}>
           <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>
@@ -58,9 +63,9 @@ export const AccountInfo = () => {
       >
         {"Account information"}
       </Typography>
-      {getAccountEntry("Name", username, onClickName)}
-      {getAccountEntry("Email", email, onClickEmail)}
-      {getAccountEntry("Password", "••••••••••••••••", onClickPassword)}
+      {getAccountEntry("Name", username, onPointerDownName)}
+      {getAccountEntry("Email", email, onPointerDownEmail)}
+      {getAccountEntry("Password", "••••••••••••••••", onPointerDownPassword)}
     </div>
   );
 };

@@ -9,12 +9,12 @@ export interface CustomButtonProps {
   text?: string;
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
-  onClick: () => void;
+  onPointerDown: () => void;
   styles?: CSSProperties;
 }
 
 export const CustomButton = (props: CustomButtonProps) => {
-  const { text, startContent, endContent, onClick, styles } = props;
+  const { text, startContent, endContent, onPointerDown, styles } = props;
   const { buttonStyles, onButtonHovered, onButtonUnhovered } =
     useCustomButtonHelper(props);
 
@@ -34,7 +34,7 @@ export const CustomButton = (props: CustomButtonProps) => {
       }}
       onPointerEnter={() => onButtonHovered()}
       onPointerLeave={() => onButtonUnhovered()}
-      onClick={() => onClick()}
+      onPointerDown={() => onPointerDown()}
     >
       <div
         style={{

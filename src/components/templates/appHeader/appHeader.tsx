@@ -1,4 +1,5 @@
 import { AppHeaderDefault, AppHeaderDetails } from "./blocks";
+import { AppHeaderPokedex } from "./blocks/appHeaderPokedex";
 
 export type AppHeaderCommonProps = {
   stepsToGoBack?: number;
@@ -13,11 +14,20 @@ export type AppHeaderDefaultProps = AppHeaderCommonProps & {
 
 export type AppHeaderDetailsProps = AppHeaderCommonProps & {
   type: "details";
-  theme: "light" | "dark";
-  onClickFavorite: () => void;
+  theme?: "light" | "dark";
+  onPointerDownFavorite?: () => void;
 };
 
-export type AppHeaderProps = AppHeaderDefaultProps | AppHeaderDetailsProps;
+export type AppHeaderPokedexProps = AppHeaderCommonProps & {
+  type: "pokedex";
+  title?: string;
+  hideBack?: boolean;
+};
+
+export type AppHeaderProps =
+  | AppHeaderDefaultProps
+  | AppHeaderDetailsProps
+  | AppHeaderPokedexProps;
 
 export const AppHeader = (props: AppHeaderProps) => {
   const maskTopScroll = (
@@ -49,6 +59,7 @@ export const AppHeader = (props: AppHeaderProps) => {
       {maskTopScroll}
       {props.type === "default" && <AppHeaderDefault {...props} />}
       {props.type === "details" && <AppHeaderDetails {...props} />}
+      {props.type === "pokedex" && <AppHeaderPokedex {...props} />}
     </div>
   );
 };

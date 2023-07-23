@@ -10,6 +10,6 @@ export const useOnboarding2Helper = () => {
   }, [goTo]);
 
   return {
-    onClickContinue: handleGoToLoginOrRegister,
+    onPointerDownContinue: handleGoToLoginOrRegister,
   };
 };

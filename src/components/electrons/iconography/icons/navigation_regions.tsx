@@ -6,7 +6,7 @@ export const NavigationRegions = ({
   fill = "none",
   stroke,
   containerProps,
-  onClick,
+  onPointerDown,
 }: IconographyProps) => {
   return (
     <svg
@@ -16,7 +16,7 @@ export const NavigationRegions = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...containerProps }}
-      onClick={onClick}
+      onPointerDown={onPointerDown}
     >
       <path
         d="M13 24.9163C3.79167 16.7913 4.33333 14.6247 3.25 10.833H22.75C22.75 15.708 18.4167 21.6663 13 24.9163Z"

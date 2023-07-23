@@ -6,7 +6,7 @@ export const ArrowRight = ({
   fill,
   stroke,
   containerProps,
-  onClick,
+  onPointerDown,
 }: IconographyProps) => {
   return (
     <svg
@@ -16,7 +16,7 @@ export const ArrowRight = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...containerProps }}
-      onClick={onClick}
+      onPointerDown={onPointerDown}
     >
       <path
         d="M17.999 13.5017L6.74902 13.5017"

@@ -1,5 +1,4 @@
 import { Typography } from "@components";
-import { APP_MAX_WIDTH } from "@constants";
 import { css, Global } from "@emotion/react";
 import { LoadingState } from "@store";
 
@@ -67,7 +66,6 @@ export const GlobalLoader = ({
       <div
         style={{
           width: "100%",
-          maxWidth: `${APP_MAX_WIDTH}px`,
           minHeight: "100%",
           left: 0,
           top: 0,

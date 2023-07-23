@@ -3,7 +3,7 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useOnboarding2Helper } from "./onboarding2.hook";
 
 export const Onboarding2 = () => {
-  const { onClickContinue } = useOnboarding2Helper();
+  const { onPointerDownContinue } = useOnboarding2Helper();
 
   return (
     <AppLayout
@@ -14,7 +14,11 @@ export const Onboarding2 = () => {
             saved in the app, even without an internet connection."
           stepper={{ numberOfSteps: 2, currentStep: 1 }}
           buttons={[
-            { type: "primary", text: "Continue", onClick: onClickContinue },
+            {
+              type: "primary",
+              text: "Continue",
+              onPointerDown: onPointerDownContinue,
+            },
           ]}
         />
       }

@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 export interface CustomImageProps {
   src: string;
   alt: string;
-  onClick?: () => void;
+  onPointerDown?: () => void;
   containerStyles?: CSSProperties;
   imageStyles?: CSSProperties;
 }
@@ -11,7 +11,7 @@ export interface CustomImageProps {
 export const CustomImage = ({
   src,
   alt,
-  onClick,
+  onPointerDown,
   containerStyles,
   imageStyles,
 }: CustomImageProps) => {
@@ -25,7 +25,7 @@ export const CustomImage = ({
         justifyContent: "center",
         ...containerStyles,
       }}
-      onClick={() => onClick?.()}
+      onPointerDown={() => onPointerDown?.()}
     >
       <img
         src={src}

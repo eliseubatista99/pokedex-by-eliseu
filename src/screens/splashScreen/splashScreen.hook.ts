@@ -13,7 +13,7 @@ export const useSplashScreenHelper = () => {
     hideLoader();
 
     if (firebaseUser) {
-      goTo(ScreenPaths.account);
+      goTo(ScreenPaths.favorites);
     } else {
       goTo(ScreenPaths.onboarding1);
     }

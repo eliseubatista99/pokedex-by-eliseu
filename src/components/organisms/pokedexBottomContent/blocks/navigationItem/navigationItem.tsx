@@ -5,7 +5,7 @@ export interface NavigationItemProps {
   text: string;
   icon: string | React.ReactNode;
   isSelected?: boolean;
-  onClick?: () => void;
+  onPointerDown?: () => void;
   containerProps?: CSSProperties;
 }
 
@@ -13,7 +13,7 @@ export const NavigationItem = ({
   text,
   icon,
   isSelected,
-  onClick,
+  onPointerDown,
   containerProps,
 }: NavigationItemProps) => {
   return (
@@ -24,7 +24,7 @@ export const NavigationItem = ({
         cursor: "pointer",
         ...containerProps,
       }}
-      onClick={onClick}
+      onPointerDown={onPointerDown}
     >
       <div
         style={{

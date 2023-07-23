@@ -8,19 +8,23 @@ export interface LoadingState {
   style?: "transparent" | "opaque";
 }
 
-export interface BaseState {
-  loading: LoadingState;
+export interface ToastState {
+  duration?: number;
+  icon?: React.ReactNode;
+  text: string;
 }
 
-const initialState: BaseState = {
-  loading: {
-    isLoading: false,
-  },
-};
+export interface BaseState {
+  loading?: LoadingState;
+  toast?: ToastState;
+}
+
+const initialState: BaseState = {};
 
 interface UseBaseStoreOutput extends BaseState {
   showLoader: (value: Omit<LoadingState, "isLoading">) => void;
   hideLoader: () => void;
+  setToastData: (data: ToastState | undefined) => void;
 }
 
 export const useBaseStore = StoreHelper.createStore<UseBaseStoreOutput>(
@@ -44,15 +48,20 @@ export const useBaseStore = StoreHelper.createStore<UseBaseStoreOutput>(
       set(
         produce((state: BaseState) => ({
           ...state,
-          loading: {
-            ...state.loading,
-            isLoading: false,
-            loadingText: undefined,
-            style: "transparent",
-          },
+          loading: undefined,
         })),
         false,
         "hideLoader"
+      );
+    },
+    setToastData: function (data: ToastState | undefined) {
+      set(
+        produce((state: BaseState) => ({
+          ...state,
+          toast: data,
+        })),
+        false,
+        "setToastData"
       );
     },
   }),

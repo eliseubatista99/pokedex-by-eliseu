@@ -1,26 +1,23 @@
 import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import {
-  useCustomNavigation,
-  useFirebaseAuth,
-  useFirebaseFirestore,
-} from "@hooks";
+import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
 import { FormFieldData } from "@types";
+import { useFirebaseAuth } from "@contexts";
 
-export interface UpdateEmailFormData {
+interface FormData {
   email: FormFieldData;
 }
 
 export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
-  const { showLoader, hideLoader } = useBaseStore();
+  const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateEmail } = useFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const [formData, setFormData] = useState<UpdateEmailFormData>({
+  const [formData, setFormData] = useState<FormData>({
     email: {},
   });
 
@@ -28,7 +25,7 @@ export const useUpdateEmailHelper = () => {
     async (email: string) => {
       try {
         showLoader({
-          loadingText: "Logging in...",
+          loadingText: "Updating email...",
           style: "opaque",
         });
         const currentUser = await updateEmail?.(email);
@@ -39,13 +36,16 @@ export const useUpdateEmailHelper = () => {
         updateUserEmail(currentUser, email);
 
         hideLoader();
+        setToastData({
+          text: "Action performed successfully",
+        });
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change Email. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updateEmail, updateUserEmail]
+    [goBack, hideLoader, setToastData, showLoader, updateEmail, updateUserEmail]
   );
 
   const handleClickContinue = () => {
@@ -89,7 +89,7 @@ export const useUpdateEmailHelper = () => {
   return {
     formData,
     formRef,
-    onClickContinue: handleClickContinue,
+    onPointerDownContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

@@ -16,7 +16,7 @@ export const useCustomButtonStyles = ({
   };
 
   const secondaryButtonStyles: CSSProperties = {
-    border: "2px solid #DBDCDD",
+    border: "2px solid #173EA5",
     background: isHovered ? "#DBDCDD" : "#ffffff",
     color: "#000000",
   };
@@ -24,6 +24,8 @@ export const useCustomButtonStyles = ({
   const ghostButtonStyles: CSSProperties = {
     border: "none",
     background: "none",
+    padding: 0,
+    height: "fit-content",
     color: isHovered ? "#0c112e" : "#173EA5",
   };
 

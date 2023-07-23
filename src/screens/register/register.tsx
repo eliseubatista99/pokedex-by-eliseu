@@ -8,7 +8,8 @@ import {
 import { useRegisterHelper } from "./register.hook";
 
 export const Register = () => {
-  const { onClickEmail, onClickApple, onClickGoogle } = useRegisterHelper();
+  const { onPointerDownEmail, onPointerDownApple, onPointerDownGoogle } =
+    useRegisterHelper();
 
   return (
     <AppLayout
@@ -31,7 +32,7 @@ export const Register = () => {
                   containerProps={{ margin: "-4px 0 0 0" }}
                 />
               ),
-              onClick: onClickApple,
+              onPointerDown: onPointerDownApple,
               isDisabled: true,
             },
             {
@@ -44,13 +45,13 @@ export const Register = () => {
                   containerProps={{ margin: "0 0 0 -6px" }}
                 />
               ),
-              onClick: onClickGoogle,
+              onPointerDown: onPointerDownGoogle,
               isDisabled: true,
             },
             {
               type: "primary",
               text: "Continue With Email",
-              onClick: onClickEmail,
+              onPointerDown: onPointerDownEmail,
             },
           ]}
         />

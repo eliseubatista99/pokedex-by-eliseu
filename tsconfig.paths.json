@@ -15,7 +15,9 @@
       "@iconography": ["src/iconography"],
       "@screens": ["src/screens"],
       "@store": ["src/store"],
-      "@types": ["src/types"]
+      "@types": ["src/types"],
+      "@modals": ["src/modals"],
+      "@drawers": ["src/drawers"]
     }
   }
 }

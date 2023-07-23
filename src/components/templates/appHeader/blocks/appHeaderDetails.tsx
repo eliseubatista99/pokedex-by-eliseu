@@ -3,8 +3,8 @@ import { AppHeaderDetailsProps } from "..";
 import { Iconography } from "@components";
 
 export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
-  const { onClickFavorite, theme } = props;
-  const { onClickBack } = useAppHeaderHelper(props);
+  const { onPointerDownFavorite, theme = "light" } = props;
+  const { onPointerDownBack } = useAppHeaderHelper(props);
 
   return (
     <div
@@ -25,19 +25,19 @@ export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}
-        onClick={() => onClickBack()}
+        onPointerDown={() => onPointerDownBack()}
       />
 
-      <Iconography.NavLeft
+      <Iconography.Favorite
         containerProps={{
-          width: "38px",
-          height: "38px",
+          width: "25px",
+          height: "25px",
           position: "absolute",
           right: "16px",
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}
-        onClick={() => onClickFavorite()}
+        onPointerDown={() => onPointerDownFavorite?.()}
       />
     </div>
   );

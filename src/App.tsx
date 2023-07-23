@@ -13,24 +13,30 @@ import {
   ForgotPassword,
   Account,
   UpdateEmail,
+  UpdateName,
+  UpdatePassword,
+  Favorites,
+  Regions,
+  Pokedex,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
 import { useCustomNavigation } from "@hooks";
 export const App = () => {
-  const { currentPath, cleanAndGoTo } = useCustomNavigation();
+  const { currentPath, replaceHistory, goTo } = useCustomNavigation();
 
   const appInitialized = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     if (!appInitialized.current) {
       if (currentPath !== ScreenPaths.splash) {
-        cleanAndGoTo(ScreenPaths.splash);
+        replaceHistory([]);
+        goTo(ScreenPaths.splash, false);
       }
 
       appInitialized.current = true;
     }
-  }, [cleanAndGoTo, currentPath]);
+  }, [currentPath, goTo, replaceHistory]);
 
   return (
     <div
@@ -55,8 +61,13 @@ export const App = () => {
         <Route path={ScreenPaths.loginData} element={<LoginData />} />
         <Route path={ScreenPaths.loginDone} element={<LoginDone />} />
         <Route path={ScreenPaths.forgotPassword} element={<ForgotPassword />} />
+        <Route path={ScreenPaths.pokedex} element={<Pokedex />} />
+        <Route path={ScreenPaths.regions} element={<Regions />} />
+        <Route path={ScreenPaths.favorites} element={<Favorites />} />
         <Route path={ScreenPaths.account} element={<Account />} />
         <Route path={ScreenPaths.updateEmail} element={<UpdateEmail />} />
+        <Route path={ScreenPaths.updateName} element={<UpdateName />} />
+        <Route path={ScreenPaths.updatePassword} element={<UpdatePassword />} />
       </Routes>
     </div>
   );

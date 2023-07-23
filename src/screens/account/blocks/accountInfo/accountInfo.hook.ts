@@ -1,5 +1,6 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
+import { useCustomNavigation } from "@hooks";
 import React from "react";
 
 export const useAccountInfoHelper = () => {
@@ -22,8 +23,8 @@ export const useAccountInfoHelper = () => {
   return {
     username: currentUser?.displayName,
     email: currentUser?.email,
-    onClickName: handleGoToUpdateName,
-    onClickEmail: handleGoToUpdateEmail,
-    onClickPassword: handleGoToUpdatePassword,
+    onPointerDownName: handleGoToUpdateName,
+    onPointerDownEmail: handleGoToUpdateEmail,
+    onPointerDownPassword: handleGoToUpdatePassword,
   };
 };

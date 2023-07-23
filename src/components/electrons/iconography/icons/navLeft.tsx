@@ -6,7 +6,7 @@ export const NavLeft = ({
   fill = "none",
   stroke = "#000000",
   containerProps,
-  onClick,
+  onPointerDown,
 }: IconographyProps) => {
   return (
     <svg
@@ -16,7 +16,7 @@ export const NavLeft = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...containerProps }}
-      onClick={onClick}
+      onPointerDown={onPointerDown}
     >
       <path
         d="M22.1665 12.6667L15.8332 19.0001L22.1665 25.3334"

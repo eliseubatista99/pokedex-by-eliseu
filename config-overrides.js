@@ -13,11 +13,14 @@ module.exports = function override(config, env) {
       "@constants": path.resolve(__dirname, "src/constants"),
       "@contexts": path.resolve(__dirname, "src/contexts"),
       "@fonts": path.resolve(__dirname, "src/fonts"),
+      "@helpers": path.resolve(__dirname, "src/helpers"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@iconography": path.resolve(__dirname, "src/iconography"),
       "@screens": path.resolve(__dirname, "src/screens"),
       "@store": path.resolve(__dirname, "src/store"),
       "@types": path.resolve(__dirname, "src/types"),
+      "@modals": path.resolve(__dirname, "src/modals"),
+      "@drawers": path.resolve(__dirname, "src/drawers"),
     },
   };
 

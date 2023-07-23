@@ -6,7 +6,7 @@ export const NavigationAccount = ({
   fill = "none",
   stroke,
   containerProps,
-  onClick,
+  onPointerDown,
 }: IconographyProps) => {
   return (
     <svg
@@ -16,7 +16,7 @@ export const NavigationAccount = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...containerProps }}
-      onClick={onClick}
+      onPointerDown={onPointerDown}
     >
       <rect
         x="8.57153"

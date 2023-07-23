@@ -6,10 +6,10 @@ export const useLoginDoneHelper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleClickContinue = React.useCallback(() => {
-    goTo(ScreenPaths.account);
+    goTo(ScreenPaths.favorites);
   }, [goTo]);
 
   return {
-    onClickContinue: handleClickContinue,
+    onPointerDownContinue: handleClickContinue,
   };
 };

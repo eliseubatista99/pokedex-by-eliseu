@@ -1,4 +1,4 @@
-import { useFirebaseAuth } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
 
 export const useNameAndPhotoHelper = () => {
   const { currentUser } = useFirebaseAuth();

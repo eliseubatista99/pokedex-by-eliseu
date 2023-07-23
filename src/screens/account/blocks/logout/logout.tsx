@@ -1,42 +1,54 @@
 import { Typography } from "@components";
+import { DrawerLogout } from "@drawers";
 import { useLogoutHelper } from "./logout.hook";
 
 export const Logout = () => {
-  const { username, onClickLogout } = useLogoutHelper();
+  const {
+    username,
+    logoutDrawerVisible,
+    onCloseLogoutDrawer,
+    onPointerDownOpenLogoutDrawer,
+  } = useLogoutHelper();
 
   return (
-    <div
-      style={{
-        width: "100%",
-        flexDirection: "column",
-        gap: "16px",
-        marginTop: "auto",
-        paddingTop: "24px",
-      }}
-    >
-      <Typography styles={{ fontSize: "16px", fontWeight: 600 }}>
-        {"Others"}
-      </Typography>
+    <>
       <div
         style={{
           width: "100%",
           flexDirection: "column",
-          gap: "2px",
-          cursor: "pointer",
+          gap: "16px",
+          marginTop: "auto",
+          paddingTop: "24px",
         }}
-        onClick={() => onClickLogout()}
       >
-        <Typography
-          styles={{ fontSize: "14px", fontWeight: 600, color: "#CD3131" }}
-        >
-          {"Logout"}
+        <Typography styles={{ fontSize: "16px", fontWeight: 600 }}>
+          {"Others"}
         </Typography>
-        <Typography
-          styles={{ fontSize: "14px", fontWeight: 400, color: "#4d4d4d" }}
+        <div
+          style={{
+            width: "100%",
+            flexDirection: "column",
+            gap: "2px",
+            cursor: "pointer",
+          }}
+          onPointerDown={() => onPointerDownOpenLogoutDrawer()}
         >
-          {`You logged in as ${username}`}
-        </Typography>
+          <Typography
+            styles={{ fontSize: "14px", fontWeight: 600, color: "#CD3131" }}
+          >
+            {"Logout"}
+          </Typography>
+          <Typography
+            styles={{ fontSize: "14px", fontWeight: 400, color: "#4d4d4d" }}
+          >
+            {`You logged in as ${username}`}
+          </Typography>
+        </div>
       </div>
-    </div>
+      <DrawerLogout
+        isVisible={logoutDrawerVisible}
+        onCloseDrawer={onCloseLogoutDrawer}
+      />
+    </>
   );
 };

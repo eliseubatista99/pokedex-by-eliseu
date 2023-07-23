@@ -1,7 +1,8 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import { useCustomNavigation } from "@hooks";
+import { useFirebaseAuth } from "@contexts";
 
 export interface LoginFormField {
   value?: string;
@@ -107,8 +108,8 @@ export const useLoginDataHelper = () => {
   return {
     loginFormData,
     formRef,
-    onClickContinue: handleClickContinue,
-    onClickForgotPassword: handleClickForgotPassword,
+    onPointerDownContinue: handleClickContinue,
+    onPointerDownForgotPassword: handleClickForgotPassword,
     onSubmitForm: handleSubmitForm,
   };
 };

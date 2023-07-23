@@ -6,7 +6,7 @@ export const useLoginOrRegisterHelper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleGoToPokedex = React.useCallback(() => {
-    goTo(ScreenPaths.account);
+    goTo(ScreenPaths.favorites);
   }, [goTo]);
 
   const handleGoToRegister = React.useCallback(() => {
@@ -18,8 +18,8 @@ export const useLoginOrRegisterHelper = () => {
   }, [goTo]);
 
   return {
-    onClickSkip: handleGoToPokedex,
-    onClickRegister: handleGoToRegister,
-    onClickAlreadyHaveAnAccount: handleGoToLogin,
+    onPointerDownSkip: handleGoToPokedex,
+    onPointerDownRegister: handleGoToRegister,
+    onPointerDownAlreadyHaveAnAccount: handleGoToLogin,
   };
 };

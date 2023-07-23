@@ -9,6 +9,7 @@ import {
   NavigationFavorite,
   NavigationPokedex,
   NavigationRegions,
+  Favorite,
 } from "./icons";
 
 export interface IconographyProps {
@@ -16,12 +17,13 @@ export interface IconographyProps {
   height?: Property.Height;
   fill?: Property.Fill;
   stroke?: Property.Stroke;
-  onClick?: () => void;
+  onPointerDown?: () => void;
   containerProps?: CSSProperties;
 }
 
 export const Iconography = {
   NavLeft,
+  Favorite,
   Apple,
   Google,
   ArrowRight,

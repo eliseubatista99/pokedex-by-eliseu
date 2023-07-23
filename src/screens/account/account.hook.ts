@@ -1,25 +1,9 @@
-import { ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
-import React from "react";
+import { useFirebaseAuth } from "@contexts";
 
 export const useAccountHelper = () => {
-  const { goTo } = useCustomNavigation();
-
-  const handleGoToUpdateName = React.useCallback(() => {
-    goTo(ScreenPaths.updateName);
-  }, [goTo]);
-
-  const handleGoToUpdateEmail = React.useCallback(() => {
-    goTo(ScreenPaths.updateEmail);
-  }, [goTo]);
-
-  const handleGoToUpdatePassword = React.useCallback(() => {
-    goTo(ScreenPaths.updatePassword);
-  }, [goTo]);
+  const { currentUser } = useFirebaseAuth();
 
   return {
-    onClickName: handleGoToUpdateName,
-    onClickEmail: handleGoToUpdateEmail,
-    onClickPassword: handleGoToUpdatePassword,
+    currentUser,
   };
 };
