@@ -48,7 +48,7 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
   const hideLoginAgainModal = () => {
     setLoginAgainModal({
       isVisible: false,
-      onPointerDownOutsideModal: () => null,
+      onClickOutsideModal: () => null,
     });
   };
 
@@ -95,7 +95,7 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
           isVisible: true,
           currentUser: currentUser.current,
           onLoginDone: (user) => updateUserEmail(email),
-          onPointerDownOutsideModal: () => hideLoginAgainModal(),
+          onClickOutsideModal: () => hideLoginAgainModal(),
         });
       }
       return null;
@@ -117,7 +117,7 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
           isVisible: true,
           currentUser: currentUser.current,
           onLoginDone: (user) => updateUserPassword(password),
-          onPointerDownOutsideModal: () => hideLoginAgainModal(),
+          onClickOutsideModal: () => hideLoginAgainModal(),
         });
       }
       return null;
@@ -141,7 +141,7 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
           isVisible: true,
           currentUser: currentUser.current,
           onLoginDone: (user) => updateUserName(name),
-          onPointerDownOutsideModal: () => hideLoginAgainModal(),
+          onClickOutsideModal: () => hideLoginAgainModal(),
         });
       }
       return null;

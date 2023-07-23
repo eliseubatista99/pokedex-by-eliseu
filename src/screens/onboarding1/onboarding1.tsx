@@ -3,7 +3,7 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useOnboarding1Helper } from "./onboarding1.hook";
 
 export const Onboarding1 = () => {
-  const { onPointerDownContinue } = useOnboarding1Helper();
+  const { onClickContinue } = useOnboarding1Helper();
 
   return (
     <AppLayout
@@ -17,7 +17,7 @@ export const Onboarding1 = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />

@@ -9,7 +9,7 @@ export interface ModalLoginAgainProps extends BaseModalProps {
 }
 
 export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
-  const { formRef, onSubmitForm, formData, onPointerDownContinue } =
+  const { formRef, onSubmitForm, formData, onClickContinue } =
     useLoginAgainModalHelper(props);
 
   return (
@@ -42,7 +42,7 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
       <CustomButton
         type="primary"
         text="Continue"
-        onPointerDown={onPointerDownContinue}
+        onClick={onClickContinue}
         styles={{
           margin: "40px auto 0 auto",
           height: "50px",

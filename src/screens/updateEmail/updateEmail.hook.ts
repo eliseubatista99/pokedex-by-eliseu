@@ -89,7 +89,7 @@ export const useUpdateEmailHelper = () => {
   return {
     formData,
     formRef,
-    onPointerDownContinue: handleClickContinue,
+    onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

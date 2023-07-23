@@ -3,7 +3,7 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useLoginDoneHelper } from "./loginDone.hook";
 
 export const LoginDone = () => {
-  const { onPointerDownContinue } = useLoginDoneHelper();
+  const { onClickContinue } = useLoginDoneHelper();
 
   return (
     <AppLayout
@@ -20,7 +20,7 @@ export const LoginDone = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />

@@ -10,6 +10,6 @@ export const useLoginDoneHelper = () => {
   }, [goTo]);
 
   return {
-    onPointerDownContinue: handleClickContinue,
+    onClickContinue: handleClickContinue,
   };
 };

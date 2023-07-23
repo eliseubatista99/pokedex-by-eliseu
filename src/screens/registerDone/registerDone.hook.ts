@@ -10,6 +10,6 @@ export const useRegisterDoneHelper = () => {
   }, [goTo]);
 
   return {
-    onPointerDownContinue: handleClickContinue,
+    onClickContinue: handleClickContinue,
   };
 };

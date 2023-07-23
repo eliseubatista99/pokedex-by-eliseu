@@ -5,7 +5,7 @@ import { Iconography, Typography } from "@components";
 export const AppHeaderPokedex = (props: AppHeaderPokedexProps) => {
   const { hideBack = true, title } = props;
 
-  const { onPointerDownBack } = useAppHeaderHelper(props);
+  const { onClickBack } = useAppHeaderHelper(props);
 
   return (
     <div
@@ -25,7 +25,7 @@ export const AppHeaderPokedex = (props: AppHeaderPokedexProps) => {
             height: "38px",
             cursor: "pointer",
           }}
-          onPointerDown={() => onPointerDownBack()}
+          onClick={() => onClickBack()}
         />
       )}
 

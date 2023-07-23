@@ -108,8 +108,8 @@ export const useLoginDataHelper = () => {
   return {
     loginFormData,
     formRef,
-    onPointerDownContinue: handleClickContinue,
-    onPointerDownForgotPassword: handleClickForgotPassword,
+    onClickContinue: handleClickContinue,
+    onClickForgotPassword: handleClickForgotPassword,
     onSubmitForm: handleSubmitForm,
   };
 };

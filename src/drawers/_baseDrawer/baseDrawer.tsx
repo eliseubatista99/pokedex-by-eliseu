@@ -72,7 +72,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
                 width: "100%",
                 cursor: "pointer",
               }}
-              onPointerDown={onDragStart}
+              onClick={onDragStart}
             >
               <div
                 style={{

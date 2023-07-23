@@ -7,7 +7,7 @@ export const Logout = () => {
     username,
     logoutDrawerVisible,
     onCloseLogoutDrawer,
-    onPointerDownOpenLogoutDrawer,
+    onClickOpenLogoutDrawer,
   } = useLogoutHelper();
 
   return (
@@ -31,7 +31,7 @@ export const Logout = () => {
             gap: "2px",
             cursor: "pointer",
           }}
-          onPointerDown={() => onPointerDownOpenLogoutDrawer()}
+          onClick={() => onClickOpenLogoutDrawer()}
         >
           <Typography
             styles={{ fontSize: "14px", fontWeight: 600, color: "#CD3131" }}

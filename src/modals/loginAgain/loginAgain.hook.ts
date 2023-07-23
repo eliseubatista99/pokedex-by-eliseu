@@ -81,7 +81,7 @@ export const useLoginAgainModalHelper = ({
   return {
     formData,
     formRef,
-    onPointerDownContinue: handleClickContinue,
+    onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

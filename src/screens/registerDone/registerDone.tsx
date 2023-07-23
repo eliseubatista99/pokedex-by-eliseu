@@ -3,7 +3,7 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useRegisterDoneHelper } from "./registerDone.hook";
 
 export const RegisterDone = () => {
-  const { onPointerDownContinue } = useRegisterDoneHelper();
+  const { onClickContinue } = useRegisterDoneHelper();
 
   return (
     <AppLayout
@@ -20,7 +20,7 @@ export const RegisterDone = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />

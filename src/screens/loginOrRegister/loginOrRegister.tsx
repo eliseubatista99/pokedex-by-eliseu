@@ -9,11 +9,8 @@ import {
 import { useLoginOrRegisterHelper } from "./loginOrRegister.hook";
 
 export const LoginOrRegister = () => {
-  const {
-    onPointerDownSkip,
-    onPointerDownRegister,
-    onPointerDownAlreadyHaveAnAccount,
-  } = useLoginOrRegisterHelper();
+  const { onClickSkip, onClickRegister, onClickAlreadyHaveAnAccount } =
+    useLoginOrRegisterHelper();
 
   return (
     <AppLayout
@@ -22,7 +19,7 @@ export const LoginOrRegister = () => {
         rightContent: (
           <CustomButton
             type={"ghost"}
-            onPointerDown={onPointerDownSkip}
+            onClick={onClickSkip}
             text="Skip"
             endContent={
               <Iconography.ArrowRight
@@ -44,12 +41,12 @@ export const LoginOrRegister = () => {
             {
               type: "primary",
               text: "Register",
-              onPointerDown: onPointerDownRegister,
+              onClick: onClickRegister,
             },
             {
               type: "ghost",
               text: "I already have and account",
-              onPointerDown: onPointerDownAlreadyHaveAnAccount,
+              onClick: onClickAlreadyHaveAnAccount,
             },
           ]}
         />
