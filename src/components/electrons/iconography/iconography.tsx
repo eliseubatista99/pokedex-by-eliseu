@@ -9,6 +9,7 @@ import {
   NavigationFavorite,
   NavigationPokedex,
   NavigationRegions,
+  Favorite,
 } from "./icons";
 
 export interface IconographyProps {
@@ -22,6 +23,7 @@ export interface IconographyProps {
 
 export const Iconography = {
   NavLeft,
+  Favorite,
   Apple,
   Google,
   ArrowRight,

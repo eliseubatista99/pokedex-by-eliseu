@@ -1,9 +1,9 @@
 import { useAppHeaderHelper } from "../appHeader.hook";
-import { AppHeaderDefaultProps } from "..";
+import { AppHeaderPokedexProps } from "..";
 import { Iconography, Typography } from "@components";
 
-export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
-  const { hideBack, title, rightContent } = props;
+export const AppHeaderPokedex = (props: AppHeaderPokedexProps) => {
+  const { hideBack = true, title } = props;
 
   const { onPointerDownBack } = useAppHeaderHelper(props);
 
@@ -13,8 +13,9 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
         width: "100%",
         height: "100%",
         alignItems: "center",
-        justifyContent: "center",
         zIndex: 1,
+        flexDirection: "row",
+        gap: "16px",
       }}
     >
       {!hideBack && (
@@ -22,8 +23,6 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
           containerProps={{
             width: "38px",
             height: "38px",
-            position: "absolute",
-            left: "16px",
             cursor: "pointer",
           }}
           onPointerDown={() => onPointerDownBack()}
@@ -34,27 +33,11 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
         <Typography
           styles={{
             width: "100%",
-            textAlign: "center",
             fontWeight: 700,
           }}
         >
           {title}
         </Typography>
-      )}
-
-      {rightContent && (
-        <div
-          style={{
-            height: "100%",
-            position: "absolute",
-            right: "16px",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          {rightContent}
-        </div>
       )}
     </div>
   );

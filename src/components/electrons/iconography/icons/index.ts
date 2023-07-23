@@ -1,6 +1,7 @@
 export * from "./arrowRight";
 export * from "./apple";
 export * from "./google";
+export * from "./favorite";
 export * from "./navigation_account";
 export * from "./navigation_pokedex";
 export * from "./navigation_regions";

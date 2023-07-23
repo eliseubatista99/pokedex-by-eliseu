@@ -15,6 +15,7 @@ import {
   UpdateEmail,
   UpdateName,
   UpdatePassword,
+  Favorites,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import React from "react";
@@ -58,6 +59,7 @@ export const App = () => {
         <Route path={ScreenPaths.loginData} element={<LoginData />} />
         <Route path={ScreenPaths.loginDone} element={<LoginDone />} />
         <Route path={ScreenPaths.forgotPassword} element={<ForgotPassword />} />
+        <Route path={ScreenPaths.favorites} element={<Favorites />} />
         <Route path={ScreenPaths.account} element={<Account />} />
         <Route path={ScreenPaths.updateEmail} element={<UpdateEmail />} />
         <Route path={ScreenPaths.updateName} element={<UpdateName />} />
