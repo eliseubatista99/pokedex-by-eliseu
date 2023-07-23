@@ -39,19 +39,25 @@ export const useFirebaseAuth = () => {
   };
 
   const resetPassword = async (email: string) => {
-    return await sendPasswordResetEmail(auth, email);
+    await sendPasswordResetEmail(auth, email);
+
+    return currentUser.current;
   };
 
   const updateUserEmail = async (email: string) => {
     if (currentUser.current) {
       await updateEmail(currentUser.current, email);
     }
+
+    return currentUser.current;
   };
 
   const updateUserPassword = async (password: string) => {
     if (currentUser.current) {
       await updatePassword(currentUser.current, password);
     }
+
+    return currentUser.current;
   };
 
   const updateUserName = async (name: string) => {
@@ -60,6 +66,8 @@ export const useFirebaseAuth = () => {
         displayName: name,
       });
     }
+
+    return currentUser.current;
   };
 
   React.useEffect(() => {

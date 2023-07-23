@@ -1,7 +1,11 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import {
+  useCustomNavigation,
+  useFirebaseAuth,
+  useFirebaseFirestore,
+} from "@hooks";
 
 export interface RegisterFormField {
   value?: string;
@@ -20,6 +24,7 @@ export const useRegisterDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
   const { signUp } = useFirebaseAuth();
+  const { createUser } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -42,7 +47,8 @@ export const useRegisterDataHelper = () => {
           style: "opaque",
         });
 
-        await signUp?.(email, password, username);
+        const newUser = await signUp?.(email, password, username);
+        createUser(newUser.user);
         hideLoader();
         handleGoToRegisterDone();
       } catch (error: unknown) {
@@ -50,7 +56,7 @@ export const useRegisterDataHelper = () => {
         hideLoader();
       }
     },
-    [handleGoToRegisterDone, hideLoader, showLoader, signUp]
+    [createUser, handleGoToRegisterDone, hideLoader, showLoader, signUp]
   );
 
   const handleClickContinue = () => {

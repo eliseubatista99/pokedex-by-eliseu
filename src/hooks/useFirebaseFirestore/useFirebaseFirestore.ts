@@ -1,68 +1,72 @@
 import React from "react";
-import { auth, firestore } from "@configs";
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  updateProfile,
-  User,
-  updateEmail,
-  updatePassword,
-} from "firebase/auth";
+import { firestore } from "@configs";
 import { useUserStore } from "@store";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { User } from "firebase/auth";
 
 export const useFirebaseFirestore = () => {
-  const { setFirebaseUser } = useUserStore();
+  const { setUserFavorites } = useUserStore();
   const usersCollectionRef = collection(firestore, "users");
 
-  // const currentUser = React.useRef<User | null>(null);
+  const deleteUser = React.useCallback(
+    async (user: User) => {
+      const newUserRef = doc(usersCollectionRef, user.uid);
 
-  // const signUp = async (email: string, password: string, username: string) => {
-  //   const userCredential = await createUserWithEmailAndPassword(
-  //     auth,
-  //     email,
-  //     password
-  //   );
+      await deleteDoc(newUserRef);
+    },
+    [usersCollectionRef]
+  );
 
-  //   await updateProfile(userCredential.user, {
-  //     displayName: username,
-  //   });
+  const updateUserEmail = React.useCallback(
+    async (user: User, email: string) => {
+      const newUserRef = doc(usersCollectionRef, user.uid);
 
-  //   return userCredential;
-  // };
+      await updateDoc(newUserRef, { email });
+    },
+    [usersCollectionRef]
+  );
 
-  // const logIn = async (email: string, password: string) => {
-  //   return await signInWithEmailAndPassword(auth, email, password);
-  // };
+  const updateUserName = React.useCallback(
+    async (user: User, name: string) => {
+      const newUserRef = doc(usersCollectionRef, user.uid);
 
-  // const logout = async () => {
-  //   return auth.signOut();
-  // };
+      await updateDoc(newUserRef, { name });
+    },
+    [usersCollectionRef]
+  );
 
-  // const resetPassword = async (email: string) => {
-  //   return await sendPasswordResetEmail(auth, email);
-  // };
+  const updateUserFavorites = React.useCallback(
+    async (user: User, favorites: number[]) => {
+      const newUserRef = doc(usersCollectionRef, user.uid);
 
-  // const updateUserEmail = async (email: string) => {
-  //   if (currentUser.current) {
-  //     await updateEmail(currentUser.current, email);
-  //   }
-  // };
+      await updateDoc(newUserRef, { favorites });
 
-  // const updateUserPassword = async (password: string) => {
-  //   if (currentUser.current) {
-  //     await updatePassword(currentUser.current, password);
-  //   }
-  // };
+      setUserFavorites(favorites);
+    },
+    [setUserFavorites, usersCollectionRef]
+  );
 
-  // const updateUserName = async (name: string) => {
-  //   if (currentUser.current) {
-  //     await updateProfile(currentUser.current, {
-  //       displayName: name,
-  //     });
-  //   }
-  // };
+  const createUser = React.useCallback(
+    async (user: User) => {
+      const newUserRef = doc(usersCollectionRef, user.uid);
+
+      const newUserData = {
+        name: user.displayName || "",
+        email: user.email || "",
+        favorites: [],
+      };
+
+      await setDoc(newUserRef, newUserData);
+    },
+    [usersCollectionRef]
+  );
 
   const getUser = React.useCallback(async () => {
     const data = await getDocs(usersCollectionRef);
@@ -71,14 +75,11 @@ export const useFirebaseFirestore = () => {
   }, [usersCollectionRef]);
 
   return {
-    // currentUser: currentUser.current,
-    // signUp,
-    // logIn,
-    // logout,
-    // resetPassword,
-    // updateEmail: updateUserEmail,
-    // updatePassword: updateUserPassword,
-    // updateName: updateUserName,
     getUser,
+    createUser,
+    updateUserEmail,
+    updateUserName,
+    updateUserFavorites,
+    deleteUser,
   };
 };

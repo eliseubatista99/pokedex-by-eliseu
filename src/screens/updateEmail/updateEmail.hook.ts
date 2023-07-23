@@ -1,7 +1,11 @@
 import { EMAIL_REGEX } from "@constants";
 import React, { useState } from "react";
 import { useBaseStore } from "@store";
-import { useCustomNavigation, useFirebaseAuth } from "@hooks";
+import {
+  useCustomNavigation,
+  useFirebaseAuth,
+  useFirebaseFirestore,
+} from "@hooks";
 import { FormFieldData } from "@types";
 
 export interface UpdateEmailFormData {
@@ -12,6 +16,7 @@ export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
   const { updateEmail } = useFirebaseAuth();
+  const { updateUserEmail } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -26,7 +31,13 @@ export const useUpdateEmailHelper = () => {
           loadingText: "Logging in...",
           style: "opaque",
         });
-        await updateEmail?.(email);
+        const currentUser = await updateEmail?.(email);
+
+        if (!currentUser) {
+          throw new Error("");
+        }
+        updateUserEmail(currentUser, email);
+
         hideLoader();
         goBack();
       } catch (error: unknown) {
@@ -34,7 +45,7 @@ export const useUpdateEmailHelper = () => {
         hideLoader();
       }
     },
-    [goBack, hideLoader, showLoader, updateEmail]
+    [goBack, hideLoader, showLoader, updateEmail, updateUserEmail]
   );
 
   const handleClickContinue = () => {
