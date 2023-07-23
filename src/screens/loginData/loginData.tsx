@@ -21,6 +21,7 @@ export const LoginData = () => {
       header={{
         type: "default",
         title: "Log In",
+        stepsToGoBack: 2,
       }}
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>

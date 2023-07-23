@@ -15,6 +15,7 @@ export const RegisterData = () => {
       header={{
         type: "default",
         title: "Create Account",
+        stepsToGoBack: 2,
       }}
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
