@@ -8,7 +8,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const [drawerBottomDistance, setDrawerBottomDistance] =
     React.useState<number>(0);
 
-  const handleOnPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handleonClick = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true;
   };
 
@@ -23,6 +23,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     }
 
     if (isDragging.current) {
+      console.log("DRAG");
       const screenHeight = drawerParentRef.current?.clientHeight || 0;
       const pointerHeight = e.clientY;
       const drawerHeight = drawerRef.current?.clientHeight || 0;
@@ -52,7 +53,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     drawerParentRef,
     drawerRef,
     drawerBottomDistance,
-    onDragStart: handleOnPointerDown,
+    onDragStart: handleonClick,
     onDrag: handleOnPointerMove,
     onDragEnd: handleOnPointerUp,
   };

@@ -9,20 +9,22 @@ import {
 import { useLoginOrRegisterHelper } from "./loginOrRegister.hook";
 
 export const LoginOrRegister = () => {
-  const {
-    onPointerDownSkip,
-    onPointerDownRegister,
-    onPointerDownAlreadyHaveAnAccount,
-  } = useLoginOrRegisterHelper();
+  const { onClickSkip, onClickRegister, onClickAlreadyHaveAnAccount } =
+    useLoginOrRegisterHelper();
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
+        hideBack: true,
         type: "default",
         rightContent: (
           <CustomButton
             type={"ghost"}
-            onPointerDown={onPointerDownSkip}
+            onClick={onClickSkip}
             text="Skip"
             endContent={
               <Iconography.ArrowRight
@@ -44,12 +46,12 @@ export const LoginOrRegister = () => {
             {
               type: "primary",
               text: "Register",
-              onPointerDown: onPointerDownRegister,
+              onClick: onClickRegister,
             },
             {
               type: "ghost",
               text: "I already have and account",
-              onPointerDown: onPointerDownAlreadyHaveAnAccount,
+              onClick: onClickAlreadyHaveAnAccount,
             },
           ]}
         />
@@ -59,9 +61,9 @@ export const LoginOrRegister = () => {
         src={ImageAssets.loginOrRegisterFigure}
         alt={"A boy and a girl"}
         containerStyles={{
-          margin: "auto auto 37px auto",
+          margin: "auto",
           maxWidth: "356px",
-          maxHeight: "272px",
+          height: "auto",
         }}
       />
     </AppLayout>

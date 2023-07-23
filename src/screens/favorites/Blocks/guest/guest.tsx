@@ -17,8 +17,9 @@ export const Guest = () => {
         src={ImageAssets.favoritesGuest}
         alt={"A boy in a pokemon suit"}
         containerStyles={{
+          margin: "auto",
           maxWidth: "356px",
-          maxHeight: "272px",
+          height: "auto",
         }}
       />
       <Typography
@@ -46,7 +47,7 @@ export const Guest = () => {
       <CustomButton
         type="secondary"
         text="Login or Register"
-        onPointerDown={onClickLoginOrRegister}
+        onClick={onClickLoginOrRegister}
         styles={{ marginTop: "24px" }}
       />
     </div>

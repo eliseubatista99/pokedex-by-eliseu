@@ -8,11 +8,14 @@ import {
 import { useLoginHelper } from "./login.hook";
 
 export const Login = () => {
-  const { onPointerDownEmail, onPointerDownApple, onPointerDownGoogle } =
-    useLoginHelper();
+  const { onClickEmail, onClickApple, onClickGoogle } = useLoginHelper();
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
         type: "default",
         title: "Log In",
@@ -32,7 +35,7 @@ export const Login = () => {
                   containerProps={{ margin: "-4px 0 0 0" }}
                 />
               ),
-              onPointerDown: onPointerDownApple,
+              onClick: onClickApple,
               isDisabled: true,
             },
             {
@@ -45,13 +48,13 @@ export const Login = () => {
                   containerProps={{ margin: "0 0 0 -6px" }}
                 />
               ),
-              onPointerDown: onPointerDownGoogle,
+              onClick: onClickGoogle,
               isDisabled: true,
             },
             {
               type: "primary",
               text: "Continue With Email",
-              onPointerDown: onPointerDownEmail,
+              onClick: onClickEmail,
             },
           ]}
         />
@@ -61,9 +64,9 @@ export const Login = () => {
         src={ImageAssets.loginFigure}
         alt={"A girl and a boy pointing up"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

@@ -7,11 +7,13 @@ import {
   Toast,
 } from "@components";
 import { useBaseStore } from "@store";
+import { CSSProperties } from "react";
 export interface AppLayoutProps {
   header?: AppHeaderProps;
   screen?: AppScreenProps;
   bottomContent?: React.ReactNode;
   children?: React.ReactNode;
+  styles?: CSSProperties;
 }
 
 export const AppLayout = ({
@@ -19,6 +21,7 @@ export const AppLayout = ({
   screen,
   children,
   bottomContent,
+  styles,
 }: AppLayoutProps) => {
   const { loading, toast } = useBaseStore();
 
@@ -41,6 +44,7 @@ export const AppLayout = ({
           margin: "auto",
           background: "#ffffff",
           position: "relative",
+          ...styles,
         }}
       >
         {header && <AppHeader {...header} />}

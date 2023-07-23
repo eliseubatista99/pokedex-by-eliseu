@@ -21,25 +21,25 @@ export const PokedexBottomContent = () => {
       <Blocks.NavigationItem
         text={"Pokedéx"}
         icon={<Iconography.NavigationPokedex />}
-        onPointerDown={() => onItemClicked(ScreenPaths.pokedex)}
+        onClick={() => onItemClicked(ScreenPaths.pokedex)}
         isSelected={currentPath === ScreenPaths.pokedex}
       />
       <Blocks.NavigationItem
         text={"Regions"}
         icon={<Iconography.NavigationRegions />}
-        onPointerDown={() => onItemClicked(ScreenPaths.regions)}
+        onClick={() => onItemClicked(ScreenPaths.regions)}
         isSelected={currentPath === ScreenPaths.regions}
       />
       <Blocks.NavigationItem
         text={"Favorites"}
         icon={<Iconography.NavigationFavorite />}
-        onPointerDown={() => onItemClicked(ScreenPaths.favorites)}
+        onClick={() => onItemClicked(ScreenPaths.favorites)}
         isSelected={currentPath === ScreenPaths.favorites}
       />
       <Blocks.NavigationItem
         text={"Account"}
         icon={<Iconography.NavigationAccount />}
-        onPointerDown={() => onItemClicked(ScreenPaths.account)}
+        onClick={() => onItemClicked(ScreenPaths.account)}
         isSelected={currentPath === ScreenPaths.account}
       />
     </div>

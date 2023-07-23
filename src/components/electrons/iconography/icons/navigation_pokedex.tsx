@@ -6,7 +6,7 @@ export const NavigationPokedex = ({
   fill = "none",
   stroke,
   containerProps,
-  onPointerDown,
+  onClick,
 }: IconographyProps) => {
   return (
     <svg
@@ -16,7 +16,7 @@ export const NavigationPokedex = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...containerProps }}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
     >
       <path
         d="M2.16677 12.9997C2.16677 14.4223 2.44698 15.8311 2.99141 17.1454C3.53583 18.4598 4.33381 19.654 5.33978 20.66C6.34575 21.666 7.54 22.4639 8.85436 23.0084C10.1687 23.5528 11.5774 23.833 13.0001 23.833C14.4228 23.833 15.8315 23.5528 17.1458 23.0084C18.4602 22.4639 19.6545 21.666 20.6604 20.66C21.6664 19.654 22.4644 18.4598 23.0088 17.1454C23.5532 15.831 23.8334 14.4223 23.8334 12.9997L13.0001 12.9997H2.16677Z"

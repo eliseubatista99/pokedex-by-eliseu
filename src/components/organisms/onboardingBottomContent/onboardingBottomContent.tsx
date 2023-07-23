@@ -38,6 +38,7 @@ export const OnboardingBottomContent = ({
         flexDirection: "column",
         alignItems: "center",
         padding: "17px 17px 40px 17px",
+        background: "#ffffff",
       }}
     >
       {title && (

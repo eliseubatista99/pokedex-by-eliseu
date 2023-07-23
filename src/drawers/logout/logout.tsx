@@ -4,7 +4,7 @@ import { useLogoutDrawerHelper } from "./logout.hook";
 
 export const DrawerLogout = (props: BaseDrawerProps) => {
   const { onCloseDrawer } = props;
-  const { onPointerDownLogout } = useLogoutDrawerHelper(props);
+  const { onClickLogout } = useLogoutDrawerHelper(props);
 
   return (
     <BaseDrawer {...props}>
@@ -21,7 +21,7 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
       <CustomButton
         type="primary"
         text="Yes, logout"
-        onPointerDown={onPointerDownLogout}
+        onClick={onClickLogout}
         styles={{
           margin: "24px auto 0 auto",
           height: "50px",
@@ -33,7 +33,7 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
       <CustomButton
         type="ghost"
         text="No, go back"
-        onPointerDown={onCloseDrawer}
+        onClick={onCloseDrawer}
         styles={{
           margin: "10px auto 0 auto",
           height: "50px",

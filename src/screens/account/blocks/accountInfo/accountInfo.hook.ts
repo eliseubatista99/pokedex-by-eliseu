@@ -23,8 +23,8 @@ export const useAccountInfoHelper = () => {
   return {
     username: currentUser?.displayName,
     email: currentUser?.email,
-    onPointerDownName: handleGoToUpdateName,
-    onPointerDownEmail: handleGoToUpdateEmail,
-    onPointerDownPassword: handleGoToUpdatePassword,
+    onClickName: handleGoToUpdateName,
+    onClickEmail: handleGoToUpdateEmail,
+    onClickPassword: handleGoToUpdatePassword,
   };
 };

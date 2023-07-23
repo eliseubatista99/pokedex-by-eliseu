@@ -7,7 +7,7 @@ import {
 import { useRegisterDataHelper } from "./registerData.hook";
 
 export const RegisterData = () => {
-  const { formRef, onSubmitForm, registerFormData, onPointerDownContinue } =
+  const { formRef, onSubmitForm, registerFormData, onClickContinue } =
     useRegisterDataHelper();
 
   return (
@@ -22,7 +22,7 @@ export const RegisterData = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />

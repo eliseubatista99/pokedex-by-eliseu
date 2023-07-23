@@ -18,8 +18,8 @@ export const useLoginHelper = () => {
   }, [goTo]);
 
   return {
-    onPointerDownGoogle: handleLoginWithGoogle,
-    onPointerDownApple: handleLoginWithApple,
-    onPointerDownEmail: handleGoToLoginData,
+    onClickGoogle: handleLoginWithGoogle,
+    onClickApple: handleLoginWithApple,
+    onClickEmail: handleGoToLoginData,
   };
 };

@@ -18,8 +18,8 @@ export const useRegisterHelper = () => {
   }, [goTo]);
 
   return {
-    onPointerDownGoogle: handleRegisterWithGoogle,
-    onPointerDownApple: handleRegisterWithApple,
-    onPointerDownEmail: handleGoToRegisterData,
+    onClickGoogle: handleRegisterWithGoogle,
+    onClickApple: handleRegisterWithApple,
+    onClickEmail: handleGoToRegisterData,
   };
 };

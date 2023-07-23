@@ -3,10 +3,14 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useRegisterDoneHelper } from "./registerDone.hook";
 
 export const RegisterDone = () => {
-  const { onPointerDownContinue } = useRegisterDoneHelper();
+  const { onClickContinue } = useRegisterDoneHelper();
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
         type: "default",
         hideBack: true,
@@ -20,7 +24,7 @@ export const RegisterDone = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />
@@ -30,9 +34,9 @@ export const RegisterDone = () => {
         src={ImageAssets.registerDoneFigure}
         alt={"Two trainers posing"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

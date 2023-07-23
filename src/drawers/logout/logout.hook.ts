@@ -29,6 +29,6 @@ export const useLogoutDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   }, [goTo, hideLoader, logout, onCloseDrawer, replaceHistory, showLoader]);
 
   return {
-    onPointerDownLogout: handleLogout,
+    onClickLogout: handleLogout,
   };
 };

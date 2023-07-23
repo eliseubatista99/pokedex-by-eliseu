@@ -12,8 +12,8 @@ export const LoginData = () => {
     formRef,
     onSubmitForm,
     loginFormData,
-    onPointerDownContinue,
-    onPointerDownForgotPassword,
+    onClickContinue,
+    onClickForgotPassword,
   } = useLoginDataHelper();
 
   return (
@@ -28,7 +28,7 @@ export const LoginData = () => {
             {
               type: "primary",
               text: "Continue",
-              onPointerDown: onPointerDownContinue,
+              onClick: onClickContinue,
             },
           ]}
         />
@@ -75,7 +75,7 @@ export const LoginData = () => {
       </form>
       <CustomButton
         type={"ghost"}
-        onPointerDown={onPointerDownForgotPassword}
+        onClick={onClickForgotPassword}
         text="Forgot your password?"
         styles={{ margin: "32px auto 0 auto", fontSize: "14px" }}
       />

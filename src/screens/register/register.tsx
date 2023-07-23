@@ -8,11 +8,14 @@ import {
 import { useRegisterHelper } from "./register.hook";
 
 export const Register = () => {
-  const { onPointerDownEmail, onPointerDownApple, onPointerDownGoogle } =
-    useRegisterHelper();
+  const { onClickEmail, onClickApple, onClickGoogle } = useRegisterHelper();
 
   return (
     <AppLayout
+      styles={{ height: "100%" }}
+      screen={{
+        styles: { overflow: "hidden" },
+      }}
       header={{
         type: "default",
         title: "Create Account",
@@ -32,7 +35,7 @@ export const Register = () => {
                   containerProps={{ margin: "-4px 0 0 0" }}
                 />
               ),
-              onPointerDown: onPointerDownApple,
+              onClick: onClickApple,
               isDisabled: true,
             },
             {
@@ -45,13 +48,13 @@ export const Register = () => {
                   containerProps={{ margin: "0 0 0 -6px" }}
                 />
               ),
-              onPointerDown: onPointerDownGoogle,
+              onClick: onClickGoogle,
               isDisabled: true,
             },
             {
               type: "primary",
               text: "Continue With Email",
-              onPointerDown: onPointerDownEmail,
+              onClick: onClickEmail,
             },
           ]}
         />
@@ -61,9 +64,9 @@ export const Register = () => {
         src={ImageAssets.registerFigure}
         alt={"A girl with a long hair with her right hand up in the air"}
         containerStyles={{
-          margin: "auto auto 37px auto",
-          maxWidth: "342px",
-          maxHeight: "265px",
+          margin: "auto",
+          maxWidth: "356px",
+          height: "auto",
         }}
       />
     </AppLayout>

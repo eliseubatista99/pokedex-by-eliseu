@@ -88,7 +88,7 @@ export const useUpdateNameHelper = () => {
   return {
     formData,
     formRef,
-    onPointerDownContinue: handleClickContinue,
+    onClickContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

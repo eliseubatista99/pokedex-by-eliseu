@@ -49,7 +49,7 @@ export const Guest = () => {
       <CustomButton
         type="secondary"
         text="Login or Register"
-        onPointerDown={onClickLoginOrRegister}
+        onClick={onClickLoginOrRegister}
         styles={{ marginTop: "16px" }}
       />
     </div>
