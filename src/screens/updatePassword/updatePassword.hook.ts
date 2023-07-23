@@ -79,7 +79,7 @@ export const useUpdatePasswordHelper = () => {
   return {
     formData,
     formRef,
-    onClickContinue: handleClickContinue,
+    onPointerDownContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

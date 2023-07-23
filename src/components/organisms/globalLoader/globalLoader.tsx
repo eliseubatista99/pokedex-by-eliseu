@@ -1,5 +1,4 @@
 import { Typography } from "@components";
-import { APP_MAX_WIDTH } from "@constants";
 import { css, Global } from "@emotion/react";
 import { LoadingState } from "@store";
 

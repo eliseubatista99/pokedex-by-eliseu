@@ -18,8 +18,8 @@ export const useLoginOrRegisterHelper = () => {
   }, [goTo]);
 
   return {
-    onClickSkip: handleGoToPokedex,
-    onClickRegister: handleGoToRegister,
-    onClickAlreadyHaveAnAccount: handleGoToLogin,
+    onPointerDownSkip: handleGoToPokedex,
+    onPointerDownRegister: handleGoToRegister,
+    onPointerDownAlreadyHaveAnAccount: handleGoToLogin,
   };
 };

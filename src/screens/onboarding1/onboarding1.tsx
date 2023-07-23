@@ -3,7 +3,7 @@ import { AppLayout, CustomImage, OnboardingBottomContent } from "@components";
 import { useOnboarding1Helper } from "./onboarding1.hook";
 
 export const Onboarding1 = () => {
-  const { onClickContinue } = useOnboarding1Helper();
+  const { onPointerDownContinue } = useOnboarding1Helper();
 
   return (
     <AppLayout
@@ -14,7 +14,11 @@ export const Onboarding1 = () => {
             Nintendo"
           stepper={{ numberOfSteps: 2, currentStep: 0 }}
           buttons={[
-            { type: "primary", text: "Continue", onClick: onClickContinue },
+            {
+              type: "primary",
+              text: "Continue",
+              onPointerDown: onPointerDownContinue,
+            },
           ]}
         />
       }

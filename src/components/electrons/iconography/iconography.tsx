@@ -16,7 +16,7 @@ export interface IconographyProps {
   height?: Property.Height;
   fill?: Property.Fill;
   stroke?: Property.Stroke;
-  onClick?: () => void;
+  onPointerDown?: () => void;
   containerProps?: CSSProperties;
 }
 

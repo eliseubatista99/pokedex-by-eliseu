@@ -7,8 +7,12 @@ import {
 import { useForgotPasswordHelper } from "./forgotPassword.hook";
 
 export const ForgotPassword = () => {
-  const { formRef, onSubmitForm, forgotPasswordFormData, onClickContinue } =
-    useForgotPasswordHelper();
+  const {
+    formRef,
+    onSubmitForm,
+    forgotPasswordFormData,
+    onPointerDownContinue,
+  } = useForgotPasswordHelper();
 
   return (
     <AppLayout
@@ -22,7 +26,7 @@ export const ForgotPassword = () => {
             {
               type: "primary",
               text: "Continue",
-              onClick: onClickContinue,
+              onPointerDown: onPointerDownContinue,
             },
           ]}
         />

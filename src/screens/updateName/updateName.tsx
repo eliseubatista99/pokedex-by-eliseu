@@ -7,7 +7,7 @@ import {
 import { useUpdateNameHelper } from "./updateName.hook";
 
 export const UpdateName = () => {
-  const { formRef, onSubmitForm, formData, onClickContinue } =
+  const { formRef, onSubmitForm, formData, onPointerDownContinue } =
     useUpdateNameHelper();
 
   return (
@@ -22,7 +22,7 @@ export const UpdateName = () => {
             {
               type: "primary",
               text: "Continue",
-              onClick: onClickContinue,
+              onPointerDown: onPointerDownContinue,
             },
           ]}
         />

@@ -7,7 +7,7 @@ import {
 import { useUpdatePasswordHelper } from "./updatePassword.hook";
 
 export const UpdatePassword = () => {
-  const { formRef, onSubmitForm, formData, onClickContinue } =
+  const { formRef, onSubmitForm, formData, onPointerDownContinue } =
     useUpdatePasswordHelper();
 
   return (
@@ -22,7 +22,7 @@ export const UpdatePassword = () => {
             {
               type: "primary",
               text: "Continue",
-              onClick: onClickContinue,
+              onPointerDown: onPointerDownContinue,
             },
           ]}
         />

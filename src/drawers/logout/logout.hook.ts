@@ -28,6 +28,6 @@ export const useLogoutDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   }, [cleanAndGoTo, hideLoader, logout, onCloseDrawer, showLoader]);
 
   return {
-    onClickLogout: handleLogout,
+    onPointerDownLogout: handleLogout,
   };
 };

@@ -5,7 +5,7 @@ import { Iconography, Typography } from "@components";
 export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
   const { hideBack, title, rightContent } = props;
 
-  const { onClickBack } = useAppHeaderHelper(props);
+  const { onPointerDownBack } = useAppHeaderHelper(props);
 
   return (
     <div
@@ -26,7 +26,7 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
             left: "16px",
             cursor: "pointer",
           }}
-          onClick={() => onClickBack()}
+          onPointerDown={() => onPointerDownBack()}
         />
       )}
 

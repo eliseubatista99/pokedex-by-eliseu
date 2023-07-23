@@ -18,8 +18,8 @@ export const useAccountHelper = () => {
   }, [goTo]);
 
   return {
-    onClickName: handleGoToUpdateName,
-    onClickEmail: handleGoToUpdateEmail,
-    onClickPassword: handleGoToUpdatePassword,
+    onPointerDownName: handleGoToUpdateName,
+    onPointerDownEmail: handleGoToUpdateEmail,
+    onPointerDownPassword: handleGoToUpdatePassword,
   };
 };

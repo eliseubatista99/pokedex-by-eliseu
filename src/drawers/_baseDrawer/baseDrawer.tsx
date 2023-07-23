@@ -1,4 +1,5 @@
 import React from "react";
+import { useBaseDrawerHelper } from "./baseDrawer.hook";
 
 export interface BaseDrawerProps {
   isVisible: boolean;
@@ -6,15 +7,22 @@ export interface BaseDrawerProps {
   onCloseDrawer: () => void;
 }
 
-export const BaseDrawer = ({
-  isVisible,
-  children,
-  onCloseDrawer,
-}: BaseDrawerProps) => {
+export const BaseDrawer = (props: BaseDrawerProps) => {
+  const { isVisible, children } = props;
+  const {
+    drawerParentRef,
+    drawerRef,
+    drawerBottomDistance,
+    onDragStart,
+    onDrag,
+    onDragEnd,
+  } = useBaseDrawerHelper(props);
+
   return (
     <>
       {isVisible && (
         <div
+          ref={drawerParentRef}
           style={{
             width: "100%",
             minHeight: "100%",
@@ -25,14 +33,14 @@ export const BaseDrawer = ({
             zIndex: 1000,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-end",
+            touchAction: "none",
+            overflow: "hidden",
           }}
-          onClick={() => {
-            onCloseDrawer?.();
-          }}
+          onPointerUp={onDragEnd}
+          onPointerMoveCapture={onDrag}
         >
           <div
+            ref={drawerRef}
             style={{
               width: "100%",
               height: "fit-content",
@@ -46,9 +54,10 @@ export const BaseDrawer = ({
               justifyContent: "center",
               padding: "32px",
               zIndex: 1001,
-              position: "relative",
+              position: "absolute",
+              bottom: `${drawerBottomDistance}px`,
             }}
-            onClick={(e) => {
+            onPointerDown={(e) => {
               e.stopPropagation();
             }}
           >
@@ -61,7 +70,9 @@ export const BaseDrawer = ({
                 top: "0px",
                 height: "32px",
                 width: "100%",
+                cursor: "pointer",
               }}
+              onPointerDown={onDragStart}
             >
               <div
                 style={{

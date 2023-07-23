@@ -158,7 +158,7 @@ export const useRegisterDataHelper = () => {
   return {
     registerFormData,
     formRef,
-    onClickContinue: handleClickContinue,
+    onPointerDownContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

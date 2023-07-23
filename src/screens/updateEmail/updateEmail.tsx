@@ -7,7 +7,7 @@ import {
 import { useUpdateEmailHelper } from "./updateEmail.hook";
 
 export const UpdateEmail = () => {
-  const { formRef, onSubmitForm, formData, onClickContinue } =
+  const { formRef, onSubmitForm, formData, onPointerDownContinue } =
     useUpdateEmailHelper();
 
   return (
@@ -22,7 +22,7 @@ export const UpdateEmail = () => {
             {
               type: "primary",
               text: "Continue",
-              onClick: onClickContinue,
+              onPointerDown: onPointerDownContinue,
             },
           ]}
         />

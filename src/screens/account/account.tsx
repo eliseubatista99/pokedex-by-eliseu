@@ -2,7 +2,7 @@ import { AppLayout, PokedexBottomContent } from "@components";
 import { Blocks } from "./blocks";
 
 export const Account = () => {
-  // const { onClickEmail, onClickApple, onClickGoogle } = useAccountHelper();
+  // const { onPointerDownEmail, onPointerDownApple, onPointerDownGoogle } = useAccountHelper();
 
   return (
     <AppLayout bottomContent={<PokedexBottomContent />}>

@@ -8,7 +8,8 @@ import {
 import { useLoginHelper } from "./login.hook";
 
 export const Login = () => {
-  const { onClickEmail, onClickApple, onClickGoogle } = useLoginHelper();
+  const { onPointerDownEmail, onPointerDownApple, onPointerDownGoogle } =
+    useLoginHelper();
 
   return (
     <AppLayout
@@ -31,7 +32,7 @@ export const Login = () => {
                   containerProps={{ margin: "-4px 0 0 0" }}
                 />
               ),
-              onClick: onClickApple,
+              onPointerDown: onPointerDownApple,
               isDisabled: true,
             },
             {
@@ -44,13 +45,13 @@ export const Login = () => {
                   containerProps={{ margin: "0 0 0 -6px" }}
                 />
               ),
-              onClick: onClickGoogle,
+              onPointerDown: onPointerDownGoogle,
               isDisabled: true,
             },
             {
               type: "primary",
               text: "Continue With Email",
-              onClick: onClickEmail,
+              onPointerDown: onPointerDownEmail,
             },
           ]}
         />

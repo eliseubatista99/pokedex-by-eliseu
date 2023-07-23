@@ -14,7 +14,7 @@ export type AppHeaderDefaultProps = AppHeaderCommonProps & {
 export type AppHeaderDetailsProps = AppHeaderCommonProps & {
   type: "details";
   theme: "light" | "dark";
-  onClickFavorite: () => void;
+  onPointerDownFavorite: () => void;
 };
 
 export type AppHeaderProps = AppHeaderDefaultProps | AppHeaderDetailsProps;

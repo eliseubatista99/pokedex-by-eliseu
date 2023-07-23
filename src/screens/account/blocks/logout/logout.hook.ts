@@ -18,7 +18,7 @@ export const useLogoutHelper = () => {
   return {
     username: currentUser?.displayName,
     logoutDrawerVisible,
-    onClickOpenLogoutDrawer: handleOpenLogoutDrawer,
+    onPointerDownOpenLogoutDrawer: handleOpenLogoutDrawer,
     onCloseLogoutDrawer: handleCloseLogoutDrawer,
   };
 };

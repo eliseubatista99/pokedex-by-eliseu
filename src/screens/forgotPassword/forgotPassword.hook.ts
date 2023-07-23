@@ -89,7 +89,7 @@ export const useForgotPasswordHelper = () => {
   return {
     forgotPasswordFormData,
     formRef,
-    onClickContinue: handleClickContinue,
+    onPointerDownContinue: handleClickContinue,
     onSubmitForm: handleSubmitForm,
   };
 };

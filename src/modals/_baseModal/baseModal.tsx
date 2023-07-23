@@ -3,13 +3,13 @@ import React from "react";
 export interface BaseModalProps {
   isVisible: boolean;
   children?: React.ReactNode;
-  onClickOutsideModal: () => void;
+  onPointerDownOutsideModal: () => void;
 }
 
 export const BaseModal = ({
   isVisible,
   children,
-  onClickOutsideModal,
+  onPointerDownOutsideModal,
 }: BaseModalProps) => {
   return (
     <>
@@ -28,8 +28,8 @@ export const BaseModal = ({
             alignItems: "center",
             justifyContent: "center",
           }}
-          onClick={() => {
-            onClickOutsideModal();
+          onPointerDown={() => {
+            onPointerDownOutsideModal();
           }}
         >
           <div
@@ -48,7 +48,7 @@ export const BaseModal = ({
               zIndex: 1001,
               position: "relative",
             }}
-            onClick={(e) => {
+            onPointerDown={(e) => {
               e.stopPropagation();
             }}
           >
