@@ -1,8 +1,8 @@
 import { IconographyProps } from "..";
 
 export const NavigationPokedex = ({
-  width = "24px",
-  height = "24px",
+  width = "18px",
+  height = "18px",
   fill = "none",
   stroke,
   containerProps,

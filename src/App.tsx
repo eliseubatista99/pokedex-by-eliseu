@@ -22,6 +22,7 @@ import {
 import { ScreenPaths } from "@constants";
 import { useAppHelper } from "./App.hook";
 export const App = () => {
+  useAppHelper();
   return (
     <div
       id="app"

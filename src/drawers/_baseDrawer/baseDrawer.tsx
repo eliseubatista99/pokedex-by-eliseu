@@ -53,7 +53,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              padding: "32px",
+              padding: "24px",
               zIndex: 1001,
               position: "absolute",
               bottom: `${drawerBottomDistance}px`,
@@ -70,7 +70,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
                 justifyContent: "center",
                 position: "absolute",
                 top: "0px",
-                height: "32px",
+                height: "24px",
                 width: "100%",
                 cursor: "pointer",
               }}
@@ -78,8 +78,8 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
             >
               <div
                 style={{
-                  width: "38px",
-                  height: "3px",
+                  width: "28.5px",
+                  height: "2.25px",
                   background: "#e6e6e6",
                   borderRadius: "27px",
                 }}

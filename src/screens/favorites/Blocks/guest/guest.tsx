@@ -18,28 +18,28 @@ export const Guest = () => {
         alt={"A boy in a pokemon suit"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "356px",
+          maxWidth: "200.25px",
           height: "auto",
         }}
       />
       <Typography
         styles={{
-          fontSize: "20px",
+          fontSize: "15px",
           fontWeight: 600,
           textAlign: "center",
-          maxWidth: "327px",
-          marginTop: "16px",
+          maxWidth: "245.5px",
+          marginTop: "12px",
         }}
       >
         {"You need to be logged in to access this section"}
       </Typography>
       <Typography
         styles={{
-          fontSize: "14px",
+          fontSize: "10.5px",
           fontWeight: 400,
           textAlign: "center",
-          maxWidth: "327px",
-          marginTop: "4px",
+          maxWidth: "245.25px",
+          marginTop: "3px",
         }}
       >
         {"To access this functionality, you need to login or create an account"}
@@ -48,7 +48,7 @@ export const Guest = () => {
         type="secondary"
         text="Login or Register"
         onClick={onClickLoginOrRegister}
-        styles={{ marginTop: "24px" }}
+        styles={{ marginTop: "18px" }}
       />
     </div>
   );

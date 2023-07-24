@@ -10,10 +10,11 @@ export const HomeScreen = () => {
         styles={{
           fontFamily: "PokemonSolid",
           fontWeight: 400,
-          fontSize: "50px",
-          lineHeight: "71px",
+          fontSize: "37.5px",
           color: "#FFFFFF",
           margin: "auto",
+          verticalAlign: "middle",
+          paddingBottom: "20px",
         }}
       >
         Poke<span style={{ color: "#CD3131" }}>dex</span>

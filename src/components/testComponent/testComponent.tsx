@@ -1,3 +1,4 @@
+import { FirebaseAuthProvider } from "@contexts";
 import { BrowserRouter } from "react-router-dom";
 
 interface TestComponentProps {
@@ -5,5 +6,9 @@ interface TestComponentProps {
 }
 
 export const TestComponent = ({ children }: TestComponentProps) => {
-  return <BrowserRouter>{children}</BrowserRouter>;
+  return (
+    <FirebaseAuthProvider>
+      <BrowserRouter>{children}</BrowserRouter>
+    </FirebaseAuthProvider>
+  );
 };

@@ -12,7 +12,7 @@ export const Onboarding2 = () => {
         alt={"A girl with a confident pose"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "356px",
+          maxWidth: "200.25px",
           height: "auto",
         }}
       />

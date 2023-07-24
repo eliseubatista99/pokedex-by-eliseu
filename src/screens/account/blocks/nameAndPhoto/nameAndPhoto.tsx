@@ -8,20 +8,20 @@ export const NameAndPhoto = () => {
   return (
     <div
       style={{
-        width: "calc(100% + 32px)",
-        padding: "6px 16px",
+        width: "calc(100% + 24px)",
+        padding: "4.5px 12px",
         flexDirection: "row",
         alignItems: "center",
-        gap: "12px",
+        gap: "9px",
         borderBottom: "1px solid var(--escala-de-cinza-50, #F2F2F2)",
       }}
     >
       <CustomImage
         src={ImageAssets.accountIcon}
         alt={"Profile Picture"}
-        containerStyles={{ width: "44px", height: "44px", borderRadius: "50%" }}
+        containerStyles={{ width: "33px", height: "33px", borderRadius: "50%" }}
       />
-      <Typography styles={{ fontSize: "18px", fontWeight: 600 }}>
+      <Typography styles={{ fontSize: "13.5px", fontWeight: 600 }}>
         {username}
       </Typography>
     </div>

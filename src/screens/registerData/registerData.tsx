@@ -20,14 +20,14 @@ export const RegisterData = () => {
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
-          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
+          styles={{ textAlign: "center", fontSize: "19.5px", fontWeight: 800 }}
         >
           {"Let's start..."}
         </Typography>
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "26px",
+            fontSize: "19.5px",
             fontWeight: 400,
             color: "#4D4D4D",
           }}
@@ -43,7 +43,7 @@ export const RegisterData = () => {
             "This will be your app nickname"
           }
           error={registerFormData.name.error}
-          containerProps={{ margin: "24px auto 0 auto" }}
+          containerProps={{ margin: "18px auto 0 auto" }}
         />
         <CustomInputField
           name="email"
@@ -53,7 +53,7 @@ export const RegisterData = () => {
           }
           placeHolder="Email"
           error={registerFormData.email.error}
-          containerProps={{ margin: "16px auto 0 auto" }}
+          containerProps={{ margin: "12px auto 0 auto" }}
         />
         <CustomInputField
           name="password"
@@ -65,7 +65,7 @@ export const RegisterData = () => {
             "Your password must have at least 8 characters"
           }
           error={registerFormData.password.error}
-          containerProps={{ margin: "16px auto 0 auto" }}
+          containerProps={{ margin: "12px auto 0 auto" }}
         />
         <CustomInputField
           name="confirmPassword"
@@ -74,7 +74,7 @@ export const RegisterData = () => {
           placeHolder="Confirm Password"
           bottomMessage={registerFormData.confirmPassword.bottomMessage}
           error={registerFormData.confirmPassword.error}
-          containerProps={{ margin: "16px auto 0 auto" }}
+          containerProps={{ margin: "12px auto 0 auto" }}
         />
       </form>
       <OnboardingBottomContent

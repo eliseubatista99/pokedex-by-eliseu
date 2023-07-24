@@ -32,7 +32,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
       //Height of the drawer
       const drawerHeight = drawerRef.current?.clientHeight || 0;
       //*adding of the drawer
-      const drawerPadding = 32;
+      const drawerPadding = 24;
       //Height of the handle
       const handleHeight = drawerHeight - drawerPadding / 2;
       //Bottom value where the drawer should close
