@@ -5,6 +5,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const isDragging = React.useRef<boolean>(false);
   const drawerParentRef = React.useRef<HTMLDivElement>(null);
   const drawerRef = React.useRef<HTMLDivElement>(null);
+  const handleRef = React.useRef<HTMLDivElement>(null);
   const [drawerBottomDistance, setDrawerBottomDistance] =
     React.useState<number>(0);
 
@@ -18,31 +19,35 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   };
 
   const handleOnPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!drawerParentRef || !drawerRef) {
+    if (!drawerParentRef || !drawerRef || !handleRef) {
       return;
     }
 
     if (isDragging.current) {
-      console.log("DRAG");
-      const screenHeight = drawerParentRef.current?.clientHeight || 0;
+      //TODO: multiply by zoom
+      //Height of the screen
+      const screenHeight = window.innerHeight;
+      //Y position of the pointer
       const pointerHeight = e.clientY;
+      //Height of the drawer
       const drawerHeight = drawerRef.current?.clientHeight || 0;
-      const drawerPadding = 32;
-      const drawerHeightForCalculations = drawerHeight - drawerPadding * 2;
+      //*adding of the drawer
+      const drawerPadding = 24;
+      //Height of the handle
+      const handleHeight = drawerHeight - drawerPadding / 2;
+      //Bottom value where the drawer should close
+      const closeBottomValue = drawerHeight - drawerPadding - 10;
 
-      let pointerOffset = screenHeight - pointerHeight;
+      const distanceFromPointerToBottom = screenHeight - pointerHeight;
+      let targetBottom = distanceFromPointerToBottom - handleHeight;
 
-      if (pointerOffset < 0) {
-        pointerOffset = 0;
+      if (targetBottom > 0) {
+        targetBottom = 0;
       }
 
-      if (pointerOffset > drawerHeightForCalculations) {
-        pointerOffset = drawerHeightForCalculations;
-      }
+      setDrawerBottomDistance(targetBottom);
 
-      setDrawerBottomDistance(pointerOffset - drawerHeightForCalculations);
-
-      if (pointerOffset <= 0) {
+      if (targetBottom <= -closeBottomValue) {
         onCloseDrawer();
         handleOnPointerUp(e);
       }
@@ -53,6 +58,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     drawerParentRef,
     drawerRef,
     drawerBottomDistance,
+    handleRef,
     onDragStart: handleonClick,
     onDrag: handleOnPointerMove,
     onDragEnd: handleOnPointerUp,

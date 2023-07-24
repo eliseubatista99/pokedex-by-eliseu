@@ -24,8 +24,8 @@ export const LoginOrRegister = () => {
             text="Skip"
             endContent={
               <Iconography.ArrowRight
-                width="27px"
-                height="27px"
+                width="20.25px"
+                height="20.25px"
                 stroke="#173EA5"
               />
             }
@@ -39,7 +39,7 @@ export const LoginOrRegister = () => {
         alt={"A boy and a girl"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "356px",
+          maxWidth: "240px",
           height: "auto",
         }}
       />

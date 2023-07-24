@@ -12,6 +12,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
   const {
     drawerParentRef,
     drawerRef,
+    handleRef,
     drawerBottomDistance,
     onDragStart,
     onDrag,
@@ -52,23 +53,24 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              padding: "32px",
+              padding: "24px",
               zIndex: 1001,
               position: "absolute",
               bottom: `${drawerBottomDistance}px`,
             }}
-            onPointerDown={(e) => {
+            onClick={(e) => {
               e.stopPropagation();
             }}
           >
             <div
+              ref={handleRef}
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 position: "absolute",
                 top: "0px",
-                height: "32px",
+                height: "24px",
                 width: "100%",
                 cursor: "pointer",
               }}
@@ -76,8 +78,8 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
             >
               <div
                 style={{
-                  width: "38px",
-                  height: "3px",
+                  width: "28.5px",
+                  height: "2.25px",
                   background: "#e6e6e6",
                   borderRadius: "27px",
                 }}

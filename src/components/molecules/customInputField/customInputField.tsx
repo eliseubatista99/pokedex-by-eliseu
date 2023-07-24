@@ -29,11 +29,11 @@ export const CustomInputField = ({
   };
 
   return (
-    <div style={{ width: "100%", maxWidth: "358px", ...containerProps }}>
+    <div style={{ width: "100%", maxWidth: "268px", ...containerProps }}>
       {label && (
         <Typography
           styles={{
-            fontSize: "14px",
+            fontSize: "10.5px",
             fontWeight: 500,
           }}
         >
@@ -45,17 +45,17 @@ export const CustomInputField = ({
         type={type}
         style={{
           width: "100%",
-          height: "52px",
-          margin: "8px auto 0 auto",
+          height: "39px",
+          margin: "6px auto 0 auto",
           border: "1.5px solid #000000",
           borderRadius: "5px",
-          padding: "5px 15px",
+          padding: "3.75px 11.25px",
           color: "#000000",
           fontFamily: "Poppins",
           fontStyle: "normal",
           fontWeight: 400,
-          fontSize: "16px",
-          lineHeight: "24px",
+          fontSize: "12px",
+          lineHeight: "18px",
         }}
         placeholder={placeHolder}
         value={value}
@@ -64,9 +64,9 @@ export const CustomInputField = ({
       {bottomMessage && (
         <Typography
           styles={{
-            fontSize: "12px",
+            fontSize: "9px",
             fontWeight: 400,
-            margin: "8px auto 0 auto",
+            margin: "6px auto 0 auto",
             color: error ? "red" : "#4D4D4D",
           }}
         >

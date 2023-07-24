@@ -11,7 +11,7 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
       <Typography
         styles={{
           color: "#4d4d4d",
-          fontSize: "16px",
+          fontSize: "12px",
           fontWeight: 600,
           textAlign: "center",
         }}
@@ -23,9 +23,9 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
         text="Yes, logout"
         onClick={onClickLogout}
         styles={{
-          margin: "24px auto 0 auto",
-          height: "50px",
-          maxWidth: "300px",
+          margin: "18px auto 0 auto",
+          height: "37.5px",
+          maxWidth: "225px",
           border: "none",
           background: "#CD3131",
         }}
@@ -36,8 +36,8 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
         onClick={onCloseDrawer}
         styles={{
           margin: "10px auto 0 auto",
-          height: "50px",
-          maxWidth: "300px",
+          height: "27.5px",
+          maxWidth: "225px",
         }}
       />
     </BaseDrawer>

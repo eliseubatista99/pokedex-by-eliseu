@@ -41,6 +41,10 @@ root.render(
           overflow-y: auto;
         }
 
+        #app {
+          zoom: 1;
+        }
+
         #root {
           width: 100%;
           min-height: 100%;

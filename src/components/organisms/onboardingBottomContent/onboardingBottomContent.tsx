@@ -20,12 +20,16 @@ export const OnboardingBottomContent = ({
   buttons,
 }: OnboardingBottomContentProps) => {
   const buttonsJSX = buttons?.map((btn, index) => {
-    const marginTop = index === 0 ? 0 : 12;
+    const marginTop = index === 0 ? 0 : 9;
     return (
       <CustomButton
         key={index}
         {...btn}
-        styles={{ margin: `${marginTop}px auto 0 auto`, ...btn.styles }}
+        styles={{
+          height: "40px",
+          margin: `${marginTop}px auto 0 auto`,
+          ...btn.styles,
+        }}
       />
     );
   });
@@ -37,15 +41,16 @@ export const OnboardingBottomContent = ({
         position: "relative",
         flexDirection: "column",
         alignItems: "center",
-        padding: "17px 0px 0px 0px",
+        padding: "12.75px 0px 0px 0px",
         background: "#ffffff",
+        marginTop: "auto",
       }}
     >
       {title && (
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "26px",
+            fontSize: "19.5px",
             fontWeight: 800,
           }}
         >
@@ -56,9 +61,9 @@ export const OnboardingBottomContent = ({
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "14px",
+            fontSize: "10.5px",
             fontWeight: 400,
-            margin: "16px auto 0 auto",
+            margin: "12px auto 0 auto",
             color: "#666666",
           }}
         >
@@ -69,11 +74,11 @@ export const OnboardingBottomContent = ({
         <Stepper
           numberOfSteps={stepper.numberOfSteps}
           currentStep={stepper.currentStep}
-          styles={{ margin: "24px auto 0 auto" }}
+          styles={{ margin: "18px auto 0 auto" }}
         />
       )}
 
-      <div style={{ width: "100%", margin: "24px 0 0 0" }}>{buttonsJSX}</div>
+      <div style={{ width: "100%", margin: "18px 0 0 0" }}>{buttonsJSX}</div>
     </div>
   );
 };

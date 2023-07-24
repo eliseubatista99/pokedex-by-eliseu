@@ -11,8 +11,8 @@ export const GlobalLoader = ({
       <Global
         styles={css`
           .globalLoader {
-            width: 48px;
-            height: 48px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             position: relative;
             animation: rotate 1s linear infinite;
@@ -76,7 +76,7 @@ export const GlobalLoader = ({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: "30px",
+          gap: "22.5px",
         }}
       >
         <span className="globalLoader"></span>

@@ -35,7 +35,7 @@ export const BaseModal = ({
           <div
             style={{
               width: "90%",
-              maxWidth: "500px",
+              maxWidth: "375px",
               height: "fit-content",
               maxHeight: "50%",
               background: "#ffffff",
@@ -44,7 +44,7 @@ export const BaseModal = ({
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              padding: "32px",
+              padding: "24px",
               zIndex: 1001,
               position: "relative",
             }}

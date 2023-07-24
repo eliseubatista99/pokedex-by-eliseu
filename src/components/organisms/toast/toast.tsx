@@ -18,10 +18,10 @@ export const Toast = (props: ToastProps) => {
         left: 0,
         width: "100%",
         zIndex: 1000,
-        padding: "16px 43px",
+        padding: "12px 32.25px",
         textAlign: "center",
         background: "#173EA5",
-        minHeight: "87px",
+        minHeight: "65.25px",
         flexDirection: "column",
         justifyContent: "center",
         borderBottomRightRadius: "35%",
@@ -30,7 +30,7 @@ export const Toast = (props: ToastProps) => {
     >
       {icon && <>{icon}</>}
       <Typography
-        styles={{ fontSize: "18px", fontWeight: 600, color: "#ffffff" }}
+        styles={{ fontSize: "13.5px", fontWeight: 600, color: "#ffffff" }}
       >
         {text}
       </Typography>

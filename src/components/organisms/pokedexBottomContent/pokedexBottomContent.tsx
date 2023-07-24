@@ -11,7 +11,7 @@ export const PokedexBottomContent = () => {
       style={{
         display: "grid",
         width: "100%",
-        height: "72px",
+        height: "54px",
         borderTop: "1px solid #E6E6E6",
         backgroundColor: "#ffffff",
         gridTemplateColumns: "repeat(4, 1fr)",

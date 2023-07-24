@@ -18,7 +18,7 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
         <Typography
           styles={{
             color: "#4d4d4d",
-            fontSize: "20px",
+            fontSize: "15px",
             fontWeight: 400,
             textAlign: "center",
           }}
@@ -26,7 +26,7 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
           {"We need to confirm your identity"}
         </Typography>
         <Typography
-          styles={{ fontSize: "18px", fontWeight: 600, textAlign: "center" }}
+          styles={{ fontSize: "13.5px", fontWeight: 600, textAlign: "center" }}
         >
           {"Please enter your password do proceed"}
         </Typography>
@@ -36,7 +36,7 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
           placeHolder="Password"
           bottomMessage={formData.password.bottomMessage}
           error={formData.password.error}
-          containerProps={{ margin: "16px auto 0 auto" }}
+          containerProps={{ margin: "12px auto 0 auto" }}
         />
       </form>
       <CustomButton
@@ -44,9 +44,9 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
         text="Continue"
         onClick={onClickContinue}
         styles={{
-          margin: "40px auto 0 auto",
-          height: "50px",
-          maxWidth: "200px",
+          margin: "30px auto 0 auto",
+          height: "37.5px",
+          maxWidth: "150px",
         }}
       />
     </BaseModal>

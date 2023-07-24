@@ -19,14 +19,14 @@ export const UpdateName = () => {
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
-          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
+          styles={{ textAlign: "center", fontSize: "19.5px", fontWeight: 800 }}
         >
           {"Let's update"}
         </Typography>
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "26px",
+            fontSize: "19.5px",
             fontWeight: 400,
             color: "#4D4D4D",
           }}
@@ -39,7 +39,7 @@ export const UpdateName = () => {
           bottomMessage={formData.name.bottomMessage || "Use a valid name"}
           placeHolder="Name"
           error={formData.name.error}
-          containerProps={{ margin: "16px auto 0 auto" }}
+          containerProps={{ margin: "12px auto 0 auto" }}
         />
       </form>
       <OnboardingBottomContent
