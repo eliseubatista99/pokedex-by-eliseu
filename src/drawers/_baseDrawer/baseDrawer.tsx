@@ -57,7 +57,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
               position: "absolute",
               bottom: `${drawerBottomDistance}px`,
             }}
-            onPointerDown={(e) => {
+            onClick={(e) => {
               e.stopPropagation();
             }}
           >

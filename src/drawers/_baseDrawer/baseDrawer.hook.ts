@@ -23,26 +23,29 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     }
 
     if (isDragging.current) {
-      console.log("DRAG");
+      //Height of the screen
       const screenHeight = drawerParentRef.current?.clientHeight || 0;
+      //Y position of the pointer
       const pointerHeight = e.clientY;
+      //Height of the drawer
       const drawerHeight = drawerRef.current?.clientHeight || 0;
+      //*adding of the drawer
       const drawerPadding = 32;
-      const drawerHeightForCalculations = drawerHeight - drawerPadding * 2;
+      //Height of the handle
+      const handleHeight = drawerHeight - drawerPadding / 2;
+      //Bottom value where the drawer should close
+      const closeBottomValue = drawerHeight - drawerPadding - 10;
 
-      let pointerOffset = screenHeight - pointerHeight;
+      const distanceFromPointerToBottom = screenHeight - pointerHeight;
+      let targetBottom = distanceFromPointerToBottom - handleHeight;
 
-      if (pointerOffset < 0) {
-        pointerOffset = 0;
+      if (targetBottom > 0) {
+        targetBottom = 0;
       }
 
-      if (pointerOffset > drawerHeightForCalculations) {
-        pointerOffset = drawerHeightForCalculations;
-      }
+      setDrawerBottomDistance(targetBottom);
 
-      setDrawerBottomDistance(pointerOffset - drawerHeightForCalculations);
-
-      if (pointerOffset <= 0) {
+      if (targetBottom <= -closeBottomValue) {
         onCloseDrawer();
         handleOnPointerUp(e);
       }
