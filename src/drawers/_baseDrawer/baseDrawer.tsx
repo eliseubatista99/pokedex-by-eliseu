@@ -12,6 +12,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
   const {
     drawerParentRef,
     drawerRef,
+    handleRef,
     drawerBottomDistance,
     onDragStart,
     onDrag,
@@ -62,6 +63,7 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
             }}
           >
             <div
+              ref={handleRef}
               style={{
                 display: "flex",
                 alignItems: "center",

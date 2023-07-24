@@ -20,26 +20,11 @@ import {
   Pokedex,
 } from "@screens";
 import { ScreenPaths } from "@constants";
-import React from "react";
-import { useCustomNavigation } from "@hooks";
+import { useAppHelper } from "./App.hook";
 export const App = () => {
-  const { currentPath, replaceHistory, goTo } = useCustomNavigation();
-
-  const appInitialized = React.useRef<boolean>(false);
-
-  React.useEffect(() => {
-    if (!appInitialized.current) {
-      if (currentPath !== ScreenPaths.splash) {
-        replaceHistory([]);
-        goTo(ScreenPaths.splash, false);
-      }
-
-      appInitialized.current = true;
-    }
-  }, [currentPath, goTo, replaceHistory]);
-
   return (
     <div
+      id="app"
       style={{
         width: "100%",
         height: "100%",
