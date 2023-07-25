@@ -19,10 +19,10 @@ export const PokedexBottomContent = () => {
       }}
     >
       <Blocks.NavigationItem
-        text={"Pokedéx"}
+        text={"Pokémons"}
         icon={<Iconography.NavigationPokedex />}
-        onClick={() => onItemClicked(ScreenPaths.pokedex)}
-        isSelected={currentPath === ScreenPaths.pokedex}
+        onClick={() => onItemClicked(ScreenPaths.pokemons)}
+        isSelected={currentPath === ScreenPaths.pokemons}
       />
       <Blocks.NavigationItem
         text={"Regions"}
