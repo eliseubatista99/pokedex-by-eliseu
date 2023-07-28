@@ -1,11 +1,11 @@
-import { ApiPokemonListItem, Pokemon } from "@types";
+import { ApiPokemonListItem, PokemonShort } from "@types";
 import produce from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 
 export interface PokeApiState {
   pokemonList: ApiPokemonListItem[];
-  pokemons: Pokemon[];
+  pokemons: PokemonShort[];
 }
 
 const initialState: PokeApiState = {
@@ -15,7 +15,7 @@ const initialState: PokeApiState = {
 
 interface UsePokeApiStoreOutput extends PokeApiState {
   savePokemonList: (list: ApiPokemonListItem[]) => void;
-  updatePokemons: (newPokemons: Pokemon[]) => void;
+  updatePokemons: (newPokemons: PokemonShort[]) => void;
 }
 
 export const usePokeApiStore = StoreHelper.createStore<UsePokeApiStoreOutput>(
@@ -31,7 +31,7 @@ export const usePokeApiStore = StoreHelper.createStore<UsePokeApiStoreOutput>(
         "savePokemonList"
       );
     },
-    updatePokemons: function (newPokemons: Pokemon[]) {
+    updatePokemons: function (newPokemons: PokemonShort[]) {
       set(
         produce((state: PokeApiState) => ({
           ...state,
