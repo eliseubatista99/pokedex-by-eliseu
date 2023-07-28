@@ -8,15 +8,18 @@ export interface PokemonType {
   noneTo: string[];
 }
 
-export interface Pokemon {
-  id: number;
-  name: string;
-  sprite: string;
+export interface PokemonFull extends PokemonShort {
   abilities: string[];
-  color: string;
   evolutionChain: string[];
   flavor: string;
   genus: string;
   stats: Record<string, number>;
+}
+
+export interface PokemonShort {
+  id: number;
+  name: string;
+  sprite: string;
+  color: string;
   types: PokemonType[];
 }

@@ -6,7 +6,8 @@ import {
   ApiPokemonList,
   ApiPokemonSpecies,
   ApiPokemonType,
-  Pokemon,
+  PokemonShort,
+  PokemonFull,
   PokemonType,
 } from "@types";
 import React from "react";
@@ -14,8 +15,12 @@ import React from "react";
 export const usePokeApi = () => {
   const baseUrl = "https://pokeapi.co/api/v2/";
   const fetch = useFetch();
-  const { pokemons: pokemonsInStore, updatePokemons: updatePokemonsInStore } =
-    usePokeApiStore();
+  const {
+    pokemons: pokemonsInStore,
+    pokemonList,
+    updatePokemons: updatePokemonsInStore,
+    savePokemonList,
+  } = usePokeApiStore();
 
   const getEvolutionChain = React.useCallback(
     async (id: string) => {
@@ -48,7 +53,7 @@ export const usePokeApi = () => {
     [fetch]
   );
 
-  const getPokemon = React.useCallback(
+  const getPokemonFull = React.useCallback(
     async (name: string) => {
       const pokemon = await fetch<ApiPokemon>(`${baseUrl}pokemon/${name}`);
 
@@ -82,7 +87,7 @@ export const usePokeApi = () => {
         (genus) => genus.language.name === "en"
       );
 
-      const result: Pokemon = {
+      const result: PokemonFull = {
         id: pokemon.id,
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
@@ -105,30 +110,82 @@ export const usePokeApi = () => {
     [fetch, getEvolutionChain, getPokemonSpecies, getPokemonType]
   );
 
+  const getPokemonShort = React.useCallback(
+    async (name: string) => {
+      const pokemon = await fetch<ApiPokemon>(`${baseUrl}pokemon/${name}`);
+
+      const types: PokemonType[] = [];
+      for (let i = 0; i < pokemon.types.length; i++) {
+        const t = await getPokemonType(pokemon.types[i].type.name);
+        types.push({
+          name: pokemon.types[i].type.name,
+          doubleFrom: t.double_damage_from?.map((entry) => entry.name),
+          doubleTo: t.double_damage_to?.map((entry) => entry.name),
+          halfFrom: t.half_damage_from?.map((entry) => entry.name),
+          halfTo: t.half_damage_to?.map((entry) => entry.name),
+          noneFrom: t.no_damage_from?.map((entry) => entry.name),
+          noneTo: t.no_damage_to?.map((entry) => entry.name),
+        });
+      }
+
+      const species = await getPokemonSpecies(pokemon.species.name);
+
+      const result: PokemonShort = {
+        id: pokemon.id,
+        name: pokemon.name,
+        sprite: pokemon.sprites.front_default,
+        color: species.color.name,
+        types,
+      };
+
+      return result;
+    },
+    [fetch, getPokemonSpecies, getPokemonType]
+  );
+
+  const getPokemonList = React.useCallback(async () => {
+    if (pokemonList.length > 0) {
+      return pokemonList;
+    }
+
+    const listResult = await fetch<ApiPokemonList>(`${baseUrl}pokemon`, {
+      limit: 100000,
+      offset: 0,
+    });
+
+    savePokemonList(listResult.results);
+    return listResult.results;
+  }, [fetch, pokemonList, savePokemonList]);
+
   const getAllPokemons = React.useCallback(
     async (limit = 20, offset = 0) => {
+      console.log("REQUESTING");
+
       if (pokemonsInStore.length > 0) {
         return;
       }
-      const pokemonList = await fetch<ApiPokemonList>(`${baseUrl}pokemon`, {
-        limit,
-        offset,
-      });
+      const pokemonList = await getPokemonList();
 
-      const mappedPokemons: Pokemon[] = [];
+      const mappedPokemons: PokemonShort[] = [];
 
-      for (let i = 0; i < pokemonList.results.length; i++) {
-        const result = await getPokemon(pokemonList.results[i].name);
+      for (let i = offset; i < limit; i++) {
+        const result = await getPokemonShort(pokemonList[i].name);
         mappedPokemons.push(result);
       }
 
       updatePokemonsInStore(mappedPokemons);
     },
-    [fetch, getPokemon, pokemonsInStore.length, updatePokemonsInStore]
+    [
+      getPokemonList,
+      getPokemonShort,
+      pokemonsInStore.length,
+      updatePokemonsInStore,
+    ]
   );
 
   return {
-    getPokemon,
+    getPokemonShort,
+    getPokemonFull,
     getAllPokemons,
   };
 };
