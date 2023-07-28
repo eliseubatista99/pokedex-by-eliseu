@@ -1,3 +1,4 @@
+import { PokemonHelper } from "@helpers";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
 import {
@@ -128,13 +129,11 @@ export const usePokeApi = () => {
         });
       }
 
-      const species = await getPokemonSpecies(pokemon.species.name);
-
       const result: PokemonShort = {
         id: pokemon.id,
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
-        color: species.color.name,
+        color: PokemonHelper.getPokemonColor(types[0]?.name),
         types,
       };
 
@@ -159,8 +158,6 @@ export const usePokeApi = () => {
 
   const getAllPokemons = React.useCallback(
     async (limit = 20, offset = 0) => {
-      console.log("REQUESTING");
-
       if (pokemonsInStore.length > 0) {
         return;
       }

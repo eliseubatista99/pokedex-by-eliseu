@@ -1,4 +1,4 @@
-import { AppLayout, PokedexBottomContent } from "@components";
+import { AppLayout, PokedexBottomContent, PokemonCard } from "@components";
 import { usePokemonsHelper } from "./pokemons.hook";
 
 export const Pokemons = () => {
@@ -9,7 +9,7 @@ export const Pokemons = () => {
   return (
     <AppLayout bottomContent={<PokedexBottomContent />}>
       {pokemons.map((pokemon) => (
-        <p style={{ color: "#000000" }}>{pokemon.name}</p>
+        <PokemonCard pokemon={pokemon} />
       ))}
     </AppLayout>
   );
