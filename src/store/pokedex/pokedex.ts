@@ -1,9 +1,11 @@
+import { PokemonShort } from "@types";
 import produce from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 
 export interface PokedexState {
   pokemonsLimit: number;
+  selectedPokemon?: PokemonShort;
 }
 
 const initialState: PokedexState = {
@@ -12,6 +14,7 @@ const initialState: PokedexState = {
 
 interface UsePokedexStoreOutput extends PokedexState {
   updatePokemonLimit: (limit: number) => void;
+  setSelectedPokemon: (pokemon: PokemonShort | undefined) => void;
 }
 
 export const usePokedexStore = StoreHelper.createStore<UsePokedexStoreOutput>(
@@ -25,6 +28,16 @@ export const usePokedexStore = StoreHelper.createStore<UsePokedexStoreOutput>(
         })),
         false,
         "updatePokemonLimit"
+      );
+    },
+    setSelectedPokemon: function (pokemon: PokemonShort | undefined) {
+      set(
+        produce((state: PokedexState) => ({
+          ...state,
+          selectedPokemon: pokemon,
+        })),
+        false,
+        "setSelectedPokemon"
       );
     },
   }),

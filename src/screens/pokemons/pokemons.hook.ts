@@ -1,10 +1,14 @@
-import { usePokeApi } from "@hooks";
+import { ScreenPaths } from "@constants";
+import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokeApiStore, usePokedexStore } from "@store";
+import { PokemonShort } from "@types";
 import React from "react";
 
 export const usePokemonsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { pokemonsLimit, updatePokemonLimit } = usePokedexStore();
+  const { goTo } = useCustomNavigation();
+  const { pokemonsLimit, updatePokemonLimit, setSelectedPokemon } =
+    usePokedexStore();
   const { getAllPokemons } = usePokeApi();
   const { pokemons } = usePokeApiStore();
   const screenInitialized = React.useRef<boolean>(false);
@@ -23,6 +27,11 @@ export const usePokemonsHelper = () => {
     }
   }, [getAllPokemons, hideLoader, pokemonsLimit, showLoader]);
 
+  const handleOnPokemonClicked = (pokemon: PokemonShort) => {
+    setSelectedPokemon(pokemon);
+    goTo(ScreenPaths.pokemonDetails);
+  };
+
   React.useEffect(() => {
     if (!screenInitialized.current) {
       screenInitialized.current = true;
@@ -32,5 +41,6 @@ export const usePokemonsHelper = () => {
 
   return {
     pokemons,
+    onPokemonClicked: handleOnPokemonClicked,
   };
 };

@@ -2,10 +2,14 @@ import { AppLayout, PokedexBottomContent, PokemonCard } from "@components";
 import { usePokemonsHelper } from "./pokemons.hook";
 
 export const Pokemons = () => {
-  const { pokemons } = usePokemonsHelper();
+  const { pokemons, onPokemonClicked } = usePokemonsHelper();
 
   const pokemonList = pokemons.map((pokemon) => (
-    <PokemonCard pokemon={pokemon} />
+    <PokemonCard
+      key={pokemon.id}
+      pokemon={pokemon}
+      onClick={(pokemon) => onPokemonClicked(pokemon)}
+    />
   ));
 
   return (

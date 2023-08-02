@@ -22,7 +22,10 @@ export const PokedexBottomContent = () => {
         text={"Pokémons"}
         icon={<Iconography.NavigationPokedex />}
         onClick={() => onItemClicked(ScreenPaths.pokemons)}
-        isSelected={currentPath === ScreenPaths.pokemons}
+        isSelected={
+          currentPath === ScreenPaths.pokemons ||
+          currentPath === ScreenPaths.pokemonDetails
+        }
       />
       <Blocks.NavigationItem
         text={"Regions"}

@@ -6,11 +6,12 @@ import { usePokemonCardHelper } from "./pokemonCard.hook";
 
 export interface PokemonCardProps {
   pokemon: PokemonShort;
+  onClick: (pokemon: PokemonShort) => void;
   containerProps?: CSSProperties;
 }
 
 export const PokemonCard = (props: PokemonCardProps) => {
-  const { containerProps } = props;
+  const { containerProps, onClick } = props;
   const { isHovered, onHover, onUnhover, pokemonData } =
     usePokemonCardHelper(props);
 
@@ -39,6 +40,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
         }}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onUnhover()}
+        onClick={() => onClick(props.pokemon)}
       >
         <div
           style={{
