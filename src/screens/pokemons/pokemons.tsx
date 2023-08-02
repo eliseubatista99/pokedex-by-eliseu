@@ -4,13 +4,15 @@ import { usePokemonsHelper } from "./pokemons.hook";
 export const Pokemons = () => {
   const { pokemons } = usePokemonsHelper();
 
-  console.log("POKE", pokemons);
+  const pokemonList = pokemons.map((pokemon) => (
+    <PokemonCard pokemon={pokemon} />
+  ));
 
   return (
     <AppLayout bottomContent={<PokedexBottomContent />}>
-      {pokemons.map((pokemon) => (
-        <PokemonCard pokemon={pokemon} />
-      ))}
+      <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
+        {pokemonList}
+      </div>
     </AppLayout>
   );
 };

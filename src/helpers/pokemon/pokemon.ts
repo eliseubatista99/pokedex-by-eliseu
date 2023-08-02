@@ -1,40 +1,97 @@
+import { ImageAssets } from "@assets";
+
 export class PokemonHelper {
+  static getPokemonId = (id: number) => {
+    const parsedId = `${id}`;
+
+    if (parsedId.length < 2) {
+      return `00${parsedId}`;
+    } else if (parsedId.length < 3) {
+      return `0${parsedId}`;
+    }
+
+    return parsedId;
+  };
+
+  static getPokemonTypeIcon = (pokemonType: string | null | undefined) => {
+    switch (pokemonType) {
+      case "grass":
+        return ImageAssets.pokemonTypes.grass;
+      case "water":
+        return ImageAssets.pokemonTypes.water;
+      case "fire":
+        return ImageAssets.pokemonTypes.fire;
+      case "dark":
+        return ImageAssets.pokemonTypes.dark;
+      case "fairy":
+        return ImageAssets.pokemonTypes.fairy;
+      case "ice":
+        return ImageAssets.pokemonTypes.ice;
+      case "dragon":
+        return ImageAssets.pokemonTypes.dragon;
+      case "bug":
+        return ImageAssets.pokemonTypes.bug;
+      case "poison":
+        return ImageAssets.pokemonTypes.poison;
+      case "steel":
+        return ImageAssets.pokemonTypes.steel;
+      case "ground":
+        return ImageAssets.pokemonTypes.ground;
+      case "rock":
+        return ImageAssets.pokemonTypes.rock;
+      case "fighting":
+        return ImageAssets.pokemonTypes.fighting;
+      case "electric":
+        return ImageAssets.pokemonTypes.eletric;
+      case "psychic":
+        return ImageAssets.pokemonTypes.psychic;
+      case "flying":
+        return ImageAssets.pokemonTypes.flying;
+      case "ghost":
+        return ImageAssets.pokemonTypes.ghost;
+      default:
+        return ImageAssets.pokemonTypes.normal;
+    }
+  };
+
   static getPokemonColor = (pokemonType: string | null | undefined) => {
     switch (pokemonType) {
       case "grass":
-        return "#87fa8d";
+        return "#63BC5A";
       case "water":
-        return "#45bff7";
+        return "#5090D6";
       case "fire":
-        return "#f55b5b";
+        return "#FF9D55";
       case "dark":
-        return "#9449fc";
+        return "#5A5465";
       case "fairy":
-        return "#f5affa";
+        return "#EC8FE6";
       case "ice":
-        return "#c1f0f7";
+        return "#73CEC0";
       case "dragon":
-        return "#725ef7";
+        return "#0B6DC3";
       case "bug":
-        return "#b7d450";
+        return "#91C12F";
       case "poison":
-        return "#ac65fc";
+        return "#B567CE";
       case "steel":
-        return "#8a848c";
+        return "#5A8EA2";
       case "ground":
-        return "#c7831e";
+        return "#D97845";
       case "rock":
-        return "#a85f05";
+        return "#C5B78C";
       case "fighting":
-        return "#f57c20";
+        return "#CE416B";
       case "electric":
-        return "#fce060";
+        return "#F4D23C";
       case "psychic":
-        return "#f7659d";
+        return "#FA7179";
       case "flying":
-        return "#bad4e0";
+        return "#89AAE3";
+      case "ghost":
+        return "#5269AD";
       default:
-        return "#ffffff";
+        return "#919AA2";
     }
   };
 }

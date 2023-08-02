@@ -1,3 +1,5 @@
+import { CustomImage, PokemonTypeChip, Typography } from "@components";
+import { PokemonHelper, TextHelper } from "@helpers";
 import { PokemonShort } from "@types";
 import { CSSProperties } from "react";
 
@@ -7,16 +9,82 @@ export interface PokemonCardProps {
 }
 
 export const PokemonCard = ({ pokemon, containerProps }: PokemonCardProps) => {
+  const typeChips = pokemon.types.map((type) => (
+    <PokemonTypeChip type={type.name} />
+  ));
+
+  const pokemonColor = PokemonHelper.getPokemonColor(pokemon.types[0]?.name);
+
   return (
     <div
       style={{
         width: "100%",
         display: "flex",
-        flexDirection: "column",
-        background: pokemon.color,
+        flexDirection: "row",
+        background: `${pokemonColor}33`,
+        borderRadius: "15px",
       }}
     >
-      {pokemon.name}
+      <div
+        style={{
+          flexDirection: "column",
+          flex: 1,
+          padding: "12px 16px",
+        }}
+      >
+        <Typography
+          styles={{ fontSize: "11px", fontWeight: 600 }}
+        >{`#${PokemonHelper.getPokemonId(pokemon.id)}`}</Typography>
+        <Typography styles={{ fontSize: "15.75px", fontWeight: 600 }}>
+          {TextHelper.getPascalCase(pokemon.name)}
+        </Typography>
+
+        <div
+          style={{
+            flexDirection: "row",
+            gap: "6px",
+            width: "100%",
+            marginTop: "auto",
+          }}
+        >
+          {typeChips}
+        </div>
+      </div>
+      <div
+        style={{
+          width: "38%",
+          background: pokemonColor,
+          borderRadius: "15px",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          height: "102px",
+        }}
+      >
+        <CustomImage
+          src={PokemonHelper.getPokemonTypeIcon(pokemon.types[0]?.name)}
+          alt={"Pokemon Type Icon"}
+          imageStyles={{ objectFit: "contain" }}
+          containerStyles={{
+            width: "74%",
+            height: "92%",
+            position: "absolute",
+            zIndex: 0,
+            opacity: 0.4,
+            filter: "grayscale(100%) brightness(200%)",
+          }}
+        />
+        <CustomImage
+          src={pokemon.sprite}
+          alt={"Pokemon Sprite"}
+          imageStyles={{ objectFit: "contain" }}
+          containerStyles={{
+            width: "100%",
+            height: "92%",
+            zIndex: 1,
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -15,7 +15,7 @@ export const PokedexBottomContent = () => {
         borderTop: "1px solid #E6E6E6",
         backgroundColor: "#ffffff",
         gridTemplateColumns: "repeat(4, 1fr)",
-        zIndex: 10,
+        position: "relative",
       }}
     >
       <Blocks.NavigationItem
