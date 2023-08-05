@@ -6,6 +6,7 @@ export interface CustomInputFieldProps {
   name: string;
   label?: string;
   leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   bottomMessage?: string;
   placeHolder?: string;
   error?: boolean;
@@ -36,6 +37,7 @@ export const CustomInputField = ({
   name,
   label,
   leftIcon,
+  rightIcon,
   bottomMessage,
   placeHolder,
   error,
@@ -103,6 +105,7 @@ export const CustomInputField = ({
           value={value}
           onChange={onValueChanged}
         />
+        {rightIcon}
       </div>
 
       {bottomMessage && (

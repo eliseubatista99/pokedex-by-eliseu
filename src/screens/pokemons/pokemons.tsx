@@ -20,19 +20,30 @@ export const Pokemons = () => {
 
   return (
     <AppLayout bottomContent={<PokedexBottomContent />}>
-      <CustomInputField
-        name="pokemon-search"
-        placeHolder="Search Pokemon"
-        leftIcon={<Iconography.Search width={"15px"} height={"15px"} />}
-        inputStyles={{ borderRadius: "30px" }}
-        containerProps={{
-          padding: "15px 0",
-          margin: "0 auto",
-          maxWidth: "none",
-        }}
-        onChange={(value) => pokemonSearch.onChange(value)}
-        value={pokemonSearch.value}
-      />
+      <form
+        style={{ width: "100%" }}
+        ref={pokemonSearch.formRef}
+        onSubmit={pokemonSearch.onSubmitForm}
+      >
+        <CustomInputField
+          name="pokemon-search"
+          placeHolder="Search Pokemon"
+          rightIcon={
+            <Iconography.Search
+              width={"15px"}
+              height={"15px"}
+              onClick={() => pokemonSearch.onChange()}
+            />
+          }
+          inputStyles={{ borderRadius: "30px" }}
+          containerProps={{
+            padding: "15px 0",
+            margin: "0 auto",
+            maxWidth: "none",
+          }}
+        />
+      </form>
+
       <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
         {pokemonList}
       </div>

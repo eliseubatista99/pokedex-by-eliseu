@@ -156,11 +156,28 @@ export const usePokeApi = () => {
     return listResult.results;
   }, [fetch, pokemonList, savePokemonList]);
 
+  const getPokemonsByName = React.useCallback(
+    async (name: string) => {
+      const pokemonList = await getPokemonList();
+
+      const filteredPokemons = pokemonList.filter((pokemon) =>
+        pokemon.name.includes(name)
+      );
+      const mappedPokemons: PokemonShort[] = [];
+
+      for (let i = 0; i < filteredPokemons.length; i++) {
+        const result = await getPokemonShort(filteredPokemons[i].name);
+        mappedPokemons.push(result);
+      }
+
+      updatePokemonsInStore(mappedPokemons);
+      return mappedPokemons;
+    },
+    [getPokemonList, getPokemonShort, updatePokemonsInStore]
+  );
+
   const getAllPokemons = React.useCallback(
     async (limit = 20, offset = 0) => {
-      if (pokemonsInStore.length > 0) {
-        return;
-      }
       const pokemonList = await getPokemonList();
 
       const mappedPokemons: PokemonShort[] = [];
@@ -171,18 +188,15 @@ export const usePokeApi = () => {
       }
 
       updatePokemonsInStore(mappedPokemons);
+      return mappedPokemons;
     },
-    [
-      getPokemonList,
-      getPokemonShort,
-      pokemonsInStore.length,
-      updatePokemonsInStore,
-    ]
+    [getPokemonList, getPokemonShort, updatePokemonsInStore]
   );
 
   return {
     getPokemonShort,
     getPokemonFull,
+    getPokemonsByName,
     getAllPokemons,
   };
 };
