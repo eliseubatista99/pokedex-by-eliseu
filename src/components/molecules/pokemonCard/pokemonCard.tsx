@@ -16,7 +16,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
     usePokemonCardHelper(props);
 
   const typeChips = pokemonData.pokemonTypes.map((type) => (
-    <PokemonTypeChip key={type.name} type={type.name} />
+    <PokemonTypeChip key={type} type={type} />
   ));
 
   return (
@@ -73,9 +73,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
         }}
       >
         <CustomImage
-          src={PokemonHelper.getPokemonTypeIcon(
-            pokemonData.pokemonMainType?.name
-          )}
+          src={PokemonHelper.getPokemonTypeIcon(pokemonData.pokemonMainType)}
           alt={"Pokemon Type Icon"}
           imageStyles={{ objectFit: "contain" }}
           containerStyles={{

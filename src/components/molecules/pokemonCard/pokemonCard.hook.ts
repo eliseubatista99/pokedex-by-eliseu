@@ -21,9 +21,9 @@ export const usePokemonCardHelper = ({ pokemon }: PokemonCardProps) => {
       pokemonId: `#${PokemonHelper.getPokemonId(pokemon.id)}`,
       pokemonName: TextHelper.getPascalCase(pokemon.name),
       pokemonSprite: pokemon.sprite,
-      pokemonMainType: pokemon.types[0],
-      pokemonTypes: pokemon.types,
-      pokemonColor: PokemonHelper.getPokemonColor(pokemon.types[0]?.name),
+      pokemonMainType: pokemon.typesNames[0],
+      pokemonTypes: pokemon.typesNames,
+      pokemonColor: PokemonHelper.getPokemonColor(pokemon.typesNames[0]),
     },
   };
 };

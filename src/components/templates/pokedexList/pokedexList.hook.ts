@@ -10,6 +10,7 @@ export const usePokedexListTemplateHelper = (
   const listRef = React.useRef<HTMLDivElement>(null);
   const searchInputValue = React.useRef<string>("");
   const screenInitialized = React.useRef<boolean>(false);
+  const updatingItems = React.useRef<boolean>(false);
   const limit = React.useRef<number>(20);
   const [itemsToDisplay, setItemsToDisplay] = React.useState<any[]>([]);
 
@@ -21,12 +22,19 @@ export const usePokedexListTemplateHelper = (
 
   const updateItems = React.useCallback(
     async (value?: string) => {
+      if (updatingItems.current) {
+        return;
+      }
+
+      updatingItems.current = true;
       const newItems = await props.updateItems(value || "", limit.current);
 
       if (!value && limit.current < newItems.length) {
         limit.current = newItems.length;
       }
       setItemsToDisplay(newItems || []);
+
+      updatingItems.current = false;
     },
     [limit, props]
   );
@@ -49,7 +57,7 @@ export const usePokedexListTemplateHelper = (
     scrollElem: scrollRef,
     listElem: listRef,
     onTouchBottom: () => {
-      if (!searchInputValue.current) {
+      if (!searchInputValue.current && !updatingItems.current) {
         limit.current += 20;
         updateItems();
       }

@@ -15,7 +15,7 @@ const initialState: PokeApiState = {
 
 interface UsePokeApiStoreOutput extends PokeApiState {
   savePokemonList: (list: ApiPokemonListItem[]) => void;
-  updatePokemons: (newPokemons: PokemonShort[]) => void;
+  updatePokemon: (newPokemon: PokemonShort) => void;
 }
 
 export const usePokeApiStore = StoreHelper.createStore<UsePokeApiStoreOutput>(
@@ -31,14 +31,31 @@ export const usePokeApiStore = StoreHelper.createStore<UsePokeApiStoreOutput>(
         "savePokemonList"
       );
     },
-    updatePokemons: function (newPokemons: PokemonShort[]) {
+    updatePokemon: function (newPokemon: PokemonShort) {
       set(
-        produce((state: PokeApiState) => ({
-          ...state,
-          pokemons: newPokemons,
-        })),
+        produce((state: PokeApiState) => {
+          const newResult: PokemonShort[] = [];
+          let pokemonAlreadyInList = false;
+
+          state.pokemons.forEach((pokemon) => {
+            if (pokemon.name === newPokemon.name) {
+              pokemonAlreadyInList = true;
+            }
+
+            newResult.push(pokemon);
+          });
+
+          if (!pokemonAlreadyInList) {
+            newResult.push(newPokemon);
+          }
+
+          return {
+            ...state,
+            pokemons: newResult,
+          };
+        }),
         false,
-        "updatePokemons"
+        "updatePokemon"
       );
     },
   }),

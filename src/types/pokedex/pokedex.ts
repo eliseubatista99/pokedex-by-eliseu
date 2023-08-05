@@ -14,12 +14,12 @@ export interface PokemonFull extends PokemonShort {
   flavor: string;
   genus: string;
   stats: Record<string, number>;
+  typesData: PokemonType[];
 }
 
 export interface PokemonShort {
   id: number;
   name: string;
   sprite: string;
-  color: string;
-  types: PokemonType[];
+  typesNames: string[];
 }

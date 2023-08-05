@@ -19,7 +19,7 @@ export const usePokemons = () => {
   const {
     pokemons: pokemonsInStore,
     pokemonList,
-    updatePokemons: updatePokemonsInStore,
+    updatePokemon: updatePokemonInStore,
     savePokemonList,
   } = usePokeApiStore();
 
@@ -56,16 +56,51 @@ export const usePokemons = () => {
     [fetch]
   );
 
+  const getPokemonShort = React.useCallback(
+    async (name: string) => {
+      const pokemonInStore = pokemonsInStore.find(
+        (pokemon) => pokemon.name === name
+      );
+
+      if (pokemonInStore) {
+        return pokemonInStore;
+      }
+
+      const pokemon = await fetch<ApiPokemon>(
+        `${POKE_API_BASE_URL}pokemon/${name}`
+      );
+
+      const types: string[] = [];
+      for (let i = 0; i < pokemon.types.length; i++) {
+        types.push(pokemon.types[i].type.name);
+      }
+
+      const result: PokemonShort = {
+        id: pokemon.id,
+        name: pokemon.name,
+        sprite: pokemon.sprites.front_default,
+        typesNames: types,
+      };
+
+      updatePokemonInStore(result);
+
+      return result;
+    },
+    [fetch, pokemonsInStore, updatePokemonInStore]
+  );
+
   const getPokemonFull = React.useCallback(
     async (name: string) => {
       const pokemon = await fetch<ApiPokemon>(
         `${POKE_API_BASE_URL}pokemon/${name}`
       );
 
-      const types: PokemonType[] = [];
+      const typesData: PokemonType[] = [];
+      const typesNames: string[] = [];
       for (let i = 0; i < pokemon.types.length; i++) {
         const t = await getPokemonType(pokemon.types[i].type.name);
-        types.push({
+        typesNames.push(pokemon.types[i].type.name);
+        typesData.push({
           name: pokemon.types[i].type.name,
           doubleFrom: t.double_damage_from?.map((entry) => entry.name),
           doubleTo: t.double_damage_to?.map((entry) => entry.name),
@@ -97,7 +132,6 @@ export const usePokemons = () => {
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
         abilities: pokemon.abilities.map((ability) => ability.ability.name),
-        color: species.color.name,
         evolutionChain: evolutionChain.evolves_to?.map(
           (evolveTarget) => evolveTarget.species.name
         ),
@@ -107,45 +141,13 @@ export const usePokemons = () => {
           (acc, stat) => ({ ...acc, [stat.stat.name]: stat.base_state }),
           {}
         ),
-        types,
+        typesNames,
+        typesData,
       };
 
       return result;
     },
     [fetch, getEvolutionChain, getPokemonSpecies, getPokemonType]
-  );
-
-  const getPokemonShort = React.useCallback(
-    async (name: string) => {
-      const pokemon = await fetch<ApiPokemon>(
-        `${POKE_API_BASE_URL}pokemon/${name}`
-      );
-
-      const types: PokemonType[] = [];
-      for (let i = 0; i < pokemon.types.length; i++) {
-        const t = await getPokemonType(pokemon.types[i].type.name);
-        types.push({
-          name: pokemon.types[i].type.name,
-          doubleFrom: t.double_damage_from?.map((entry) => entry.name),
-          doubleTo: t.double_damage_to?.map((entry) => entry.name),
-          halfFrom: t.half_damage_from?.map((entry) => entry.name),
-          halfTo: t.half_damage_to?.map((entry) => entry.name),
-          noneFrom: t.no_damage_from?.map((entry) => entry.name),
-          noneTo: t.no_damage_to?.map((entry) => entry.name),
-        });
-      }
-
-      const result: PokemonShort = {
-        id: pokemon.id,
-        name: pokemon.name,
-        sprite: pokemon.sprites.front_default,
-        color: PokemonHelper.getPokemonColor(types[0]?.name),
-        types,
-      };
-
-      return result;
-    },
-    [fetch, getPokemonType]
   );
 
   const getPokemonList = React.useCallback(async () => {
@@ -179,10 +181,9 @@ export const usePokemons = () => {
         mappedPokemons.push(result);
       }
 
-      updatePokemonsInStore(mappedPokemons);
       return mappedPokemons;
     },
-    [getPokemonList, getPokemonShort, updatePokemonsInStore]
+    [getPokemonList, getPokemonShort]
   );
 
   const getAllPokemons = React.useCallback(
@@ -196,10 +197,9 @@ export const usePokemons = () => {
         mappedPokemons.push(result);
       }
 
-      updatePokemonsInStore(mappedPokemons);
       return mappedPokemons;
     },
-    [getPokemonList, getPokemonShort, updatePokemonsInStore]
+    [getPokemonList, getPokemonShort]
   );
 
   return {
