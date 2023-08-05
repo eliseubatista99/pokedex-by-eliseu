@@ -6,79 +6,43 @@ import React from "react";
 
 export const usePokemonsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const formRef = React.useRef<HTMLFormElement>(null);
   const { goTo } = useCustomNavigation();
-  const { pokemonsLimit, updatePokemonLimit, setSelectedPokemon } =
-    usePokedexStore();
+  const { pokemonsLimit, setSelectedPokemon } = usePokedexStore();
   const pokeApi = usePokeApi();
-  const searchedPokemon = React.useRef<string>("");
-  const screenInitialized = React.useRef<boolean>(false);
-  const [pokemonsToDisplay, setPokemonsToDisplay] = React.useState<
-    PokemonShort[]
-  >([]);
 
   const handleOnPokemonClicked = (pokemon: PokemonShort) => {
     setSelectedPokemon(pokemon);
     goTo(ScreenPaths.pokemonDetails);
   };
 
-  const updatePokemonsToDisplay = React.useCallback(async () => {
-    try {
-      showLoader({
-        loadingText: "Retrieving pokemons",
-        style: "transparent",
-      });
-      let pokemonResult: PokemonShort[] | undefined =
-        await pokeApi.getAllPokemons(pokemonsLimit);
-      if (searchedPokemon.current) {
-        console.log("GETTING POKEMON", { searchedPokemon });
+  const handleUpdateItems = React.useCallback(
+    async (value: string) => {
+      try {
+        showLoader({
+          loadingText: "Retrieving pokemons",
+          style: "transparent",
+        });
+        let pokemonResult: PokemonShort[] | undefined =
+          await pokeApi.getAllPokemons(pokemonsLimit);
+        if (value) {
+          console.log("GETTING POKEMON", { searchedPokemon: value });
 
-        pokemonResult = await pokeApi.getPokemonsByName(
-          searchedPokemon.current
-        );
+          pokemonResult = await pokeApi.getPokemonsByName(value);
+        }
+
+        hideLoader();
+        return pokemonResult || [];
+      } catch (error) {
+        console.error("Failed to retrieve pokemons: ", error);
+        hideLoader();
+        return [];
       }
-
-      setPokemonsToDisplay(pokemonResult || []);
-      hideLoader();
-    } catch (error) {
-      hideLoader();
-      console.error("Failed to retrieve pokemons: ", error);
-    }
-  }, [hideLoader, pokeApi, pokemonsLimit, searchedPokemon, showLoader]);
-
-  const handleSearchPokemon = React.useCallback(() => {
-    if (formRef.current) {
-      formRef.current.requestSubmit();
-    }
-  }, []);
-
-  const handleOnSubmitForm = React.useCallback(
-    (event: any) => {
-      // Preventing the page from reloading
-      event?.preventDefault();
-
-      const formValue = event.currentTarget.elements[0].value as string;
-
-      searchedPokemon.current = formValue;
-      updatePokemonsToDisplay();
     },
-    [updatePokemonsToDisplay]
+    [hideLoader, pokeApi, pokemonsLimit, showLoader]
   );
 
-  React.useEffect(() => {
-    if (!screenInitialized.current) {
-      screenInitialized.current = true;
-      updatePokemonsToDisplay();
-    }
-  }, [updatePokemonsToDisplay]);
-
   return {
-    pokemons: pokemonsToDisplay,
-    pokemonSearch: {
-      formRef,
-      onSubmitForm: handleOnSubmitForm,
-      onChange: handleSearchPokemon,
-    },
+    updateItems: handleUpdateItems,
     onPokemonClicked: handleOnPokemonClicked,
   };
 };

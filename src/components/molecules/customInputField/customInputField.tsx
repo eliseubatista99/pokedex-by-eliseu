@@ -86,7 +86,7 @@ export const CustomInputField = ({
           ...inputStyles,
         }}
       >
-        {leftIcon}
+        {leftIcon && <div style={{ cursor: "pointer" }}>{leftIcon}</div>}
         <input
           name={name}
           type={type}
@@ -105,7 +105,7 @@ export const CustomInputField = ({
           value={value}
           onChange={onValueChanged}
         />
-        {rightIcon}
+        {rightIcon && <div style={{ cursor: "pointer" }}>{rightIcon}</div>}
       </div>
 
       {bottomMessage && (

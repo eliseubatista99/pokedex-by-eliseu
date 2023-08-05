@@ -16,7 +16,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
     usePokemonCardHelper(props);
 
   const typeChips = pokemonData.pokemonTypes.map((type) => (
-    <PokemonTypeChip type={type.name} />
+    <PokemonTypeChip key={type.name} type={type.name} />
   ));
 
   return (

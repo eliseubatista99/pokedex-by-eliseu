@@ -3,50 +3,38 @@ import {
   CustomInputField,
   Iconography,
   PokedexBottomContent,
+  PokedexListTemplate,
   PokemonCard,
 } from "@components";
+import { PokemonShort } from "@types";
+import React from "react";
 import { usePokemonsHelper } from "./pokemons.hook";
 
 export const Pokemons = () => {
-  const { pokemons, onPokemonClicked, pokemonSearch } = usePokemonsHelper();
+  const { onPokemonClicked, updateItems } = usePokemonsHelper();
 
-  const pokemonList = pokemons.map((pokemon) => (
-    <PokemonCard
-      key={pokemon.id}
-      pokemon={pokemon}
-      onClick={(pokemon) => onPokemonClicked(pokemon)}
-    />
-  ));
+  const mapListItems = React.useCallback(
+    (items: any[]) => {
+      return items.map((item) => {
+        const pokemon = item as PokemonShort;
+
+        return (
+          <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            onClick={(pokemon) => onPokemonClicked(pokemon)}
+          />
+        );
+      });
+    },
+    [onPokemonClicked]
+  );
 
   return (
-    <AppLayout bottomContent={<PokedexBottomContent />}>
-      <form
-        style={{ width: "100%" }}
-        ref={pokemonSearch.formRef}
-        onSubmit={pokemonSearch.onSubmitForm}
-      >
-        <CustomInputField
-          name="pokemon-search"
-          placeHolder="Search Pokemon"
-          rightIcon={
-            <Iconography.Search
-              width={"15px"}
-              height={"15px"}
-              onClick={() => pokemonSearch.onChange()}
-            />
-          }
-          inputStyles={{ borderRadius: "30px" }}
-          containerProps={{
-            padding: "15px 0",
-            margin: "0 auto",
-            maxWidth: "none",
-          }}
-        />
-      </form>
-
-      <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
-        {pokemonList}
-      </div>
-    </AppLayout>
+    <PokedexListTemplate
+      mapListItems={mapListItems}
+      updateItems={updateItems}
+      input={{ placeholder: "Search pokemon" }}
+    />
   );
 };
