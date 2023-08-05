@@ -7,7 +7,7 @@ import React from "react";
 export const usePokemonsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
   const { goTo } = useCustomNavigation();
-  const { pokemonsLimit, setSelectedPokemon } = usePokedexStore();
+  const { setSelectedPokemon } = usePokedexStore();
   const pokeApi = usePokeApi();
 
   const handleOnPokemonClicked = (pokemon: PokemonShort) => {
@@ -16,14 +16,14 @@ export const usePokemonsHelper = () => {
   };
 
   const handleUpdateItems = React.useCallback(
-    async (value: string) => {
+    async (value: string, limit: number) => {
       try {
         showLoader({
           loadingText: "Retrieving pokemons",
           style: "transparent",
         });
         let pokemonResult: PokemonShort[] | undefined =
-          await pokeApi.getAllPokemons(pokemonsLimit);
+          await pokeApi.getAllPokemons(limit);
         if (value) {
           console.log("GETTING POKEMON", { searchedPokemon: value });
 
@@ -38,7 +38,7 @@ export const usePokemonsHelper = () => {
         return [];
       }
     },
-    [hideLoader, pokeApi, pokemonsLimit, showLoader]
+    [hideLoader, pokeApi, showLoader]
   );
 
   return {

@@ -4,11 +4,12 @@ import {
   Iconography,
   PokedexBottomContent,
 } from "@components";
+import { APP_PADDING_LEFT, APP_PADDING_RIGHT } from "@constants";
 import { usePokedexListTemplateHelper } from "./pokedexList.hook";
 
 export interface PokedexListTemplateProps {
   mapListItems: (items: any[]) => JSX.Element[];
-  updateItems: (value: string) => Promise<any[]>;
+  updateItems: (value: string, limit: number) => Promise<any[]>;
   input?: {
     placeholder: string;
   };
@@ -16,15 +17,25 @@ export interface PokedexListTemplateProps {
 
 export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
   const { mapListItems, input } = props;
-  const { items, searchInput } = usePokedexListTemplateHelper(props);
+  const { list, searchInput } = usePokedexListTemplateHelper(props);
 
-  const listItems = mapListItems(items);
+  const listItems = mapListItems(list.items);
 
   return (
-    <AppLayout bottomContent={<PokedexBottomContent />}>
+    <AppLayout
+      styles={{ height: "100%" }}
+      screen={{ styles: { height: "100%", overflow: "hidden" } }}
+      bottomContent={<PokedexBottomContent />}
+    >
       {input && (
         <form
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            height: "75px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           ref={searchInput.formRef}
           onSubmit={searchInput.onSubmitForm}
         >
@@ -40,7 +51,6 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
             }
             inputStyles={{ borderRadius: "30px" }}
             containerProps={{
-              padding: "15px 0",
               margin: "0 auto",
               maxWidth: "none",
             }}
@@ -48,8 +58,21 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
         </form>
       )}
 
-      <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
-        {listItems}
+      <div
+        ref={list.scrollRef}
+        style={{
+          width: `calc(100% + ${APP_PADDING_LEFT + APP_PADDING_RIGHT}px`,
+          flexDirection: "column",
+          height: "fit-content",
+          flex: 1,
+          overflow: "auto",
+          padding: `0 ${APP_PADDING_RIGHT}px 0 ${APP_PADDING_LEFT}px`,
+        }}
+      >
+        <div ref={list.listRef} style={{ width: "100%", gap: "12px" }}>
+          {" "}
+          {listItems}
+        </div>
       </div>
     </AppLayout>
   );

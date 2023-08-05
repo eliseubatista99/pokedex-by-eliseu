@@ -38,6 +38,7 @@ export const AppLayout = ({
         />
       )}
       <div
+        data-testid="app-layout"
         style={{
           width: "100%",
           flex: 1,
