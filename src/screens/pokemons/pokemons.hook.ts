@@ -11,6 +11,7 @@ export const usePokemonsHelper = () => {
     usePokedexStore();
   const { getAllPokemons } = usePokeApi();
   const { pokemons } = usePokeApiStore();
+  const [searchedPokemon, setSearchedPokemon] = React.useState<string>("");
   const screenInitialized = React.useRef<boolean>(false);
 
   const handleFetchPokemons = React.useCallback(async () => {
@@ -27,10 +28,22 @@ export const usePokemonsHelper = () => {
     }
   }, [getAllPokemons, hideLoader, pokemonsLimit, showLoader]);
 
+  const handleSearchPokemonValueChanged = React.useCallback((value: string) => {
+    setSearchedPokemon(value);
+  }, []);
+
   const handleOnPokemonClicked = (pokemon: PokemonShort) => {
     setSelectedPokemon(pokemon);
     goTo(ScreenPaths.pokemonDetails);
   };
+
+  const getPokemonsToDisplay = React.useCallback(() => {
+    const filteredPokemons = pokemons.filter((pokemon) =>
+      pokemon.name.includes(searchedPokemon)
+    );
+
+    return filteredPokemons;
+  }, [pokemons, searchedPokemon]);
 
   React.useEffect(() => {
     if (!screenInitialized.current) {
@@ -40,7 +53,11 @@ export const usePokemonsHelper = () => {
   }, [handleFetchPokemons]);
 
   return {
-    pokemons,
+    pokemons: getPokemonsToDisplay(),
+    pokemonSearch: {
+      value: searchedPokemon,
+      onChange: handleSearchPokemonValueChanged,
+    },
     onPokemonClicked: handleOnPokemonClicked,
   };
 };

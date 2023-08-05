@@ -7,6 +7,7 @@ import { NavigationPokedex } from "./navigation_pokedex";
 import { NavigationRegions } from "./navigation_regions";
 import { NavigationFavorite } from "./navigation_favorite";
 import { NavLeft } from "./navLeft";
+import { Search } from "./search";
 
 export const Icons = {
   NavLeft,
@@ -18,4 +19,5 @@ export const Icons = {
   NavigationFavorite,
   NavigationPokedex,
   NavigationRegions,
+  Search,
 };
