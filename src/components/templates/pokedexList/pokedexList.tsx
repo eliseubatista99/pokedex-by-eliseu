@@ -13,10 +13,11 @@ export interface PokedexListTemplateProps {
   input?: {
     placeholder: string;
   };
+  filters?: React.ReactNode;
 }
 
 export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
-  const { mapListItems, input } = props;
+  const { mapListItems, input, filters } = props;
   const { list, searchInput } = usePokedexListTemplateHelper(props);
 
   const listItems = mapListItems(list.items);
@@ -32,9 +33,10 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
           style={{
             width: "100%",
             display: "flex",
-            height: "75px",
+            height: "56.25px",
             alignItems: "center",
             justifyContent: "center",
+            borderBottom: "1px solid var(--escala-de-cinza-50, #F2F2F2)",
           }}
           ref={searchInput.formRef}
           onSubmit={searchInput.onSubmitForm}
@@ -57,6 +59,8 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
           />
         </form>
       )}
+
+      {filters}
 
       <div
         ref={list.scrollRef}

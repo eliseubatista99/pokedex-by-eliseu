@@ -1,4 +1,3 @@
-import React from "react";
 import { usePokemons } from "./usePokemons";
 
 export const usePokeApi = () => {

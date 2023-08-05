@@ -1,5 +1,5 @@
 import { CustomImage, PokemonTypeChip, Typography } from "@components";
-import { PokemonHelper, TextHelper } from "@helpers";
+import { PokemonHelper } from "@helpers";
 import { PokemonShort } from "@types";
 import { CSSProperties } from "react";
 import { usePokemonCardHelper } from "./pokemonCard.hook";

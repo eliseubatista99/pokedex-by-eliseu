@@ -20,20 +20,53 @@ export const Chip = ({
     <div
       data-testid="chip"
       style={{
-        padding: "8px 16px",
+        padding: "8px 12px",
         background: "#333333",
         flexDirection: "row",
-        gap: "8px",
+        gap: "6px",
         cursor: "pointer",
+        borderRadius: "50px",
+        color: "#ffffff",
+        position: "relative",
+        alignItems: "center",
+        justifyContent: "space-between",
         ...styles,
       }}
       onClick={() => onClick?.()}
     >
-      {leftIcon && <div>{leftIcon}</div>}
-      <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>
+      {leftIcon && (
+        <div
+          style={{
+            alignItems: "flex-start",
+            maxHeight: "18px",
+          }}
+        >
+          {leftIcon}
+        </div>
+      )}
+
+      <Typography
+        styles={{
+          flex: 1,
+          fontSize: "12px",
+          fontWeight: 600,
+          maxWidth: "70%",
+          margin: "0 auto",
+        }}
+        overflowEllipsis={true}
+      >
         {text}
       </Typography>
-      {rightIcon && <div>{rightIcon}</div>}
+      {rightIcon && (
+        <div
+          style={{
+            alignItems: "flex-end",
+            maxHeight: "18px",
+          }}
+        >
+          {rightIcon}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,8 +1,6 @@
 import {
-  AppLayout,
-  CustomInputField,
+  Chip,
   Iconography,
-  PokedexBottomContent,
   PokedexListTemplate,
   PokemonCard,
 } from "@components";
@@ -35,6 +33,38 @@ export const Pokemons = () => {
       mapListItems={mapListItems}
       updateItems={updateItems}
       input={{ placeholder: "Search pokemon" }}
+      filters={
+        <div
+          style={{
+            display: "grid",
+            width: "100%",
+            gridTemplateColumns: "repeat(2, calc(50% - 6px))",
+            gridGap: "12px",
+            padding: "8px 0 12px 0",
+          }}
+        >
+          <Chip
+            text={"All types"}
+            rightIcon={
+              <Iconography.NavLeft
+                stroke="#ffffff"
+                width="18px"
+                containerProps={{ transform: "rotateZ(-90deg)" }}
+              />
+            }
+          />
+          <Chip
+            text={"Lowest Number"}
+            rightIcon={
+              <Iconography.NavLeft
+                stroke="#ffffff"
+                width="18px"
+                containerProps={{ transform: "rotateZ(-90deg)" }}
+              />
+            }
+          />
+        </div>
+      }
     />
   );
 };
