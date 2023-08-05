@@ -11,6 +11,8 @@ import onboarding2Figure from "./onboarding2_figure.png";
 import registerFigure from "./register_figure.png";
 import registerDoneFigure from "./registerDone_figure.png";
 
+import { pokemonTypes } from "./pokemonTypes";
+
 export const ImageAssets = {
   accountIcon,
   back,
@@ -24,4 +26,5 @@ export const ImageAssets = {
   onboarding2Figure,
   registerFigure,
   registerDoneFigure,
+  pokemonTypes,
 };

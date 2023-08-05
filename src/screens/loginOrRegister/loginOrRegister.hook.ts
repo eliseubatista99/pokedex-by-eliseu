@@ -6,7 +6,7 @@ export const useLoginOrRegisterHelper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleGoToPokedex = React.useCallback(() => {
-    goTo(ScreenPaths.favorites);
+    goTo(ScreenPaths.pokemons);
   }, [goTo]);
 
   const handleGoToRegister = React.useCallback(() => {

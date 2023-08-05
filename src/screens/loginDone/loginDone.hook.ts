@@ -6,7 +6,7 @@ export const useLoginDoneHelper = () => {
   const { goTo } = useCustomNavigation();
 
   const handleClickContinue = React.useCallback(() => {
-    goTo(ScreenPaths.favorites);
+    goTo(ScreenPaths.pokemons);
   }, [goTo]);
 
   return {

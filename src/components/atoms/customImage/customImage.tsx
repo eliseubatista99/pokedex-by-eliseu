@@ -21,7 +21,7 @@ export const CustomImage = ({
         overflow: "hidden",
         position: "relative",
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "center",
         justifyContent: "center",
         ...containerStyles,
       }}

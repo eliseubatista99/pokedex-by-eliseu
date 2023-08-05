@@ -13,7 +13,7 @@ export const useSplashScreenHelper = () => {
     hideLoader();
 
     if (firebaseUser) {
-      goTo(ScreenPaths.favorites);
+      goTo(ScreenPaths.pokemons);
     } else {
       goTo(ScreenPaths.onboarding1);
     }

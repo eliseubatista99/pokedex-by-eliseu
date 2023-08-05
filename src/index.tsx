@@ -62,6 +62,8 @@ root.render(
           font-style: normal;
           line-height: normal;
           font-family: Poppins;
+          width: fit-content;
+          height: fit-content;
         }
 
         @media only screen and (min-width: 769px) {

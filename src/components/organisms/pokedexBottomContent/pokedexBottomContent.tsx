@@ -1,5 +1,5 @@
 import { Iconography } from "@components";
-import { ScreenPaths } from "@constants";
+import { POKEDEX_BOTTOM_CONTENT_HEIGHT, ScreenPaths } from "@constants";
 import { Blocks } from "./blocks";
 import { usePokedexBottomContentHelper } from "./pokedexBottomContent.hook";
 
@@ -11,18 +11,21 @@ export const PokedexBottomContent = () => {
       style={{
         display: "grid",
         width: "100%",
-        height: "54px",
+        height: `${POKEDEX_BOTTOM_CONTENT_HEIGHT}px`,
         borderTop: "1px solid #E6E6E6",
         backgroundColor: "#ffffff",
         gridTemplateColumns: "repeat(4, 1fr)",
-        zIndex: 10,
+        position: "relative",
       }}
     >
       <Blocks.NavigationItem
-        text={"Pokedéx"}
+        text={"Pokémons"}
         icon={<Iconography.NavigationPokedex />}
-        onClick={() => onItemClicked(ScreenPaths.pokedex)}
-        isSelected={currentPath === ScreenPaths.pokedex}
+        onClick={() => onItemClicked(ScreenPaths.pokemons)}
+        isSelected={
+          currentPath === ScreenPaths.pokemons ||
+          currentPath === ScreenPaths.pokemonDetails
+        }
       />
       <Blocks.NavigationItem
         text={"Regions"}

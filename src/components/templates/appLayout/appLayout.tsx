@@ -38,6 +38,7 @@ export const AppLayout = ({
         />
       )}
       <div
+        data-testid="app-layout"
         style={{
           width: "100%",
           flex: 1,
@@ -50,7 +51,14 @@ export const AppLayout = ({
         {header && <AppHeader {...header} />}
         <AppScreen {...screen}>{children}</AppScreen>
         {bottomContent && (
-          <div style={{ position: "sticky", bottom: 0, width: "100%" }}>
+          <div
+            style={{
+              position: "sticky",
+              bottom: 0,
+              width: "100%",
+              zIndex: 100,
+            }}
+          >
             {bottomContent}
           </div>
         )}
