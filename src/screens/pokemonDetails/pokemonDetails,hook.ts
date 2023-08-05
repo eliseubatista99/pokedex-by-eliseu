@@ -1,6 +1,5 @@
-import { ScreenPaths } from "@constants";
-import { useCustomNavigation, usePokeApi } from "@hooks";
-import { useBaseStore, usePokeApiStore, usePokedexStore } from "@store";
+import { usePokeApi } from "@hooks";
+import { useBaseStore, usePokedexStore } from "@store";
 import { PokemonFull, PokemonShort } from "@types";
 import React from "react";
 
