@@ -8,4 +8,6 @@ export const APP_PADDING_RIGHT = 12;
 export const APP_PADDING_TOP = 7.5;
 export const APP_PADDING_BOTTOM = 22.5;
 
+export const DRAWER_PADDING = 24;
+
 export const POKEDEX_BOTTOM_CONTENT_HEIGHT = 54;

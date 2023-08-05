@@ -1,14 +1,16 @@
-import React from "react";
+import { DRAWER_PADDING } from "@constants";
+import React, { CSSProperties } from "react";
 import { useBaseDrawerHelper } from "./baseDrawer.hook";
 
 export interface BaseDrawerProps {
   isVisible: boolean;
   children?: React.ReactNode;
-  onCloseDrawer: () => void;
+  styles?: CSSProperties;
+  onCloseDrawer: (data?: any) => void;
 }
 
 export const BaseDrawer = (props: BaseDrawerProps) => {
-  const { isVisible, children } = props;
+  const { isVisible, children, styles } = props;
   const {
     drawerParentRef,
     drawerRef,
@@ -53,10 +55,11 @@ export const BaseDrawer = (props: BaseDrawerProps) => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              padding: "24px",
+              padding: `${DRAWER_PADDING}px`,
               zIndex: 1001,
               position: "absolute",
               bottom: `${drawerBottomDistance}px`,
+              ...styles,
             }}
             onClick={(e) => {
               e.stopPropagation();

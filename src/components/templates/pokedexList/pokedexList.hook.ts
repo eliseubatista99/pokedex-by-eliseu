@@ -11,8 +11,9 @@ export const usePokedexListTemplateHelper = (
   const searchInputValue = React.useRef<string>("");
   const screenInitialized = React.useRef<boolean>(false);
   const updatingItems = React.useRef<boolean>(false);
-  const limit = React.useRef<number>(20);
-  const [itemsToDisplay, setItemsToDisplay] = React.useState<any[]>([]);
+
+  const cachedFilter = React.useRef<string>();
+  const cachedOrder = React.useRef<string>();
 
   const handleSearch = React.useCallback(() => {
     if (formRef.current) {
@@ -27,16 +28,11 @@ export const usePokedexListTemplateHelper = (
       }
 
       updatingItems.current = true;
-      const newItems = await props.updateItems(value || "", limit.current);
-
-      if (!value && limit.current < newItems.length) {
-        limit.current = newItems.length;
-      }
-      setItemsToDisplay(newItems || []);
+      await props.updateItems(value || "");
 
       updatingItems.current = false;
     },
-    [limit, props]
+    [props]
   );
 
   const handleOnSubmitForm = React.useCallback(
@@ -57,12 +53,29 @@ export const usePokedexListTemplateHelper = (
     scrollElem: scrollRef,
     listElem: listRef,
     onTouchBottom: () => {
-      if (!searchInputValue.current && !updatingItems.current) {
-        limit.current += 20;
+      if (
+        !searchInputValue.current &&
+        !updatingItems.current &&
+        !props.options?.filter
+      ) {
+        props.increaseLimit(20);
         updateItems();
       }
     },
   });
+
+  React.useEffect(() => {
+    if (
+      props.options?.filter !== cachedFilter.current ||
+      props.options?.order !== cachedOrder.current
+    ) {
+      console.log("ZAU", props.options?.order !== cachedOrder.current);
+
+      cachedFilter.current = props.options?.filter;
+      cachedOrder.current = props.options?.order;
+      updateItems();
+    }
+  }, [props.options?.filter, props.options?.order, updateItems]);
 
   React.useEffect(() => {
     if (!screenInitialized.current) {
@@ -75,7 +88,6 @@ export const usePokedexListTemplateHelper = (
     list: {
       scrollRef,
       listRef,
-      items: itemsToDisplay,
     },
     searchInput: {
       formRef,
