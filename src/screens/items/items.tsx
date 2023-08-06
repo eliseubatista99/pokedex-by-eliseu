@@ -31,7 +31,9 @@ export const Items = () => {
         input={{ placeholder: "Search item" }}
         options={{
           filter: {
-            value: categoryFilter.selectedCategoryFilter,
+            value: ItemHelper.parseItemNames(
+              categoryFilter.selectedCategoryFilter
+            ),
             noValueText: "All Categories",
             onClick: categoryFilter.openDrawer,
             styles: {

@@ -29,5 +29,5 @@ export enum EPokemonsTypes {
 
 export enum EItemCategory {
   AllCategories = "",
-  StandardBall = "Standard Balls",
+  StandardBall = "standard-balls",
 }

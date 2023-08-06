@@ -8,8 +8,14 @@ export const DrawerCategoryFilter = (props: BaseDrawerProps) => {
   const { onCategorySelected } = useCategoryFilterDrawerHelper(props);
 
   const categories = [
-    { name: EItemCategory.AllCategories, value: EItemCategory.AllCategories },
-    { name: EItemCategory.StandardBall, value: EItemCategory.StandardBall },
+    {
+      name: ItemHelper.parseItemNames(EItemCategory.AllCategories),
+      value: EItemCategory.AllCategories,
+    },
+    {
+      name: ItemHelper.parseItemNames(EItemCategory.StandardBall),
+      value: EItemCategory.StandardBall,
+    },
   ];
 
   const chips = categories.map((category) => (

@@ -19,6 +19,7 @@ import {
   Items,
   Pokemons,
   PokemonDetails,
+  ItemDetails,
 } from "@screens";
 import { ScreenPaths } from "@constants";
 import { useAppHelper } from "./App.hook";
@@ -51,6 +52,7 @@ export const App = () => {
         <Route path={ScreenPaths.pokemons} element={<Pokemons />} />
         <Route path={ScreenPaths.pokemonDetails} element={<PokemonDetails />} />
         <Route path={ScreenPaths.items} element={<Items />} />
+        <Route path={ScreenPaths.itemDetails} element={<ItemDetails />} />
         <Route path={ScreenPaths.favorites} element={<Favorites />} />
         <Route path={ScreenPaths.account} element={<Account />} />
         <Route path={ScreenPaths.updateEmail} element={<UpdateEmail />} />

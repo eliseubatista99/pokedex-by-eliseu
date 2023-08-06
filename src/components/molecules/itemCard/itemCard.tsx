@@ -54,7 +54,9 @@ export const ItemCard = (props: ItemCardProps) => {
           }}
         >
           <CardChip
-            text={TextHelper.getPascalCase(itemData.itemCategory)}
+            text={TextHelper.getPascalCase(
+              ItemHelper.parseItemNames(itemData.itemCategory)
+            )}
             styles={{
               background: `${ItemHelper.getItemColor(itemData.itemCategory)}`,
             }}

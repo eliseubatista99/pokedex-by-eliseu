@@ -1,19 +1,9 @@
-import { EItemCategory, EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
+import { EItemCategory, POKE_API_BASE_URL } from "@constants";
+import { ItemHelper } from "@helpers";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
-import {
-  ApiEvolutionChain,
-  ApiPokemon,
-  ApiPokemonList,
-  ApiPokemonSpecies,
-  ApiPokemonType,
-  PokemonShort,
-  PokemonFull,
-  PokemonType,
-} from "@types";
 import React from "react";
-import { ApiItem, ApiItemList } from "src/types/pokeapi/items";
-import { ItemEffect, ItemFull, ItemShort } from "src/types/pokedex/items";
+import { ApiItem, ApiItemList, ItemEffect, ItemFull, ItemShort } from "@types";
 
 export const useItems = () => {
   const fetch = useFetch();
@@ -23,6 +13,29 @@ export const useItems = () => {
     updateItem: updateItemInStore,
     saveItemsList,
   } = usePokeApiStore();
+
+  const mergeItemsLists = (
+    sourceList: ItemShort[],
+    targetList: ItemShort[]
+  ) => {
+    const newResult: ItemShort[] = [...targetList];
+    let alreadyInList = false;
+
+    sourceList.forEach((source) => {
+      alreadyInList = false;
+      newResult.forEach((target) => {
+        if (source.name === target.name) {
+          alreadyInList = true;
+        }
+      });
+
+      if (!alreadyInList) {
+        newResult.push(source);
+      }
+    });
+
+    return newResult;
+  };
 
   const getItemShort = React.useCallback(
     async (name: string) => {
@@ -50,12 +63,6 @@ export const useItems = () => {
 
   const getItemFull = React.useCallback(
     async (name: string) => {
-      const itemInStore = itemsInStore.find((item) => item.name === name);
-
-      if (itemInStore) {
-        return itemInStore;
-      }
-
       const item = await fetch<ApiItem>(`${POKE_API_BASE_URL}item/${name}`);
       const attributes: string[] = [];
       const effects: ItemEffect[] = [];
@@ -83,7 +90,7 @@ export const useItems = () => {
 
       return result;
     },
-    [fetch, itemsInStore, updateItemInStore]
+    [fetch, updateItemInStore]
   );
 
   const getItemList = React.useCallback(async () => {
@@ -121,16 +128,18 @@ export const useItems = () => {
     async (limit = 20, offset = 0) => {
       const itemList = await getItemList();
 
-      const mappedItems: ItemShort[] = [];
+      let mappedItems: ItemShort[] = [];
 
       for (let i = offset; i < limit; i++) {
         const result = await getItemShort(itemList[i].name);
         mappedItems.push(result);
       }
 
+      mappedItems = mergeItemsLists(mappedItems, itemsInStore);
+
       return mappedItems;
     },
-    [getItemList, getItemShort]
+    [getItemList, getItemShort, itemsInStore]
   );
 
   return {

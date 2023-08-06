@@ -2,6 +2,7 @@ import { ImageAssets } from "@assets";
 import { EItemCategory, EOrder, EPokemonsTypes } from "@constants";
 import { PokemonShort } from "@types";
 import { ItemShort } from "src/types/pokedex/items";
+import { TextHelper } from "../text";
 
 export class ItemHelper {
   static getItemId = (id: number) => {
@@ -98,6 +99,14 @@ export class ItemHelper {
         result = this.sortById(result);
         break;
     }
+
+    return result;
+  };
+
+  static parseItemNames = (name: string) => {
+    const split = name.split("-");
+    const splitPascalCase = split.map((word) => TextHelper.getPascalCase(word));
+    const result = splitPascalCase.join(" ");
 
     return result;
   };

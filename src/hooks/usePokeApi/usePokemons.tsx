@@ -22,6 +22,29 @@ export const usePokemons = () => {
     savePokemonList,
   } = usePokeApiStore();
 
+  const mergePokemonsLists = (
+    sourceList: PokemonShort[],
+    targetList: PokemonShort[]
+  ) => {
+    const newResult: PokemonShort[] = [...targetList];
+    let alreadyInList = false;
+
+    sourceList.forEach((source) => {
+      alreadyInList = false;
+      newResult.forEach((target) => {
+        if (source.name === target.name) {
+          alreadyInList = true;
+        }
+      });
+
+      if (!alreadyInList) {
+        newResult.push(source);
+      }
+    });
+
+    return newResult;
+  };
+
   const getEvolutionChain = React.useCallback(
     async (id: string) => {
       const result = await fetch<ApiEvolutionChain>(
@@ -189,16 +212,18 @@ export const usePokemons = () => {
     async (limit = 20, offset = 0) => {
       const pokemonList = await getPokemonList();
 
-      const mappedPokemons: PokemonShort[] = [];
+      let mappedPokemons: PokemonShort[] = [];
 
       for (let i = offset; i < limit; i++) {
         const result = await getPokemonShort(pokemonList[i].name);
         mappedPokemons.push(result);
       }
 
+      mappedPokemons = mergePokemonsLists(mappedPokemons, pokemonsInStore);
+
       return mappedPokemons;
     },
-    [getPokemonList, getPokemonShort]
+    [getPokemonList, getPokemonShort, pokemonsInStore]
   );
 
   return {

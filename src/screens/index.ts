@@ -9,6 +9,7 @@ export * from "./onboarding2";
 export * from "./pokemons";
 export * from "./pokemonDetails";
 export * from "./items";
+export * from "./itemDetails";
 export * from "./register";
 export * from "./registerData";
 export * from "./registerDone";

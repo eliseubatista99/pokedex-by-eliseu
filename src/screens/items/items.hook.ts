@@ -1,8 +1,7 @@
-import { EItemCategory, EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
-import { ItemHelper, PokemonHelper } from "@helpers";
+import { EItemCategory, EOrder, ScreenPaths } from "@constants";
+import { ItemHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
-import { PokemonShort } from "@types";
 import React from "react";
 import { ItemShort } from "src/types/pokedex/items";
 
@@ -28,7 +27,7 @@ export const useItemsHelper = () => {
 
   const handleOnItemClicked = (item: ItemShort) => {
     setSelectedItem(item);
-    goTo(ScreenPaths.pokemonDetails);
+    goTo(ScreenPaths.itemDetails);
   };
 
   const handleIncreaseLimit = (count: number) => {
