@@ -1,5 +1,5 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, EItemCategory, EPokemonsTypes } from "@constants";
+import { DRAWER_PADDING, EItemCategory } from "@constants";
 import { ItemHelper } from "@helpers";
 import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
 import { useCategoryFilterDrawerHelper } from "./categoryFilter.hook";

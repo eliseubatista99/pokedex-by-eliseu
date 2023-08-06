@@ -1,6 +1,4 @@
-import { ImageAssets } from "@assets";
-import { EItemCategory, EOrder, EPokemonsTypes } from "@constants";
-import { PokemonShort } from "@types";
+import { EItemCategory, EOrder } from "@constants";
 import { ItemShort } from "src/types/pokedex/items";
 import { TextHelper } from "../text";
 
