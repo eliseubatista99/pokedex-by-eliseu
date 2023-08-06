@@ -16,7 +16,7 @@ import {
   UpdateName,
   UpdatePassword,
   Favorites,
-  Regions,
+  Items,
   Pokemons,
   PokemonDetails,
 } from "@screens";
@@ -50,7 +50,7 @@ export const App = () => {
         <Route path={ScreenPaths.forgotPassword} element={<ForgotPassword />} />
         <Route path={ScreenPaths.pokemons} element={<Pokemons />} />
         <Route path={ScreenPaths.pokemonDetails} element={<PokemonDetails />} />
-        <Route path={ScreenPaths.regions} element={<Regions />} />
+        <Route path={ScreenPaths.items} element={<Items />} />
         <Route path={ScreenPaths.favorites} element={<Favorites />} />
         <Route path={ScreenPaths.account} element={<Account />} />
         <Route path={ScreenPaths.updateEmail} element={<UpdateEmail />} />

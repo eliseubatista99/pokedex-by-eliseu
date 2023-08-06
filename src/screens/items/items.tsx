@@ -1,9 +1,9 @@
 import { AppLayout, PokedexBottomContent } from "@components";
 
-export const Regions = () => {
+export const Items = () => {
   return (
     <AppLayout
-      header={{ type: "pokedex", title: "Regions" }}
+      header={{ type: "pokedex", title: "Items" }}
       bottomContent={<PokedexBottomContent />}
     ></AppLayout>
   );

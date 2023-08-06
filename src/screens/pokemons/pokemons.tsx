@@ -1,6 +1,7 @@
 import { PokedexListTemplate, PokemonCard } from "@components";
-import { EPokemonsOrder } from "@constants";
+import { EPokemonsOrder, EPokemonsTypes } from "@constants";
 import { DrawerTypesFilter, OrderDrawer } from "@drawers";
+import { PokemonHelper } from "@helpers";
 import { usePokemonsHelper } from "./pokemons.hook";
 
 export const Pokemons = () => {
@@ -29,17 +30,28 @@ export const Pokemons = () => {
         increaseLimit={onIncreaseLimit}
         input={{ placeholder: "Search pokemon" }}
         options={{
-          filter: typesFilter.selectedTypeFilter,
-          noFilterText: "All Types",
-          onClickFilter: typesFilter.openDrawer,
-          order: order.selectedOrder,
-          noOrderText: "Lesser Number",
-          onClickOrder: order.openDrawer,
+          filter: {
+            value: typesFilter.selectedTypeFilter,
+            noValueText: "All Types",
+            onClick: typesFilter.openDrawer,
+            styles: {
+              background: PokemonHelper.getPokemonColor(
+                typesFilter.selectedTypeFilter
+              ),
+            },
+          },
+          order: {
+            value: order.selectedOrder,
+            noValueText: "Lesser Number",
+            onClick: order.openDrawer,
+          },
         }}
       />
       <DrawerTypesFilter
         isVisible={typesFilter.isVisible}
-        onCloseDrawer={(data) => typesFilter.closeDrawer(data as string)}
+        onCloseDrawer={(data) =>
+          typesFilter.closeDrawer(data as EPokemonsTypes)
+        }
       />
       <OrderDrawer
         isVisible={order.isVisible}

@@ -1,4 +1,4 @@
-import { EPokemonsOrder, ScreenPaths } from "@constants";
+import { EPokemonsOrder, EPokemonsTypes, ScreenPaths } from "@constants";
 import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
@@ -20,7 +20,9 @@ export const usePokemonsHelper = () => {
   const [orderDrawerVisible, setOrderDrawerVisible] =
     React.useState<boolean>(false);
 
-  const selectedTypeFilter = React.useRef<string>("");
+  const selectedTypeFilter = React.useRef<EPokemonsTypes>(
+    EPokemonsTypes.AllTypes
+  );
   const selectedOrder = React.useRef<EPokemonsOrder>(
     EPokemonsOrder.LesserNumber
   );
@@ -89,7 +91,7 @@ export const usePokemonsHelper = () => {
     setTypesFilterDrawerVisible(true);
   };
 
-  const handleCloseTypesFilterDrawer = (type: string) => {
+  const handleCloseTypesFilterDrawer = (type: EPokemonsTypes) => {
     selectedTypeFilter.current = type;
     setTypesFilterDrawerVisible(false);
   };

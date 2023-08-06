@@ -60,6 +60,8 @@ export class PokemonHelper {
 
   static getPokemonColor = (pokemonType: EPokemonsTypes | null | undefined) => {
     switch (pokemonType) {
+      case EPokemonsTypes.AllTypes:
+        return "#333333";
       case EPokemonsTypes.Grass:
         return "#63BC5A";
       case EPokemonsTypes.Water:

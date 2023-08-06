@@ -12,7 +12,7 @@ export const ScreenPaths = {
   forgotPassword: "/forgot-password",
   pokemons: "/pokemons",
   pokemonDetails: "/pokemon-details",
-  regions: "/regions",
+  items: "/items",
   favorites: "/favorites",
   account: "/account",
   updateEmail: "/update-email",

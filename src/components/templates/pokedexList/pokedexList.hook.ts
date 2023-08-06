@@ -66,11 +66,11 @@ export const usePokedexListTemplateHelper = (
 
   React.useEffect(() => {
     if (
-      props.options?.filter !== cachedFilter.current ||
-      props.options?.order !== cachedOrder.current
+      props.options?.filter?.value !== cachedFilter.current ||
+      props.options?.order?.value !== cachedOrder.current
     ) {
-      cachedFilter.current = props.options?.filter;
-      cachedOrder.current = props.options?.order;
+      cachedFilter.current = props.options?.filter?.value;
+      cachedOrder.current = props.options?.order?.value;
       updateItems(searchInputValue.current);
     }
   }, [props.options?.filter, props.options?.order, updateItems]);
