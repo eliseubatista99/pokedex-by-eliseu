@@ -1,4 +1,6 @@
 import { ImageAssets } from "@assets";
+import { PokemonsOrder } from "@constants";
+import { PokemonShort } from "@types";
 
 export class PokemonHelper {
   static getPokemonId = (id: number) => {
@@ -93,5 +95,82 @@ export class PokemonHelper {
       default:
         return "#919AA2";
     }
+  };
+
+  private static sortById = (pokemons: PokemonShort[], ascendant = true) => {
+    const len = pokemons.length;
+    let i, j, temp;
+    let swapped;
+    for (i = 0; i < len - 1; i++) {
+      swapped = false;
+      for (j = 0; j < len - i - 1; j++) {
+        if (pokemons[j].id > pokemons[j + 1].id) {
+          temp = pokemons[j];
+          pokemons[j] = pokemons[j + 1];
+          pokemons[j + 1] = temp;
+          swapped = true;
+        }
+      }
+
+      if (!swapped) {
+        break;
+      }
+    }
+
+    if (!ascendant) {
+      pokemons = pokemons.reverse();
+    }
+
+    return pokemons;
+  };
+
+  private static sortByName = (pokemons: PokemonShort[], ascendant = true) => {
+    const len = pokemons.length;
+    let i, j, temp;
+    let swapped;
+    for (i = 0; i < len - 1; i++) {
+      swapped = false;
+      for (j = 0; j < len - i - 1; j++) {
+        if (
+          pokemons[j].name.toLowerCase() > pokemons[j + 1].name.toLowerCase()
+        ) {
+          temp = pokemons[j];
+          pokemons[j] = pokemons[j + 1];
+          pokemons[j + 1] = temp;
+          swapped = true;
+        }
+      }
+
+      if (!swapped) {
+        break;
+      }
+    }
+
+    if (!ascendant) {
+      pokemons = pokemons.reverse();
+    }
+
+    return pokemons;
+  };
+
+  static sortPokemons = (pokemons: PokemonShort[], order: PokemonsOrder) => {
+    let result = pokemons;
+
+    switch (order) {
+      case PokemonsOrder.BiggerNumber:
+        result = this.sortById(result, false);
+        break;
+      case PokemonsOrder.A_Z:
+        result = this.sortByName(result);
+        break;
+      case PokemonsOrder.Z_A:
+        result = this.sortByName(result, false);
+        break;
+      default:
+        result = this.sortById(result);
+        break;
+    }
+
+    return result;
   };
 }

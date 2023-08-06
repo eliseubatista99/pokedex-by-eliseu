@@ -1,4 +1,5 @@
-import { ScreenPaths } from "@constants";
+import { PokemonsOrder, ScreenPaths } from "@constants";
+import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import { PokemonShort } from "@types";
@@ -20,7 +21,7 @@ export const usePokemonsHelper = () => {
     React.useState<boolean>(false);
 
   const selectedTypeFilter = React.useRef<string>("");
-  const selectedOrder = React.useRef<string>("");
+  const selectedOrder = React.useRef<PokemonsOrder>(PokemonsOrder.LesserNumber);
 
   const pokeApi = usePokeApi();
 
@@ -47,7 +48,6 @@ export const usePokemonsHelper = () => {
           pokemonResult = await pokeApi.getPokemonsByName(value);
         }
 
-        console.log("ZAU", selectedTypeFilter.current);
         if (selectedTypeFilter.current) {
           pokemonResult = pokemonResult.filter((pokemon) => {
             let hasType = false;
@@ -62,6 +62,11 @@ export const usePokemonsHelper = () => {
             return hasType;
           });
         }
+
+        pokemonResult = PokemonHelper.sortPokemons(
+          pokemonResult,
+          selectedOrder.current
+        );
 
         if (!value && limit.current < pokemonResult.length) {
           limit.current = pokemonResult.length;
@@ -91,7 +96,7 @@ export const usePokemonsHelper = () => {
     setOrderDrawerVisible(true);
   };
 
-  const handleCloseOrderDrawer = (order: string) => {
+  const handleCloseOrderDrawer = (order: PokemonsOrder) => {
     selectedOrder.current = order;
     setOrderDrawerVisible(false);
   };
