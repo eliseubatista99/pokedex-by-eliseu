@@ -112,13 +112,12 @@ export const useItems = () => {
 
       const filteredList = itemList.filter((item) => item.name.includes(name));
       let mappedItems: ItemShort[] = [];
+      mappedItems = mergeItemsLists(mappedItems, itemsInStore);
 
       for (let i = 0; i < filteredList.length; i++) {
         const result = await getItemShort(filteredList[i].name);
         mappedItems.push(result);
       }
-
-      mappedItems = mergeItemsLists(mappedItems, itemsInStore);
 
       return mappedItems;
     },

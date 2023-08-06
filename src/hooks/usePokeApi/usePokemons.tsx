@@ -198,12 +198,12 @@ export const usePokemons = () => {
       );
       let mappedPokemons: PokemonShort[] = [];
 
+      mappedPokemons = mergePokemonsLists(mappedPokemons, pokemonsInStore);
+
       for (let i = 0; i < filteredPokemons.length; i++) {
         const result = await getPokemonShort(filteredPokemons[i].name);
         mappedPokemons.push(result);
       }
-
-      mappedPokemons = mergePokemonsLists(mappedPokemons, pokemonsInStore);
 
       return mappedPokemons;
     },
