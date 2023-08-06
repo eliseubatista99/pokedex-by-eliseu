@@ -56,7 +56,7 @@ export const usePokedexListTemplateHelper = (
       if (
         !searchInputValue.current &&
         !updatingItems.current &&
-        !props.options?.filter
+        !props.options?.filter?.value
       ) {
         props.increaseLimit(20);
         updateItems();

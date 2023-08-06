@@ -1,4 +1,4 @@
-export enum EPokemonsOrder {
+export enum EOrder {
   LesserNumber = "Lesser Number",
   BiggerNumber = "Bigger Number",
   A_Z = "A - Z",
@@ -25,4 +25,9 @@ export enum EPokemonsTypes {
   Flying = "flying",
   Ghost = "ghost",
   Normal = "normal",
+}
+
+export enum EItemCategory {
+  AllCategories = "",
+  StandardBall = "Standard Balls",
 }

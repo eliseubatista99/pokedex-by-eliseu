@@ -1,10 +1,10 @@
-import { EPokemonsOrder } from "@constants";
+import { EOrder } from "@constants";
 import React from "react";
 import { BaseDrawerProps } from "../_baseDrawer";
 
 export const useOrderDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const handleOrderSelected = React.useCallback(
-    (order: EPokemonsOrder) => {
+    (order: EOrder) => {
       onCloseDrawer(order);
     },
     [onCloseDrawer]

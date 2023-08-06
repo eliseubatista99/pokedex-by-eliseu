@@ -1,5 +1,5 @@
 import { PokedexListTemplate, PokemonCard } from "@components";
-import { EPokemonsOrder, EPokemonsTypes } from "@constants";
+import { EOrder, EPokemonsTypes } from "@constants";
 import { DrawerTypesFilter, OrderDrawer } from "@drawers";
 import { PokemonHelper } from "@helpers";
 import { usePokemonsHelper } from "./pokemons.hook";
@@ -55,7 +55,7 @@ export const Pokemons = () => {
       />
       <OrderDrawer
         isVisible={order.isVisible}
-        onCloseDrawer={(data) => order.closeDrawer(data as EPokemonsOrder)}
+        onCloseDrawer={(data) => order.closeDrawer(data as EOrder)}
       />
     </>
   );

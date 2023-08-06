@@ -1,5 +1,5 @@
 import { ImageAssets } from "@assets";
-import { EPokemonsOrder, EPokemonsTypes } from "@constants";
+import { EOrder, EPokemonsTypes } from "@constants";
 import { PokemonShort } from "@types";
 
 export class PokemonHelper {
@@ -157,17 +157,17 @@ export class PokemonHelper {
     return pokemons;
   };
 
-  static sortPokemons = (pokemons: PokemonShort[], order: EPokemonsOrder) => {
+  static sortPokemons = (pokemons: PokemonShort[], order: EOrder) => {
     let result = pokemons;
 
     switch (order) {
-      case EPokemonsOrder.BiggerNumber:
+      case EOrder.BiggerNumber:
         result = this.sortById(result, false);
         break;
-      case EPokemonsOrder.A_Z:
+      case EOrder.A_Z:
         result = this.sortByName(result);
         break;
-      case EPokemonsOrder.Z_A:
+      case EOrder.Z_A:
         result = this.sortByName(result, false);
         break;
       default:

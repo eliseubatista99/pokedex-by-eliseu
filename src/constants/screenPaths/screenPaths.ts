@@ -13,6 +13,7 @@ export const ScreenPaths = {
   pokemons: "/pokemons",
   pokemonDetails: "/pokemon-details",
   items: "/items",
+  itemDetails: "/item-details",
   favorites: "/favorites",
   account: "/account",
   updateEmail: "/update-email",

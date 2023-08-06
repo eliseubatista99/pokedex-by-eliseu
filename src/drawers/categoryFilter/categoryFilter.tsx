@@ -1,23 +1,23 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, EOrder } from "@constants";
+import { DRAWER_PADDING, EItemCategory, EPokemonsTypes } from "@constants";
+import { ItemHelper } from "@helpers";
 import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
-import { useOrderDrawerHelper } from "./order.hook";
+import { useCategoryFilterDrawerHelper } from "./categoryFilter.hook";
 
-export const OrderDrawer = (props: BaseDrawerProps) => {
-  const { onOrderSelected } = useOrderDrawerHelper(props);
+export const DrawerCategoryFilter = (props: BaseDrawerProps) => {
+  const { onCategorySelected } = useCategoryFilterDrawerHelper(props);
 
-  const orders = [
-    { name: EOrder.LesserNumber, value: EOrder.LesserNumber },
-    { name: EOrder.BiggerNumber, value: EOrder.BiggerNumber },
-    { name: EOrder.A_Z, value: EOrder.A_Z },
-    { name: EOrder.Z_A, value: EOrder.Z_A },
+  const categories = [
+    { name: EItemCategory.AllCategories, value: EItemCategory.AllCategories },
+    { name: EItemCategory.StandardBall, value: EItemCategory.StandardBall },
   ];
 
-  const chips = orders.map((order) => (
+  const chips = categories.map((category) => (
     <Chip
-      key={order.name}
-      text={order.name}
-      onClick={() => onOrderSelected(order.value)}
+      key={category.name || "All Categories"}
+      text={category.name || "All Categories"}
+      styles={{ background: ItemHelper.getItemColor(category.value) }}
+      onClick={() => onCategorySelected(category.value)}
     />
   ));
 
@@ -40,7 +40,7 @@ export const OrderDrawer = (props: BaseDrawerProps) => {
           minHeight: "24px",
         }}
       >
-        {"Select the order"}
+        {"Select the category"}
       </Typography>
       <div
         style={{
