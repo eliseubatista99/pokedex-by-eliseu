@@ -1,5 +1,5 @@
 import { ImageAssets } from "@assets";
-import { PokemonsOrder } from "@constants";
+import { EPokemonsOrder, EPokemonsTypes } from "@constants";
 import { PokemonShort } from "@types";
 
 export class PokemonHelper {
@@ -15,82 +15,84 @@ export class PokemonHelper {
     return parsedId;
   };
 
-  static getPokemonTypeIcon = (pokemonType: string | null | undefined) => {
+  static getPokemonTypeIcon = (
+    pokemonType: EPokemonsTypes | null | undefined
+  ) => {
     switch (pokemonType) {
-      case "grass":
+      case EPokemonsTypes.Grass:
         return ImageAssets.pokemonTypes.grass;
-      case "water":
+      case EPokemonsTypes.Water:
         return ImageAssets.pokemonTypes.water;
-      case "fire":
+      case EPokemonsTypes.Fire:
         return ImageAssets.pokemonTypes.fire;
-      case "dark":
+      case EPokemonsTypes.Dark:
         return ImageAssets.pokemonTypes.dark;
-      case "fairy":
+      case EPokemonsTypes.Fairy:
         return ImageAssets.pokemonTypes.fairy;
-      case "ice":
+      case EPokemonsTypes.Ice:
         return ImageAssets.pokemonTypes.ice;
-      case "dragon":
+      case EPokemonsTypes.Dragon:
         return ImageAssets.pokemonTypes.dragon;
-      case "bug":
+      case EPokemonsTypes.Bug:
         return ImageAssets.pokemonTypes.bug;
-      case "poison":
+      case EPokemonsTypes.Poison:
         return ImageAssets.pokemonTypes.poison;
-      case "steel":
+      case EPokemonsTypes.Steel:
         return ImageAssets.pokemonTypes.steel;
-      case "ground":
+      case EPokemonsTypes.Ground:
         return ImageAssets.pokemonTypes.ground;
-      case "rock":
+      case EPokemonsTypes.Rock:
         return ImageAssets.pokemonTypes.rock;
-      case "fighting":
+      case EPokemonsTypes.Fighting:
         return ImageAssets.pokemonTypes.fighting;
-      case "electric":
+      case EPokemonsTypes.Eletric:
         return ImageAssets.pokemonTypes.eletric;
-      case "psychic":
+      case EPokemonsTypes.Psychic:
         return ImageAssets.pokemonTypes.psychic;
-      case "flying":
+      case EPokemonsTypes.Flying:
         return ImageAssets.pokemonTypes.flying;
-      case "ghost":
+      case EPokemonsTypes.Ghost:
         return ImageAssets.pokemonTypes.ghost;
       default:
         return ImageAssets.pokemonTypes.normal;
     }
   };
 
-  static getPokemonColor = (pokemonType: string | null | undefined) => {
+  static getPokemonColor = (pokemonType: EPokemonsTypes | null | undefined) => {
     switch (pokemonType) {
-      case "grass":
+      case EPokemonsTypes.Grass:
         return "#63BC5A";
-      case "water":
+      case EPokemonsTypes.Water:
         return "#5090D6";
-      case "fire":
+      case EPokemonsTypes.Fire:
         return "#FF9D55";
-      case "dark":
+      case EPokemonsTypes.Dark:
         return "#5A5465";
-      case "fairy":
+      case EPokemonsTypes.Fairy:
         return "#EC8FE6";
-      case "ice":
+      case EPokemonsTypes.Ice:
         return "#73CEC0";
-      case "dragon":
+      case EPokemonsTypes.Dragon:
         return "#0B6DC3";
-      case "bug":
+      case EPokemonsTypes.Bug:
         return "#91C12F";
-      case "poison":
+      case EPokemonsTypes.Poison:
         return "#B567CE";
-      case "steel":
+      case EPokemonsTypes.Steel:
         return "#5A8EA2";
-      case "ground":
+      case EPokemonsTypes.Ground:
         return "#D97845";
-      case "rock":
+      case EPokemonsTypes.Rock:
         return "#C5B78C";
-      case "fighting":
+      case EPokemonsTypes.Fighting:
         return "#CE416B";
-      case "electric":
+      case EPokemonsTypes.Eletric:
         return "#F4D23C";
-      case "psychic":
+      case EPokemonsTypes.Psychic:
         return "#FA7179";
-      case "flying":
+      case EPokemonsTypes.Flying:
         return "#89AAE3";
-      case "ghost":
+      case EPokemonsTypes.Ghost:
         return "#5269AD";
       default:
         return "#919AA2";
@@ -153,17 +155,17 @@ export class PokemonHelper {
     return pokemons;
   };
 
-  static sortPokemons = (pokemons: PokemonShort[], order: PokemonsOrder) => {
+  static sortPokemons = (pokemons: PokemonShort[], order: EPokemonsOrder) => {
     let result = pokemons;
 
     switch (order) {
-      case PokemonsOrder.BiggerNumber:
+      case EPokemonsOrder.BiggerNumber:
         result = this.sortById(result, false);
         break;
-      case PokemonsOrder.A_Z:
+      case EPokemonsOrder.A_Z:
         result = this.sortByName(result);
         break;
-      case PokemonsOrder.Z_A:
+      case EPokemonsOrder.Z_A:
         result = this.sortByName(result, false);
         break;
       default:

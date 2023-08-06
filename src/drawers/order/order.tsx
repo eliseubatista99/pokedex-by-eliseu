@@ -1,5 +1,5 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, PokemonsOrder } from "@constants";
+import { DRAWER_PADDING, EPokemonsOrder } from "@constants";
 import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
 import { useOrderDrawerHelper } from "./order.hook";
 
@@ -7,10 +7,10 @@ export const OrderDrawer = (props: BaseDrawerProps) => {
   const { onOrderSelected } = useOrderDrawerHelper(props);
 
   const orders = [
-    { name: PokemonsOrder.LesserNumber, value: PokemonsOrder.LesserNumber },
-    { name: PokemonsOrder.BiggerNumber, value: PokemonsOrder.BiggerNumber },
-    { name: PokemonsOrder.A_Z, value: PokemonsOrder.A_Z },
-    { name: PokemonsOrder.Z_A, value: PokemonsOrder.Z_A },
+    { name: EPokemonsOrder.LesserNumber, value: EPokemonsOrder.LesserNumber },
+    { name: EPokemonsOrder.BiggerNumber, value: EPokemonsOrder.BiggerNumber },
+    { name: EPokemonsOrder.A_Z, value: EPokemonsOrder.A_Z },
+    { name: EPokemonsOrder.Z_A, value: EPokemonsOrder.Z_A },
   ];
 
   const chips = orders.map((order) => (

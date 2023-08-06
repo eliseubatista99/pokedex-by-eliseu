@@ -1,8 +1,9 @@
 import { CustomImage, Typography } from "@components";
+import { EPokemonsTypes } from "@constants";
 import { PokemonHelper, TextHelper } from "@helpers";
 
 export interface PokemonTypeChipProps {
-  type: string;
+  type: EPokemonsTypes;
 }
 
 export const PokemonTypeChip = ({ type }: PokemonTypeChipProps) => {

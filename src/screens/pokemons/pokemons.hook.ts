@@ -1,4 +1,4 @@
-import { PokemonsOrder, ScreenPaths } from "@constants";
+import { EPokemonsOrder, ScreenPaths } from "@constants";
 import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
@@ -21,7 +21,9 @@ export const usePokemonsHelper = () => {
     React.useState<boolean>(false);
 
   const selectedTypeFilter = React.useRef<string>("");
-  const selectedOrder = React.useRef<PokemonsOrder>(PokemonsOrder.LesserNumber);
+  const selectedOrder = React.useRef<EPokemonsOrder>(
+    EPokemonsOrder.LesserNumber
+  );
 
   const pokeApi = usePokeApi();
 
@@ -96,7 +98,7 @@ export const usePokemonsHelper = () => {
     setOrderDrawerVisible(true);
   };
 
-  const handleCloseOrderDrawer = (order: PokemonsOrder) => {
+  const handleCloseOrderDrawer = (order: EPokemonsOrder) => {
     selectedOrder.current = order;
     setOrderDrawerVisible(false);
   };

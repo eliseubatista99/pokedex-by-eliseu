@@ -1,4 +1,4 @@
-import { POKE_API_BASE_URL } from "@constants";
+import { EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
 import {
@@ -69,9 +69,9 @@ export const usePokemons = () => {
         `${POKE_API_BASE_URL}pokemon/${name}`
       );
 
-      const types: string[] = [];
+      const types: EPokemonsTypes[] = [];
       for (let i = 0; i < pokemon.types.length; i++) {
-        types.push(pokemon.types[i].type.name);
+        types.push(pokemon.types[i].type.name as EPokemonsTypes);
       }
 
       const result: PokemonShort = {
@@ -95,12 +95,12 @@ export const usePokemons = () => {
       );
 
       const typesData: PokemonType[] = [];
-      const typesNames: string[] = [];
+      const typesNames: EPokemonsTypes[] = [];
       for (let i = 0; i < pokemon.types.length; i++) {
         const t = await getPokemonType(pokemon.types[i].type.name);
-        typesNames.push(pokemon.types[i].type.name);
+        typesNames.push(pokemon.types[i].type.name as EPokemonsTypes);
         typesData.push({
-          name: pokemon.types[i].type.name,
+          name: pokemon.types[i].type.name as EPokemonsTypes,
           doubleFrom: t.double_damage_from?.map((entry) => entry.name),
           doubleTo: t.double_damage_to?.map((entry) => entry.name),
           halfFrom: t.half_damage_from?.map((entry) => entry.name),

@@ -1,5 +1,7 @@
+import { EPokemonsTypes } from "@constants";
+
 export interface PokemonType {
-  name: string;
+  name: EPokemonsTypes;
   doubleFrom: string[];
   doubleTo: string[];
   halfFrom: string[];
@@ -21,5 +23,5 @@ export interface PokemonShort {
   id: number;
   name: string;
   sprite: string;
-  typesNames: string[];
+  typesNames: EPokemonsTypes[];
 }
