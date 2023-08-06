@@ -80,7 +80,7 @@ export const usePokemonsHelper = () => {
   const handleCloseTypesFilterDrawer = (type: string) => {
     selectedTypeFilter.current = type;
     setTypesFilterDrawerVisible(false);
-    handleUpdateItems();
+    //handleUpdateItems();
   };
 
   return {

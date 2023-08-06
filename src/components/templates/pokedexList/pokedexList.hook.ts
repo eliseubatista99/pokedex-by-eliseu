@@ -69,11 +69,9 @@ export const usePokedexListTemplateHelper = (
       props.options?.filter !== cachedFilter.current ||
       props.options?.order !== cachedOrder.current
     ) {
-      console.log("ZAU", props.options?.order !== cachedOrder.current);
-
       cachedFilter.current = props.options?.filter;
       cachedOrder.current = props.options?.order;
-      updateItems();
+      updateItems(searchInputValue.current);
     }
   }, [props.options?.filter, props.options?.order, updateItems]);
 
