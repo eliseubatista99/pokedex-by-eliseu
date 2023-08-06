@@ -87,16 +87,18 @@ export const ItemCard = (props: ItemCardProps) => {
             filter: "grayscale(100%) brightness(200%)",
           }}
         /> */}
-        <CustomImage
-          src={itemData.itemSprite}
-          alt={"Item Sprite"}
-          imageStyles={{ objectFit: "contain" }}
-          containerStyles={{
-            width: "100%",
-            height: "92%",
-            zIndex: 1,
-          }}
-        />
+        {itemData.itemSprite && (
+          <CustomImage
+            src={itemData.itemSprite}
+            alt={"Item Sprite"}
+            imageStyles={{ objectFit: "contain" }}
+            containerStyles={{
+              width: "100%",
+              height: "92%",
+              zIndex: 1,
+            }}
+          />
+        )}
       </div>
     </div>
   );

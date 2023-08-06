@@ -111,16 +111,18 @@ export const useItems = () => {
       const itemList = await getItemList();
 
       const filteredList = itemList.filter((item) => item.name.includes(name));
-      const mappedItems: ItemShort[] = [];
+      let mappedItems: ItemShort[] = [];
 
       for (let i = 0; i < filteredList.length; i++) {
         const result = await getItemShort(filteredList[i].name);
         mappedItems.push(result);
       }
 
+      mappedItems = mergeItemsLists(mappedItems, itemsInStore);
+
       return mappedItems;
     },
-    [getItemList, getItemShort]
+    [getItemList, getItemShort, itemsInStore]
   );
 
   const getAllItems = React.useCallback(
@@ -134,11 +136,9 @@ export const useItems = () => {
         mappedItems.push(result);
       }
 
-      mappedItems = mergeItemsLists(mappedItems, itemsInStore);
-
       return mappedItems;
     },
-    [getItemList, getItemShort, itemsInStore]
+    [getItemList, getItemShort]
   );
 
   return {

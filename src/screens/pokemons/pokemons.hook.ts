@@ -43,6 +43,7 @@ export const usePokemonsHelper = () => {
           loadingText: "Retrieving pokemons",
           style: "transparent",
         });
+
         let pokemonResult: PokemonShort[] | undefined =
           await pokeApi.getAllPokemons(limit.current);
 
@@ -69,10 +70,6 @@ export const usePokemonsHelper = () => {
           pokemonResult,
           selectedOrder.current
         );
-
-        if (!value && limit.current < pokemonResult.length) {
-          limit.current = pokemonResult.length;
-        }
 
         setItemsToDisplay(pokemonResult || []);
 

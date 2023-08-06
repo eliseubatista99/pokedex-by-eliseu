@@ -66,9 +66,9 @@ export const useItemsHelper = () => {
 
         itemResult = ItemHelper.sortItems(itemResult, selectedOrder.current);
 
-        if (!value && limit.current < itemResult.length) {
-          limit.current = itemResult.length;
-        }
+        // if (!value && limit.current < itemResult.length) {
+        //   limit.current = itemResult.length;
+        // }
 
         setItemsToDisplay(itemResult || []);
 

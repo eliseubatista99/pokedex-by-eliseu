@@ -102,16 +102,18 @@ export const PokemonCard = (props: PokemonCardProps) => {
             filter: "grayscale(100%) brightness(200%)",
           }}
         />
-        <CustomImage
-          src={pokemonData.pokemonSprite}
-          alt={"Pokemon Sprite"}
-          imageStyles={{ objectFit: "contain" }}
-          containerStyles={{
-            width: "100%",
-            height: "92%",
-            zIndex: 1,
-          }}
-        />
+        {pokemonData.pokemonSprite && (
+          <CustomImage
+            src={pokemonData.pokemonSprite}
+            alt={"Pokemon Sprite"}
+            imageStyles={{ objectFit: "contain" }}
+            containerStyles={{
+              width: "100%",
+              height: "92%",
+              zIndex: 1,
+            }}
+          />
+        )}
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ export interface UseScrollInput {
 }
 
 export const useScroll = (input: UseScrollInput) => {
+  const isTouchingBottom = React.useRef<boolean>(false);
+
   const onScroll = React.useCallback(() => {
     const scroll = input.listElem.current?.scrollHeight || 0;
     const height = input.scrollElem.current?.clientHeight || 0;
@@ -15,8 +17,13 @@ export const useScroll = (input: UseScrollInput) => {
 
     let distanceToBottom = scrollHeight - scrollTop;
 
-    if (distanceToBottom < 5) {
-      input.onTouchBottom();
+    if (distanceToBottom < 10) {
+      if (!isTouchingBottom.current) {
+        isTouchingBottom.current = true;
+        input.onTouchBottom();
+      }
+    } else {
+      isTouchingBottom.current = false;
     }
   }, [input]);
 
