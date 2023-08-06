@@ -1,5 +1,5 @@
 import { PokedexListTemplate, PokemonCard } from "@components";
-import { DrawerTypesFilter } from "@drawers";
+import { DrawerTypesFilter, OrderDrawer } from "@drawers";
 import { usePokemonsHelper } from "./pokemons.hook";
 
 export const Pokemons = () => {
@@ -9,6 +9,7 @@ export const Pokemons = () => {
     updateItems,
     onIncreaseLimit,
     typesFilter,
+    order,
   } = usePokemonsHelper();
 
   const itemsJSX = itemsToDisplay.map((item) => (
@@ -30,11 +31,18 @@ export const Pokemons = () => {
           filter: typesFilter.selectedTypeFilter,
           noFilterText: "All Types",
           onClickFilter: typesFilter.openDrawer,
+          order: order.selectedOrder,
+          noOrderText: "Lesser Number",
+          onClickOrder: order.openDrawer,
         }}
       />
       <DrawerTypesFilter
         isVisible={typesFilter.isVisible}
         onCloseDrawer={(data) => typesFilter.closeDrawer(data as string)}
+      />
+      <OrderDrawer
+        isVisible={order.isVisible}
+        onCloseDrawer={(data) => order.closeDrawer(data as string)}
       />
     </>
   );

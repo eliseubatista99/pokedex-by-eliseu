@@ -16,7 +16,12 @@ export const usePokemonsHelper = () => {
   const [typesFilterDrawerVisible, setTypesFilterDrawerVisible] =
     React.useState<boolean>(false);
 
+  const [orderDrawerVisible, setOrderDrawerVisible] =
+    React.useState<boolean>(false);
+
   const selectedTypeFilter = React.useRef<string>("");
+  const selectedOrder = React.useRef<string>("");
+
   const pokeApi = usePokeApi();
 
   const handleOnPokemonClicked = (pokemon: PokemonShort) => {
@@ -80,7 +85,15 @@ export const usePokemonsHelper = () => {
   const handleCloseTypesFilterDrawer = (type: string) => {
     selectedTypeFilter.current = type;
     setTypesFilterDrawerVisible(false);
-    //handleUpdateItems();
+  };
+
+  const handleOpenOrderDrawer = () => {
+    setOrderDrawerVisible(true);
+  };
+
+  const handleCloseOrderDrawer = (order: string) => {
+    selectedOrder.current = order;
+    setOrderDrawerVisible(false);
   };
 
   return {
@@ -90,6 +103,12 @@ export const usePokemonsHelper = () => {
       isVisible: typesFilterDrawerVisible,
       openDrawer: handleOpenTypesFilterDrawer,
       closeDrawer: handleCloseTypesFilterDrawer,
+    },
+    order: {
+      selectedOrder: selectedOrder.current,
+      isVisible: orderDrawerVisible,
+      openDrawer: handleOpenOrderDrawer,
+      closeDrawer: handleCloseOrderDrawer,
     },
     updateItems: handleUpdateItems,
     onIncreaseLimit: handleIncreaseLimit,
