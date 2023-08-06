@@ -1,40 +1,18 @@
-import { CustomImage, CardChip, Typography } from "@components";
-import { PokemonHelper, TextHelper } from "@helpers";
-import { PokemonShort } from "@types";
+import { CardChip, CustomImage, Typography } from "@components";
+import { ItemHelper, TextHelper } from "@helpers";
+import { ItemShort } from "@types";
 import { CSSProperties } from "react";
-import { usePokemonCardHelper } from "./pokemonCard.hook";
+import { useItemCardHelper } from "./itemCard.hook";
 
-export interface PokemonCardProps {
-  pokemon: PokemonShort;
-  onClick: (pokemon: PokemonShort) => void;
+export interface ItemCardProps {
+  item: ItemShort;
+  onClick: (item: ItemShort) => void;
   containerProps?: CSSProperties;
 }
 
-export const PokemonCard = (props: PokemonCardProps) => {
+export const ItemCard = (props: ItemCardProps) => {
   const { containerProps, onClick } = props;
-  const { isHovered, onHover, onUnhover, pokemonData } =
-    usePokemonCardHelper(props);
-
-  const typeChips = pokemonData.pokemonTypes.map((type) => (
-    <CardChip
-      key={type}
-      text={`${TextHelper.getPascalCase(type)}`}
-      image={
-        <CustomImage
-          src={PokemonHelper.getPokemonTypeIcon(type)}
-          alt={"Pokemon Type Icon"}
-          imageStyles={{ width: "12px", height: "12px" }}
-          containerStyles={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: "#ffffff",
-          }}
-        />
-      }
-      styles={{ background: `${PokemonHelper.getPokemonColor(type)}` }}
-    />
-  ));
+  const { isHovered, onHover, onUnhover, itemData } = useItemCardHelper(props);
 
   return (
     <div
@@ -42,7 +20,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
         width: "100%",
         display: "flex",
         flexDirection: "row",
-        background: `${pokemonData.pokemonColor}33`,
+        background: `${itemData.itemColor}33`,
         borderRadius: "15px",
         cursor: "pointer",
         boxShadow: isHovered ? "rgba(0, 0, 0, 0.24) 0px 3px 8px" : "none",
@@ -51,7 +29,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
       }}
       onMouseEnter={() => onHover()}
       onMouseLeave={() => onUnhover()}
-      onClick={() => onClick(props.pokemon)}
+      onClick={() => onClick(props.item)}
     >
       <div
         style={{
@@ -61,10 +39,10 @@ export const PokemonCard = (props: PokemonCardProps) => {
         }}
       >
         <Typography styles={{ fontSize: "11px", fontWeight: 600 }}>
-          {pokemonData.pokemonId}
+          {itemData.itemId}
         </Typography>
         <Typography styles={{ fontSize: "15.75px", fontWeight: 600 }}>
-          {pokemonData.pokemonName}
+          {itemData.itemName}
         </Typography>
 
         <div
@@ -75,13 +53,20 @@ export const PokemonCard = (props: PokemonCardProps) => {
             marginTop: "auto",
           }}
         >
-          {typeChips}
+          <CardChip
+            text={TextHelper.getPascalCase(
+              ItemHelper.parseItemNames(itemData.itemCategory)
+            )}
+            styles={{
+              background: `${ItemHelper.getItemColor(itemData.itemCategory)}`,
+            }}
+          />
         </div>
       </div>
       <div
         style={{
           width: "38%",
-          background: pokemonData.pokemonColor,
+          background: itemData.itemColor,
           borderRadius: "15px",
           alignItems: "center",
           justifyContent: "center",
@@ -89,7 +74,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
           height: "102px",
         }}
       >
-        <CustomImage
+        {/* <CustomImage
           src={PokemonHelper.getPokemonTypeIcon(pokemonData.pokemonMainType)}
           alt={"Pokemon Type Icon"}
           imageStyles={{ objectFit: "contain" }}
@@ -101,10 +86,10 @@ export const PokemonCard = (props: PokemonCardProps) => {
             opacity: 0.4,
             filter: "grayscale(100%) brightness(200%)",
           }}
-        />
+        /> */}
         <CustomImage
-          src={pokemonData.pokemonSprite}
-          alt={"Pokemon Sprite"}
+          src={itemData.itemSprite}
+          alt={"Item Sprite"}
           imageStyles={{ objectFit: "contain" }}
           containerStyles={{
             width: "100%",

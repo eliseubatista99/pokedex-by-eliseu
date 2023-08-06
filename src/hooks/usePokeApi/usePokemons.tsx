@@ -1,4 +1,4 @@
-import { POKE_API_BASE_URL } from "@constants";
+import { EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
 import {
@@ -21,6 +21,29 @@ export const usePokemons = () => {
     updatePokemon: updatePokemonInStore,
     savePokemonList,
   } = usePokeApiStore();
+
+  const mergePokemonsLists = (
+    sourceList: PokemonShort[],
+    targetList: PokemonShort[]
+  ) => {
+    const newResult: PokemonShort[] = [...targetList];
+    let alreadyInList = false;
+
+    sourceList.forEach((source) => {
+      alreadyInList = false;
+      newResult.forEach((target) => {
+        if (source.name === target.name) {
+          alreadyInList = true;
+        }
+      });
+
+      if (!alreadyInList) {
+        newResult.push(source);
+      }
+    });
+
+    return newResult;
+  };
 
   const getEvolutionChain = React.useCallback(
     async (id: string) => {
@@ -69,9 +92,9 @@ export const usePokemons = () => {
         `${POKE_API_BASE_URL}pokemon/${name}`
       );
 
-      const types: string[] = [];
+      const types: EPokemonsTypes[] = [];
       for (let i = 0; i < pokemon.types.length; i++) {
-        types.push(pokemon.types[i].type.name);
+        types.push(pokemon.types[i].type.name as EPokemonsTypes);
       }
 
       const result: PokemonShort = {
@@ -95,12 +118,12 @@ export const usePokemons = () => {
       );
 
       const typesData: PokemonType[] = [];
-      const typesNames: string[] = [];
+      const typesNames: EPokemonsTypes[] = [];
       for (let i = 0; i < pokemon.types.length; i++) {
         const t = await getPokemonType(pokemon.types[i].type.name);
-        typesNames.push(pokemon.types[i].type.name);
+        typesNames.push(pokemon.types[i].type.name as EPokemonsTypes);
         typesData.push({
-          name: pokemon.types[i].type.name,
+          name: pokemon.types[i].type.name as EPokemonsTypes,
           doubleFrom: t.double_damage_from?.map((entry) => entry.name),
           doubleTo: t.double_damage_to?.map((entry) => entry.name),
           halfFrom: t.half_damage_from?.map((entry) => entry.name),
@@ -189,16 +212,18 @@ export const usePokemons = () => {
     async (limit = 20, offset = 0) => {
       const pokemonList = await getPokemonList();
 
-      const mappedPokemons: PokemonShort[] = [];
+      let mappedPokemons: PokemonShort[] = [];
 
       for (let i = offset; i < limit; i++) {
         const result = await getPokemonShort(pokemonList[i].name);
         mappedPokemons.push(result);
       }
 
+      mappedPokemons = mergePokemonsLists(mappedPokemons, pokemonsInStore);
+
       return mappedPokemons;
     },
-    [getPokemonList, getPokemonShort]
+    [getPokemonList, getPokemonShort, pokemonsInStore]
   );
 
   return {

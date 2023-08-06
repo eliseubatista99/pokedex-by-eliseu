@@ -28,10 +28,13 @@ export const PokedexBottomContent = () => {
         }
       />
       <Blocks.NavigationItem
-        text={"Regions"}
+        text={"Items"}
         icon={<Iconography.NavigationRegions />}
-        onClick={() => onItemClicked(ScreenPaths.regions)}
-        isSelected={currentPath === ScreenPaths.regions}
+        onClick={() => onItemClicked(ScreenPaths.items)}
+        isSelected={
+          currentPath === ScreenPaths.items ||
+          currentPath === ScreenPaths.itemDetails
+        }
       />
       <Blocks.NavigationItem
         text={"Favorites"}

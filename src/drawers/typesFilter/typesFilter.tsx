@@ -1,5 +1,5 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING } from "@constants";
+import { DRAWER_PADDING, EPokemonsTypes } from "@constants";
 import { PokemonHelper } from "@helpers";
 import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
 import { useTypesFilterDrawerHelper } from "./typesFilter.hook";
@@ -8,31 +8,31 @@ export const DrawerTypesFilter = (props: BaseDrawerProps) => {
   const { onTypeSelected } = useTypesFilterDrawerHelper(props);
 
   const types = [
-    { name: "all types", value: "" },
-    { name: "grass", value: "grass" },
-    { name: "water", value: "water" },
-    { name: "fire", value: "fire" },
-    { name: "dark", value: "dark" },
-    { name: "fairy", value: "fairy" },
-    { name: "ice", value: "ice" },
-    { name: "dragon", value: "dragon" },
-    { name: "bug", value: "bug" },
-    { name: "poison", value: "poison" },
-    { name: "steel", value: "steel" },
-    { name: "ground", value: "ground" },
-    { name: "rock", value: "rock" },
-    { name: "fighting", value: "fighting" },
-    { name: "eletric", value: "eletric" },
-    { name: "psychic", value: "psychic" },
-    { name: "flying", value: "flying" },
-    { name: "ghost", value: "ghost" },
-    { name: "normal", value: "normal" },
+    { name: EPokemonsTypes.AllTypes, value: EPokemonsTypes.AllTypes },
+    { name: EPokemonsTypes.Grass, value: EPokemonsTypes.Grass },
+    { name: EPokemonsTypes.Water, value: EPokemonsTypes.Water },
+    { name: EPokemonsTypes.Fire, value: EPokemonsTypes.Fire },
+    { name: EPokemonsTypes.Dark, value: EPokemonsTypes.Dark },
+    { name: EPokemonsTypes.Fairy, value: EPokemonsTypes.Fairy },
+    { name: EPokemonsTypes.Ice, value: EPokemonsTypes.Ice },
+    { name: EPokemonsTypes.Dragon, value: EPokemonsTypes.Dragon },
+    { name: EPokemonsTypes.Bug, value: EPokemonsTypes.Bug },
+    { name: EPokemonsTypes.Poison, value: EPokemonsTypes.Poison },
+    { name: EPokemonsTypes.Steel, value: EPokemonsTypes.Steel },
+    { name: EPokemonsTypes.Ground, value: EPokemonsTypes.Ground },
+    { name: EPokemonsTypes.Rock, value: EPokemonsTypes.Rock },
+    { name: EPokemonsTypes.Fighting, value: EPokemonsTypes.Fighting },
+    { name: EPokemonsTypes.Eletric, value: EPokemonsTypes.Eletric },
+    { name: EPokemonsTypes.Psychic, value: EPokemonsTypes.Psychic },
+    { name: EPokemonsTypes.Flying, value: EPokemonsTypes.Flying },
+    { name: EPokemonsTypes.Ghost, value: EPokemonsTypes.Ghost },
+    { name: EPokemonsTypes.Normal, value: EPokemonsTypes.Normal },
   ];
 
   const chips = types.map((type) => (
     <Chip
-      key={type.name}
-      text={type.name}
+      key={type.name || "All Types"}
+      text={type.name || "All Types"}
       styles={{ background: PokemonHelper.getPokemonColor(type.value) }}
       onClick={() => onTypeSelected(type.value)}
     />

@@ -6,7 +6,15 @@ import {
   PokedexBottomContent,
 } from "@components";
 import { APP_PADDING_LEFT, APP_PADDING_RIGHT } from "@constants";
+import { CSSProperties } from "react";
 import { usePokedexListTemplateHelper } from "./pokedexList.hook";
+
+interface PokedexListOption {
+  value?: string;
+  noValueText?: string;
+  onClick?: () => void;
+  styles?: CSSProperties;
+}
 
 export interface PokedexListTemplateProps {
   items: JSX.Element[];
@@ -16,12 +24,8 @@ export interface PokedexListTemplateProps {
     placeholder: string;
   };
   options?: {
-    filter?: string;
-    noFilterText?: string;
-    onClickFilter?: () => void;
-    order?: string;
-    noOrderText?: string;
-    onClickOrder?: () => void;
+    filter?: PokedexListOption;
+    order?: PokedexListOption;
   };
 }
 
@@ -77,9 +81,11 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
               padding: "8px 0 12px 0",
             }}
           >
-            {options.onClickFilter && (
+            {options.filter?.onClick && (
               <Chip
-                text={options.filter || options.noFilterText || ""}
+                text={
+                  options.filter?.value || options.filter?.noValueText || ""
+                }
                 rightIcon={
                   <Iconography.NavLeft
                     stroke="#ffffff"
@@ -87,13 +93,14 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
                     containerProps={{ transform: "rotateZ(-90deg)" }}
                   />
                 }
-                onClick={options.onClickFilter}
+                onClick={options.filter?.onClick}
+                styles={{ ...options.filter.styles }}
               />
             )}
 
-            {options.onClickOrder && (
+            {options.order?.onClick && (
               <Chip
-                text={options.order || options.noOrderText || ""}
+                text={options.order?.value || options.order?.noValueText || ""}
                 rightIcon={
                   <Iconography.NavLeft
                     stroke="#ffffff"
@@ -101,7 +108,8 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
                     containerProps={{ transform: "rotateZ(-90deg)" }}
                   />
                 }
-                onClick={options.onClickOrder}
+                onClick={options.order?.onClick}
+                styles={{ ...options.order.styles }}
               />
             )}
           </div>

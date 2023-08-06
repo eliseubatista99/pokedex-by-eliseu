@@ -1,4 +1,5 @@
-import { ScreenPaths } from "@constants";
+import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
+import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import { PokemonShort } from "@types";
@@ -16,7 +17,14 @@ export const usePokemonsHelper = () => {
   const [typesFilterDrawerVisible, setTypesFilterDrawerVisible] =
     React.useState<boolean>(false);
 
-  const selectedTypeFilter = React.useRef<string>("");
+  const [orderDrawerVisible, setOrderDrawerVisible] =
+    React.useState<boolean>(false);
+
+  const selectedTypeFilter = React.useRef<EPokemonsTypes>(
+    EPokemonsTypes.AllTypes
+  );
+  const selectedOrder = React.useRef<EOrder>(EOrder.LesserNumber);
+
   const pokeApi = usePokeApi();
 
   const handleOnPokemonClicked = (pokemon: PokemonShort) => {
@@ -42,7 +50,6 @@ export const usePokemonsHelper = () => {
           pokemonResult = await pokeApi.getPokemonsByName(value);
         }
 
-        console.log("ZAU", selectedTypeFilter.current);
         if (selectedTypeFilter.current) {
           pokemonResult = pokemonResult.filter((pokemon) => {
             let hasType = false;
@@ -57,6 +64,11 @@ export const usePokemonsHelper = () => {
             return hasType;
           });
         }
+
+        pokemonResult = PokemonHelper.sortPokemons(
+          pokemonResult,
+          selectedOrder.current
+        );
 
         if (!value && limit.current < pokemonResult.length) {
           limit.current = pokemonResult.length;
@@ -77,10 +89,18 @@ export const usePokemonsHelper = () => {
     setTypesFilterDrawerVisible(true);
   };
 
-  const handleCloseTypesFilterDrawer = (type: string) => {
+  const handleCloseTypesFilterDrawer = (type: EPokemonsTypes) => {
     selectedTypeFilter.current = type;
     setTypesFilterDrawerVisible(false);
-    handleUpdateItems();
+  };
+
+  const handleOpenOrderDrawer = () => {
+    setOrderDrawerVisible(true);
+  };
+
+  const handleCloseOrderDrawer = (order: EOrder) => {
+    selectedOrder.current = order;
+    setOrderDrawerVisible(false);
   };
 
   return {
@@ -90,6 +110,12 @@ export const usePokemonsHelper = () => {
       isVisible: typesFilterDrawerVisible,
       openDrawer: handleOpenTypesFilterDrawer,
       closeDrawer: handleCloseTypesFilterDrawer,
+    },
+    order: {
+      selectedOrder: selectedOrder.current,
+      isVisible: orderDrawerVisible,
+      openDrawer: handleOpenOrderDrawer,
+      closeDrawer: handleCloseOrderDrawer,
     },
     updateItems: handleUpdateItems,
     onIncreaseLimit: handleIncreaseLimit,

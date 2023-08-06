@@ -56,7 +56,7 @@ export const usePokedexListTemplateHelper = (
       if (
         !searchInputValue.current &&
         !updatingItems.current &&
-        !props.options?.filter
+        !props.options?.filter?.value
       ) {
         props.increaseLimit(20);
         updateItems();
@@ -66,14 +66,12 @@ export const usePokedexListTemplateHelper = (
 
   React.useEffect(() => {
     if (
-      props.options?.filter !== cachedFilter.current ||
-      props.options?.order !== cachedOrder.current
+      props.options?.filter?.value !== cachedFilter.current ||
+      props.options?.order?.value !== cachedOrder.current
     ) {
-      console.log("ZAU", props.options?.order !== cachedOrder.current);
-
-      cachedFilter.current = props.options?.filter;
-      cachedOrder.current = props.options?.order;
-      updateItems();
+      cachedFilter.current = props.options?.filter?.value;
+      cachedOrder.current = props.options?.order?.value;
+      updateItems(searchInputValue.current);
     }
   }, [props.options?.filter, props.options?.order, updateItems]);
 
