@@ -45,6 +45,11 @@ export const usePokedexListTemplateHelper = (
       searchInputValue.current = formValue;
 
       updateItems(formValue);
+
+      scrollRef.current?.scrollTo({
+        top: 0,
+        behavior: "auto",
+      });
     },
     [updateItems]
   );

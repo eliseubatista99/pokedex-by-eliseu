@@ -196,9 +196,7 @@ export const usePokemons = () => {
       const filteredPokemons = pokemonList.filter((pokemon) =>
         pokemon.name.includes(name)
       );
-      let mappedPokemons: PokemonShort[] = [];
-
-      mappedPokemons = mergePokemonsLists(mappedPokemons, pokemonsInStore);
+      const mappedPokemons: PokemonShort[] = [];
 
       for (let i = 0; i < filteredPokemons.length; i++) {
         const result = await getPokemonShort(filteredPokemons[i].name);
@@ -207,7 +205,7 @@ export const usePokemons = () => {
 
       return mappedPokemons;
     },
-    [getPokemonList, getPokemonShort, pokemonsInStore]
+    [getPokemonList, getPokemonShort]
   );
 
   const getAllPokemons = React.useCallback(
