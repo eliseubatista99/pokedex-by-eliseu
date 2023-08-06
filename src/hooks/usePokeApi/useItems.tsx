@@ -13,29 +13,6 @@ export const useItems = () => {
     saveItemsList,
   } = usePokeApiStore();
 
-  const mergeItemsLists = (
-    sourceList: ItemShort[],
-    targetList: ItemShort[]
-  ) => {
-    const newResult: ItemShort[] = [...targetList];
-    let alreadyInList = false;
-
-    sourceList.forEach((source) => {
-      alreadyInList = false;
-      newResult.forEach((target) => {
-        if (source.name === target.name) {
-          alreadyInList = true;
-        }
-      });
-
-      if (!alreadyInList) {
-        newResult.push(source);
-      }
-    });
-
-    return newResult;
-  };
-
   const getItemShort = React.useCallback(
     async (name: string) => {
       const itemInStore = itemsInStore.find((item) => item.name === name);
