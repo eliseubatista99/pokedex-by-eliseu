@@ -1,14 +1,16 @@
-import { AppLayout, PokedexBottomContent } from "@components";
+import { PokedexDetailsTemplate } from "@components";
 import { usePokemonDetailsHelper } from "./pokemonDetails,hook";
 
 export const PokemonDetails = () => {
-  const { pokemon } = usePokemonDetailsHelper();
+  const { pokemon, pokemonColor, pokemonTypeImage } = usePokemonDetailsHelper();
 
   return (
-    <AppLayout bottomContent={<PokedexBottomContent />}>
-      <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
-        {pokemon?.name}
-      </div>
-    </AppLayout>
+    <PokedexDetailsTemplate
+      illustration={{
+        backgroundColor: pokemonColor,
+        backgroundImage: pokemonTypeImage,
+        image: pokemon?.sprite || "",
+      }}
+    />
   );
 };

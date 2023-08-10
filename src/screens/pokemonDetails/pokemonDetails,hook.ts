@@ -1,3 +1,4 @@
+import { PokemonHelper } from "@helpers";
 import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import { PokemonFull, PokemonShort } from "@types";
@@ -43,5 +44,9 @@ export const usePokemonDetailsHelper = () => {
 
   return {
     pokemon: pokemonFullData,
+    pokemonColor: PokemonHelper.getPokemonColor(pokemonFullData?.typesNames[0]),
+    pokemonTypeImage: PokemonHelper.getPokemonTypeIcon(
+      pokemonFullData?.typesNames[0]
+    ),
   };
 };

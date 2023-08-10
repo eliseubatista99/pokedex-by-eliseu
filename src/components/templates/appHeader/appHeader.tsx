@@ -24,12 +24,17 @@ export type AppHeaderPokedexProps = AppHeaderCommonProps & {
   hideBack?: boolean;
 };
 
-export type AppHeaderProps =
+type AppHeaderTypeProps =
   | AppHeaderDefaultProps
   | AppHeaderDetailsProps
   | AppHeaderPokedexProps;
 
+export type AppHeaderProps = AppHeaderTypeProps & {
+  background?: string;
+};
+
 export const AppHeader = (props: AppHeaderProps) => {
+  const { background = "#ffffff" } = props;
   const maskTopScroll = (
     <div
       style={{
@@ -38,7 +43,7 @@ export const AppHeader = (props: AppHeaderProps) => {
         top: "-3.75px",
         left: 0,
         height: "100%",
-        background: "#ffffff",
+        background,
         zIndex: 0,
       }}
     />
@@ -51,7 +56,7 @@ export const AppHeader = (props: AppHeaderProps) => {
         height: "60px",
         padding: "12px",
         position: "sticky",
-        background: "#ffffff",
+        background,
         top: "0px",
         zIndex: 100,
       }}

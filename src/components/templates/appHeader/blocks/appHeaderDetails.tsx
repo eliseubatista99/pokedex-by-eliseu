@@ -33,7 +33,7 @@ export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
           width: "18.75px",
           height: "18.75px",
           position: "absolute",
-          right: "12px",
+          right: "18px",
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}
