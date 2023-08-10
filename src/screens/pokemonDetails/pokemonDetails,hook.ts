@@ -44,6 +44,7 @@ export const usePokemonDetailsHelper = () => {
 
   return {
     pokemon: pokemonFullData,
+    pokemonId: PokemonHelper.getPokemonId(pokemonFullData?.id || 0),
     pokemonColor: PokemonHelper.getPokemonColor(pokemonFullData?.typesNames[0]),
     pokemonTypeImage: PokemonHelper.getPokemonTypeIcon(
       pokemonFullData?.typesNames[0]

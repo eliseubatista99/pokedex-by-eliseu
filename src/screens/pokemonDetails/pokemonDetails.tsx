@@ -2,7 +2,8 @@ import { PokedexDetailsTemplate } from "@components";
 import { usePokemonDetailsHelper } from "./pokemonDetails,hook";
 
 export const PokemonDetails = () => {
-  const { pokemon, pokemonColor, pokemonTypeImage } = usePokemonDetailsHelper();
+  const { pokemon, pokemonColor, pokemonTypeImage, pokemonId } =
+    usePokemonDetailsHelper();
 
   return (
     <PokedexDetailsTemplate
@@ -11,6 +12,8 @@ export const PokemonDetails = () => {
         backgroundImage: pokemonTypeImage,
         image: pokemon?.sprite || "",
       }}
+      title={pokemon?.name || ""}
+      id={pokemonId}
     />
   );
 };

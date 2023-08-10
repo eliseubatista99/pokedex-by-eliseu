@@ -1,4 +1,4 @@
-import { AppLayout, PokedexBottomContent } from "@components";
+import { AppLayout, PokedexBottomContent, Typography } from "@components";
 import { Blocks } from "./blocks";
 
 export interface PokedexDetailsTemplateProps {
@@ -7,10 +7,12 @@ export interface PokedexDetailsTemplateProps {
     backgroundImage?: string;
     image?: string;
   };
+  title: string;
+  id: string;
 }
 
 export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
-  const { illustration } = props;
+  const { illustration, title, id } = props;
 
   return (
     <AppLayout
@@ -22,6 +24,12 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
         backgroundImage={illustration.backgroundImage}
         image={illustration.image}
       />
+      <Typography styles={{ fontSize: "32px", fontWeight: 500 }}>
+        {title}
+      </Typography>
+      <Typography styles={{ fontSize: "16px", fontWeight: 500 }}>
+        {id}
+      </Typography>
     </AppLayout>
   );
 };
