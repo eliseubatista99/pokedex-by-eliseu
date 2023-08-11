@@ -1,3 +1,4 @@
+import { APP_SCALE } from "@constants";
 import React from "react";
 import { BaseDrawerProps } from "./baseDrawer";
 
@@ -9,12 +10,18 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const [drawerBottomDistance, setDrawerBottomDistance] =
     React.useState<number>(0);
 
-  const handleonClick = (e: React.PointerEvent<HTMLDivElement>) => {
+  const dragStartPointerPosition = React.useRef<number>();
+
+  const handleOnClick = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true;
+    //Y position of the pointer
+    const pointerHeight = e.clientY;
+    dragStartPointerPosition.current = pointerHeight;
   };
 
   const handleOnPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = false;
+    dragStartPointerPosition.current = undefined;
     setDrawerBottomDistance(0);
   };
 
@@ -23,31 +30,25 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
       return;
     }
 
-    if (isDragging.current) {
-      //TODO: multiply by zoom
-      //Height of the screen
-      const screenHeight = window.innerHeight;
+    if (isDragging.current && dragStartPointerPosition.current !== undefined) {
       //Y position of the pointer
       const pointerHeight = e.clientY;
       //Height of the drawer
       const drawerHeight = drawerRef.current?.clientHeight || 0;
-      //*adding of the drawer
-      const drawerPadding = 24;
-      //Height of the handle
-      const handleHeight = drawerHeight - drawerPadding / 2;
-      //Bottom value where the drawer should close
-      const closeBottomValue = drawerHeight - drawerPadding - 10;
 
-      const distanceFromPointerToBottom = screenHeight - pointerHeight;
-      let targetBottom = distanceFromPointerToBottom - handleHeight;
+      //Distance between the position where the dragged started and the current posititon
+      let distanceTraveledByPointer =
+        dragStartPointerPosition.current - pointerHeight;
 
-      if (targetBottom > 0) {
-        targetBottom = 0;
-      }
+      //The previous result is negative, so reverse it. Also, divide it by the app scale to avoid offsets
+      distanceTraveledByPointer = -distanceTraveledByPointer / APP_SCALE;
 
-      setDrawerBottomDistance(targetBottom);
+      //Set the drawer bottom distance. In case the pointer moved up, cap it to zero
+      setDrawerBottomDistance(
+        distanceTraveledByPointer < 0 ? 0 : -distanceTraveledByPointer
+      );
 
-      if (targetBottom <= -closeBottomValue) {
+      if (distanceTraveledByPointer >= drawerHeight - 15) {
         onCloseDrawer();
         handleOnPointerUp(e);
       }
@@ -59,7 +60,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     drawerRef,
     drawerBottomDistance,
     handleRef,
-    onDragStart: handleonClick,
+    onDragStart: handleOnClick,
     onDrag: handleOnPointerMove,
     onDragEnd: handleOnPointerUp,
   };

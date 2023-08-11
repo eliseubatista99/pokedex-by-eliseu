@@ -21,7 +21,7 @@ import {
   PokemonDetails,
   ItemDetails,
 } from "@screens";
-import { ScreenPaths } from "@constants";
+import { APP_SCALE, ScreenPaths } from "@constants";
 import { useAppHelper } from "./App.hook";
 export const App = () => {
   useAppHelper();
@@ -32,6 +32,7 @@ export const App = () => {
         width: "100%",
         height: "100%",
         position: "relative",
+        zoom: APP_SCALE,
       }}
     >
       <Routes>
