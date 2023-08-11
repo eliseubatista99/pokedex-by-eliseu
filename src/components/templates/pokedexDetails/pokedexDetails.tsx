@@ -2,6 +2,7 @@ import {
   AppLayout,
   CardChip,
   CardChipProps,
+  DetailChip,
   DetailChipProps,
   PokedexBottomContent,
   Typography,
@@ -23,12 +24,21 @@ export interface PokedexDetailsTemplateProps {
 }
 
 export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
-  const { illustration, title, id, chips, flavor } = props;
+  const { illustration, title, id, chips, flavor, detailsChips } = props;
 
   console.log("ZAU", chips);
 
   const chipsJSX = chips.map((chip) => (
     <CardChip text={chip.text} image={chip.image} styles={chip.styles} />
+  ));
+
+  const detailsChipsJSX = detailsChips.map((chip) => (
+    <DetailChip
+      title={chip.title}
+      content={chip.content}
+      icon={chip.icon}
+      styles={chip.styles}
+    />
   ));
 
   return (
@@ -66,7 +76,7 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
           width: "100%",
           marginTop: "24px",
           flexDirection: "row",
-          gap: "8px",
+          gap: "6px",
           justifyContent: "flex-start",
         }}
       >
@@ -83,6 +93,16 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       >
         {flavor}
       </Typography>
+      <div
+        style={{
+          width: "100%",
+          marginTop: "24px",
+          flexDirection: "row",
+          gap: "15px",
+        }}
+      >
+        {detailsChipsJSX}
+      </div>
     </AppLayout>
   );
 };
