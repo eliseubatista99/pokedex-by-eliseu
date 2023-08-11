@@ -18,7 +18,7 @@ export const Background = (props: BackgroundProps) => {
         overflow: "hidden",
         width: "100%",
         top: 0,
-        height: "250px",
+        height: "200px",
       }}
     >
       <div
