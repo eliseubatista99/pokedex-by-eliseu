@@ -22,7 +22,7 @@ export const Register = () => {
         alt={"A girl with a long hair with her right hand up in the air"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "180px",
+          maxWidth: "240px",
           height: "auto",
         }}
       />
@@ -35,9 +35,9 @@ export const Register = () => {
             text: "Continue With Apple",
             startContent: (
               <Iconography.Apple
-                width="16.5px"
-                height="21px"
-                containerProps={{ margin: "-3px 0 0 0" }}
+                width="22px"
+                height="22px"
+                containerProps={{ margin: "-4px 0 0 0" }}
               />
             ),
             onClick: onClickApple,
@@ -48,9 +48,9 @@ export const Register = () => {
             text: "Continue With Google",
             startContent: (
               <Iconography.Google
-                width="19.5px"
-                height="19.5px"
-                containerProps={{ margin: "0 0 0 -4.5px" }}
+                width="19px"
+                height="19px"
+                containerProps={{ margin: "0 0 0 -6px" }}
               />
             ),
             onClick: onClickGoogle,

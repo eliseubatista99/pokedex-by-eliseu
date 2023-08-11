@@ -19,14 +19,14 @@ export const UpdatePassword = () => {
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
-          styles={{ textAlign: "center", fontSize: "19.5px", fontWeight: 800 }}
+          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
         >
           {"Let's update"}
         </Typography>
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "19.5px",
+            fontSize: "26px",
             fontWeight: 400,
             color: "#4D4D4D",
           }}
@@ -43,7 +43,7 @@ export const UpdatePassword = () => {
             "Your password must have at least 8 characters"
           }
           error={formData.password.error}
-          containerProps={{ margin: "12px auto 0 auto" }}
+          containerProps={{ margin: "16px auto 0 auto" }}
         />
       </form>
       <OnboardingBottomContent

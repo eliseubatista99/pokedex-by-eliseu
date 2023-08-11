@@ -18,7 +18,7 @@ export const LoginDone = () => {
         alt={"Two trainers posing"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "200.25px",
+          maxWidth: "266px",
           height: "auto",
         }}
       />

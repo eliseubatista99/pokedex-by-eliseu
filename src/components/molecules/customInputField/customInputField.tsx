@@ -53,12 +53,12 @@ export const CustomInputField = ({
 
   return (
     <ContainerDiv
-      style={{ width: "100%", maxWidth: "268px", ...containerProps }}
+      style={{ width: "100%", maxWidth: "357px", ...containerProps }}
     >
       {label && (
         <Typography
           styles={{
-            fontSize: "10.5px",
+            fontSize: "14px",
             fontWeight: 500,
           }}
         >
@@ -69,20 +69,20 @@ export const CustomInputField = ({
         style={{
           flexDirection: "row",
           width: "100%",
-          height: "39px",
-          margin: "6px auto 0 auto",
-          border: "1.5px solid #000000",
+          height: "47px",
+          margin: "8px auto 0 auto",
+          border: "2px solid #000000",
           borderRadius: "5px",
-          padding: "3.75px 11.25px",
+          padding: "5px 15px",
           color: "#000000",
           fontFamily: "Poppins",
           fontStyle: "normal",
           fontWeight: 400,
-          fontSize: "12px",
-          lineHeight: "18px",
+          fontSize: "16px",
+          lineHeight: "24px",
           outline: "none",
           alignItems: "center",
-          gap: "8px",
+          gap: "10px",
           ...inputStyles,
         }}
       >
@@ -111,9 +111,9 @@ export const CustomInputField = ({
       {bottomMessage && (
         <Typography
           styles={{
-            fontSize: "9px",
+            fontSize: "12px",
             fontWeight: 400,
-            margin: "6px auto 0 auto",
+            margin: "8px auto 0 auto",
             color: error ? "red" : "#4D4D4D",
           }}
         >

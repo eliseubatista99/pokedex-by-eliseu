@@ -40,7 +40,7 @@ export const AppHeader = (props: AppHeaderProps) => {
       style={{
         width: "100%",
         position: "absolute",
-        top: "-3.75px",
+        top: "-5px",
         left: 0,
         height: "100%",
         background,
@@ -54,7 +54,7 @@ export const AppHeader = (props: AppHeaderProps) => {
       style={{
         width: "100%",
         height: "60px",
-        padding: "12px",
+        padding: "16px",
         position: "sticky",
         background,
         top: "0px",

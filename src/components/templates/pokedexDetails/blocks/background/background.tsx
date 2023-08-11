@@ -18,15 +18,15 @@ export const Background = (props: BackgroundProps) => {
         overflow: "hidden",
         width: "100%",
         top: 0,
-        height: "150px",
+        height: "200px",
       }}
     >
       <div
         style={{
           width: "138%",
           position: "absolute",
-          top: "-187.5px",
-          height: "375px",
+          top: "-250px",
+          height: "500px",
           borderRadius: "50%",
           backgroundColor,
         }}
@@ -34,7 +34,7 @@ export const Background = (props: BackgroundProps) => {
         <div
           style={{
             width: "100%",
-            height: "150px",
+            height: "200px",
             position: "absolute",
             flexDirection: "column",
             alignItems: "center",
@@ -69,7 +69,7 @@ export const Background = (props: BackgroundProps) => {
                 zIndex: 1,
                 justifyContent: "flex-end",
                 position: "absolute",
-                bottom: "-60px",
+                bottom: "-80px",
               }}
             />
           )}

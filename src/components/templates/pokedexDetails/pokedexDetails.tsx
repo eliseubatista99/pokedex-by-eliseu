@@ -26,8 +26,6 @@ export interface PokedexDetailsTemplateProps {
 export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
   const { illustration, title, id, chips, flavor, detailsChips } = props;
 
-  console.log("ZAU", chips);
-
   const chipsJSX = chips.map((chip) => (
     <CardChip text={chip.text} image={chip.image} styles={chip.styles} />
   ));
@@ -53,7 +51,7 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       />
       <Typography
         styles={{
-          fontSize: "24px",
+          fontSize: "32px",
           fontWeight: 500,
           textAlign: "left",
           margin: "0 auto 0 0",
@@ -63,7 +61,7 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       </Typography>
       <Typography
         styles={{
-          fontSize: "12px",
+          fontSize: "16px",
           fontWeight: 500,
           textAlign: "left",
           margin: "0 auto 0 0",
@@ -74,9 +72,9 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       <div
         style={{
           width: "100%",
-          marginTop: "24px",
+          marginTop: "32px",
           flexDirection: "row",
-          gap: "6px",
+          gap: "8px",
           justifyContent: "flex-start",
         }}
       >
@@ -84,11 +82,11 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       </div>
       <Typography
         styles={{
-          fontSize: "10.5px",
+          fontSize: "14px",
           fontWeight: 500,
           textAlign: "left",
           margin: "0 auto 0 0",
-          marginTop: "24px",
+          marginTop: "32px",
         }}
       >
         {flavor}
@@ -96,9 +94,9 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       <div
         style={{
           width: "100%",
-          marginTop: "24px",
+          marginTop: "32px",
           flexDirection: "row",
-          gap: "15px",
+          gap: "20px",
         }}
       >
         {detailsChipsJSX}

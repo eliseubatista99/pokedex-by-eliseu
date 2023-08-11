@@ -20,8 +20,8 @@ export const Stepper = ({
           <div
             key={i}
             style={{
-              width: "21px",
-              height: "6.75px",
+              width: "28px",
+              height: "9px",
               borderRadius: "11px",
               background: "#173EA5",
             }}
@@ -32,8 +32,8 @@ export const Stepper = ({
           <div
             key={i}
             style={{
-              width: "6.75px",
-              height: "7.75px",
+              width: "9px",
+              height: "10px",
               borderRadius: "50%",
               background: "#4565B7",
               opacity: 0.25,
@@ -51,7 +51,7 @@ export const Stepper = ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        width: "33.75px",
+        width: "45px",
         ...styles,
       }}
     >

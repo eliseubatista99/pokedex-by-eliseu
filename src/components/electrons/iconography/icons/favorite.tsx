@@ -15,7 +15,12 @@ export const Favorite = ({
       viewBox="0 0 28 28"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
-      style={{ ...containerProps }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...containerProps,
+      }}
       onClick={onClick}
     >
       <path

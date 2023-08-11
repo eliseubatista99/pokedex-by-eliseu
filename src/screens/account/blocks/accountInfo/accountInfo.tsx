@@ -17,17 +17,17 @@ export const AccountInfo = () => {
           width: "100%",
           flexDirection: "row",
           alignItems: "center",
-          padding: "9px 0",
+          padding: "12px 0",
           cursor: "pointer",
         }}
         onClick={() => onClick?.()}
       >
         <div style={{ flex: 1, flexDirection: "column" }}>
-          <Typography styles={{ fontSize: "10.5px", fontWeight: 600 }}>
+          <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>
             {title}
           </Typography>
           <Typography
-            styles={{ fontSize: "10.5px", fontWeight: 600, color: "#4D4D4D" }}
+            styles={{ fontSize: "14px", fontWeight: 600, color: "#4D4D4D" }}
           >
             {content}
           </Typography>
@@ -37,8 +37,8 @@ export const AccountInfo = () => {
           alt={"Arrow pointing to the right"}
           containerStyles={{
             transform: "scaleX(-1)",
-            width: "10.5px",
-            height: "10.5px",
+            width: "14px",
+            height: "14px",
           }}
         />
       </div>
@@ -54,7 +54,7 @@ export const AccountInfo = () => {
       }}
     >
       <Typography
-        styles={{ fontSize: "12px", fontWeight: 600, margin: "18px auto 0 0" }}
+        styles={{ fontSize: "16px", fontWeight: 600, margin: "24px auto 0 0" }}
       >
         {"Account information"}
       </Typography>

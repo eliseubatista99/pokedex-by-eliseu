@@ -23,7 +23,7 @@ export const Chip = ({
         padding: "8px 12px",
         background: "#333333",
         flexDirection: "row",
-        gap: "6px",
+        gap: "8px",
         cursor: "pointer",
         borderRadius: "50px",
         color: "#ffffff",
@@ -38,7 +38,7 @@ export const Chip = ({
         <div
           style={{
             alignItems: "flex-start",
-            maxHeight: "18px",
+            maxHeight: "24px",
           }}
         >
           {leftIcon}
@@ -48,7 +48,7 @@ export const Chip = ({
       <Typography
         styles={{
           flex: 1,
-          fontSize: "12px",
+          fontSize: "14px",
           fontWeight: 600,
           maxWidth: "70%",
           margin: "0 auto",
@@ -61,7 +61,7 @@ export const Chip = ({
         <div
           style={{
             alignItems: "flex-end",
-            maxHeight: "18px",
+            maxHeight: "24px",
           }}
         >
           {rightIcon}

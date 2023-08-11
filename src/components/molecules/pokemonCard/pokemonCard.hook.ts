@@ -18,7 +18,7 @@ export const usePokemonCardHelper = ({ pokemon }: PokemonCardProps) => {
     onHover: handleOnCardHovered,
     onUnhover: handleOnCardUnhovered,
     pokemonData: {
-      pokemonId: `#${PokemonHelper.getPokemonId(pokemon.id)}`,
+      pokemonId: `Nº ${PokemonHelper.getPokemonId(pokemon.id)}`,
       pokemonName: TextHelper.getPascalCase(pokemon.name),
       pokemonSprite: pokemon.sprite,
       pokemonMainType: pokemon.typesNames[0],

@@ -20,10 +20,10 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
       {!hideBack && (
         <Iconography.NavLeft
           containerProps={{
-            width: "28.5px",
-            height: "28.5px",
+            width: "38px",
+            height: "38px",
             position: "absolute",
-            left: "12px",
+            left: "16px",
             cursor: "pointer",
           }}
           onClick={() => onClickBack()}
@@ -47,7 +47,7 @@ export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
           style={{
             height: "100%",
             position: "absolute",
-            right: "12px",
+            right: "16px",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "flex-end",

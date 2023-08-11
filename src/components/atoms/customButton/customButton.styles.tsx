@@ -10,13 +10,13 @@ export const useCustomButtonStyles = ({
   isDisabled,
 }: CustomButtonStylesProps) => {
   const primaryButtonStyles: CSSProperties = {
-    border: "1.5px solid #173EA5",
+    border: "2px solid #173EA5",
     background: isHovered ? "#1a2564" : "#173EA5",
     color: "#ffffff",
   };
 
   const secondaryButtonStyles: CSSProperties = {
-    border: "1.5px solid #173EA5",
+    border: "2px solid #173EA5",
     background: isHovered ? "#DBDCDD" : "#ffffff",
     color: "#000000",
   };
