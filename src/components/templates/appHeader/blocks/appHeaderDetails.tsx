@@ -18,10 +18,10 @@ export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
     >
       <Iconography.NavLeft
         containerProps={{
-          width: "28.5px",
-          height: "28.5px",
+          width: "38px",
+          height: "38px",
           position: "absolute",
-          left: "12px",
+          left: "16px",
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}
@@ -30,10 +30,10 @@ export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
 
       <Iconography.Favorite
         containerProps={{
-          width: "18.75px",
-          height: "18.75px",
+          width: "25px",
+          height: "25px",
           position: "absolute",
-          right: "12px",
+          right: "24px",
           cursor: "pointer",
         }}
         stroke={theme === "light" ? "#000000" : "#ffffff"}

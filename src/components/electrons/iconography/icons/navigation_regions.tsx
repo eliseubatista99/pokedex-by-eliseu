@@ -1,8 +1,8 @@
 import { IconographyProps } from "..";
 
 export const NavigationRegions = ({
-  width = "18px",
-  height = "18px",
+  width = "24px",
+  height = "24px",
   fill = "none",
   stroke,
   containerProps,
@@ -15,7 +15,12 @@ export const NavigationRegions = ({
       viewBox="0 0 27 27"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
-      style={{ ...containerProps }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...containerProps,
+      }}
       onClick={onClick}
     >
       <path

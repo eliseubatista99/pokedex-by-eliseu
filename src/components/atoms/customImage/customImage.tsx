@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 
 export interface CustomImageProps {
   src: string;
-  alt: string;
+  alt?: string;
   onClick?: () => void;
   containerStyles?: CSSProperties;
   imageStyles?: CSSProperties;
@@ -10,7 +10,7 @@ export interface CustomImageProps {
 
 export const CustomImage = ({
   src,
-  alt,
+  alt = "",
   onClick,
   containerStyles,
   imageStyles,
@@ -21,6 +21,7 @@ export const CustomImage = ({
         overflow: "hidden",
         position: "relative",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         ...containerStyles,

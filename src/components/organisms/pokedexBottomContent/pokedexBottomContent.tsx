@@ -12,7 +12,7 @@ export const PokedexBottomContent = () => {
         display: "grid",
         width: "100%",
         height: `${POKEDEX_BOTTOM_CONTENT_HEIGHT}px`,
-        borderTop: "1px solid #E6E6E6",
+        borderTop: "1.5px solid #E6E6E6",
         backgroundColor: "#ffffff",
         gridTemplateColumns: "repeat(4, 1fr)",
         position: "relative",

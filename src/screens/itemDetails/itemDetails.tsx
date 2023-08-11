@@ -6,7 +6,7 @@ export const ItemDetails = () => {
 
   return (
     <AppLayout bottomContent={<PokedexBottomContent />}>
-      <div style={{ width: "100%", flexDirection: "column", gap: "12px" }}>
+      <div style={{ width: "100%", flexDirection: "column", gap: "16px" }}>
         {item?.name}
       </div>
     </AppLayout>

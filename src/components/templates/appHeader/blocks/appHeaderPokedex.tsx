@@ -15,14 +15,14 @@ export const AppHeaderPokedex = (props: AppHeaderPokedexProps) => {
         alignItems: "center",
         zIndex: 1,
         flexDirection: "row",
-        gap: "12px",
+        gap: "16px",
       }}
     >
       {!hideBack && (
         <Iconography.NavLeft
           containerProps={{
-            width: "28.5px",
-            height: "28.5px",
+            width: "38px",
+            height: "38px",
             cursor: "pointer",
           }}
           onClick={() => onClickBack()}

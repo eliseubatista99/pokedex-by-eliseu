@@ -8,10 +8,10 @@ export const Guest = () => {
     <div
       style={{
         width: "calc(100% + 24px)",
-        padding: "4.5px 12px 12px 12px",
+        padding: "6px 16px 16px 16px",
         flexDirection: "column",
         alignItems: "center",
-        gap: "9px",
+        gap: "12px",
         borderBottom: "1px solid var(--escala-de-cinza-50, #F2F2F2)",
       }}
     >
@@ -25,11 +25,11 @@ export const Guest = () => {
       >
         <Typography
           styles={{
-            fontSize: "12px",
+            fontSize: "16px",
             fontWeight: 400,
             color: "#4d4d4d",
             flex: 1,
-            paddingRight: "21px",
+            paddingRight: "28px",
           }}
         >
           {"Keep your Pokédex up to date and participate in this world."}
@@ -38,8 +38,8 @@ export const Guest = () => {
           src={ImageAssets.loginOrRegisterFigure}
           alt={"Profile Picture"}
           containerStyles={{
-            width: "90px",
-            height: "75px",
+            width: "120px",
+            height: "100px",
           }}
           imageStyles={{
             objectFit: "contain",
@@ -50,7 +50,7 @@ export const Guest = () => {
         type="secondary"
         text="Login or Register"
         onClick={onClickLoginOrRegister}
-        styles={{ marginTop: "12px", height: "32.7px" }}
+        styles={{ marginTop: "16px", height: "43px" }}
       />
     </div>
   );

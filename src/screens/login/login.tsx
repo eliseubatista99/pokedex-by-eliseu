@@ -22,7 +22,7 @@ export const Login = () => {
         alt={"A girl and a boy pointing up"}
         containerStyles={{
           margin: "auto",
-          maxWidth: "200.25px",
+          maxWidth: "267px",
           height: "auto",
         }}
       />
@@ -35,9 +35,9 @@ export const Login = () => {
             text: "Continue With Apple",
             startContent: (
               <Iconography.Apple
-                width="16.5px"
+                width="22px"
                 height="21px"
-                containerProps={{ margin: "-3px 0 0 0" }}
+                containerProps={{ margin: "-4px 0 0 0" }}
               />
             ),
             onClick: onClickApple,
@@ -48,9 +48,9 @@ export const Login = () => {
             text: "Continue With Google",
             startContent: (
               <Iconography.Google
-                width="19.5px"
-                height="19.5px"
-                containerProps={{ margin: "0 0 0 -4.5px" }}
+                width="19px"
+                height="19px"
+                containerProps={{ margin: "0 0 0 -6px" }}
               />
             ),
             onClick: onClickGoogle,

@@ -23,12 +23,15 @@ export const PokemonCard = (props: PokemonCardProps) => {
         <CustomImage
           src={PokemonHelper.getPokemonTypeIcon(type)}
           alt={"Pokemon Type Icon"}
-          imageStyles={{ width: "12px", height: "12px" }}
+          imageStyles={{ width: "10px", height: "10px" }}
           containerStyles={{
             width: "20px",
             height: "20px",
             borderRadius: "50%",
             background: "#ffffff",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "auto 0",
           }}
         />
       }
@@ -45,7 +48,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
         background: `${pokemonData.pokemonColor}33`,
         borderRadius: "15px",
         cursor: "pointer",
-        boxShadow: isHovered ? "rgba(0, 0, 0, 0.24) 0px 3px 8px" : "none",
+        boxShadow: isHovered ? "rgba(0, 0, 0, 0.24) 0px 4px 10px" : "none",
 
         ...containerProps,
       }}
@@ -57,22 +60,25 @@ export const PokemonCard = (props: PokemonCardProps) => {
         style={{
           flexDirection: "column",
           flex: 1,
-          padding: "12px 16px",
+          padding: "16px 10px 16px 16px",
         }}
       >
-        <Typography styles={{ fontSize: "11px", fontWeight: 600 }}>
+        <Typography styles={{ fontSize: "15px", fontWeight: 600 }}>
           {pokemonData.pokemonId}
         </Typography>
-        <Typography styles={{ fontSize: "15.75px", fontWeight: 600 }}>
+        <Typography styles={{ fontSize: "21px", fontWeight: 600 }}>
           {pokemonData.pokemonName}
         </Typography>
 
         <div
           style={{
             flexDirection: "row",
-            gap: "6px",
+            overflow: "hidden",
+            flexWrap: "wrap",
+            gap: "8px",
             width: "100%",
             marginTop: "auto",
+            paddingTop: "8px",
           }}
         >
           {typeChips}
@@ -80,13 +86,15 @@ export const PokemonCard = (props: PokemonCardProps) => {
       </div>
       <div
         style={{
-          width: "38%",
+          minWidth: "38%",
+          maxWidth: "38%",
           background: pokemonData.pokemonColor,
           borderRadius: "15px",
           alignItems: "center",
           justifyContent: "center",
           position: "relative",
           height: "102px",
+          minHeight: "100%",
         }}
       >
         <CustomImage

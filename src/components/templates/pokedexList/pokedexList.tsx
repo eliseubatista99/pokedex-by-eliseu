@@ -37,7 +37,9 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
     <>
       <AppLayout
         styles={{ height: "100%" }}
-        screen={{ styles: { height: "100%", overflow: "hidden" } }}
+        screen={{
+          styles: { height: "100%", overflow: "hidden", paddingBottom: 0 },
+        }}
         bottomContent={<PokedexBottomContent />}
       >
         {input && (
@@ -45,10 +47,10 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
             style={{
               width: "100%",
               display: "flex",
-              height: "56.25px",
+              height: "75px",
               alignItems: "center",
               justifyContent: "center",
-              borderBottom: "1px solid var(--escala-de-cinza-50, #F2F2F2)",
+              borderBottom: "1.5px solid var(--escala-de-cinza-50, #F2F2F2)",
             }}
             ref={searchInput.formRef}
             onSubmit={searchInput.onSubmitForm}
@@ -58,8 +60,8 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
               placeHolder={input.placeholder}
               rightIcon={
                 <Iconography.Search
-                  width={"15px"}
-                  height={"15px"}
+                  width={"20px"}
+                  height={"20px"}
                   onClick={() => searchInput.onChange()}
                 />
               }
@@ -76,9 +78,9 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
             style={{
               display: "grid",
               width: "100%",
-              gridTemplateColumns: "repeat(2, calc(50% - 6px))",
-              gridGap: "12px",
-              padding: "8px 0 12px 0",
+              gridTemplateColumns: "repeat(2, calc(50% - 8px))",
+              gridGap: "16px",
+              padding: "10px 0 16px 0",
             }}
           >
             {options.filter?.onClick && (
@@ -104,7 +106,7 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
                 rightIcon={
                   <Iconography.NavLeft
                     stroke="#ffffff"
-                    width="18px"
+                    width="24px"
                     containerProps={{ transform: "rotateZ(-90deg)" }}
                   />
                 }
@@ -126,7 +128,7 @@ export const PokedexListTemplate = (props: PokedexListTemplateProps) => {
             padding: `0 ${APP_PADDING_RIGHT}px 0 ${APP_PADDING_LEFT}px`,
           }}
         >
-          <div ref={list.listRef} style={{ width: "100%", gap: "12px" }}>
+          <div ref={list.listRef} style={{ width: "100%", gap: "16px" }}>
             {items}
           </div>
         </div>

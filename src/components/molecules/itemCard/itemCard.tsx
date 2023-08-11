@@ -23,7 +23,7 @@ export const ItemCard = (props: ItemCardProps) => {
         background: `${itemData.itemColor}33`,
         borderRadius: "15px",
         cursor: "pointer",
-        boxShadow: isHovered ? "rgba(0, 0, 0, 0.24) 0px 3px 8px" : "none",
+        boxShadow: isHovered ? "rgba(0, 0, 0, 0.24) 0px 4px 10px" : "none",
 
         ...containerProps,
       }}
@@ -35,20 +35,20 @@ export const ItemCard = (props: ItemCardProps) => {
         style={{
           flexDirection: "column",
           flex: 1,
-          padding: "12px 16px",
+          padding: "16px 22px",
         }}
       >
-        <Typography styles={{ fontSize: "11px", fontWeight: 600 }}>
+        <Typography styles={{ fontSize: "15px", fontWeight: 600 }}>
           {itemData.itemId}
         </Typography>
-        <Typography styles={{ fontSize: "15.75px", fontWeight: 600 }}>
+        <Typography styles={{ fontSize: "21px", fontWeight: 600 }}>
           {itemData.itemName}
         </Typography>
 
         <div
           style={{
             flexDirection: "row",
-            gap: "6px",
+            gap: "8px",
             width: "100%",
             marginTop: "auto",
           }}
@@ -71,22 +71,9 @@ export const ItemCard = (props: ItemCardProps) => {
           alignItems: "center",
           justifyContent: "center",
           position: "relative",
-          height: "102px",
+          height: "136px",
         }}
       >
-        {/* <CustomImage
-          src={PokemonHelper.getPokemonTypeIcon(pokemonData.pokemonMainType)}
-          alt={"Pokemon Type Icon"}
-          imageStyles={{ objectFit: "contain" }}
-          containerStyles={{
-            width: "74%",
-            height: "92%",
-            position: "absolute",
-            zIndex: 0,
-            opacity: 0.4,
-            filter: "grayscale(100%) brightness(200%)",
-          }}
-        /> */}
         {itemData.itemSprite && (
           <CustomImage
             src={itemData.itemSprite}

@@ -14,7 +14,7 @@ export const HomeScreen = () => {
           color: "#FFFFFF",
           margin: "auto",
           verticalAlign: "middle",
-          paddingBottom: "20px",
+          paddingBottom: "26px",
         }}
       >
         Poke<span style={{ color: "#CD3131" }}>dex</span>

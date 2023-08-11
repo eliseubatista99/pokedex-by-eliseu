@@ -19,7 +19,9 @@ export const CardChip = ({ text, image, styles }: CardChipProps) => {
       }}
     >
       {image}
-      <Typography>{text}</Typography>
+      <Typography styles={{ fontSize: "11px", margin: "auto 0 auto 0" }}>
+        {text}
+      </Typography>
     </div>
   );
 };

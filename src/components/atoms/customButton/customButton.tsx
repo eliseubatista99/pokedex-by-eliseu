@@ -23,11 +23,11 @@ export const CustomButton = (props: CustomButtonProps) => {
       style={{
         display: "flex",
         flexDirection: "row",
-        padding: "7.5px 24px",
+        padding: "10px 20px",
         borderRadius: "50px",
         width: "90%",
-        maxWidth: "246px",
-        height: "37.5px",
+        maxWidth: "328px",
+        height: "50px",
         cursor: "pointer",
         ...buttonStyles,
         ...styles,
@@ -48,7 +48,13 @@ export const CustomButton = (props: CustomButtonProps) => {
       >
         {startContent && (
           <div
-            style={{ maxWidth: "22.5px", maxHeight: "22.5px", margin: "auto" }}
+            style={{
+              width: "30px",
+              height: "30px",
+              margin: "auto",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             {startContent}
           </div>
@@ -60,7 +66,7 @@ export const CustomButton = (props: CustomButtonProps) => {
               fontFamily: "PoppinsSemiBold",
               textAlign: "center",
               flex: 1,
-              maxHeight: "18px",
+              maxHeight: "24px",
               margin: "auto",
             }}
           >
@@ -69,7 +75,13 @@ export const CustomButton = (props: CustomButtonProps) => {
         )}
         {endContent && (
           <div
-            style={{ maxWidth: "22.5px", maxHeight: "22.5px", margin: "auto" }}
+            style={{
+              width: "30px",
+              height: "30px",
+              margin: "auto",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             {endContent}
           </div>

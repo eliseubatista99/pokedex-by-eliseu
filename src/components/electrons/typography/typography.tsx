@@ -18,7 +18,7 @@ export const Typography = ({
         overflow: "hidden",
         whiteSpace: overflowEllipsis ? "nowrap" : "normal",
         textOverflow: "ellipsis",
-        fontSize: "12px",
+        fontSize: "16px",
         fontStyle: "normal",
         lineHeight: "normal",
         color: "inherit",

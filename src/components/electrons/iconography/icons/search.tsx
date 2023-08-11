@@ -15,6 +15,12 @@ export const Search = ({
       height={height}
       viewBox="0 0 20 21"
       fill={fill}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...containerProps,
+      }}
       onClick={onClick}
     >
       <path

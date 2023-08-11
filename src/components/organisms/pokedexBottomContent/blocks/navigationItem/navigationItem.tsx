@@ -38,7 +38,7 @@ export const NavigationItem = ({
       </div>
       <Typography
         styles={{
-          fontSize: "9px",
+          fontSize: "12px",
           fontWeight: 500,
           color: "#173EA5",
           display: isSelected ? "flex" : "none",

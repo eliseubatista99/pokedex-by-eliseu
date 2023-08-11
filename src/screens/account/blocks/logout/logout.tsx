@@ -16,30 +16,30 @@ export const Logout = () => {
         style={{
           width: "100%",
           flexDirection: "column",
-          gap: "12px",
+          gap: "16px",
           marginTop: "auto",
-          paddingTop: "18px",
+          paddingTop: "24px",
         }}
       >
-        <Typography styles={{ fontSize: "12px", fontWeight: 600 }}>
+        <Typography styles={{ fontSize: "16px", fontWeight: 600 }}>
           {"Others"}
         </Typography>
         <div
           style={{
             width: "100%",
             flexDirection: "column",
-            gap: "1.5px",
+            gap: "2px",
             cursor: "pointer",
           }}
           onClick={() => onClickOpenLogoutDrawer()}
         >
           <Typography
-            styles={{ fontSize: "10.5px", fontWeight: 600, color: "#CD3131" }}
+            styles={{ fontSize: "14px", fontWeight: 600, color: "#CD3131" }}
           >
             {"Logout"}
           </Typography>
           <Typography
-            styles={{ fontSize: "10.5px", fontWeight: 400, color: "#4d4d4d" }}
+            styles={{ fontSize: "14px", fontWeight: 400, color: "#4d4d4d" }}
           >
             {`You logged in as ${username}`}
           </Typography>

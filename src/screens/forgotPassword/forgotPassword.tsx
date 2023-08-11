@@ -19,14 +19,14 @@ export const ForgotPassword = () => {
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
-          styles={{ textAlign: "center", fontSize: "19.5px", fontWeight: 800 }}
+          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
         >
           {"Let's recover you password!"}
         </Typography>
         <Typography
           styles={{
             textAlign: "center",
-            fontSize: "19.5px",
+            fontSize: "26px",
             fontWeight: 400,
             color: "#4D4D4D",
           }}
@@ -42,7 +42,7 @@ export const ForgotPassword = () => {
           }
           placeHolder="Email"
           error={forgotPasswordFormData.email.error}
-          containerProps={{ margin: "12px auto 0 auto" }}
+          containerProps={{ margin: "16px auto 0 auto" }}
         />
       </form>
       <OnboardingBottomContent
