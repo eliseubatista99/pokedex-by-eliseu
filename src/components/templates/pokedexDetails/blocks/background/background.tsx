@@ -18,15 +18,15 @@ export const Background = (props: BackgroundProps) => {
         overflow: "hidden",
         width: "100%",
         top: 0,
-        height: "200px",
+        height: "150px",
       }}
     >
       <div
         style={{
           width: "138%",
           position: "absolute",
-          top: "-250px",
-          height: "500px",
+          top: "-187.5px",
+          height: "375px",
           borderRadius: "50%",
           backgroundColor,
         }}
@@ -34,7 +34,7 @@ export const Background = (props: BackgroundProps) => {
         <div
           style={{
             width: "100%",
-            height: "200px",
+            height: "150px",
             position: "absolute",
             flexDirection: "column",
             alignItems: "center",
@@ -64,12 +64,12 @@ export const Background = (props: BackgroundProps) => {
               alt={"Image"}
               imageStyles={{}}
               containerStyles={{
-                width: "50%",
-                maxWidth: "50%",
+                width: "40%",
+                maxWidth: "40%",
                 zIndex: 1,
                 justifyContent: "flex-end",
                 position: "absolute",
-                bottom: "-80px",
+                bottom: "-60px",
               }}
             />
           )}

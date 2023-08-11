@@ -40,7 +40,7 @@ export const PokemonDetails = () => {
       title={pokemonName}
       id={pokemonId}
       chips={chips}
-      flavor={""}
+      flavor={pokemon?.flavor || ""}
       detailsChips={[]}
     />
   );

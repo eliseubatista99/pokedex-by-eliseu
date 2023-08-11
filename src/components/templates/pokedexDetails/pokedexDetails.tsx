@@ -23,7 +23,7 @@ export interface PokedexDetailsTemplateProps {
 }
 
 export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
-  const { illustration, title, id, chips } = props;
+  const { illustration, title, id, chips, flavor } = props;
 
   console.log("ZAU", chips);
 
@@ -43,7 +43,7 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       />
       <Typography
         styles={{
-          fontSize: "32px",
+          fontSize: "24px",
           fontWeight: 500,
           textAlign: "left",
           margin: "0 auto 0 0",
@@ -53,7 +53,7 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       </Typography>
       <Typography
         styles={{
-          fontSize: "16px",
+          fontSize: "12px",
           fontWeight: 500,
           textAlign: "left",
           margin: "0 auto 0 0",
@@ -61,9 +61,28 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       >
         {`Nº ${id}`}
       </Typography>
-      <div style={{ marginTop: "24px", flexDirection: "row", gap: "8px" }}>
+      <div
+        style={{
+          width: "100%",
+          marginTop: "24px",
+          flexDirection: "row",
+          gap: "8px",
+          justifyContent: "flex-start",
+        }}
+      >
         {chipsJSX}
       </div>
+      <Typography
+        styles={{
+          fontSize: "10.5px",
+          fontWeight: 500,
+          textAlign: "left",
+          margin: "0 auto 0 0",
+          marginTop: "24px",
+        }}
+      >
+        {flavor}
+      </Typography>
     </AppLayout>
   );
 };
