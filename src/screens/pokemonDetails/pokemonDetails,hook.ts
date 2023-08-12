@@ -1,12 +1,15 @@
 import { EPokemonsTypes } from "@constants";
+import { useFirebaseAuth } from "@contexts";
 import { PokemonHelper, TextHelper } from "@helpers";
-import { usePokeApi } from "@hooks";
+import { useFirebaseFirestore, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import { PokemonFull, PokemonShort } from "@types";
 import React from "react";
 
 export const usePokemonDetailsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
+  const { currentUser } = useFirebaseAuth();
+  const { addOrRemoveFromFavorites } = useFirebaseFirestore();
   const { selectedPokemon, setSelectedPokemon } = usePokedexStore();
   const pokeApi = usePokeApi();
   const screenInitialized = React.useRef<boolean>(false);
@@ -152,6 +155,12 @@ export const usePokemonDetailsHelper = () => {
     [setSelectedPokemon]
   );
 
+  const handleClickFavorite = React.useCallback(() => {
+    if (currentUser && pokemonFullData) {
+      addOrRemoveFromFavorites(currentUser, pokemonFullData.id);
+    }
+  }, [addOrRemoveFromFavorites, currentUser, pokemonFullData]);
+
   React.useEffect(() => {
     if (
       !screenInitialized.current ||
@@ -179,6 +188,7 @@ export const usePokemonDetailsHelper = () => {
     ),
     pokemonEvolutions,
     onClickEvolution: handleClickEvolution,
+    onClickFavorite: handleClickFavorite,
     weaknesses: getWeaknesses(),
     strengths: getStrengths(),
   };

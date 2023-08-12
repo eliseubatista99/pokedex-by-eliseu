@@ -20,6 +20,7 @@ export const PokemonDetails = () => {
     strengths,
     pokemonEvolutions,
     onClickEvolution,
+    onClickFavorite,
   } = usePokemonDetailsHelper();
 
   const chips = (pokemon?.typesNames || []).map(
@@ -71,6 +72,7 @@ export const PokemonDetails = () => {
 
   return (
     <PokedexDetailsTemplate
+      onClickFavorite={onClickFavorite}
       illustration={{
         backgroundColor: pokemonColor,
         backgroundImage: pokemonTypeImage,
