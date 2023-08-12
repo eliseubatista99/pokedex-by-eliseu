@@ -77,6 +77,7 @@ export const usePokedexListTemplateHelper = (
     ) {
       cachedFilter.current = props.options?.filter?.value;
       cachedOrder.current = props.options?.order?.value;
+
       updateItems(searchInputValue.current);
     }
   }, [props.options?.filter, props.options?.order, updateItems]);

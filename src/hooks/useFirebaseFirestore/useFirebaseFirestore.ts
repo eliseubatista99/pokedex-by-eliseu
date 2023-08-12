@@ -55,7 +55,7 @@ export const useFirebaseFirestore = () => {
   );
 
   const addOrRemoveFromFavorites = React.useCallback(
-    async (user: User, pokemon: number) => {
+    async (user: User, pokemon: string) => {
       const newUserRef = doc(usersCollectionRef, user.uid);
       const userData = await getUserData(user);
 

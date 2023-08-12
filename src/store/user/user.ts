@@ -6,14 +6,14 @@ import { StoreHelper } from "../store.helper";
 export interface UserState {
   lastUpdateTime?: number;
   firebaseUser?: User | null;
-  favorites?: number[];
+  favorites?: string[];
 }
 
 export const initialUserState: UserState = { firebaseUser: undefined };
 
 interface UseUserStoreOutput extends UserState {
   setFirebaseUser: (data: User | null | undefined) => void;
-  setUserFavorites: (data: number[]) => void;
+  setUserFavorites: (data: string[]) => void;
 }
 
 export const useUserStore = StoreHelper.createStore<UseUserStoreOutput>(
@@ -28,7 +28,7 @@ export const useUserStore = StoreHelper.createStore<UseUserStoreOutput>(
         "setFirebaseUser"
       );
     },
-    setUserFavorites: function (data: number[]) {
+    setUserFavorites: function (data: string[]) {
       set(
         produce((state: UserState) => {
           const currentTime = Date.now();

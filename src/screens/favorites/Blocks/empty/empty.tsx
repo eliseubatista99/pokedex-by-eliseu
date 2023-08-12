@@ -1,15 +1,12 @@
 import { ImageAssets } from "@assets";
 import {
   AppLayout,
-  CustomButton,
   CustomImage,
   PokedexBottomContent,
   Typography,
 } from "@components";
-import { useGuestHook } from "./guest.hook";
 
-export const Guest = () => {
-  const { onClickLoginOrRegister } = useGuestHook();
+export const Empty = () => {
   return (
     <AppLayout
       header={{ type: "pokedex", title: "Favorites" }}
@@ -41,7 +38,7 @@ export const Guest = () => {
             marginTop: "16px",
           }}
         >
-          {"You need to be logged in to access this section"}
+          {"Nothing here"}
         </Typography>
         <Typography
           styles={{
@@ -53,15 +50,9 @@ export const Guest = () => {
           }}
         >
           {
-            "To access this functionality, you need to login or create an account"
+            "To add favorites, go the pokedex, select a pokemon and hit the heart button"
           }
         </Typography>
-        <CustomButton
-          type="secondary"
-          text="Login or Register"
-          onClick={onClickLoginOrRegister}
-          styles={{ marginTop: "24px" }}
-        />
       </div>
     </AppLayout>
   );

@@ -158,7 +158,7 @@ export const usePokemonDetailsHelper = () => {
 
   const handleClickFavorite = React.useCallback(() => {
     if (currentUser && pokemonFullData) {
-      addOrRemoveFromFavorites(currentUser, pokemonFullData.id);
+      addOrRemoveFromFavorites(currentUser, pokemonFullData.name);
     }
   }, [addOrRemoveFromFavorites, currentUser, pokemonFullData]);
 
@@ -166,7 +166,7 @@ export const usePokemonDetailsHelper = () => {
     if (!pokemonFullData) {
       return false;
     }
-    return favorites?.includes(pokemonFullData?.id);
+    return favorites?.includes(pokemonFullData?.name);
   }, [favorites, pokemonFullData]);
 
   React.useEffect(() => {
