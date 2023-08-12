@@ -4,7 +4,6 @@ import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
 import { PokemonShort } from "@types";
-import { limit } from "firebase/firestore";
 import React from "react";
 
 export const useFavoritesHelper = () => {
