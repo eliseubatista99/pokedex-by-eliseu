@@ -3,7 +3,7 @@ import { AppHeaderDetailsProps } from "..";
 import { Iconography } from "@components";
 
 export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
-  const { onClickFavorite, theme = "light" } = props;
+  const { favorite, theme = "light" } = props;
   const { onClickBack } = useAppHeaderHelper(props);
 
   return (
@@ -28,17 +28,20 @@ export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
         onClick={() => onClickBack()}
       />
 
-      <Iconography.Favorite
-        containerProps={{
-          width: "25px",
-          height: "25px",
-          position: "absolute",
-          right: "24px",
-          cursor: "pointer",
-        }}
-        stroke={theme === "light" ? "#000000" : "#ffffff"}
-        onClick={() => onClickFavorite?.()}
-      />
+      {favorite && (
+        <Iconography.Favorite
+          containerProps={{
+            width: "25px",
+            height: "25px",
+            position: "absolute",
+            right: "24px",
+            cursor: "pointer",
+          }}
+          fill={favorite.isFavorite ? "#ff0062" : undefined}
+          stroke={theme === "light" ? "#000000" : "#ffffff"}
+          onClick={() => favorite.onClickFavorite?.()}
+        />
+      )}
     </div>
   );
 };

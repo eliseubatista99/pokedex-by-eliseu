@@ -14,8 +14,11 @@ export type AppHeaderDefaultProps = AppHeaderCommonProps & {
 
 export type AppHeaderDetailsProps = AppHeaderCommonProps & {
   type: "details";
+  favorite?: {
+    isFavorite?: boolean;
+    onClickFavorite?: () => void;
+  };
   theme?: "light" | "dark";
-  onClickFavorite?: () => void;
 };
 
 export type AppHeaderPokedexProps = AppHeaderCommonProps & {

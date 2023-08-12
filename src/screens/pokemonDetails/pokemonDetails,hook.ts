@@ -2,7 +2,7 @@ import { EPokemonsTypes } from "@constants";
 import { useFirebaseAuth } from "@contexts";
 import { PokemonHelper, TextHelper } from "@helpers";
 import { useFirebaseFirestore, usePokeApi } from "@hooks";
-import { useBaseStore, usePokedexStore } from "@store";
+import { useBaseStore, usePokedexStore, useUserStore } from "@store";
 import { PokemonFull, PokemonShort } from "@types";
 import React from "react";
 
@@ -10,6 +10,7 @@ export const usePokemonDetailsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
   const { currentUser } = useFirebaseAuth();
   const { addOrRemoveFromFavorites } = useFirebaseFirestore();
+  const { favorites } = useUserStore();
   const { selectedPokemon, setSelectedPokemon } = usePokedexStore();
   const pokeApi = usePokeApi();
   const screenInitialized = React.useRef<boolean>(false);
@@ -161,6 +162,13 @@ export const usePokemonDetailsHelper = () => {
     }
   }, [addOrRemoveFromFavorites, currentUser, pokemonFullData]);
 
+  const isFavorite = React.useCallback(() => {
+    if (!pokemonFullData) {
+      return false;
+    }
+    return favorites?.includes(pokemonFullData?.id);
+  }, [favorites, pokemonFullData]);
+
   React.useEffect(() => {
     if (
       !screenInitialized.current ||
@@ -188,7 +196,10 @@ export const usePokemonDetailsHelper = () => {
     ),
     pokemonEvolutions,
     onClickEvolution: handleClickEvolution,
-    onClickFavorite: handleClickFavorite,
+    favorite: {
+      isFavorite: isFavorite(),
+      onClickFavorite: handleClickFavorite,
+    },
     weaknesses: getWeaknesses(),
     strengths: getStrengths(),
   };

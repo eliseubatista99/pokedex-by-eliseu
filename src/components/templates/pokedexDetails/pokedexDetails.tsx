@@ -20,7 +20,10 @@ export interface PokedexDetailsTemplateProps {
   id: string;
   chips: CardChipProps[];
   flavor: string;
-  onClickFavorite?: () => void;
+  favorite?: {
+    isFavorite?: boolean;
+    onClickFavorite?: () => void;
+  };
   detailsChips: DetailChipProps[];
   freeContent?: React.ReactNode;
 }
@@ -37,7 +40,7 @@ export const PokedexDetailsTemplate = React.forwardRef<
     flavor,
     detailsChips,
     freeContent,
-    onClickFavorite,
+    favorite,
   } = props;
 
   const chipsJSX = chips.map((chip) => (
@@ -65,7 +68,7 @@ export const PokedexDetailsTemplate = React.forwardRef<
         type: "details",
         theme: "dark",
         background: "#00000000",
-        onClickFavorite: onClickFavorite,
+        favorite,
       }}
       bottomContent={<PokedexBottomContent />}
     >
