@@ -1,8 +1,43 @@
 import { ImageAssets } from "@assets";
 import { EOrder, EPokemonsTypes } from "@constants";
-import { ApiEvolutionChainItem, PokemonShort } from "@types";
+import {
+  ApiEvolutionChain,
+  ApiEvolutionChainItem,
+  PokemonEvolutions,
+  PokemonShort,
+} from "@types";
 
 export class PokemonHelper {
+  static exampleChain: ApiEvolutionChain = {
+    chain: {
+      evolves_to: [
+        {
+          species: { name: "B" },
+          evolves_to: [
+            {
+              species: { name: "E" },
+              evolves_to: [{ species: { name: "Z" }, evolves_to: [] }],
+            },
+          ],
+        },
+        {
+          species: { name: "R" },
+          evolves_to: [
+            { species: { name: "X" }, evolves_to: [] },
+            { species: { name: "F" }, evolves_to: [] },
+          ],
+        },
+        {
+          species: { name: "D" },
+          evolves_to: [],
+        },
+      ],
+      species: {
+        name: "A",
+      },
+    },
+  };
+
   static getPokemonId = (id: number) => {
     const parsedId = `${id}`;
 
@@ -178,18 +213,70 @@ export class PokemonHelper {
     return result;
   };
 
-  static buildEvolutionChain = (chain: ApiEvolutionChainItem[]): string[] => {
+  static buildEvolutionChain = (
+    chain: ApiEvolutionChainItem[]
+  ): PokemonEvolutions => {
     if (!chain[0]) {
-      return [];
+      return undefined;
     }
 
     if (chain[0].evolves_to.length < 1) {
-      return [chain[0].species.name];
+      return {
+        name: chain[0].species.name,
+        evolutions: [],
+      };
     } else {
-      return [
-        chain[0].species.name,
-        ...this.buildEvolutionChain(chain[0].evolves_to),
-      ];
+      let evolutions: PokemonEvolutions[] = [];
+      chain[0].evolves_to.forEach((evolution) => {
+        const nextEvolutions = this.buildEvolutionChain(evolution.evolves_to);
+        evolutions = [
+          ...evolutions,
+          {
+            name: evolution.species.name,
+            evolutions: nextEvolutions ? [nextEvolutions] : [],
+          },
+        ];
+      });
+
+      return {
+        name: chain[0].species.name,
+        evolutions,
+      };
     }
+  };
+
+  static buildEvolutionChainList = (
+    chains: PokemonEvolutions[]
+  ): Array<Array<string>> => {
+    let result: Array<Array<string>> = [];
+    const chainBase = chains[0]?.name;
+
+    if (!chainBase) {
+      return result;
+    }
+
+    //For each chain
+    for (let i = 0; i < chains.length; i++) {
+      const chain = chains[i];
+
+      if (!chain) {
+        continue;
+      }
+
+      //If this chain has no evolutions, push the current name to a evolution branch
+      if (!chain.evolutions || chain.evolutions.length < 1) {
+        result.push([chain.name]);
+      } else {
+        //If this chain has evolutions, recursively get them
+        const nextEvolutions = this.buildEvolutionChainList(chain.evolutions);
+
+        //For each possible branch, add it with the current evolution name on the start
+        nextEvolutions.forEach((evolution) =>
+          result.push([chain.name, ...evolution])
+        );
+      }
+    }
+
+    return result;
   };
 }

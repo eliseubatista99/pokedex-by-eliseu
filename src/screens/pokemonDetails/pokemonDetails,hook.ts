@@ -8,7 +8,7 @@ import React from "react";
 export const usePokemonDetailsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
   const { selectedPokemon } = usePokedexStore();
-  const { getPokemonFull } = usePokeApi();
+  const pokeApi = usePokeApi();
   const screenInitialized = React.useRef<boolean>(false);
 
   const [pokemonFullData, setPokemonFullData] = React.useState<
@@ -22,7 +22,7 @@ export const usePokemonDetailsHelper = () => {
           loadingText: "Retrieving pokemon full",
           style: "transparent",
         });
-        const data = await getPokemonFull(pokemon.name);
+        const data = await pokeApi.getPokemonFull(pokemon.name);
 
         setPokemonFullData(data);
         hideLoader();
@@ -31,7 +31,7 @@ export const usePokemonDetailsHelper = () => {
         console.error("Failed to retrieve pokemon full: ", error);
       }
     },
-    [getPokemonFull, hideLoader, showLoader]
+    [hideLoader, pokeApi, showLoader]
   );
 
   const getWeaknesses = React.useCallback(() => {
@@ -104,8 +104,20 @@ export const usePokemonDetailsHelper = () => {
 
   const getEvolutions = React.useCallback(() => {
     const chain = pokemonFullData?.evolutionChain;
+    const listsChain = PokemonHelper.buildEvolutionChainList([chain]);
 
-    console.log("Evolution Chain", chain);
+    // console.log("listsChain", listsChain);
+
+    const result: Array<Array<PokemonShort>> = [];
+
+    // chain?.evolutions?.forEach(async (evolution) => {
+    //   const pokemonData = await pokeApi.getPokemonShort(evolution.);
+    //   result.push(pokemonData);
+    // });
+
+    // console.log("ZAU1", chain);
+
+    return chain;
   }, [pokemonFullData?.evolutionChain]);
 
   React.useEffect(() => {
