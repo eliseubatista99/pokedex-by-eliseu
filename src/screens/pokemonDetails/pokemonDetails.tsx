@@ -4,7 +4,6 @@ import {
   DetailChipProps,
   EvolutionBranch,
   PokedexDetailsTemplate,
-  Typography,
 } from "@components";
 import { PokemonHelper } from "@helpers";
 import { Blocks } from "./blocks";
