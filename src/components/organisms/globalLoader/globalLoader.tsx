@@ -70,7 +70,7 @@ export const GlobalLoader = ({
           left: 0,
           top: 0,
           background: style === "opaque" ? "#000029" : "#00000068",
-          position: "absolute",
+          position: "fixed",
           zIndex: 1000,
           display: "flex",
           flexDirection: "column",

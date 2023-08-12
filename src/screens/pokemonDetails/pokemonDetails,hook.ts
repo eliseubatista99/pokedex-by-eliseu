@@ -62,6 +62,8 @@ export const usePokemonDetailsHelper = () => {
         await getEvolutions(data);
 
         setPokemonFullData(data);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
         hideLoader();
         isFetching.current = false;
       } catch (error) {
@@ -145,14 +147,11 @@ export const usePokemonDetailsHelper = () => {
   const handleClickEvolution = React.useCallback(
     (pokemon: PokemonShort) => {
       setSelectedPokemon(pokemon);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     },
     [setSelectedPokemon]
   );
 
   React.useEffect(() => {
-    console.log("UPDATE", { selectedPokemon, pokemonFullData });
-
     if (
       !screenInitialized.current ||
       selectedPokemon?.id !== pokemonFullData?.id

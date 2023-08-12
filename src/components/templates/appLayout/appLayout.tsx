@@ -6,7 +6,9 @@ import {
   GlobalLoader,
   Toast,
 } from "@components";
+import { useScroll } from "@hooks";
 import { useBaseStore } from "@store";
+import React from "react";
 import { CSSProperties } from "react";
 export interface AppLayoutProps {
   header?: AppHeaderProps;
@@ -24,6 +26,15 @@ export const AppLayout = ({
   styles,
 }: AppLayoutProps) => {
   const { loading, toast } = useBaseStore();
+  const { enableScroll, disableScroll } = useScroll();
+
+  React.useEffect(() => {
+    if (loading?.isLoading) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [disableScroll, enableScroll, loading?.isLoading]);
 
   return (
     <>
