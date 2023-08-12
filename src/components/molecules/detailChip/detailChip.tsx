@@ -3,7 +3,7 @@ import { CustomImage, Typography } from "@components";
 
 export interface DetailChipProps {
   icon?: string;
-  title: string;
+  title?: string;
   content: string;
   styles?: CSSProperties;
 }
@@ -18,15 +18,17 @@ export const DetailChip = ({
     <div style={{ flexDirection: "column", ...styles }}>
       <div style={{ width: "100%", flexDirection: "row" }}>
         {icon && <CustomImage src={icon} />}
-        <Typography
-          styles={{
-            fontSize: "12px",
-            fontWeight: 500,
-            color: "#00000099",
-          }}
-        >
-          {title}
-        </Typography>
+        {title && (
+          <Typography
+            styles={{
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "#00000099",
+            }}
+          >
+            {title}
+          </Typography>
+        )}
       </div>
       <div
         style={{
