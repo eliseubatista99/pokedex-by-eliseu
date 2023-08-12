@@ -7,31 +7,71 @@ import React from "react";
 
 export const usePokemonDetailsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { selectedPokemon } = usePokedexStore();
+  const { selectedPokemon, setSelectedPokemon } = usePokedexStore();
   const pokeApi = usePokeApi();
   const screenInitialized = React.useRef<boolean>(false);
+  const isFetching = React.useRef<boolean>(false);
 
   const [pokemonFullData, setPokemonFullData] = React.useState<
     PokemonFull | undefined
   >(undefined);
 
+  const [pokemonEvolutions, setPokemonEvolutions] = React.useState<
+    Array<Array<PokemonShort>>
+  >([]);
+
+  const getEvolutions = React.useCallback(
+    async (pokemon: PokemonFull) => {
+      const chain = pokemon.evolutionChain;
+
+      const chainList = PokemonHelper.buildEvolutionChainList([chain]);
+
+      const chainPokemonsList: Array<Array<PokemonShort>> = [];
+
+      for (let i = 0; i < chainList.length; i++) {
+        const branchShortList: PokemonShort[] = [];
+
+        for (let j = 0; j < chainList[i].length; j++) {
+          const pokemonShortData = await pokeApi.getPokemonShort(
+            chainList[i][j]
+          );
+          branchShortList.push(pokemonShortData);
+        }
+
+        chainPokemonsList.push(branchShortList);
+      }
+
+      setPokemonEvolutions(chainPokemonsList);
+    },
+    [pokeApi]
+  );
+
   const handleFetchPokemonFull = React.useCallback(
     async (pokemon: PokemonShort) => {
+      if (isFetching.current) {
+        return;
+      }
       try {
+        isFetching.current = true;
         showLoader({
           loadingText: "Retrieving pokemon full",
           style: "transparent",
         });
         const data = await pokeApi.getPokemonFull(pokemon.name);
 
+        await getEvolutions(data);
+
         setPokemonFullData(data);
         hideLoader();
+        isFetching.current = false;
       } catch (error) {
         hideLoader();
+        isFetching.current = false;
+
         console.error("Failed to retrieve pokemon full: ", error);
       }
     },
-    [hideLoader, pokeApi, showLoader]
+    [getEvolutions, hideLoader, pokeApi, showLoader]
   );
 
   const getWeaknesses = React.useCallback(() => {
@@ -102,34 +142,32 @@ export const usePokemonDetailsHelper = () => {
     return strengths;
   }, [pokemonFullData]);
 
-  const getEvolutions = React.useCallback(() => {
-    const chain = pokemonFullData?.evolutionChain;
-    const listsChain = PokemonHelper.buildEvolutionChainList([chain]);
-
-    // console.log("listsChain", listsChain);
-
-    const result: Array<Array<PokemonShort>> = [];
-
-    // chain?.evolutions?.forEach(async (evolution) => {
-    //   const pokemonData = await pokeApi.getPokemonShort(evolution.);
-    //   result.push(pokemonData);
-    // });
-
-    // console.log("ZAU1", chain);
-
-    return chain;
-  }, [pokemonFullData?.evolutionChain]);
+  const handleClickEvolution = React.useCallback(
+    (pokemon: PokemonShort) => {
+      setSelectedPokemon(pokemon);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    [setSelectedPokemon]
+  );
 
   React.useEffect(() => {
-    if (!screenInitialized.current) {
+    console.log("UPDATE", { selectedPokemon, pokemonFullData });
+
+    if (
+      !screenInitialized.current ||
+      selectedPokemon?.id !== pokemonFullData?.id
+    ) {
       if (selectedPokemon) {
         screenInitialized.current = true;
         handleFetchPokemonFull(selectedPokemon);
       }
     }
-  }, [handleFetchPokemonFull, selectedPokemon]);
-
-  getEvolutions();
+  }, [
+    handleFetchPokemonFull,
+    pokemonFullData,
+    pokemonFullData?.id,
+    selectedPokemon,
+  ]);
 
   return {
     pokemon: pokemonFullData,
@@ -139,7 +177,8 @@ export const usePokemonDetailsHelper = () => {
     pokemonTypeImage: PokemonHelper.getPokemonTypeIcon(
       pokemonFullData?.typesNames[0]
     ),
-    pokemonEvolutions: getEvolutions(),
+    pokemonEvolutions,
+    onClickEvolution: handleClickEvolution,
     weaknesses: getWeaknesses(),
     strengths: getStrengths(),
   };

@@ -7,6 +7,7 @@ import {
   PokedexBottomContent,
   Typography,
 } from "@components";
+import React from "react";
 import { Blocks } from "./blocks";
 
 export interface PokedexDetailsTemplateProps {
@@ -23,7 +24,10 @@ export interface PokedexDetailsTemplateProps {
   freeContent?: React.ReactNode;
 }
 
-export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
+export const PokedexDetailsTemplate = React.forwardRef<
+  HTMLDivElement,
+  PokedexDetailsTemplateProps
+>((props, ref) => {
   const { illustration, title, id, chips, flavor, detailsChips, freeContent } =
     props;
 
@@ -113,4 +117,4 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       {freeContent}
     </AppLayout>
   );
-};
+});

@@ -15,13 +15,15 @@ export const useCustomNavigation = () => {
 
   const goTo = React.useCallback(
     (screenPath: string, alsoAddToHistory = true) => {
-      navigate(screenPath, { replace: true });
+      if (screenPath !== location.pathname) {
+        navigate(screenPath, { replace: true });
+      }
 
       if (alsoAddToHistory) {
         addToHistory(screenPath);
       }
     },
-    [addToHistory, navigate]
+    [addToHistory, location.pathname, navigate]
   );
 
   const goBack = React.useCallback(

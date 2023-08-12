@@ -2,10 +2,12 @@ import {
   CardChip,
   CardChipProps,
   DetailChipProps,
+  EvolutionBranch,
   PokedexDetailsTemplate,
   Typography,
 } from "@components";
 import { PokemonHelper } from "@helpers";
+import { Blocks } from "./blocks";
 import { usePokemonDetailsHelper } from "./pokemonDetails,hook";
 
 export const PokemonDetails = () => {
@@ -18,6 +20,7 @@ export const PokemonDetails = () => {
     weaknesses,
     strengths,
     pokemonEvolutions,
+    onClickEvolution,
   } = usePokemonDetailsHelper();
 
   const chips = (pokemon?.typesNames || []).map(
@@ -30,6 +33,7 @@ export const PokemonDetails = () => {
 
   const weaknessesChips = weaknesses.map((weakness) => (
     <CardChip
+      key={weakness}
       text={weakness}
       image={PokemonHelper.getPokemonTypeIcon(weakness)}
       styles={{
@@ -41,6 +45,7 @@ export const PokemonDetails = () => {
 
   const strengthsChips = strengths.map((strength) => (
     <CardChip
+      key={strength}
       text={strength}
       image={PokemonHelper.getPokemonTypeIcon(strength)}
       styles={{
@@ -57,6 +62,14 @@ export const PokemonDetails = () => {
     })
   );
 
+  const evolutions = pokemonEvolutions.map((branch, index) => (
+    <EvolutionBranch
+      key={index}
+      branch={branch}
+      onClickPokemon={onClickEvolution}
+    />
+  ));
+
   return (
     <PokedexDetailsTemplate
       illustration={{
@@ -71,53 +84,54 @@ export const PokemonDetails = () => {
       detailsChips={stats}
       freeContent={
         <>
-          {weaknesses.length > 0 && (
-            <>
-              <Typography
-                styles={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  margin: "24px auto 0 0",
-                }}
-              >
-                {"Weaknesses"}
-              </Typography>
-              <div
-                style={{
-                  width: "100%",
-                  display: "grid",
-                  gap: "16px",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                }}
-              >
-                {weaknessesChips}
-              </div>
-            </>
-          )}
-          {strengths.length > 0 && (
-            <>
-              <Typography
-                styles={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  margin: "24px auto 0 0",
-                }}
-              >
-                {"Strengths"}
-              </Typography>
-              <div
-                style={{
-                  width: "100%",
-                  display: "grid",
-                  gap: "16px",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                }}
-              >
-                {strengthsChips}
-              </div>
-            </>
-          )}
-          {}
+          <Blocks.FreeContentWrapper
+            title="Weaknesses"
+            renderCondition={weaknesses.length > 0}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "grid",
+                gap: "16px",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                marginTop: "16px",
+              }}
+            >
+              {weaknessesChips}
+            </div>
+          </Blocks.FreeContentWrapper>
+          <Blocks.FreeContentWrapper
+            title="Strengths"
+            renderCondition={strengths.length > 0}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "grid",
+                gap: "16px",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                marginTop: "16px",
+              }}
+            >
+              {strengthsChips}
+            </div>
+          </Blocks.FreeContentWrapper>
+          <Blocks.FreeContentWrapper
+            title="Evolutions"
+            renderCondition={pokemonEvolutions.length > 0}
+          >
+            <div
+              style={{
+                width: "100%",
+                flexDirection: "column",
+                gap: "8px",
+                justifyContent: "center",
+                marginTop: "16px",
+              }}
+            >
+              {evolutions}
+            </div>
+          </Blocks.FreeContentWrapper>
         </>
       }
     />
