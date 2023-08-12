@@ -67,9 +67,11 @@ export const useFirebaseFirestore = () => {
         favorites.push(pokemon);
       }
 
+      setUserFavorites(favorites);
+
       await updateDoc(newUserRef, { favorites });
     },
-    [getUserData, usersCollectionRef]
+    [getUserData, setUserFavorites, usersCollectionRef]
   );
 
   const getFavorites = React.useCallback(
