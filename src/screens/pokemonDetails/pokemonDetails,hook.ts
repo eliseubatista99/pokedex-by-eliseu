@@ -62,9 +62,10 @@ export const usePokemonDetailsHelper = () => {
         await getEvolutions(data);
 
         setPokemonFullData(data);
-        window.scrollTo({ top: 0, behavior: "smooth" });
 
         hideLoader();
+        await new Promise((res) => setTimeout(res, 100));
+        window.scrollTo({ top: 0, behavior: "smooth" });
         isFetching.current = false;
       } catch (error) {
         hideLoader();

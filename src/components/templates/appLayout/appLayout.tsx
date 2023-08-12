@@ -30,9 +30,9 @@ export const AppLayout = ({
 
   React.useEffect(() => {
     if (loading?.isLoading) {
-      disableScroll();
+      //disableScroll();
     } else {
-      enableScroll();
+      //enableScroll();
     }
   }, [disableScroll, enableScroll, loading?.isLoading]);
 

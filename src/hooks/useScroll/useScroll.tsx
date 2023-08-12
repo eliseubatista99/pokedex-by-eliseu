@@ -4,9 +4,7 @@ export const useScroll = () => {
   };
 
   const enableScroll = () => {
-    document.body.style.overflow = "initial";
-    document.body.style.overflowX = "hidden";
-    document.body.style.overflowY = "auto";
+    document.body.style.overflow = "unset";
   };
 
   return {
