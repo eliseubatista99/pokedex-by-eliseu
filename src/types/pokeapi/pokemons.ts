@@ -1,8 +1,12 @@
-export interface ApiEvolutionChain {
-  evolves_to: ApiEvolutionChain[];
+export interface ApiEvolutionChainItem {
+  evolves_to: ApiEvolutionChainItem[];
   species: {
     name: string;
   };
+}
+
+export interface ApiEvolutionChain {
+  chain: ApiEvolutionChainItem;
 }
 
 export interface ApiGenera {

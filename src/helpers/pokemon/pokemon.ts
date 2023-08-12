@@ -1,6 +1,6 @@
 import { ImageAssets } from "@assets";
 import { EOrder, EPokemonsTypes } from "@constants";
-import { PokemonShort } from "@types";
+import { ApiEvolutionChainItem, PokemonShort } from "@types";
 
 export class PokemonHelper {
   static getPokemonId = (id: number) => {
@@ -176,5 +176,20 @@ export class PokemonHelper {
     }
 
     return result;
+  };
+
+  static buildEvolutionChain = (chain: ApiEvolutionChainItem[]): string[] => {
+    if (!chain[0]) {
+      return [];
+    }
+
+    if (chain[0].evolves_to.length < 1) {
+      return [chain[0].species.name];
+    } else {
+      return [
+        chain[0].species.name,
+        ...this.buildEvolutionChain(chain[0].evolves_to),
+      ];
+    }
   };
 }

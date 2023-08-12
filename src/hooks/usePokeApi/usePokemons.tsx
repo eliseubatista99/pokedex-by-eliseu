@@ -1,4 +1,5 @@
 import { EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
+import { PokemonHelper } from "@helpers";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
 import {
@@ -129,9 +130,13 @@ export const usePokemons = () => {
 
       const evolutionChainSplitUrl = species.evolution_chain.url.split("/");
 
-      const evolutionChain = await getEvolutionChain(
+      const evolutionChainData = await getEvolutionChain(
         evolutionChainSplitUrl[evolutionChainSplitUrl.length - 2]
       );
+
+      const evolutionChain = PokemonHelper.buildEvolutionChain([
+        evolutionChainData.chain,
+      ]);
 
       const englishFlavor = species.flavor_text_entries.find(
         (flavor) => flavor.language.name === "en"
@@ -152,9 +157,7 @@ export const usePokemons = () => {
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
         abilities: pokemon.abilities.map((ability) => ability.ability.name),
-        evolutionChain: evolutionChain.evolves_to?.map(
-          (evolveTarget) => evolveTarget.species.name
-        ),
+        evolutionChain,
         flavor: englishFlavor?.flavor_text || "",
         genus: englishGenus?.genus || "",
         stats,

@@ -17,6 +17,7 @@ export const PokemonDetails = () => {
     pokemonName,
     weaknesses,
     strengths,
+    pokemonEvolutions,
   } = usePokemonDetailsHelper();
 
   const chips = (pokemon?.typesNames || []).map(
@@ -75,7 +76,7 @@ export const PokemonDetails = () => {
               <Typography
                 styles={{
                   fontSize: "18px",
-                  fontWeight: 500,
+                  fontWeight: 700,
                   margin: "24px auto 0 0",
                 }}
               >
@@ -98,7 +99,7 @@ export const PokemonDetails = () => {
               <Typography
                 styles={{
                   fontSize: "18px",
-                  fontWeight: 500,
+                  fontWeight: 700,
                   margin: "24px auto 0 0",
                 }}
               >
@@ -116,6 +117,7 @@ export const PokemonDetails = () => {
               </div>
             </>
           )}
+          {}
         </>
       }
     />

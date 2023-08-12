@@ -102,6 +102,12 @@ export const usePokemonDetailsHelper = () => {
     return strengths;
   }, [pokemonFullData]);
 
+  const getEvolutions = React.useCallback(() => {
+    const chain = pokemonFullData?.evolutionChain;
+
+    console.log("Evolution Chain", chain);
+  }, [pokemonFullData?.evolutionChain]);
+
   React.useEffect(() => {
     if (!screenInitialized.current) {
       if (selectedPokemon) {
@@ -111,6 +117,8 @@ export const usePokemonDetailsHelper = () => {
     }
   }, [handleFetchPokemonFull, selectedPokemon]);
 
+  getEvolutions();
+
   return {
     pokemon: pokemonFullData,
     pokemonId: PokemonHelper.getPokemonId(pokemonFullData?.id || 0),
@@ -119,6 +127,7 @@ export const usePokemonDetailsHelper = () => {
     pokemonTypeImage: PokemonHelper.getPokemonTypeIcon(
       pokemonFullData?.typesNames[0]
     ),
+    pokemonEvolutions: getEvolutions(),
     weaknesses: getWeaknesses(),
     strengths: getStrengths(),
   };
