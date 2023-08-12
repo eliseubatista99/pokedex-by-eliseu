@@ -9,8 +9,6 @@ import { useItemDetailsHelper } from "./itemDetails.hook";
 export const ItemDetails = () => {
   const { item, itemColor, itemId, itemName } = useItemDetailsHelper();
 
-  console.log("ZAU", item?.effects);
-
   const attributes = (item?.attributes || []).map(
     (attribute): DetailChipProps => ({
       content: attribute,

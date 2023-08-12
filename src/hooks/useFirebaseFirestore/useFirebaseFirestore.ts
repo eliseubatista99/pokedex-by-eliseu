@@ -7,12 +7,25 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
+  getDocs,
 } from "firebase/firestore";
 import { User } from "firebase/auth";
+import { FirestoreUser } from "@types";
 
 export const useFirebaseFirestore = () => {
   const { setUserFavorites } = useUserStore();
   const usersCollectionRef = collection(firestore, "users");
+
+  const getUserData = React.useCallback(
+    async (user: User) => {
+      const userData = await getDocs(usersCollectionRef);
+      const thisUserDoc = userData.docs.filter((doc) => doc.id === user.uid);
+      const thisUserData = thisUserDoc[0]?.data() as FirestoreUser;
+
+      return thisUserData;
+    },
+    [usersCollectionRef]
+  );
 
   const deleteUser = React.useCallback(
     async (user: User) => {
@@ -41,15 +54,33 @@ export const useFirebaseFirestore = () => {
     [usersCollectionRef]
   );
 
-  const updateUserFavorites = React.useCallback(
-    async (user: User, favorites: number[]) => {
+  const addOrRemoveFromFavorites = React.useCallback(
+    async (user: User, pokemon: string) => {
       const newUserRef = doc(usersCollectionRef, user.uid);
+      const userData = await getUserData(user);
 
-      await updateDoc(newUserRef, { favorites });
+      let favorites = userData.favorites;
+
+      if (favorites.includes(pokemon)) {
+        favorites = favorites.filter((fav) => fav !== pokemon);
+      } else {
+        favorites.push(pokemon);
+      }
 
       setUserFavorites(favorites);
+
+      await updateDoc(newUserRef, { favorites });
     },
-    [setUserFavorites, usersCollectionRef]
+    [getUserData, setUserFavorites, usersCollectionRef]
+  );
+
+  const getFavorites = React.useCallback(
+    async (user: User, pokemon: number) => {
+      const userData = await getUserData(user);
+
+      return userData.favorites;
+    },
+    [getUserData]
   );
 
   const createUser = React.useCallback(
@@ -77,7 +108,8 @@ export const useFirebaseFirestore = () => {
     createUser,
     updateUserEmail,
     updateUserName,
-    updateUserFavorites,
+    getFavorites,
+    addOrRemoveFromFavorites,
     deleteUser,
   };
 };
