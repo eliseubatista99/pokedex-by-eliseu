@@ -22,7 +22,6 @@ export const useUserStore = StoreHelper.createStore<UseUserStoreOutput>(
     setFirebaseUser: function (data: User | null | undefined) {
       set(
         produce((state: UserState) => {
-          //console.log("UPDATING USER: ", data);
           return { ...state, firebaseUser: data };
         }),
         false,

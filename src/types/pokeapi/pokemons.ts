@@ -36,16 +36,18 @@ export interface ApiPokemonDamageRelationItem {
 }
 
 export interface ApiPokemonType {
-  double_damage_from: ApiPokemonDamageRelationItem[];
-  double_damage_to: ApiPokemonDamageRelationItem[];
-  half_damage_from: ApiPokemonDamageRelationItem[];
-  half_damage_to: ApiPokemonDamageRelationItem[];
-  no_damage_from: ApiPokemonDamageRelationItem[];
-  no_damage_to: ApiPokemonDamageRelationItem[];
+  damage_relations: {
+    double_damage_from: ApiPokemonDamageRelationItem[];
+    double_damage_to: ApiPokemonDamageRelationItem[];
+    half_damage_from: ApiPokemonDamageRelationItem[];
+    half_damage_to: ApiPokemonDamageRelationItem[];
+    no_damage_from: ApiPokemonDamageRelationItem[];
+    no_damage_to: ApiPokemonDamageRelationItem[];
+  };
 }
 
 export interface ApiPokemonStats {
-  base_state: number;
+  base_stat: number;
   stat: {
     name: string;
     url: string;

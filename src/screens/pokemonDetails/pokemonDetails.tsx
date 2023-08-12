@@ -1,32 +1,58 @@
 import {
+  CardChip,
   CardChipProps,
-  CustomImage,
+  DetailChipProps,
   PokedexDetailsTemplate,
+  Typography,
 } from "@components";
 import { PokemonHelper } from "@helpers";
 import { usePokemonDetailsHelper } from "./pokemonDetails,hook";
 
 export const PokemonDetails = () => {
-  const { pokemon, pokemonColor, pokemonTypeImage, pokemonId, pokemonName } =
-    usePokemonDetailsHelper();
+  const {
+    pokemon,
+    pokemonColor,
+    pokemonTypeImage,
+    pokemonId,
+    pokemonName,
+    weaknesses,
+    strengths,
+  } = usePokemonDetailsHelper();
 
   const chips = (pokemon?.typesNames || []).map(
     (type): CardChipProps => ({
       text: type,
-      image: (
-        <CustomImage
-          src={PokemonHelper.getPokemonTypeIcon(type)}
-          alt={"Pokemon Type Icon"}
-          imageStyles={{ width: "12px", height: "12px" }}
-          containerStyles={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: "#ffffff",
-          }}
-        />
-      ),
+      image: PokemonHelper.getPokemonTypeIcon(type),
       styles: { background: `${PokemonHelper.getPokemonColor(type)}` },
+    })
+  );
+
+  const weaknessesChips = weaknesses.map((weakness) => (
+    <CardChip
+      text={weakness}
+      image={PokemonHelper.getPokemonTypeIcon(weakness)}
+      styles={{
+        zoom: 1.2,
+        background: `${PokemonHelper.getPokemonColor(weakness)}`,
+      }}
+    />
+  ));
+
+  const strengthsChips = strengths.map((strength) => (
+    <CardChip
+      text={strength}
+      image={PokemonHelper.getPokemonTypeIcon(strength)}
+      styles={{
+        zoom: 1.2,
+        background: `${PokemonHelper.getPokemonColor(strength)}`,
+      }}
+    />
+  ));
+
+  const stats = Object.keys(pokemon?.stats || {}).map(
+    (stat): DetailChipProps => ({
+      title: stat,
+      content: `${pokemon?.stats[stat]}`,
     })
   );
 
@@ -41,7 +67,57 @@ export const PokemonDetails = () => {
       id={pokemonId}
       chips={chips}
       flavor={pokemon?.flavor || ""}
-      detailsChips={[]}
+      detailsChips={stats}
+      freeContent={
+        <>
+          {weaknesses.length > 0 && (
+            <>
+              <Typography
+                styles={{
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  margin: "24px auto 0 0",
+                }}
+              >
+                {"Weaknesses"}
+              </Typography>
+              <div
+                style={{
+                  width: "100%",
+                  display: "grid",
+                  gap: "16px",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                }}
+              >
+                {weaknessesChips}
+              </div>
+            </>
+          )}
+          {strengths.length > 0 && (
+            <>
+              <Typography
+                styles={{
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  margin: "24px auto 0 0",
+                }}
+              >
+                {"Strengths"}
+              </Typography>
+              <div
+                style={{
+                  width: "100%",
+                  display: "grid",
+                  gap: "16px",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                }}
+              >
+                {strengthsChips}
+              </div>
+            </>
+          )}
+        </>
+      }
     />
   );
 };

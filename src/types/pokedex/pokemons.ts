@@ -2,12 +2,12 @@ import { EPokemonsTypes } from "@constants";
 
 export interface PokemonType {
   name: EPokemonsTypes;
-  doubleFrom: string[];
-  doubleTo: string[];
-  halfFrom: string[];
-  halfTo: string[];
-  noneFrom: string[];
-  noneTo: string[];
+  doubleFrom?: EPokemonsTypes[];
+  doubleTo?: EPokemonsTypes[];
+  halfFrom?: EPokemonsTypes[];
+  halfTo?: EPokemonsTypes[];
+  noneFrom?: EPokemonsTypes[];
+  noneTo?: EPokemonsTypes[];
 }
 
 export interface PokemonFull extends PokemonShort {

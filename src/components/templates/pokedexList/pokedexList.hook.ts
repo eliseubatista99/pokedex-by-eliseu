@@ -64,7 +64,6 @@ export const usePokedexListTemplateHelper = (
         !props.options?.filter?.value
       ) {
         props.increaseLimit(20);
-        console.log("ZAU");
 
         updateItems();
       }

@@ -4,7 +4,6 @@ import { useUserStore } from "@store";
 import {
   collection,
   doc,
-  getDocs,
   setDoc,
   updateDoc,
   deleteDoc,
@@ -69,10 +68,9 @@ export const useFirebaseFirestore = () => {
   );
 
   const getUser = React.useCallback(async () => {
-    const data = await getDocs(usersCollectionRef);
-    const parsedData = data.docs.map((doc) => doc.data());
-    console.log(parsedData);
-  }, [usersCollectionRef]);
+    // const data = await getDocs(usersCollectionRef);
+    // const parsedData = data.docs.map((doc) => doc.data());
+  }, []);
 
   return {
     getUser,
