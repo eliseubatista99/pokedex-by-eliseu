@@ -4,11 +4,11 @@ import { AppHeaderProps } from "./appHeader";
 export const useAppHeaderHelper = ({ stepsToGoBack }: AppHeaderProps) => {
   const { goBack } = useCustomNavigation();
 
-  const handleonClickBack = () => {
+  const handleOnClickBack = () => {
     goBack(stepsToGoBack);
   };
 
   return {
-    onClickBack: handleonClickBack,
+    onClickBack: handleOnClickBack,
   };
 };

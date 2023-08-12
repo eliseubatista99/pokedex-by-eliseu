@@ -150,7 +150,6 @@ export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
 
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      console.log("STORE UPDATING USER");
       currentUser.current = user;
 
       setFirebaseUser(user);

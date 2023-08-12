@@ -18,7 +18,7 @@ export const Background = (props: BackgroundProps) => {
         overflow: "hidden",
         width: "100%",
         top: 0,
-        height: "200px",
+        height: "230px",
       }}
     >
       <div
@@ -65,11 +65,11 @@ export const Background = (props: BackgroundProps) => {
               imageStyles={{}}
               containerStyles={{
                 width: "40%",
-                maxWidth: "40%",
+                maxWidth: "240px",
                 zIndex: 1,
                 justifyContent: "flex-end",
                 position: "absolute",
-                bottom: "-80px",
+                bottom: "-60px",
               }}
             />
           )}

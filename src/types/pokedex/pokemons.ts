@@ -1,18 +1,27 @@
 import { EPokemonsTypes } from "@constants";
 
+export type PokemonEvolutions =
+  | {
+      name: string;
+      evolutions: PokemonEvolutions[];
+    }
+  | undefined;
+
+// export type PokemonEvolutions = Record<string, PokemonEvolutions>;
+
 export interface PokemonType {
   name: EPokemonsTypes;
-  doubleFrom: string[];
-  doubleTo: string[];
-  halfFrom: string[];
-  halfTo: string[];
-  noneFrom: string[];
-  noneTo: string[];
+  doubleFrom?: EPokemonsTypes[];
+  doubleTo?: EPokemonsTypes[];
+  halfFrom?: EPokemonsTypes[];
+  halfTo?: EPokemonsTypes[];
+  noneFrom?: EPokemonsTypes[];
+  noneTo?: EPokemonsTypes[];
 }
 
 export interface PokemonFull extends PokemonShort {
   abilities: string[];
-  evolutionChain: string[];
+  evolutionChain: PokemonEvolutions;
   flavor: string;
   genus: string;
   stats: Record<string, number>;

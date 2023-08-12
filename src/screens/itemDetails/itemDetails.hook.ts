@@ -1,3 +1,4 @@
+import { ItemHelper, TextHelper } from "@helpers";
 import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import { ItemFull, ItemShort } from "@types";
@@ -43,5 +44,8 @@ export const useItemDetailsHelper = () => {
 
   return {
     item: itemFullData,
+    itemId: ItemHelper.getItemId(itemFullData?.id || 0),
+    itemName: TextHelper.getPascalCase(itemFullData?.name || ""),
+    itemColor: ItemHelper.getItemColor(itemFullData?.category),
   };
 };

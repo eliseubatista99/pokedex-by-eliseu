@@ -7,6 +7,7 @@ import {
   PokedexBottomContent,
   Typography,
 } from "@components";
+import React from "react";
 import { Blocks } from "./blocks";
 
 export interface PokedexDetailsTemplateProps {
@@ -23,15 +24,25 @@ export interface PokedexDetailsTemplateProps {
   freeContent?: React.ReactNode;
 }
 
-export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
-  const { illustration, title, id, chips, flavor, detailsChips } = props;
+export const PokedexDetailsTemplate = React.forwardRef<
+  HTMLDivElement,
+  PokedexDetailsTemplateProps
+>((props, ref) => {
+  const { illustration, title, id, chips, flavor, detailsChips, freeContent } =
+    props;
 
   const chipsJSX = chips.map((chip) => (
-    <CardChip text={chip.text} image={chip.image} styles={chip.styles} />
+    <CardChip
+      key={chip.text}
+      text={chip.text}
+      image={chip.image}
+      styles={{ zoom: 1.2, ...chip.styles }}
+    />
   ));
 
   const detailsChipsJSX = detailsChips.map((chip) => (
     <DetailChip
+      key={chip.title}
       title={chip.title}
       content={chip.content}
       icon={chip.icon}
@@ -93,14 +104,17 @@ export const PokedexDetailsTemplate = (props: PokedexDetailsTemplateProps) => {
       </Typography>
       <div
         style={{
+          display: "grid",
           width: "100%",
           marginTop: "32px",
           flexDirection: "row",
           gap: "20px",
+          gridTemplateColumns: "1fr 1fr",
         }}
       >
         {detailsChipsJSX}
       </div>
+      {freeContent}
     </AppLayout>
   );
-};
+});

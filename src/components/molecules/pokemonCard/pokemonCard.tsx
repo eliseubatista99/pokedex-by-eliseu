@@ -19,22 +19,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
     <CardChip
       key={type}
       text={`${TextHelper.getPascalCase(type)}`}
-      image={
-        <CustomImage
-          src={PokemonHelper.getPokemonTypeIcon(type)}
-          alt={"Pokemon Type Icon"}
-          imageStyles={{ width: "10px", height: "10px" }}
-          containerStyles={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: "#ffffff",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "auto 0",
-          }}
-        />
-      }
+      image={PokemonHelper.getPokemonTypeIcon(type)}
       styles={{ background: `${PokemonHelper.getPokemonColor(type)}` }}
     />
   ));

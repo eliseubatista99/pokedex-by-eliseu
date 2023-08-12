@@ -1,4 +1,5 @@
 import { EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
+import { PokemonHelper } from "@helpers";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
 import {
@@ -96,17 +97,32 @@ export const usePokemons = () => {
 
       const typesData: PokemonType[] = [];
       const typesNames: EPokemonsTypes[] = [];
+
       for (let i = 0; i < pokemon.types.length; i++) {
         const t = await getPokemonType(pokemon.types[i].type.name);
+
         typesNames.push(pokemon.types[i].type.name as EPokemonsTypes);
+
         typesData.push({
           name: pokemon.types[i].type.name as EPokemonsTypes,
-          doubleFrom: t.double_damage_from?.map((entry) => entry.name),
-          doubleTo: t.double_damage_to?.map((entry) => entry.name),
-          halfFrom: t.half_damage_from?.map((entry) => entry.name),
-          halfTo: t.half_damage_to?.map((entry) => entry.name),
-          noneFrom: t.no_damage_from?.map((entry) => entry.name),
-          noneTo: t.no_damage_to?.map((entry) => entry.name),
+          doubleFrom: t.damage_relations.double_damage_from?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
+          doubleTo: t.damage_relations.double_damage_to?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
+          halfFrom: t.damage_relations.half_damage_from?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
+          halfTo: t.damage_relations.half_damage_to?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
+          noneFrom: t.damage_relations.no_damage_from?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
+          noneTo: t.damage_relations.no_damage_to?.map(
+            (entry) => entry.name as EPokemonsTypes
+          ),
         });
       }
 
@@ -114,9 +130,13 @@ export const usePokemons = () => {
 
       const evolutionChainSplitUrl = species.evolution_chain.url.split("/");
 
-      const evolutionChain = await getEvolutionChain(
+      const evolutionChainData = await getEvolutionChain(
         evolutionChainSplitUrl[evolutionChainSplitUrl.length - 2]
       );
+
+      const evolutionChain = PokemonHelper.buildEvolutionChain([
+        evolutionChainData.chain,
+      ]);
 
       const englishFlavor = species.flavor_text_entries.find(
         (flavor) => flavor.language.name === "en"
@@ -126,20 +146,21 @@ export const usePokemons = () => {
         (genus) => genus.language.name === "en"
       );
 
+      const stats: Record<string, number> = {};
+
+      for (let i = 0; i < pokemon.stats.length; ++i) {
+        stats[pokemon.stats[i].stat.name] = pokemon.stats[i].base_stat;
+      }
+
       const result: PokemonFull = {
         id: pokemon.id,
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
         abilities: pokemon.abilities.map((ability) => ability.ability.name),
-        evolutionChain: evolutionChain.evolves_to?.map(
-          (evolveTarget) => evolveTarget.species.name
-        ),
+        evolutionChain,
         flavor: englishFlavor?.flavor_text || "",
         genus: englishGenus?.genus || "",
-        stats: pokemon.stats.reduce(
-          (acc, stat) => ({ ...acc, [stat.stat.name]: stat.base_state }),
-          {}
-        ),
+        stats,
         typesNames,
         typesData,
       };

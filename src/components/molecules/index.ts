@@ -1,3 +1,4 @@
+export * from "./bullet";
 export * from "./cardChip";
 export * from "./chip";
 export * from "./customInputField";

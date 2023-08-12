@@ -26,7 +26,9 @@ root.render(
           height: 100%;
           display: flex;
           font-family: "Poppins", sans-serif;
-          overflow: hidden;
+          overflow: initial;
+          overflow-x: hidden;
+          overflow-y: auto;
         }
 
         body {
@@ -36,9 +38,6 @@ root.render(
           background: #ededed;
           flex-direction: column;
           margin: auto;
-          overflow: initial;
-          overflow-x: hidden;
-          overflow-y: auto;
         }
 
         #app {
@@ -64,13 +63,6 @@ root.render(
           font-family: Poppins;
           width: fit-content;
           height: fit-content;
-        }
-
-        @media only screen and (min-width: 769px) {
-          body {
-            max-height: 90%;
-            max-width: 480px;
-          }
         }
       `}
     />
