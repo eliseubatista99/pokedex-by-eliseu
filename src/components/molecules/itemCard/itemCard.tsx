@@ -42,7 +42,9 @@ export const ItemCard = (props: ItemCardProps) => {
           {itemData.itemId}
         </Typography>
         <Typography styles={{ fontSize: "21px", fontWeight: 600 }}>
-          {itemData.itemName}
+          {TextHelper.getPascalCase(
+            ItemHelper.parseItemNames(itemData.itemName)
+          )}
         </Typography>
 
         <div

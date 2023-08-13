@@ -1,3 +1,4 @@
+import { APP_HEADER_HEIGHT } from "@constants";
 import { AppHeaderDefault, AppHeaderDetails } from "./blocks";
 import { AppHeaderPokedex } from "./blocks/appHeaderPokedex";
 
@@ -56,9 +57,9 @@ export const AppHeader = (props: AppHeaderProps) => {
     <div
       style={{
         width: "100%",
-        height: "60px",
+        height: `${APP_HEADER_HEIGHT}px`,
         padding: "16px",
-        position: "sticky",
+        position: props.type !== "details" ? "sticky" : "absolute",
         background,
         top: "0px",
         zIndex: 100,

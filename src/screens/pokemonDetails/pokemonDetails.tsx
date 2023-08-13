@@ -122,7 +122,9 @@ export const PokemonDetails = () => {
           </Blocks.FreeContentWrapper>
           <Blocks.FreeContentWrapper
             title="Evolutions"
-            renderCondition={pokemonEvolutions.length > 0}
+            renderCondition={
+              pokemonEvolutions.length > 0 && pokemonEvolutions[0].length > 1
+            }
           >
             <div
               style={{

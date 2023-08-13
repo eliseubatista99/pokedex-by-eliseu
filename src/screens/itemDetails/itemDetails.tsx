@@ -4,6 +4,7 @@ import {
   PokedexDetailsTemplate,
   Typography,
 } from "@components";
+import { ItemHelper, TextHelper } from "@helpers";
 import { useItemDetailsHelper } from "./itemDetails.hook";
 
 export const ItemDetails = () => {
@@ -11,7 +12,9 @@ export const ItemDetails = () => {
 
   const attributes = (item?.attributes || []).map(
     (attribute): DetailChipProps => ({
-      content: attribute,
+      content: TextHelper.getPascalCase(
+        ItemHelper.parseItemNames(attribute || "")
+      ),
     })
   );
 
@@ -20,7 +23,7 @@ export const ItemDetails = () => {
       leftContent={
         <Typography styles={{ fontWeight: 700 }}>{`${index}.`}</Typography>
       }
-      text={effect.short || ""}
+      text={effect.short}
       description={effect.full}
     />
   ));
@@ -31,11 +34,14 @@ export const ItemDetails = () => {
         backgroundColor: itemColor,
         image: item?.sprite || "",
       }}
-      title={itemName}
+      title={TextHelper.getPascalCase(ItemHelper.parseItemNames(itemName))}
       id={itemId}
       chips={[
         {
-          text: item?.category || "",
+          text:
+            TextHelper.getPascalCase(
+              ItemHelper.parseItemNames(item?.category || "")
+            ) || "",
           styles: { background: `${itemColor}` },
         },
       ]}

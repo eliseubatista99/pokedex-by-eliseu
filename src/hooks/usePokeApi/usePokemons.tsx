@@ -192,7 +192,7 @@ export const usePokemons = () => {
       const pokemonList = await getPokemonList();
 
       const filteredPokemons = pokemonList.filter((pokemon) =>
-        pokemon.name.includes(name)
+        pokemon.name.toUpperCase().includes(name.toUpperCase())
       );
       const mappedPokemons: PokemonShort[] = [];
 

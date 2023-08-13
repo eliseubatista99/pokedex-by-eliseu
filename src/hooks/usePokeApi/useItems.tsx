@@ -89,7 +89,9 @@ export const useItems = () => {
 
       const mappedItems: ItemShort[] = [];
 
-      const filteredList = itemList.filter((item) => item.name.includes(name));
+      const filteredList = itemList.filter((item) =>
+        item.name.toUpperCase().includes(name.toUpperCase())
+      );
 
       for (let i = 0; i < filteredList.length; i++) {
         const result = await getItemShort(filteredList[i].name);
