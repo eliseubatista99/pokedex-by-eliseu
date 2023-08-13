@@ -23,7 +23,7 @@ export const usePokemonCardHelper = ({ pokemon }: PokemonCardProps) => {
       pokemonSprite: pokemon.sprite,
       pokemonMainType: pokemon.typesNames[0],
       pokemonTypes: pokemon.typesNames,
-      pokemonColor: PokemonHelper.getPokemonColor(pokemon.typesNames[0]),
+      pokemonColor: PokemonHelper.getPokemonColor(pokemon.typesNames),
     },
   };
 };

@@ -27,7 +27,7 @@ export const PokemonDetails = () => {
     (type): CardChipProps => ({
       text: type,
       image: PokemonHelper.getPokemonTypeIcon(type),
-      styles: { background: `${PokemonHelper.getPokemonColor(type)}` },
+      styles: { background: `${PokemonHelper.getPokemonColor([type])}` },
     })
   );
 
@@ -38,7 +38,7 @@ export const PokemonDetails = () => {
       image={PokemonHelper.getPokemonTypeIcon(weakness)}
       styles={{
         zoom: 1.2,
-        background: `${PokemonHelper.getPokemonColor(weakness)}`,
+        background: `${PokemonHelper.getPokemonColor([weakness])}`,
       }}
     />
   ));
@@ -50,7 +50,7 @@ export const PokemonDetails = () => {
       image={PokemonHelper.getPokemonTypeIcon(strength)}
       styles={{
         zoom: 1.2,
-        background: `${PokemonHelper.getPokemonColor(strength)}`,
+        background: `${PokemonHelper.getPokemonColor([strength])}`,
       }}
     />
   ));

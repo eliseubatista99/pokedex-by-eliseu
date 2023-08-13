@@ -190,7 +190,9 @@ export const usePokemonDetailsHelper = () => {
     pokemon: pokemonFullData,
     pokemonId: PokemonHelper.getPokemonId(pokemonFullData?.id || 0),
     pokemonName: TextHelper.getPascalCase(pokemonFullData?.name || ""),
-    pokemonColor: PokemonHelper.getPokemonColor(pokemonFullData?.typesNames[0]),
+    pokemonColor: PokemonHelper.getPokemonColor(
+      pokemonFullData?.typesNames || []
+    ),
     pokemonTypeImage: PokemonHelper.getPokemonTypeIcon(
       pokemonFullData?.typesNames[0]
     ),

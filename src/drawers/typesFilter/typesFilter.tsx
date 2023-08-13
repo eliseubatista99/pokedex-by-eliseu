@@ -33,7 +33,7 @@ export const DrawerTypesFilter = (props: BaseDrawerProps) => {
     <Chip
       key={type.name || "All Types"}
       text={type.name || "All Types"}
-      styles={{ background: PokemonHelper.getPokemonColor(type.value) }}
+      styles={{ background: PokemonHelper.getPokemonColor([type.value]) }}
       onClick={() => onTypeSelected(type.value)}
     />
   ));

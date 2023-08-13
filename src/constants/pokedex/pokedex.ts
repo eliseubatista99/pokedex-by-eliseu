@@ -20,7 +20,7 @@ export enum EPokemonsTypes {
   Ground = "ground",
   Rock = "rock",
   Fighting = "fighting",
-  Eletric = "eletric",
+  Eletric = "electric",
   Psychic = "psychic",
   Flying = "flying",
   Ghost = "ghost",

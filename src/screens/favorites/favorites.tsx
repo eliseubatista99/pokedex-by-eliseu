@@ -42,9 +42,9 @@ export const Favorites = () => {
                 noValueText: "All Types",
                 onClick: typesFilter.openDrawer,
                 styles: {
-                  background: PokemonHelper.getPokemonColor(
-                    typesFilter.selectedTypeFilter
-                  ),
+                  background: PokemonHelper.getPokemonColor([
+                    typesFilter.selectedTypeFilter,
+                  ]),
                 },
               },
               order: {

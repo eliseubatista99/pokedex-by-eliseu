@@ -93,8 +93,14 @@ export class PokemonHelper {
     }
   };
 
-  static getPokemonColor = (pokemonType: EPokemonsTypes | null | undefined) => {
-    switch (pokemonType) {
+  static getPokemonColor = (pokemonType: EPokemonsTypes[]) => {
+    let type = pokemonType[0];
+
+    if (pokemonType.length > 1) {
+      type = pokemonType.filter((type) => type !== EPokemonsTypes.Normal)[0];
+    }
+
+    switch (type) {
       case EPokemonsTypes.AllTypes:
         return "#333333";
       case EPokemonsTypes.Grass:

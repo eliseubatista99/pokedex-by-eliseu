@@ -20,7 +20,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
       key={type}
       text={`${TextHelper.getPascalCase(type)}`}
       image={PokemonHelper.getPokemonTypeIcon(type)}
-      styles={{ background: `${PokemonHelper.getPokemonColor(type)}` }}
+      styles={{ background: `${PokemonHelper.getPokemonColor([type])}` }}
     />
   ));
 
