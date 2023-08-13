@@ -26,7 +26,12 @@ export const LoginData = () => {
     >
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
-          styles={{ textAlign: "center", fontSize: "26px", fontWeight: 800 }}
+          styles={{
+            textAlign: "center",
+            fontSize: "26px",
+            fontWeight: 800,
+            margin: "0 auto",
+          }}
         >
           {"Welcome back!"}
         </Typography>
@@ -36,6 +41,7 @@ export const LoginData = () => {
             fontSize: "26px",
             fontWeight: 400,
             color: "#4D4D4D",
+            margin: "0 auto",
           }}
         >
           {"Fill in some data!"}
