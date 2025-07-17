@@ -3,7 +3,7 @@ import { ItemHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import React from "react";
-import { ItemShort } from "src/types/pokedex/items";
+import type { ItemShort } from "../../types";
 
 export const useItemsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();

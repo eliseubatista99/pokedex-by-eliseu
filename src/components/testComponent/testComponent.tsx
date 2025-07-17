@@ -1,4 +1,6 @@
-import { FirebaseAuthProvider } from "@contexts";
+import { firebaseConfig } from "@configs";
+import { PokedexFirebaseAuthProvider } from "@contexts";
+import { FirebaseAppHelper } from "@eliseubatista99/react-scaffold-firebase";
 import { BrowserRouter } from "react-router-dom";
 
 interface TestComponentProps {
@@ -6,9 +8,11 @@ interface TestComponentProps {
 }
 
 export const TestComponent = ({ children }: TestComponentProps) => {
+  FirebaseAppHelper.initializeApp(firebaseConfig);
+
   return (
-    <FirebaseAuthProvider>
+    <PokedexFirebaseAuthProvider>
       <BrowserRouter>{children}</BrowserRouter>
-    </FirebaseAuthProvider>
+    </PokedexFirebaseAuthProvider>
   );
 };

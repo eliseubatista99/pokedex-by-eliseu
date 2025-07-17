@@ -1,5 +1,5 @@
 import { CustomImage, Iconography } from "@components";
-import { PokemonShort } from "@types";
+import type { PokemonShort } from "@types";
 
 export interface EvolutionBranchProps {
   branch: PokemonShort[];

@@ -2,14 +2,14 @@ import { EPokemonsTypes, POKE_API_BASE_URL } from "@constants";
 import { PokemonHelper } from "@helpers";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
-import {
+import type {
   ApiEvolutionChain,
   ApiPokemon,
   ApiPokemonList,
   ApiPokemonSpecies,
   ApiPokemonType,
-  PokemonShort,
   PokemonFull,
+  PokemonShort,
   PokemonType,
 } from "@types";
 import React from "react";

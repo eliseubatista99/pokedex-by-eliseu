@@ -1,6 +1,6 @@
-import { useAppHeaderHelper } from "../appHeader.hook";
-import { AppHeaderDetailsProps } from "..";
 import { Iconography } from "@components";
+import { type AppHeaderDetailsProps } from "..";
+import { useAppHeaderHelper } from "../appHeader.hook";
 
 export const AppHeaderDetails = (props: AppHeaderDetailsProps) => {
   const { favorite, theme = "light" } = props;

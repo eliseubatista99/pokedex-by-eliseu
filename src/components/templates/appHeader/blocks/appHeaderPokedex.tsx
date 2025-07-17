@@ -1,6 +1,6 @@
-import { useAppHeaderHelper } from "../appHeader.hook";
-import { AppHeaderPokedexProps } from "..";
 import { Iconography, Typography } from "@components";
+import { type AppHeaderPokedexProps } from "..";
+import { useAppHeaderHelper } from "../appHeader.hook";
 
 export const AppHeaderPokedex = (props: AppHeaderPokedexProps) => {
   const { hideBack = true, title } = props;

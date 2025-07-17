@@ -1,6 +1,6 @@
 import { Typography } from "@components";
 import { css, Global } from "@emotion/react";
-import { LoadingState } from "@store";
+import { type LoadingState } from "@store";
 
 export const GlobalLoader = ({
   loadingText,

@@ -1,8 +1,8 @@
 import {
   CustomButton,
-  CustomButtonProps,
+  type CustomButtonProps,
   Stepper,
-  StepperProps,
+  type StepperProps,
   Typography,
 } from "@components";
 

@@ -1,7 +1,10 @@
-import { ApiPokemonListItem, PokemonShort } from "@types";
-import produce from "immer";
-import { ApiItemListItem } from "src/types/pokeapi/items";
-import { ItemShort } from "src/types/pokedex/items";
+import type {
+  ApiItemListItem,
+  ApiPokemonListItem,
+  ItemShort,
+  PokemonShort,
+} from "@types";
+import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 

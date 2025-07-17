@@ -1,4 +1,4 @@
-import { EItemCategory } from "@constants";
+import type { EItemCategory } from "../../constants";
 
 export interface ItemEffect {
   short: string;

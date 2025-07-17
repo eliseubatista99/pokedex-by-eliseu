@@ -1,7 +1,7 @@
 import { ItemHelper, TextHelper } from "@helpers";
 import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
-import { ItemFull, ItemShort } from "@types";
+import type { ItemFull, ItemShort } from "@types";
 import React from "react";
 
 export const useItemDetailsHelper = () => {

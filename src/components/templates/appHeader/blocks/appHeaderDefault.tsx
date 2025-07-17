@@ -1,6 +1,6 @@
-import { useAppHeaderHelper } from "../appHeader.hook";
-import { AppHeaderDefaultProps } from "..";
 import { Iconography, Typography } from "@components";
+import { type AppHeaderDefaultProps } from "..";
+import { useAppHeaderHelper } from "../appHeader.hook";
 
 export const AppHeaderDefault = (props: AppHeaderDefaultProps) => {
   const { hideBack, title, rightContent } = props;

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useBaseStore } from "@store";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { useCustomNavigation } from "@hooks";
-import { FormFieldData } from "@types";
-import { useFirebaseAuth } from "@contexts";
+import { useBaseStore } from "@store";
+import type { FormFieldData } from "@types";
+import React, { useState } from "react";
 
 interface FormData {
   password: FormFieldData;
@@ -11,7 +11,7 @@ interface FormData {
 export const useUpdatePasswordHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
-  const { updatePassword } = useFirebaseAuth();
+  const { updatePassword } = usePokedexFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 

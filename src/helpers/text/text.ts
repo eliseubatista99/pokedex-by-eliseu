@@ -1,8 +1,6 @@
 export class TextHelper {
   static getPascalCase = (text: string) => {
     return text.replace(/\w+/g, function (w) {
-      console.log("ZAU", { w, text });
-
       return w[0].toUpperCase() + w.slice(1).toLowerCase();
     });
   };

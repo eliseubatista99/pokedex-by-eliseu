@@ -1,5 +1,5 @@
 import { CustomButton, Typography } from "@components";
-import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
+import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useLogoutDrawerHelper } from "./logout.hook";
 
 export const DrawerLogout = (props: BaseDrawerProps) => {

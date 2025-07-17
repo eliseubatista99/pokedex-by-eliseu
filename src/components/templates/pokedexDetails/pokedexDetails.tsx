@@ -1,9 +1,9 @@
 import {
   AppLayout,
   CardChip,
-  CardChipProps,
+  type CardChipProps,
   DetailChip,
-  DetailChipProps,
+  type DetailChipProps,
   PokedexBottomContent,
   Typography,
 } from "@components";
@@ -31,7 +31,7 @@ export interface PokedexDetailsTemplateProps {
 export const PokedexDetailsTemplate = React.forwardRef<
   HTMLDivElement,
   PokedexDetailsTemplateProps
->((props, ref) => {
+>((props) => {
   const {
     illustration,
     title,

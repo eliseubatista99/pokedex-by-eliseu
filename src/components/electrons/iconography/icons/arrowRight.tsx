@@ -1,10 +1,9 @@
-import { IconographyProps } from "..";
+import type { IconographyProps } from "..";
 
 export const ArrowRight = ({
   width = "38px",
   height = "38px",
   fill,
-  stroke,
   containerProps,
   onClick,
 }: IconographyProps) => {

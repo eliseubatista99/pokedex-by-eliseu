@@ -1,8 +1,9 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
-import React, { useState } from "react";
-import { useBaseStore } from "@store";
 import { useCustomNavigation } from "@hooks";
-import { useFirebaseAuth } from "@contexts";
+import { useBaseStore } from "@store";
+import React, { useState } from "react";
+import { usePokedexFirebaseAuth } from "../../contexts";
+import { useUserStore } from "../../store";
 
 export interface LoginFormField {
   value?: string;
@@ -18,7 +19,8 @@ export interface loginFormData {
 export const useLoginDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { logIn } = useFirebaseAuth();
+  const { logIn } = usePokedexFirebaseAuth();
+  const { setFirebaseUser } = useUserStore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -38,7 +40,8 @@ export const useLoginDataHelper = () => {
           loadingText: "Logging in...",
           style: "opaque",
         });
-        await logIn?.(email, password);
+        const user = await logIn?.(email, password);
+        setFirebaseUser(user?.user);
         hideLoader();
         handleGoToLoginDone();
       } catch (error: unknown) {
@@ -46,7 +49,7 @@ export const useLoginDataHelper = () => {
         hideLoader();
       }
     },
-    [handleGoToLoginDone, hideLoader, logIn, showLoader]
+    [handleGoToLoginDone, hideLoader, logIn, setFirebaseUser, showLoader]
   );
 
   const handleClickContinue = () => {

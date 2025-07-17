@@ -1,8 +1,14 @@
 import { EItemCategory, POKE_API_BASE_URL } from "@constants";
 import { useFetch } from "@hooks";
 import { usePokeApiStore } from "@store";
+import type {
+  ApiItem,
+  ApiItemList,
+  ItemEffect,
+  ItemFull,
+  ItemShort,
+} from "@types";
 import React from "react";
-import { ApiItem, ApiItemList, ItemEffect, ItemFull, ItemShort } from "@types";
 
 export const useItems = () => {
   const fetch = useFetch();

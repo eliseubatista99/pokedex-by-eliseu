@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { useBaseStore } from "@store";
-import { FormFieldData } from "@types";
-import { useFirebaseAuth } from "@contexts";
-import { ModalLoginAgainProps } from "./loginAgain";
+import type { FormFieldData } from "@types";
+import React, { useState } from "react";
+import { type ModalLoginAgainProps } from "./loginAgain";
 
 interface FormData {
   password: FormFieldData;
@@ -12,7 +12,7 @@ export const useLoginAgainModalHelper = ({
   onLoginDone,
 }: ModalLoginAgainProps) => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { currentUser, logIn } = useFirebaseAuth();
+  const { currentUser, logIn } = usePokedexFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -60,6 +60,8 @@ export const useLoginAgainModalHelper = ({
       const formPassword = event.currentTarget.elements[0].value as string;
 
       const error = handleValidatePassword(formPassword);
+
+      console.log("ZAUZAU", error);
 
       setFormData((prevState) => ({
         ...prevState,

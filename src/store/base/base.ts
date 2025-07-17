@@ -1,5 +1,6 @@
-import produce from "immer";
+import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
+import type { ModalLoginAgainProps } from "../../modals";
 import { StoreHelper } from "../store.helper";
 
 export interface LoadingState {
@@ -17,11 +18,13 @@ export interface ToastState {
 export interface BaseState {
   loading?: LoadingState;
   toast?: ToastState;
+  loginAgainModal?: ModalLoginAgainProps;
 }
 
 const initialState: BaseState = {};
 
 interface UseBaseStoreOutput extends BaseState {
+  updateBaseStore: (data: Partial<BaseState>) => void;
   showLoader: (value: Omit<LoadingState, "isLoading">) => void;
   hideLoader: () => void;
   setToastData: (data: ToastState | undefined) => void;
@@ -30,6 +33,16 @@ interface UseBaseStoreOutput extends BaseState {
 export const useBaseStore = StoreHelper.createStore<UseBaseStoreOutput>(
   (set) => ({
     ...initialState,
+    updateBaseStore: function (data: Partial<BaseState>) {
+      set(
+        produce((state: BaseState) => ({
+          ...state,
+          ...data,
+        })),
+        false,
+        "updateBaseStore"
+      );
+    },
     showLoader: function (value: Omit<LoadingState, "isLoading">) {
       set(
         produce((state: BaseState) => ({

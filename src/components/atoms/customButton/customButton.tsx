@@ -1,6 +1,5 @@
-import { Typography } from "@components";
-import React from "react";
-import { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
+import { Typography } from "../../electrons";
 import { useCustomButtonHelper } from "./customButton.hook";
 
 export interface CustomButtonProps {

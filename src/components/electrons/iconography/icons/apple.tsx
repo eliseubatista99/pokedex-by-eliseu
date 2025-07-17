@@ -1,10 +1,9 @@
-import { IconographyProps } from "..";
+import type { IconographyProps } from "..";
 
 export const Apple = ({
   width = "38px",
   height = "38px",
   fill = "#000000",
-  stroke = "#000000",
   containerProps,
   onClick,
 }: IconographyProps) => {

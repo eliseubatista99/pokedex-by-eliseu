@@ -1,7 +1,7 @@
 import { Chip, Typography } from "@components";
 import { DRAWER_PADDING, EItemCategory } from "@constants";
 import { ItemHelper } from "@helpers";
-import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
+import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useCategoryFilterDrawerHelper } from "./categoryFilter.hook";
 
 export const DrawerCategoryFilter = (props: BaseDrawerProps) => {

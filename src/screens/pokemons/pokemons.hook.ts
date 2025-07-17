@@ -2,7 +2,7 @@ import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
 import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
-import { PokemonShort } from "@types";
+import type { PokemonShort } from "@types";
 import React from "react";
 
 export const usePokemonsHelper = () => {

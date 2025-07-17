@@ -1,6 +1,6 @@
 import {
   Bullet,
-  DetailChipProps,
+  type DetailChipProps,
   PokedexDetailsTemplate,
   Typography,
 } from "@components";

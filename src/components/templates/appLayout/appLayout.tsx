@@ -1,15 +1,14 @@
 import {
   AppHeader,
-  AppHeaderProps,
+  type AppHeaderProps,
   AppScreen,
-  AppScreenProps,
+  type AppScreenProps,
   GlobalLoader,
   Toast,
 } from "@components";
 import { useScroll } from "@hooks";
 import { useBaseStore } from "@store";
-import React from "react";
-import { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 export interface AppLayoutProps {
   header?: AppHeaderProps;
   screen?: AppScreenProps;

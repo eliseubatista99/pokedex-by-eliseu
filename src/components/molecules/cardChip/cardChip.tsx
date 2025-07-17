@@ -1,5 +1,5 @@
 import { CustomImage, Typography } from "@components";
-import { CSSProperties } from "react";
+import { type CSSProperties } from "react";
 
 export interface CardChipProps {
   text: string;

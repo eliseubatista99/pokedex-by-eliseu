@@ -1,8 +1,8 @@
 import React from "react";
 
 export interface UseScrollInput {
-  scrollElem: React.RefObject<HTMLDivElement>;
-  listElem: React.RefObject<HTMLDivElement>;
+  scrollElem: React.RefObject<HTMLDivElement | null>;
+  listElem: React.RefObject<HTMLDivElement | null>;
   onTouchBottom: () => void;
 }
 
@@ -15,7 +15,7 @@ export const useScroll = (input: UseScrollInput) => {
     const scrollTop = input.scrollElem.current?.scrollTop || 0;
     const scrollHeight = scroll - height;
 
-    let distanceToBottom = scrollHeight - scrollTop;
+    const distanceToBottom = scrollHeight - scrollTop;
 
     if (distanceToBottom < 10) {
       if (!isTouchingBottom.current) {

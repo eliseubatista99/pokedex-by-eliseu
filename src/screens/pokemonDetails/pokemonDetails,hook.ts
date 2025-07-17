@@ -1,14 +1,14 @@
 import { EPokemonsTypes } from "@constants";
-import { useFirebaseAuth } from "@contexts";
 import { PokemonHelper, TextHelper } from "@helpers";
-import { useFirebaseFirestore, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
-import { PokemonFull, PokemonShort } from "@types";
+import type { PokemonFull, PokemonShort } from "@types";
 import React from "react";
+import { usePokedexFirebaseAuth } from "../../contexts";
+import { useFirebaseFirestore, usePokeApi } from "../../hooks";
 
 export const usePokemonDetailsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { currentUser } = useFirebaseAuth();
+  const { currentUser } = usePokedexFirebaseAuth();
   const { addOrRemoveFromFavorites } = useFirebaseFirestore();
   const { favorites } = useUserStore();
   const { selectedPokemon, setSelectedPokemon } = usePokedexStore();

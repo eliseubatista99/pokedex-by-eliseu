@@ -4,7 +4,7 @@ import {
   APP_PADDING_RIGHT,
   APP_PADDING_TOP,
 } from "@constants";
-import { CSSProperties } from "react";
+import { type CSSProperties } from "react";
 
 export interface AppScreenProps {
   children?: React.ReactNode;

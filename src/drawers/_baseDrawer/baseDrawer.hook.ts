@@ -1,6 +1,6 @@
 import { APP_SCALE } from "@constants";
 import React from "react";
-import { BaseDrawerProps } from "./baseDrawer";
+import { type BaseDrawerProps } from "./baseDrawer";
 
 export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const isDragging = React.useRef<boolean>(false);
@@ -10,7 +10,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
   const [drawerBottomDistance, setDrawerBottomDistance] =
     React.useState<number>(0);
 
-  const dragStartPointerPosition = React.useRef<number>();
+  const dragStartPointerPosition = React.useRef<number>(undefined);
 
   const handleOnClick = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true;
@@ -19,7 +19,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     dragStartPointerPosition.current = pointerHeight;
   };
 
-  const handleOnPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handleOnPointerUp = () => {
     isDragging.current = false;
     dragStartPointerPosition.current = undefined;
     setDrawerBottomDistance(0);
@@ -50,7 +50,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
 
       if (distanceTraveledByPointer >= drawerHeight - 15) {
         onCloseDrawer();
-        handleOnPointerUp(e);
+        handleOnPointerUp();
       }
     }
   };

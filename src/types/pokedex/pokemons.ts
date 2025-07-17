@@ -1,4 +1,4 @@
-import { EPokemonsTypes } from "@constants";
+import type { EPokemonsTypes } from "../../constants";
 
 export type PokemonEvolutions =
   | {

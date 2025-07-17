@@ -1,5 +1,5 @@
-import { CSSProperties } from "react";
 import { CustomImage, Typography } from "@components";
+import { type CSSProperties } from "react";
 
 export interface DetailChipProps {
   icon?: string;

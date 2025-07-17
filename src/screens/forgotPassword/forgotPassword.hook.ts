@@ -1,9 +1,9 @@
 import { EMAIL_REGEX } from "@constants";
-import React, { useState } from "react";
+import { usePokedexFirebaseAuth } from "@contexts";
+import { useCustomNavigation } from "@hooks";
 import { useBaseStore } from "@store";
 import { FirebaseError } from "firebase/app";
-import { useCustomNavigation } from "@hooks";
-import { useFirebaseAuth } from "@contexts";
+import React, { useState } from "react";
 
 export interface ForgotPasswordFormField {
   value?: string;
@@ -18,7 +18,7 @@ export interface ForgotPasswordFormData {
 export const useForgotPasswordHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { resetPassword } = useFirebaseAuth();
+  const { resetPassword } = usePokedexFirebaseAuth();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 

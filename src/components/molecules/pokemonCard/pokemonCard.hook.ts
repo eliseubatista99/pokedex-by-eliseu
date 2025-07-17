@@ -1,6 +1,6 @@
 import { PokemonHelper, TextHelper } from "@helpers";
 import React from "react";
-import { PokemonCardProps } from "./pokemonCard";
+import type { PokemonCardProps } from "./pokemonCard";
 
 export const usePokemonCardHelper = ({ pokemon }: PokemonCardProps) => {
   const [isHovered, setIsHovered] = React.useState<boolean>(false);

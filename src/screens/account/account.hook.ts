@@ -1,7 +1,7 @@
-import { useFirebaseAuth } from "@contexts";
+import { usePokedexFirebaseAuth } from "@contexts";
 
 export const useAccountHelper = () => {
-  const { currentUser } = useFirebaseAuth();
+  const { currentUser } = usePokedexFirebaseAuth();
 
   return {
     currentUser,

@@ -1,8 +1,8 @@
-import { useFirebaseAuth } from "@contexts";
+import { usePokedexFirebaseAuth } from "@contexts";
 import React from "react";
 
 export const useLogoutHelper = () => {
-  const { currentUser } = useFirebaseAuth();
+  const { currentUser } = usePokedexFirebaseAuth();
 
   const [logoutDrawerVisible, setLogoutDrawerVisible] =
     React.useState<boolean>(false);
