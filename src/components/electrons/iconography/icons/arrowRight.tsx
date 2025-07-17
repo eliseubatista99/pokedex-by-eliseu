@@ -4,8 +4,6 @@ export const ArrowRight = ({
   width = "38px",
   height = "38px",
   fill,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  stroke,
   containerProps,
   onClick,
 }: IconographyProps) => {

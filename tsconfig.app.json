@@ -1,5 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@assets": ["src/assets"],
+      "@components": ["src/components"],
+      "@configs": ["src/configs"],
+      "@constants": ["src/constants"],
+      "@contexts": ["src/contexts"],
+      "@fonts": ["src/fonts"],
+      "@helpers": ["src/helpers"],
+      "@hooks": ["src/hooks"],
+      "@iconography": ["src/iconography"],
+      "@screens": ["src/screens"],
+      "@store": ["src/store"],
+      "@types": ["src/types"],
+      "@modals": ["src/modals"],
+      "@drawers": ["src/drawers"]
+    },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",
     "useDefineForClassFields": true,
@@ -19,7 +36,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },

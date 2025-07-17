@@ -4,11 +4,9 @@ import { FirebaseAuthProvider } from "@eliseubatista99/react-scaffold-firebase";
 import { ModalLoginAgain } from "../../modals";
 import { useBaseStore } from "../../store";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const REQUIRES_RECENT_LOGIN_ERROR = "auth/requires-recent-login";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface FirebaseAuthInputProps extends React.PropsWithChildren {}
+interface FirebaseAuthInputProps {
+  children?: React.ReactNode;
+}
 
 type FirebaseContextOutputProps = object;
 

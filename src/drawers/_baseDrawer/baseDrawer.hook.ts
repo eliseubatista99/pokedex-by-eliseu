@@ -19,7 +19,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
     dragStartPointerPosition.current = pointerHeight;
   };
 
-  const handleOnPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handleOnPointerUp = () => {
     isDragging.current = false;
     dragStartPointerPosition.current = undefined;
     setDrawerBottomDistance(0);
@@ -50,7 +50,7 @@ export const useBaseDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
 
       if (distanceTraveledByPointer >= drawerHeight - 15) {
         onCloseDrawer();
-        handleOnPointerUp(e);
+        handleOnPointerUp();
       }
     }
   };

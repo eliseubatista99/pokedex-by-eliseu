@@ -3,8 +3,6 @@ import type { IconographyProps } from "..";
 export const Google = ({
   width = "18px",
   height = "18px",
-  fill = "none",
-  stroke = "#000000",
   containerProps,
   onClick,
 }: IconographyProps) => {

@@ -9,9 +9,8 @@ export const usePokedexFirebaseAuth = () => {
   const { updateBaseStore } = useBaseStore();
 
   const hideLoginAgainModal = () => {
-    setLoginAgainModal({
-      isVisible: false,
-      onClickOutsideModal: () => null,
+    updateBaseStore({
+      loginAgainModal: { isVisible: false, onClickOutsideModal: () => null },
     });
   };
 

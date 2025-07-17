@@ -31,7 +31,7 @@ export interface PokedexDetailsTemplateProps {
 export const PokedexDetailsTemplate = React.forwardRef<
   HTMLDivElement,
   PokedexDetailsTemplateProps
->((props, ref) => {
+>((props) => {
   const {
     illustration,
     title,

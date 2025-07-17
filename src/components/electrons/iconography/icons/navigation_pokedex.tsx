@@ -4,7 +4,6 @@ export const NavigationPokedex = ({
   width = "24px",
   height = "24px",
   fill = "none",
-  stroke,
   containerProps,
   onClick,
 }: IconographyProps) => {

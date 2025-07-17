@@ -6,7 +6,7 @@ import {
   PokedexBottomContent,
 } from "@components";
 import { APP_PADDING_LEFT, APP_PADDING_RIGHT } from "@constants";
-import { type CSSProperties } from "react";
+import { type CSSProperties, type JSX } from "react";
 import { usePokedexListTemplateHelper } from "./pokedexList.hook";
 
 interface PokedexListOption {
