@@ -1,9 +1,9 @@
 import { EMAIL_REGEX } from "@constants";
-import React, { useState } from "react";
-import { useBaseStore } from "@store";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
-import { FormFieldData } from "@types";
-import { useFirebaseAuth } from "@contexts";
+import { useBaseStore } from "@store";
+import type { FormFieldData } from "@types";
+import React, { useState } from "react";
 
 interface FormData {
   email: FormFieldData;
@@ -12,7 +12,7 @@ interface FormData {
 export const useUpdateEmailHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
-  const { updateEmail } = useFirebaseAuth();
+  const { updateEmail } = usePokedexFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);

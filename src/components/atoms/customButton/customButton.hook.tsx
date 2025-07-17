@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
-import { CustomButtonProps } from "./customButton";
+import React, { type CSSProperties } from "react";
+import type { CustomButtonProps } from "./customButton";
 import { useCustomButtonStyles } from "./customButton.styles";
 
 export const useCustomButtonHelper = ({

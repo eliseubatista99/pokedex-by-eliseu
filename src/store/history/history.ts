@@ -1,4 +1,4 @@
-import produce from "immer";
+import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 

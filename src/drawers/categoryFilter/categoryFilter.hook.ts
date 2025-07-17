@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseDrawerProps } from "../_baseDrawer";
+import { type BaseDrawerProps } from "../_baseDrawer";
 
 export const useCategoryFilterDrawerHelper = ({
   onCloseDrawer,

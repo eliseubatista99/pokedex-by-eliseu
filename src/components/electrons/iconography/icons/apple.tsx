@@ -1,9 +1,10 @@
-import { IconographyProps } from "..";
+import type { IconographyProps } from "..";
 
 export const Apple = ({
   width = "38px",
   height = "38px",
   fill = "#000000",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   stroke = "#000000",
   containerProps,
   onClick,

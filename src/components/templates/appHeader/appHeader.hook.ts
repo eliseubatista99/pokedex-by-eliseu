@@ -1,5 +1,5 @@
 import { useCustomNavigation } from "@hooks";
-import { AppHeaderProps } from "./appHeader";
+import { type AppHeaderProps } from "./appHeader";
 
 export const useAppHeaderHelper = ({ stepsToGoBack }: AppHeaderProps) => {
   const { goBack } = useCustomNavigation();

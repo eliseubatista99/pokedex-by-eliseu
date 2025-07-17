@@ -1,7 +1,7 @@
 import { CardChip, CustomImage, Typography } from "@components";
 import { ItemHelper, TextHelper } from "@helpers";
-import { ItemShort } from "@types";
-import { CSSProperties } from "react";
+import type { ItemShort } from "@types";
+import { type CSSProperties } from "react";
 import { useItemCardHelper } from "./itemCard.hook";
 
 export interface ItemCardProps {

@@ -1,7 +1,7 @@
-import { CustomImage, CardChip, Typography } from "@components";
+import { CardChip, CustomImage, Typography } from "@components";
 import { PokemonHelper, TextHelper } from "@helpers";
-import { PokemonShort } from "@types";
-import { CSSProperties } from "react";
+import type { PokemonShort } from "@types";
+import { type CSSProperties } from "react";
 import { usePokemonCardHelper } from "./pokemonCard.hook";
 
 export interface PokemonCardProps {

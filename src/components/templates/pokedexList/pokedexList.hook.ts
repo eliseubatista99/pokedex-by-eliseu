@@ -1,5 +1,5 @@
 import React from "react";
-import { PokedexListTemplateProps } from "./pokedexList";
+import { type PokedexListTemplateProps } from "./pokedexList";
 import { useScroll } from "./pokedexListScroll.hook";
 
 export const usePokedexListTemplateHelper = (
@@ -12,8 +12,8 @@ export const usePokedexListTemplateHelper = (
   const screenInitialized = React.useRef<boolean>(false);
   const updatingItems = React.useRef<boolean>(false);
 
-  const cachedFilter = React.useRef<string>();
-  const cachedOrder = React.useRef<string>();
+  const cachedFilter = React.useRef<string | null>(null);
+  const cachedOrder = React.useRef<string | null>(null);
 
   const handleSearch = React.useCallback(() => {
     if (formRef.current) {
@@ -75,8 +75,8 @@ export const usePokedexListTemplateHelper = (
       props.options?.filter?.value !== cachedFilter.current ||
       props.options?.order?.value !== cachedOrder.current
     ) {
-      cachedFilter.current = props.options?.filter?.value;
-      cachedOrder.current = props.options?.order?.value;
+      cachedFilter.current = props.options?.filter?.value || null;
+      cachedOrder.current = props.options?.order?.value || null;
 
       updateItems(searchInputValue.current);
     }

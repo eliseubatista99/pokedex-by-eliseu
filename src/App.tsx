@@ -1,30 +1,31 @@
-import { Route, Routes } from "react-router-dom";
+import { APP_SCALE, ScreenPaths } from "@constants";
 import {
-  Onboarding1,
-  Onboarding2,
-  LoginOrRegister,
+  Account,
+  Favorites,
+  ForgotPassword,
   HomeScreen,
-  Register,
-  RegisterData,
-  RegisterDone,
+  ItemDetails,
+  Items,
   Login,
   LoginData,
   LoginDone,
-  ForgotPassword,
-  Account,
+  LoginOrRegister,
+  Onboarding1,
+  Onboarding2,
+  PokemonDetails,
+  Pokemons,
+  Register,
+  RegisterData,
+  RegisterDone,
   UpdateEmail,
   UpdateName,
   UpdatePassword,
-  Favorites,
-  Items,
-  Pokemons,
-  PokemonDetails,
-  ItemDetails,
 } from "@screens";
-import { APP_SCALE, ScreenPaths } from "@constants";
+import { Route, Routes } from "react-router-dom";
 import { useAppHelper } from "./App.hook";
 export const App = () => {
   useAppHelper();
+
   return (
     <div
       id="app"

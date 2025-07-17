@@ -1,6 +1,6 @@
 import { Chip, Typography } from "@components";
 import { DRAWER_PADDING, EOrder } from "@constants";
-import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
+import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useOrderDrawerHelper } from "./order.hook";
 
 export const OrderDrawer = (props: BaseDrawerProps) => {

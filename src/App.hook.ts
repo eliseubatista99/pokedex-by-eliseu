@@ -17,6 +17,7 @@ export const useAppHelper = () => {
   React.useEffect(() => {
     if (!appInitialized.current) {
       handleInitialPath();
+
       appInitialized.current = true;
     }
   }, [currentPath, goTo, handleInitialPath, replaceHistory]);

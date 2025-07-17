@@ -1,5 +1,5 @@
 import { Typography } from "@components";
-import { CSSProperties } from "react";
+import { type CSSProperties } from "react";
 
 export interface ChipProps {
   text: string;

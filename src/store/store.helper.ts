@@ -1,5 +1,9 @@
-import { create, StateCreator, StoreMutatorIdentifier } from "zustand";
-import { devtools, persist, PersistStorage } from "zustand/middleware";
+import {
+  create,
+  type StateCreator,
+  type StoreMutatorIdentifier,
+} from "zustand";
+import { devtools, persist, type PersistStorage } from "zustand/middleware";
 
 export class StoreHelper {
   static createStore = <

@@ -1,6 +1,6 @@
 import { CustomButton, CustomInputField, Typography } from "@components";
-import { User } from "firebase/auth";
-import { BaseModal, BaseModalProps } from "../_baseModal";
+import { type User } from "firebase/auth";
+import { BaseModal, type BaseModalProps } from "../_baseModal";
 import { useLoginAgainModalHelper } from "./loginAgain.hook";
 
 export interface ModalLoginAgainProps extends BaseModalProps {

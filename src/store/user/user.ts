@@ -1,5 +1,5 @@
-import { User } from "firebase/auth";
-import produce from "immer";
+import { type User } from "firebase/auth";
+import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 

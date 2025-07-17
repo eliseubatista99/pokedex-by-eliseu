@@ -1,4 +1,4 @@
-import { FirebaseAuthProvider } from "@contexts";
+import { PokedexFirebaseAuthProvider } from "@contexts";
 import { BrowserRouter } from "react-router-dom";
 
 interface TestComponentProps {
@@ -7,8 +7,8 @@ interface TestComponentProps {
 
 export const TestComponent = ({ children }: TestComponentProps) => {
   return (
-    <FirebaseAuthProvider>
+    <PokedexFirebaseAuthProvider>
       <BrowserRouter>{children}</BrowserRouter>
-    </FirebaseAuthProvider>
+    </PokedexFirebaseAuthProvider>
   );
 };

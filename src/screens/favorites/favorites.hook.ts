@@ -1,13 +1,13 @@
 import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
-import { useFirebaseAuth } from "@contexts";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { PokemonHelper } from "@helpers";
 import { useCustomNavigation, usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
-import { PokemonShort } from "@types";
+import type { PokemonShort } from "@types";
 import React from "react";
 
 export const useFavoritesHelper = () => {
-  const { currentUser } = useFirebaseAuth();
+  const { currentUser } = usePokedexFirebaseAuth();
 
   const userStore = useUserStore();
 

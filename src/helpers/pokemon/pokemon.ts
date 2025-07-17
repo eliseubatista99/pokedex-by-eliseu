@@ -1,11 +1,11 @@
-import { ImageAssets } from "@assets";
-import { EOrder, EPokemonsTypes } from "@constants";
-import {
+import { ImageAssets } from "../../assets";
+import { EOrder, EPokemonsTypes } from "../../constants";
+import type {
   ApiEvolutionChain,
   ApiEvolutionChainItem,
   PokemonEvolutions,
   PokemonShort,
-} from "@types";
+} from "../../types";
 
 export class PokemonHelper {
   static exampleChain: ApiEvolutionChain = {
@@ -254,7 +254,7 @@ export class PokemonHelper {
   static buildEvolutionChainList = (
     chains: PokemonEvolutions[]
   ): Array<Array<string>> => {
-    let result: Array<Array<string>> = [];
+    const result: Array<Array<string>> = [];
     const chainBase = chains[0]?.name;
 
     if (!chainBase) {

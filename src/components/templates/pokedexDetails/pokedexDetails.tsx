@@ -1,9 +1,9 @@
 import {
   AppLayout,
   CardChip,
-  CardChipProps,
+  type CardChipProps,
   DetailChip,
-  DetailChipProps,
+  type DetailChipProps,
   PokedexBottomContent,
   Typography,
 } from "@components";

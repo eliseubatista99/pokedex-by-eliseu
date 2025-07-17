@@ -1,7 +1,7 @@
 import {
   CardChip,
-  CardChipProps,
-  DetailChipProps,
+  type CardChipProps,
+  type DetailChipProps,
   EvolutionBranch,
   PokedexDetailsTemplate,
 } from "@components";

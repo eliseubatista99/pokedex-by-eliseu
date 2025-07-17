@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useBaseStore } from "@store";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
-import { FormFieldData } from "@types";
-import { useFirebaseAuth } from "@contexts";
+import { useBaseStore } from "@store";
+import type { FormFieldData } from "@types";
+import React, { useState } from "react";
 
 interface FormData {
   name: FormFieldData;
@@ -11,7 +11,7 @@ interface FormData {
 export const useUpdateNameHelper = () => {
   const { goBack } = useCustomNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
-  const { updateName } = useFirebaseAuth();
+  const { updateName } = usePokedexFirebaseAuth();
   const { updateUserName } = useFirebaseFirestore();
 
   const formRef = React.useRef<HTMLFormElement>(null);

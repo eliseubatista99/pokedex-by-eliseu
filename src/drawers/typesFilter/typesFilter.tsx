@@ -1,7 +1,7 @@
 import { Chip, Typography } from "@components";
 import { DRAWER_PADDING, EPokemonsTypes } from "@constants";
 import { PokemonHelper } from "@helpers";
-import { BaseDrawer, BaseDrawerProps } from "../_baseDrawer";
+import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useTypesFilterDrawerHelper } from "./typesFilter.hook";
 
 export const DrawerTypesFilter = (props: BaseDrawerProps) => {

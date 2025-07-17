@@ -1,4 +1,4 @@
-import { IconographyProps } from "..";
+import type { IconographyProps } from "..";
 
 export const NavLeft = ({
   width = "38px",

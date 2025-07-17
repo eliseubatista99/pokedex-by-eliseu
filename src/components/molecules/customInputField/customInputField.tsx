@@ -1,6 +1,10 @@
 import { Typography } from "@components";
 import styled from "@emotion/styled";
-import { ChangeEvent, CSSProperties, HTMLInputTypeAttribute } from "react";
+import {
+  type ChangeEvent,
+  type CSSProperties,
+  type HTMLInputTypeAttribute,
+} from "react";
 
 export interface CustomInputFieldProps {
   name: string;

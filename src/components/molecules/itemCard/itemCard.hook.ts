@@ -1,6 +1,6 @@
 import { ItemHelper, TextHelper } from "@helpers";
 import React from "react";
-import { ItemCardProps } from "./itemCard";
+import type { ItemCardProps } from "./itemCard";
 
 export const useItemCardHelper = ({ item }: ItemCardProps) => {
   const [isHovered, setIsHovered] = React.useState<boolean>(false);

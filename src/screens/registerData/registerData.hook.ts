@@ -1,8 +1,9 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
-import React, { useState } from "react";
-import { useBaseStore } from "@store";
 import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
-import { useFirebaseAuth } from "@contexts";
+import { useBaseStore } from "@store";
+import React, { useState } from "react";
+import { usePokedexFirebaseAuth } from "../../contexts";
+import { useUserStore } from "../../store";
 
 export interface RegisterFormField {
   value?: string;
@@ -20,8 +21,9 @@ export interface RegisterFormData {
 export const useRegisterDataHelper = () => {
   const { goTo } = useCustomNavigation();
   const { showLoader, hideLoader } = useBaseStore();
-  const { signUp } = useFirebaseAuth();
+  const { signUp } = usePokedexFirebaseAuth();
   const { createUser } = useFirebaseFirestore();
+  const { setFirebaseUser } = useUserStore();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -52,13 +54,21 @@ export const useRegisterDataHelper = () => {
 
         createUser(newUser.user);
         hideLoader();
+        setFirebaseUser(newUser.user);
         handleGoToRegisterDone();
       } catch (error: unknown) {
         console.error("Failed to create an account. Error: ", error);
         hideLoader();
       }
     },
-    [createUser, handleGoToRegisterDone, hideLoader, showLoader, signUp]
+    [
+      createUser,
+      handleGoToRegisterDone,
+      hideLoader,
+      setFirebaseUser,
+      showLoader,
+      signUp,
+    ]
   );
 
   const handleClickContinue = () => {

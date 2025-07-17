@@ -1,5 +1,5 @@
-import { EItemCategory, EOrder } from "@constants";
-import { ItemShort } from "src/types/pokedex/items";
+import { EItemCategory, EOrder } from "../../constants";
+import type { ItemShort } from "../../types";
 import { TextHelper } from "../text";
 
 export class ItemHelper {

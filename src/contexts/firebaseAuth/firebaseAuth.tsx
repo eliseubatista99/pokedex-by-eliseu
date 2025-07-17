@@ -1,182 +1,35 @@
-import React, { useContext } from "react";
-import { auth } from "@configs";
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  updateProfile,
-  User,
-  updateEmail,
-  updatePassword,
-  UserCredential,
-} from "firebase/auth";
-import { useUserStore } from "@store";
-import { FirebaseError } from "firebase/app";
-import { ModalLoginAgain, ModalLoginAgainProps } from "@modals";
+import React from "react";
 
+import { FirebaseAuthProvider } from "@eliseubatista99/react-scaffold-firebase";
+import { ModalLoginAgain } from "../../modals";
+import { useBaseStore } from "../../store";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const REQUIRES_RECENT_LOGIN_ERROR = "auth/requires-recent-login";
 
-interface FirebaseAuthInputProps {
-  children: React.ReactNode;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface FirebaseAuthInputProps extends React.PropsWithChildren {}
 
-interface FirebaseContextOutputProps {
-  currentUser?: User | null;
-  signUp?: (
-    email: string,
-    password: string,
-    username: string
-  ) => Promise<UserCredential>;
-  logIn?: (email: string, password: string) => Promise<UserCredential>;
-  logout?: () => Promise<void>;
-  resetPassword?: (email: string) => Promise<User | null>;
-  updateEmail?: (email: string) => Promise<User | null>;
-  updatePassword?: (password: string) => Promise<User | null>;
-  updateName?: (name: string) => Promise<User | null>;
-}
+type FirebaseContextOutputProps = object;
 
-const FirebaseAuth = React.createContext<FirebaseContextOutputProps>({});
+const PokedexFirebaseAuth = React.createContext<FirebaseContextOutputProps>({});
 
-export const FirebaseAuthProvider = ({ children }: FirebaseAuthInputProps) => {
-  const [loginAgainModal, setLoginAgainModal] = React.useState<
-    ModalLoginAgainProps | undefined
-  >(undefined);
-  const { setFirebaseUser } = useUserStore();
-
-  const currentUser = React.useRef<User | null>(null);
-
-  const hideLoginAgainModal = () => {
-    setLoginAgainModal({
-      isVisible: false,
-      onClickOutsideModal: () => null,
-    });
-  };
-
-  const signUp = async (email: string, password: string, username: string) => {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    await updateProfile(userCredential.user, {
-      displayName: username,
-    });
-
-    return userCredential;
-  };
-
-  const logIn = async (email: string, password: string) => {
-    return await signInWithEmailAndPassword(auth, email, password);
-  };
-
-  const logout = async () => {
-    return auth.signOut();
-  };
-
-  const resetPassword = async (email: string) => {
-    await sendPasswordResetEmail(auth, email);
-
-    return currentUser.current;
-  };
-
-  const updateUserEmail = async (email: string) => {
-    try {
-      if (currentUser.current) {
-        await updateEmail(currentUser.current, email);
-      }
-
-      return currentUser.current;
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-
-      if (firebaseError.code === REQUIRES_RECENT_LOGIN_ERROR) {
-        setLoginAgainModal({
-          isVisible: true,
-          currentUser: currentUser.current,
-          onLoginDone: (user) => updateUserEmail(email),
-          onClickOutsideModal: () => hideLoginAgainModal(),
-        });
-      }
-      return null;
-    }
-  };
-
-  const updateUserPassword = async (password: string) => {
-    try {
-      if (currentUser.current) {
-        await updatePassword(currentUser.current, password);
-      }
-
-      return currentUser.current;
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-
-      if (firebaseError.code === REQUIRES_RECENT_LOGIN_ERROR) {
-        setLoginAgainModal({
-          isVisible: true,
-          currentUser: currentUser.current,
-          onLoginDone: (user) => updateUserPassword(password),
-          onClickOutsideModal: () => hideLoginAgainModal(),
-        });
-      }
-      return null;
-    }
-  };
-
-  const updateUserName = async (name: string) => {
-    try {
-      if (currentUser.current) {
-        await updateProfile(currentUser.current, {
-          displayName: name,
-        });
-      }
-
-      return currentUser.current;
-    } catch (error) {
-      const firebaseError = error as FirebaseError;
-
-      if (firebaseError.code === REQUIRES_RECENT_LOGIN_ERROR) {
-        setLoginAgainModal({
-          isVisible: true,
-          currentUser: currentUser.current,
-          onLoginDone: (user) => updateUserName(name),
-          onClickOutsideModal: () => hideLoginAgainModal(),
-        });
-      }
-      return null;
-    }
-  };
-
-  React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      currentUser.current = user;
-
-      setFirebaseUser(user);
-    });
-
-    return unsubscribe;
-  }, [setFirebaseUser]);
+export const PokedexFirebaseAuthProvider = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  children,
+}: FirebaseAuthInputProps) => {
+  const storeBase = useBaseStore();
 
   return (
-    <FirebaseAuth.Provider
-      value={{
-        currentUser: currentUser.current,
-        signUp,
-        logIn,
-        logout,
-        resetPassword,
-        updateEmail: updateUserEmail,
-        updatePassword: updateUserPassword,
-        updateName: updateUserName,
-      }}
-    >
-      {loginAgainModal && <ModalLoginAgain {...loginAgainModal} />}
-      {children}
-    </FirebaseAuth.Provider>
+    <PokedexFirebaseAuth.Provider value={{}}>
+      <FirebaseAuthProvider>
+        <>
+          {storeBase.loginAgainModal && (
+            <ModalLoginAgain {...storeBase.loginAgainModal} />
+          )}
+          {children}
+        </>
+      </FirebaseAuthProvider>
+    </PokedexFirebaseAuth.Provider>
   );
-};
-
-export const useFirebaseAuth = () => {
-  return useContext(FirebaseAuth);
 };

@@ -1,65 +1,68 @@
-import React from "react";
-import { firestore } from "@configs";
+import { useFirestore } from "@eliseubatista99/react-scaffold-firebase";
 import { useUserStore } from "@store";
-import {
-  collection,
-  doc,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  getDocs,
-} from "firebase/firestore";
-import { User } from "firebase/auth";
-import { FirestoreUser } from "@types";
+import type { User } from "firebase/auth";
+import React from "react";
+import type { FirestoreUser } from "../../types";
+
+const usersCollectionName = "users";
 
 export const useFirebaseFirestore = () => {
   const { setUserFavorites } = useUserStore();
-  const usersCollectionRef = collection(firestore, "users");
+  const firestoreHook = useFirestore();
 
   const getUserData = React.useCallback(
     async (user: User) => {
-      const userData = await getDocs(usersCollectionRef);
-      const thisUserDoc = userData.docs.filter((doc) => doc.id === user.uid);
-      const thisUserData = thisUserDoc[0]?.data() as FirestoreUser;
+      const users = await firestoreHook.getItems<FirestoreUser>(
+        usersCollectionName
+      );
 
-      return thisUserData;
+      return users.find((doc) => doc.id === user.uid)?.data;
     },
-    [usersCollectionRef]
+    [firestoreHook]
   );
 
   const deleteUser = React.useCallback(
     async (user: User) => {
-      const newUserRef = doc(usersCollectionRef, user.uid);
+      return await firestoreHook.deleteItem(usersCollectionName, user.uid);
 
-      await deleteDoc(newUserRef);
+      // const newUserRef = doc(usersCollectionRef, user.uid);
+
+      // await deleteDoc(newUserRef);
     },
-    [usersCollectionRef]
+    [firestoreHook]
   );
 
   const updateUserEmail = React.useCallback(
     async (user: User, email: string) => {
-      const newUserRef = doc(usersCollectionRef, user.uid);
+      // const newUserRef = doc(usersCollectionRef, user.uid);
 
-      await updateDoc(newUserRef, { email });
+      // await updateDoc(newUserRef, { email });
+
+      return await firestoreHook.updateItem(usersCollectionName, user.uid, {
+        email,
+      });
     },
-    [usersCollectionRef]
+    [firestoreHook]
   );
 
   const updateUserName = React.useCallback(
     async (user: User, name: string) => {
-      const newUserRef = doc(usersCollectionRef, user.uid);
+      // const newUserRef = doc(usersCollectionRef, user.uid);
 
-      await updateDoc(newUserRef, { name });
+      // await updateDoc(newUserRef, { name });
+
+      return await firestoreHook.updateItem(usersCollectionName, user.uid, {
+        name,
+      });
     },
-    [usersCollectionRef]
+    [firestoreHook]
   );
 
   const addOrRemoveFromFavorites = React.useCallback(
     async (user: User, pokemon: string) => {
-      const newUserRef = doc(usersCollectionRef, user.uid);
       const userData = await getUserData(user);
 
-      let favorites = userData.favorites;
+      let favorites = userData?.favorites || [];
 
       if (favorites.includes(pokemon)) {
         favorites = favorites.filter((fav) => fav !== pokemon);
@@ -69,33 +72,37 @@ export const useFirebaseFirestore = () => {
 
       setUserFavorites(favorites);
 
-      await updateDoc(newUserRef, { favorites });
+      return await firestoreHook.updateItem(usersCollectionName, user.uid, {
+        favorites,
+      });
     },
-    [getUserData, setUserFavorites, usersCollectionRef]
+    [firestoreHook, getUserData, setUserFavorites]
   );
 
   const getFavorites = React.useCallback(
-    async (user: User, pokemon: number) => {
+    async (user: User) => {
       const userData = await getUserData(user);
 
-      return userData.favorites;
+      return userData?.favorites || [];
     },
     [getUserData]
   );
 
   const createUser = React.useCallback(
     async (user: User) => {
-      const newUserRef = doc(usersCollectionRef, user.uid);
-
       const newUserData = {
         name: user.displayName || "",
         email: user.email || "",
         favorites: [],
       };
 
-      await setDoc(newUserRef, newUserData);
+      return await firestoreHook.addItem(
+        usersCollectionName,
+        user.uid,
+        newUserData
+      );
     },
-    [usersCollectionRef]
+    [firestoreHook]
   );
 
   const getUser = React.useCallback(async () => {

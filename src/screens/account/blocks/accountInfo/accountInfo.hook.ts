@@ -1,10 +1,10 @@
 import { ScreenPaths } from "@constants";
-import { useFirebaseAuth } from "@contexts";
+import { usePokedexFirebaseAuth } from "@contexts";
 import { useCustomNavigation } from "@hooks";
 import React from "react";
 
 export const useAccountInfoHelper = () => {
-  const { currentUser } = useFirebaseAuth();
+  const { currentUser } = usePokedexFirebaseAuth();
 
   const { goTo } = useCustomNavigation();
 

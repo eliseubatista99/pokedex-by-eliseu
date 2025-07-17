@@ -1,5 +1,5 @@
 import { DRAWER_PADDING } from "@constants";
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import { useBaseDrawerHelper } from "./baseDrawer.hook";
 
 export interface BaseDrawerProps {

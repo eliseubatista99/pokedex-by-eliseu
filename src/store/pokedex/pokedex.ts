@@ -1,6 +1,5 @@
-import { PokemonShort } from "@types";
-import produce from "immer";
-import { ItemShort } from "src/types/pokedex/items";
+import type { ItemShort, PokemonShort } from "@types";
+import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../store.helper";
 

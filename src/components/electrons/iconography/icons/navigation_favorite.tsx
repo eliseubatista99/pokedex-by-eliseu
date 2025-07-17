@@ -1,4 +1,4 @@
-import { IconographyProps } from "..";
+import type { IconographyProps } from "..";
 
 export const NavigationFavorite = ({
   width = "24px",
