@@ -1,5 +1,6 @@
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import { useFirebaseFirestore } from "@hooks";
 import { useBaseStore } from "@store";
 import type { FormFieldData } from "@types";
 import React, { useState } from "react";
@@ -9,7 +10,7 @@ interface FormData {
 }
 
 export const useUpdateNameHelper = () => {
-  const { goBack } = useCustomNavigation();
+  const { goBack } = useNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateName } = usePokedexFirebaseAuth();
   const { updateUserName } = useFirebaseFirestore();

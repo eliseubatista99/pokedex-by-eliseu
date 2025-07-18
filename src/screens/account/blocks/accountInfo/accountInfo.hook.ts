@@ -1,12 +1,13 @@
 import { ScreenPaths } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+
 import React from "react";
 
 export const useAccountInfoHelper = () => {
   const { currentUser } = usePokedexFirebaseAuth();
 
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
 
   const handleGoToUpdateName = React.useCallback(() => {
     goTo(ScreenPaths.updateName);

@@ -6,6 +6,8 @@ import {
   GlobalLoader,
   Toast,
 } from "@components";
+import { APP_SCALE } from "@constants";
+
 import { useScroll } from "@hooks";
 import { useBaseStore } from "@store";
 import React, { type CSSProperties } from "react";
@@ -55,6 +57,8 @@ export const AppLayout = ({
           margin: "auto",
           background: "#ffffff",
           position: "relative",
+          zoom: APP_SCALE,
+
           ...styles,
         }}
       >

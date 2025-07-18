@@ -1,9 +1,9 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 
 export const useAppHelper = () => {
-  const { currentPath, replaceHistory, goTo } = useCustomNavigation();
+  const { currentPath, replaceHistory, goTo } = useNavigation();
 
   const appInitialized = React.useRef<boolean>(false);
 

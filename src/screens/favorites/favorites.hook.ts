@@ -1,7 +1,8 @@
 import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { PokemonHelper } from "@helpers";
-import { useCustomNavigation, usePokeApi } from "@hooks";
+import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
 import type { PokemonShort } from "@types";
 import React from "react";
@@ -12,7 +13,7 @@ export const useFavoritesHelper = () => {
   const userStore = useUserStore();
 
   const { showLoader, hideLoader } = useBaseStore();
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { setSelectedPokemon } = usePokedexStore();
   const [itemsToDisplay, setItemsToDisplay] = React.useState<PokemonShort[]>(
     []

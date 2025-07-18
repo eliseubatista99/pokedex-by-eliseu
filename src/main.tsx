@@ -1,8 +1,31 @@
+import { ScreenPaths } from "@constants";
+import { NavigationProvider } from "@eliseubatista99/react-scaffold-core";
 import { FirebaseAppHelper } from "@eliseubatista99/react-scaffold-firebase";
 import { css, Global } from "@emotion/react";
+import {
+  Account,
+  Favorites,
+  ForgotPassword,
+  HomeScreen,
+  ItemDetails,
+  Items,
+  Login,
+  LoginData,
+  LoginDone,
+  LoginOrRegister,
+  Onboarding1,
+  Onboarding2,
+  PokemonDetails,
+  Pokemons,
+  Register,
+  RegisterData,
+  RegisterDone,
+  UpdateEmail,
+  UpdateName,
+  UpdatePassword,
+} from "@screens";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { firebaseConfig } from "./configs";
 import { PokedexFirebaseAuthProvider } from "./contexts";
@@ -67,9 +90,92 @@ createRoot(document.getElementById("root")!).render(
       `}
     />
     <PokedexFirebaseAuthProvider>
-      <BrowserRouter>
+      <NavigationProvider
+        routes={[
+          {
+            path: ScreenPaths.splash,
+            render: <HomeScreen />,
+          },
+          {
+            path: ScreenPaths.onboarding1,
+            render: <Onboarding1 />,
+          },
+          {
+            path: ScreenPaths.onboarding2,
+            render: <Onboarding2 />,
+          },
+          {
+            path: ScreenPaths.loginOrRegister,
+            render: <LoginOrRegister />,
+          },
+          {
+            path: ScreenPaths.register,
+            render: <Register />,
+          },
+          {
+            path: ScreenPaths.registerData,
+            render: <RegisterData />,
+          },
+          {
+            path: ScreenPaths.registerDone,
+            render: <RegisterDone />,
+          },
+          {
+            path: ScreenPaths.login,
+            render: <Login />,
+          },
+          {
+            path: ScreenPaths.loginData,
+            render: <LoginData />,
+          },
+          {
+            path: ScreenPaths.loginDone,
+            render: <LoginDone />,
+          },
+          {
+            path: ScreenPaths.forgotPassword,
+            render: <ForgotPassword />,
+          },
+          {
+            path: ScreenPaths.pokemons,
+            render: <Pokemons />,
+          },
+          {
+            path: ScreenPaths.pokemonDetails,
+            render: <PokemonDetails />,
+          },
+          {
+            path: ScreenPaths.items,
+            render: <Items />,
+          },
+          {
+            path: ScreenPaths.itemDetails,
+            render: <ItemDetails />,
+          },
+          {
+            path: ScreenPaths.favorites,
+            render: <Favorites />,
+          },
+          {
+            path: ScreenPaths.account,
+            render: <Account />,
+          },
+          {
+            path: ScreenPaths.updateEmail,
+            render: <UpdateEmail />,
+          },
+          {
+            path: ScreenPaths.updateName,
+            render: <UpdateName />,
+          },
+          {
+            path: ScreenPaths.updatePassword,
+            render: <UpdatePassword />,
+          },
+        ]}
+      >
         <App />
-      </BrowserRouter>
+      </NavigationProvider>
     </PokedexFirebaseAuthProvider>
   </StrictMode>
 );

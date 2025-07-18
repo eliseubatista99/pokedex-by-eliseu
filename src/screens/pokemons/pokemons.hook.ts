@@ -1,13 +1,14 @@
 import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { PokemonHelper } from "@helpers";
-import { useCustomNavigation, usePokeApi } from "@hooks";
+import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import type { PokemonShort } from "@types";
 import React from "react";
 
 export const usePokemonsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { setSelectedPokemon } = usePokedexStore();
   const [itemsToDisplay, setItemsToDisplay] = React.useState<PokemonShort[]>(
     []

@@ -1,13 +1,14 @@
 import { EItemCategory, EOrder, ScreenPaths } from "@constants";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { ItemHelper } from "@helpers";
-import { useCustomNavigation, usePokeApi } from "@hooks";
+import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import React from "react";
 import type { ItemShort } from "../../types";
 
 export const useItemsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { setSelectedItem } = usePokedexStore();
   const [itemsToDisplay, setItemsToDisplay] = React.useState<ItemShort[]>([]);
   const limit = React.useRef<number>(20);

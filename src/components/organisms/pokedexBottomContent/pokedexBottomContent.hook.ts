@@ -1,8 +1,9 @@
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+
 import React from "react";
 
 export const usePokedexBottomContentHelper = () => {
-  const { currentPath, goTo } = useCustomNavigation();
+  const { currentPath, goTo } = useNavigation();
   const handleOnItemClicked = React.useCallback(
     (screenPath: string) => {
       goTo(screenPath);

@@ -1,9 +1,10 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+
 import React from "react";
 
 export const useOnboarding1Helper = () => {
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
 
   const handleGoToOnboarding2 = React.useCallback(() => {
     goTo(ScreenPaths.onboarding2);
