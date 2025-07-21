@@ -1,4 +1,5 @@
-import { PokemonHelper, TextHelper } from "@helpers";
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { PokemonHelper } from "@helpers";
 import React from "react";
 import type { PokemonCardProps } from "./pokemonCard";
 

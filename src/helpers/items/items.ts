@@ -1,6 +1,6 @@
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
 import { EItemCategory, EOrder } from "../../constants";
 import type { ItemShort } from "../../types";
-import { TextHelper } from "../text";
 
 export class ItemHelper {
   static getItemId = (id: number) => {

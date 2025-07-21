@@ -1,5 +1,6 @@
 import { EPokemonsTypes } from "@constants";
-import { PokemonHelper, TextHelper } from "@helpers";
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { PokemonHelper } from "@helpers";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
 import type { PokemonFull, PokemonShort } from "@types";
 import React from "react";

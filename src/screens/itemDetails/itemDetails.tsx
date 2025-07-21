@@ -4,7 +4,8 @@ import {
   PokedexDetailsTemplate,
   Typography,
 } from "@components";
-import { ItemHelper, TextHelper } from "@helpers";
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { ItemHelper } from "@helpers";
 import { useItemDetailsHelper } from "./itemDetails.hook";
 
 export const ItemDetails = () => {

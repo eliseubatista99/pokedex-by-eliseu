@@ -1,4 +1,5 @@
-import { ItemHelper, TextHelper } from "@helpers";
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { ItemHelper } from "@helpers";
 import React from "react";
 import type { ItemCardProps } from "./itemCard";
 
