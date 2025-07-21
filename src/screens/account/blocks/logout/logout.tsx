@@ -1,5 +1,5 @@
-import { Typography } from "@components";
 import { DrawerLogout } from "@drawers";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useLogoutHelper } from "./logout.hook";
 
 export const Logout = () => {

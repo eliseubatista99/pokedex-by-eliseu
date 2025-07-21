@@ -1,7 +1,7 @@
-import { Typography } from "@components";
 import { Toasts } from "@constants";
 import {
   Toast as ToastBase,
+  Typography,
   type ToastProps as ToastBaseProps,
 } from "@eliseubatista99/react-scaffold-core";
 
