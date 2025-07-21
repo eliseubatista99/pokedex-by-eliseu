@@ -8,3 +8,7 @@ export const Drawers = {
   order: "order-drawer",
   typesFilter: "types-filter-drawer",
 };
+
+export const Toasts = {
+  base: "toast",
+};

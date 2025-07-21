@@ -44,7 +44,7 @@ export const AppLayout = ({
       )}
       {toast && (
         <Toast
-          duration={toast.duration || 3}
+          durationInSeconds={toast.duration || 3}
           icon={toast.icon}
           text={toast.text}
         />

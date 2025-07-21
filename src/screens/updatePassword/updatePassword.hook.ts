@@ -1,5 +1,9 @@
+import { Toasts } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 
 import { useBaseStore } from "@store";
 import type { FormFieldData } from "@types";
@@ -13,6 +17,7 @@ export const useUpdatePasswordHelper = () => {
   const { goBack } = useNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updatePassword } = usePokedexFirebaseAuth();
+  const { showItem } = useFeedback();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -33,13 +38,14 @@ export const useUpdatePasswordHelper = () => {
         setToastData({
           text: "Action performed successfully",
         });
+        showItem(Toasts.base);
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change password. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, setToastData, showLoader, updatePassword]
+    [goBack, hideLoader, setToastData, showItem, showLoader, updatePassword]
   );
 
   const handleClickContinue = () => {
