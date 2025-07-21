@@ -53,6 +53,7 @@ export const useLoginAgainModalHelper = ({
   };
 
   const handleSubmitForm = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (event: any) => {
       // Preventing the page from reloading
       event.preventDefault();

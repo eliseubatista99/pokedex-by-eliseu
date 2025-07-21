@@ -1,3 +1,4 @@
+export * from "./feedback";
 export * from "./layouts";
 export * from "./pokeApi";
 export * from "./pokedex";
