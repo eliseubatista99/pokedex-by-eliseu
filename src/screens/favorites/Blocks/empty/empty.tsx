@@ -1,10 +1,6 @@
 import { ImageAssets } from "@assets";
-import {
-  AppLayout,
-  CustomImage,
-  PokedexBottomContent,
-  Typography,
-} from "@components";
+import { AppLayout, CustomImage, PokedexBottomContent } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 
 export const Empty = () => {
   return (

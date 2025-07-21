@@ -5,8 +5,8 @@ import {
   DetailChip,
   type DetailChipProps,
   PokedexBottomContent,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { Blocks } from "./blocks";
 

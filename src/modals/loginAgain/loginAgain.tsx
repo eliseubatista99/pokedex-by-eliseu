@@ -1,6 +1,10 @@
-import { CustomButton, CustomInputField, Typography } from "@components";
+import { CustomButton, CustomInputField } from "@components";
 import { Modals } from "@constants";
-import { Modal, type ModalProps } from "@eliseubatista99/react-scaffold-core";
+import {
+  Modal,
+  Typography,
+  type ModalProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { type User } from "firebase/auth";
 import { useLoginAgainModalHelper } from "./loginAgain.hook";
 

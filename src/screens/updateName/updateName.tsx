@@ -2,8 +2,8 @@ import {
   AppLayout,
   CustomInputField,
   OnboardingBottomContent,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useUpdateNameHelper } from "./updateName.hook";
 
 export const UpdateName = () => {

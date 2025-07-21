@@ -1,5 +1,6 @@
 import { ImageAssets } from "@assets";
-import { CustomButton, CustomImage, Typography } from "@components";
+import { CustomButton, CustomImage } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useGuestHook } from "./guest.hook";
 
 export const Guest = () => {

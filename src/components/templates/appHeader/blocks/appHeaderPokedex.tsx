@@ -1,4 +1,5 @@
-import { Iconography, Typography } from "@components";
+import { Iconography } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { type AppHeaderPokedexProps } from "..";
 import { useAppHeaderHelper } from "../appHeader.hook";
 

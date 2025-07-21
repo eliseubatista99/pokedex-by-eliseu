@@ -1,5 +1,5 @@
-import { CardChip, CustomImage, Typography } from "@components";
-import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { CardChip, CustomImage } from "@components";
+import { TextHelper, Typography } from "@eliseubatista99/react-scaffold-core";
 import { ItemHelper } from "@helpers";
 import type { ItemShort } from "@types";
 import { type CSSProperties } from "react";

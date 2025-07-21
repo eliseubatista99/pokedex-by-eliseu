@@ -1,6 +1,10 @@
-import { Chip, Typography } from "@components";
+import { Chip } from "@components";
 import { DRAWER_PADDING, Drawers, EPokemonsTypes } from "@constants";
-import { Drawer, type DrawerProps } from "@eliseubatista99/react-scaffold-core";
+import {
+  Drawer,
+  Typography,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { PokemonHelper } from "@helpers";
 import { useTypesFilterDrawerHelper } from "./typesFilter.hook";
 

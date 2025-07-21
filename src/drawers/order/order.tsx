@@ -1,6 +1,10 @@
-import { Chip, Typography } from "@components";
+import { Chip } from "@components";
 import { DRAWER_PADDING, Drawers, EOrder } from "@constants";
-import { Drawer, type DrawerProps } from "@eliseubatista99/react-scaffold-core";
+import {
+  Drawer,
+  Typography,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { useOrderDrawerHelper } from "./order.hook";
 
 export interface OrderDrawerProps extends Omit<DrawerProps, "id"> {

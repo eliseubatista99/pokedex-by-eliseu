@@ -2,8 +2,8 @@ import {
   AppLayout,
   CustomInputField,
   OnboardingBottomContent,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useUpdatePasswordHelper } from "./updatePassword.hook";
 
 export const UpdatePassword = () => {

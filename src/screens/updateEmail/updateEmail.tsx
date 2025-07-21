@@ -2,8 +2,8 @@ import {
   AppLayout,
   CustomInputField,
   OnboardingBottomContent,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useUpdateEmailHelper } from "./updateEmail.hook";
 
 export const UpdateEmail = () => {

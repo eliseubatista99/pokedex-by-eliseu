@@ -2,9 +2,8 @@ import {
   Bullet,
   type DetailChipProps,
   PokedexDetailsTemplate,
-  Typography,
 } from "@components";
-import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { TextHelper, Typography } from "@eliseubatista99/react-scaffold-core";
 import { ItemHelper } from "@helpers";
 import { useItemDetailsHelper } from "./itemDetails.hook";
 

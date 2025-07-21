@@ -1,6 +1,10 @@
-import { CustomButton, Typography } from "@components";
+import { CustomButton } from "@components";
 import { Drawers } from "@constants";
-import { Drawer, type DrawerProps } from "@eliseubatista99/react-scaffold-core";
+import {
+  Drawer,
+  Typography,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { useLogoutDrawerHelper } from "./logout.hook";
 
 export const DrawerLogout = (props: Omit<DrawerProps, "id">) => {

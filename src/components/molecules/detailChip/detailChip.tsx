@@ -1,4 +1,5 @@
-import { CustomImage, Typography } from "@components";
+import { CustomImage } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { type CSSProperties } from "react";
 
 export interface DetailChipProps {
