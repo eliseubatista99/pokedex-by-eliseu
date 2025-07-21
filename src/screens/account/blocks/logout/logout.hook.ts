@@ -1,23 +1,21 @@
+import { Drawers } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import React from "react";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 
 export const useLogoutHelper = () => {
   const { currentUser } = usePokedexFirebaseAuth();
-
-  const [logoutDrawerVisible, setLogoutDrawerVisible] =
-    React.useState<boolean>(false);
+  const { showItem, hideItem } = useFeedback();
 
   const handleOpenLogoutDrawer = () => {
-    setLogoutDrawerVisible(true);
+    showItem(Drawers.logout);
   };
 
   const handleCloseLogoutDrawer = () => {
-    setLogoutDrawerVisible(false);
+    hideItem(Drawers.logout);
   };
 
   return {
     username: currentUser?.displayName,
-    logoutDrawerVisible,
     onClickOpenLogoutDrawer: handleOpenLogoutDrawer,
     onCloseLogoutDrawer: handleCloseLogoutDrawer,
   };

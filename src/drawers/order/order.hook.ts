@@ -1,13 +1,13 @@
 import { EOrder } from "@constants";
 import React from "react";
-import { type BaseDrawerProps } from "../_baseDrawer";
+import type { OrderDrawerProps } from "./order";
 
-export const useOrderDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
+export const useOrderDrawerHelper = ({ onOrderSelected }: OrderDrawerProps) => {
   const handleOrderSelected = React.useCallback(
     (order: EOrder) => {
-      onCloseDrawer(order);
+      onOrderSelected(order);
     },
-    [onCloseDrawer]
+    [onOrderSelected]
   );
 
   return {

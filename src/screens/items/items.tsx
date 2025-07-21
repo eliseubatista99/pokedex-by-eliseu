@@ -1,5 +1,4 @@
 import { ItemCard, PokedexListTemplate } from "@components";
-import { EItemCategory, EOrder } from "@constants";
 import { DrawerCategoryFilter, OrderDrawer } from "@drawers";
 import { ItemHelper } from "@helpers";
 import { useItemsHelper } from "./items.hook";
@@ -50,15 +49,9 @@ export const Items = () => {
         }}
       />
       <DrawerCategoryFilter
-        isVisible={categoryFilter.isVisible}
-        onCloseDrawer={(data) =>
-          categoryFilter.closeDrawer(data as EItemCategory)
-        }
+        onCategorySelected={(data) => categoryFilter.closeDrawer(data)}
       />
-      <OrderDrawer
-        isVisible={order.isVisible}
-        onCloseDrawer={(data) => order.closeDrawer(data as EOrder)}
-      />
+      <OrderDrawer onOrderSelected={(data) => order.closeDrawer(data)} />
     </>
   );
 };

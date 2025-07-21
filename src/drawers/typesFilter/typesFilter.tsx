@@ -1,10 +1,14 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, EPokemonsTypes } from "@constants";
+import { DRAWER_PADDING, Drawers, EPokemonsTypes } from "@constants";
+import { Drawer, type DrawerProps } from "@eliseubatista99/react-scaffold-core";
 import { PokemonHelper } from "@helpers";
-import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useTypesFilterDrawerHelper } from "./typesFilter.hook";
 
-export const DrawerTypesFilter = (props: BaseDrawerProps) => {
+export interface DrawerTypesFilterProps extends Omit<DrawerProps, "id"> {
+  onTypeSelected: (data: EPokemonsTypes | undefined) => void;
+}
+
+export const DrawerTypesFilter = (props: DrawerTypesFilterProps) => {
   const { onTypeSelected } = useTypesFilterDrawerHelper(props);
 
   const types = [
@@ -39,13 +43,15 @@ export const DrawerTypesFilter = (props: BaseDrawerProps) => {
   ));
 
   return (
-    <BaseDrawer
+    <Drawer
       {...props}
-      styles={{
-        justifyContent: "flex-start",
-        padding: `${DRAWER_PADDING}px 0`,
-        ...props.styles,
-      }}
+      id={Drawers.typesFilter}
+      onCloseDrawer={() => props.onTypeSelected(undefined)}
+      // styles={{
+      //   justifyContent: "flex-start",
+      //   padding: `${DRAWER_PADDING}px 0`,
+      //   ...props.styles,
+      // }}
     >
       <Typography
         styles={{
@@ -72,6 +78,6 @@ export const DrawerTypesFilter = (props: BaseDrawerProps) => {
       >
         {chips}
       </div>
-    </BaseDrawer>
+    </Drawer>
   );
 };

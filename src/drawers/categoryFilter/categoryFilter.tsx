@@ -1,10 +1,14 @@
 import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, EItemCategory } from "@constants";
+import { DRAWER_PADDING, Drawers, EItemCategory } from "@constants";
+import { Drawer, type DrawerProps } from "@eliseubatista99/react-scaffold-core";
 import { ItemHelper } from "@helpers";
-import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
 import { useCategoryFilterDrawerHelper } from "./categoryFilter.hook";
 
-export const DrawerCategoryFilter = (props: BaseDrawerProps) => {
+export interface DrawerCategoryFilterProps extends Omit<DrawerProps, "id"> {
+  onCategorySelected: (data: EItemCategory | undefined) => void;
+}
+
+export const DrawerCategoryFilter = (props: DrawerCategoryFilterProps) => {
   const { onCategorySelected } = useCategoryFilterDrawerHelper(props);
 
   const categories = [
@@ -28,13 +32,15 @@ export const DrawerCategoryFilter = (props: BaseDrawerProps) => {
   ));
 
   return (
-    <BaseDrawer
+    <Drawer
       {...props}
-      styles={{
-        justifyContent: "flex-start",
-        padding: `${DRAWER_PADDING}px 0`,
-        ...props.styles,
-      }}
+      id={Drawers.categoryFilter}
+      onCloseDrawer={() => props.onCategorySelected(undefined)}
+      // styles={{
+      //   justifyContent: "flex-start",
+      //   padding: `${DRAWER_PADDING}px 0`,
+      //   ...props.styles,
+      // }}
     >
       <Typography
         styles={{
@@ -61,6 +67,6 @@ export const DrawerCategoryFilter = (props: BaseDrawerProps) => {
       >
         {chips}
       </div>
-    </BaseDrawer>
+    </Drawer>
   );
 };

@@ -3,5 +3,8 @@ export const Modals = {
 };
 
 export const Drawers = {
-  loginAgain: "login-again-modal",
+  categoryFilter: "category-filter-drawer",
+  logout: "logout-drawer",
+  order: "order-drawer",
+  typesFilter: "types-filter-drawer",
 };
