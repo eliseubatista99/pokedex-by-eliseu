@@ -14,6 +14,7 @@
   "dependencies": {
     "@eliseubatista99/react-scaffold-core": "^0.1.0",
     "@eliseubatista99/react-scaffold-firebase": "^0.1.2",
+    "@eliseubatista99/react-scaffold-store": "^0.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "csstype": "^3.1.3",

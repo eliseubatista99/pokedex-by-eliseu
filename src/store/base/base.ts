@@ -1,7 +1,7 @@
+import { StoreHelper } from "@eliseubatista99/react-scaffold-store";
 import type { ModalLoginAgainProps } from "@modals";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
-import { StoreHelper } from "../store.helper";
 
 export interface LoadingState {
   isLoading: boolean;
