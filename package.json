@@ -12,8 +12,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@eliseubatista99/react-scaffold-core": "file:../react-scaffold/src/packages/core",
-    "@eliseubatista99/react-scaffold-firebase": "^0.1.1",
+    "@eliseubatista99/react-scaffold-core": "^0.1.0",
+    "@eliseubatista99/react-scaffold-firebase": "^0.1.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "csstype": "^3.1.3",

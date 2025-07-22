@@ -8,7 +8,6 @@ import {
 } from "@components";
 import { APP_SCALE } from "@constants";
 
-import { useScroll } from "@hooks";
 import { useBaseStore } from "@store";
 import React, { type CSSProperties } from "react";
 export interface AppLayoutProps {
@@ -27,7 +26,6 @@ export const AppLayout = ({
   styles,
 }: AppLayoutProps) => {
   const { loading, toast } = useBaseStore();
-  const { enableScroll, disableScroll } = useScroll();
 
   React.useEffect(() => {
     if (loading?.isLoading) {
@@ -35,7 +33,7 @@ export const AppLayout = ({
     } else {
       //enableScroll();
     }
-  }, [disableScroll, enableScroll, loading?.isLoading]);
+  }, [loading?.isLoading]);
 
   return (
     <>
