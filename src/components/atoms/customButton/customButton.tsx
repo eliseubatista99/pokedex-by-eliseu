@@ -1,5 +1,5 @@
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React, { type CSSProperties } from "react";
-import { Typography } from "../../electrons";
 import { useCustomButtonHelper } from "./customButton.hook";
 
 export interface CustomButtonProps {

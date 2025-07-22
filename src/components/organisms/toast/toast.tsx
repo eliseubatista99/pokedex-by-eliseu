@@ -1,21 +1,24 @@
-import { Typography } from "@components";
-import { useToastHelper } from "./toast.hook";
+import { Toasts } from "@constants";
+import {
+  Toast as ToastBase,
+  Typography,
+  type ToastProps as ToastBaseProps,
+} from "@eliseubatista99/react-scaffold-core";
 
-export interface ToastProps {
-  duration: number;
+export interface ToastProps extends Omit<ToastBaseProps, "id"> {
   icon?: React.ReactNode;
   text: string;
 }
 
 export const Toast = (props: ToastProps) => {
   const { icon, text } = props;
-  useToastHelper(props);
+
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
+    <ToastBase
+      {...props}
+      id={Toasts.base}
+      durationInSeconds={10000000}
+      styles={{
         width: "100%",
         zIndex: 1000,
         padding: "12px 32.25px",
@@ -24,8 +27,12 @@ export const Toast = (props: ToastProps) => {
         minHeight: "65.25px",
         flexDirection: "column",
         justifyContent: "center",
+        top: 0,
+        border: "none",
+        borderRadius: 0,
         borderBottomRightRadius: "35%",
         borderBottomLeftRadius: "35%",
+        ...props.styles,
       }}
     >
       {icon && <>{icon}</>}
@@ -34,6 +41,6 @@ export const Toast = (props: ToastProps) => {
       >
         {text}
       </Typography>
-    </div>
+    </ToastBase>
   );
 };

@@ -1,14 +1,15 @@
+import type { EItemCategory } from "@constants";
 import React from "react";
-import { type BaseDrawerProps } from "../_baseDrawer";
+import type { DrawerCategoryFilterProps } from "./categoryFilter";
 
 export const useCategoryFilterDrawerHelper = ({
-  onCloseDrawer,
-}: BaseDrawerProps) => {
+  onCategorySelected,
+}: DrawerCategoryFilterProps) => {
   const handleCategorySelected = React.useCallback(
     (category: string) => {
-      onCloseDrawer(category);
+      onCategorySelected(category as EItemCategory);
     },
-    [onCloseDrawer]
+    [onCategorySelected]
   );
 
   return {

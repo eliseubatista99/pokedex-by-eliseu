@@ -2,8 +2,9 @@ import {
   AppLayout,
   CustomInputField,
   OnboardingBottomContent,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
+
 import { useForgotPasswordHelper } from "./forgotPassword.hook";
 
 export const ForgotPassword = () => {

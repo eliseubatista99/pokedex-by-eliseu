@@ -1,10 +1,11 @@
-import React from "react";
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import { useFirebaseFirestore } from "@hooks";
 import { useBaseStore, useUserStore } from "@store";
+import React from "react";
 
 export const useSplashScreenHelper = () => {
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { hideLoader } = useBaseStore();
   const { firebaseUser } = useUserStore();
   const { getUser } = useFirebaseFirestore();

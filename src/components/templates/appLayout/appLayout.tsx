@@ -6,7 +6,8 @@ import {
   GlobalLoader,
   Toast,
 } from "@components";
-import { useScroll } from "@hooks";
+import { APP_SCALE } from "@constants";
+
 import { useBaseStore } from "@store";
 import React, { type CSSProperties } from "react";
 export interface AppLayoutProps {
@@ -25,7 +26,6 @@ export const AppLayout = ({
   styles,
 }: AppLayoutProps) => {
   const { loading, toast } = useBaseStore();
-  const { enableScroll, disableScroll } = useScroll();
 
   React.useEffect(() => {
     if (loading?.isLoading) {
@@ -33,7 +33,7 @@ export const AppLayout = ({
     } else {
       //enableScroll();
     }
-  }, [disableScroll, enableScroll, loading?.isLoading]);
+  }, [loading?.isLoading]);
 
   return (
     <>
@@ -42,7 +42,7 @@ export const AppLayout = ({
       )}
       {toast && (
         <Toast
-          duration={toast.duration || 3}
+          durationInSeconds={toast.duration || 3}
           icon={toast.icon}
           text={toast.text}
         />
@@ -55,6 +55,8 @@ export const AppLayout = ({
           margin: "auto",
           background: "#ffffff",
           position: "relative",
+          zoom: APP_SCALE,
+
           ...styles,
         }}
       >

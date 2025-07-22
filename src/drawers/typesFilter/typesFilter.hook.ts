@@ -1,14 +1,15 @@
+import type { EPokemonsTypes } from "@constants";
 import React from "react";
-import { type BaseDrawerProps } from "../_baseDrawer";
+import type { DrawerTypesFilterProps } from "./typesFilter";
 
 export const useTypesFilterDrawerHelper = ({
-  onCloseDrawer,
-}: BaseDrawerProps) => {
+  onTypeSelected,
+}: DrawerTypesFilterProps) => {
   const handleTypeSelected = React.useCallback(
     (type: string) => {
-      onCloseDrawer(type);
+      onTypeSelected(type as EPokemonsTypes);
     },
-    [onCloseDrawer]
+    [onTypeSelected]
   );
 
   return {

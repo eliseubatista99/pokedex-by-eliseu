@@ -1,5 +1,4 @@
 import { PokedexListTemplate, PokemonCard } from "@components";
-import { EOrder, EPokemonsTypes } from "@constants";
 import { DrawerTypesFilter, OrderDrawer } from "@drawers";
 import { PokemonHelper } from "@helpers";
 import { usePokemonsHelper } from "./pokemons.hook";
@@ -48,15 +47,9 @@ export const Pokemons = () => {
         }}
       />
       <DrawerTypesFilter
-        isVisible={typesFilter.isVisible}
-        onCloseDrawer={(data) =>
-          typesFilter.closeDrawer(data as EPokemonsTypes)
-        }
+        onTypeSelected={(data) => typesFilter.closeDrawer(data)}
       />
-      <OrderDrawer
-        isVisible={order.isVisible}
-        onCloseDrawer={(data) => order.closeDrawer(data as EOrder)}
-      />
+      <OrderDrawer onOrderSelected={(data) => order.closeDrawer(data)} />
     </>
   );
 };

@@ -4,8 +4,10 @@ import {
   CustomButton,
   CustomImage,
   PokedexBottomContent,
-  Typography,
 } from "@components";
+
+import { Typography } from "@eliseubatista99/react-scaffold-core";
+
 import { useGuestHook } from "./guest.hook";
 
 export const Guest = () => {

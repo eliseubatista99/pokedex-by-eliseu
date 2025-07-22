@@ -1,13 +1,18 @@
-import { CustomButton, Typography } from "@components";
-import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
+import { CustomButton } from "@components";
+import { Drawers } from "@constants";
+import {
+  Drawer,
+  Typography,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { useLogoutDrawerHelper } from "./logout.hook";
 
-export const DrawerLogout = (props: BaseDrawerProps) => {
+export const DrawerLogout = (props: Omit<DrawerProps, "id">) => {
   const { onCloseDrawer } = props;
   const { onClickLogout } = useLogoutDrawerHelper(props);
 
   return (
-    <BaseDrawer {...props}>
+    <Drawer {...props} id={Drawers.logout}>
       <Typography
         styles={{
           color: "#4d4d4d",
@@ -33,13 +38,13 @@ export const DrawerLogout = (props: BaseDrawerProps) => {
       <CustomButton
         type="ghost"
         text="No, go back"
-        onClick={onCloseDrawer}
+        onClick={() => onCloseDrawer?.()}
         styles={{
           margin: "10px auto 0 auto",
           height: "27.5px",
           maxWidth: "225px",
         }}
       />
-    </BaseDrawer>
+    </Drawer>
   );
 };

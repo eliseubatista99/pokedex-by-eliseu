@@ -1,9 +1,17 @@
-import { Chip, Typography } from "@components";
-import { DRAWER_PADDING, EOrder } from "@constants";
-import { BaseDrawer, type BaseDrawerProps } from "../_baseDrawer";
+import { Chip } from "@components";
+import { DRAWER_PADDING, Drawers, EOrder } from "@constants";
+import {
+  Drawer,
+  Typography,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { useOrderDrawerHelper } from "./order.hook";
 
-export const OrderDrawer = (props: BaseDrawerProps) => {
+export interface OrderDrawerProps extends Omit<DrawerProps, "id"> {
+  onOrderSelected: (data: EOrder | undefined) => void;
+}
+
+export const OrderDrawer = (props: OrderDrawerProps) => {
   const { onOrderSelected } = useOrderDrawerHelper(props);
 
   const orders = [
@@ -22,13 +30,15 @@ export const OrderDrawer = (props: BaseDrawerProps) => {
   ));
 
   return (
-    <BaseDrawer
+    <Drawer
       {...props}
-      styles={{
-        justifyContent: "flex-start",
-        padding: `${DRAWER_PADDING}px 0`,
-        ...props.styles,
-      }}
+      id={Drawers.order}
+      onCloseDrawer={() => props.onOrderSelected(undefined)}
+      // styles={{
+      //   justifyContent: "flex-start",
+      //   padding: `${DRAWER_PADDING}px 0`,
+      //   ...props.styles,
+      // }}
     >
       <Typography
         styles={{
@@ -55,6 +65,6 @@ export const OrderDrawer = (props: BaseDrawerProps) => {
       >
         {chips}
       </div>
-    </BaseDrawer>
+    </Drawer>
   );
 };

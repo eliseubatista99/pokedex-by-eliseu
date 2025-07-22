@@ -1,6 +1,10 @@
-import { EMAIL_REGEX } from "@constants";
+import { EMAIL_REGEX, Toasts } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
+import { useFirebaseFirestore } from "@hooks";
 import { useBaseStore } from "@store";
 import type { FormFieldData } from "@types";
 import React, { useState } from "react";
@@ -10,10 +14,11 @@ interface FormData {
 }
 
 export const useUpdateEmailHelper = () => {
-  const { goBack } = useCustomNavigation();
+  const { goBack } = useNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateEmail } = usePokedexFirebaseAuth();
   const { updateUserEmail } = useFirebaseFirestore();
+  const { showItem } = useFeedback();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -39,13 +44,22 @@ export const useUpdateEmailHelper = () => {
         setToastData({
           text: "Action performed successfully",
         });
+        showItem(Toasts.base);
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change Email. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, setToastData, showLoader, updateEmail, updateUserEmail]
+    [
+      goBack,
+      hideLoader,
+      setToastData,
+      showItem,
+      showLoader,
+      updateEmail,
+      updateUserEmail,
+    ]
   );
 
   const handleClickContinue = () => {

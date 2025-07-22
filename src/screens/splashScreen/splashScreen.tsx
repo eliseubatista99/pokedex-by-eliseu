@@ -1,4 +1,4 @@
-import { Typography } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useSplashScreenHelper } from "./splashScreen.hook";
 
 export const HomeScreen = () => {

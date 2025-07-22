@@ -3,8 +3,8 @@ import {
   type CustomButtonProps,
   Stepper,
   type StepperProps,
-  Typography,
 } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 
 export interface OnboardingBottomContentProps {
   title?: string;

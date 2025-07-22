@@ -1,7 +1,7 @@
+import { StoreHelper } from "@eliseubatista99/react-scaffold-store";
+import type { ModalLoginAgainProps } from "@modals";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
-import type { ModalLoginAgainProps } from "../../modals";
-import { StoreHelper } from "../store.helper";
 
 export interface LoadingState {
   isLoading: boolean;
@@ -18,7 +18,7 @@ export interface ToastState {
 export interface BaseState {
   loading?: LoadingState;
   toast?: ToastState;
-  loginAgainModal?: ModalLoginAgainProps;
+  loginAgainModal?: Omit<ModalLoginAgainProps, "id">;
 }
 
 const initialState: BaseState = {};

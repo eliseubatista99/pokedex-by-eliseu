@@ -1,9 +1,14 @@
-import { CustomButton, CustomInputField, Typography } from "@components";
+import { CustomButton, CustomInputField } from "@components";
+import { Modals } from "@constants";
+import {
+  Modal,
+  Typography,
+  type ModalProps,
+} from "@eliseubatista99/react-scaffold-core";
 import { type User } from "firebase/auth";
-import { BaseModal, type BaseModalProps } from "../_baseModal";
 import { useLoginAgainModalHelper } from "./loginAgain.hook";
 
-export interface ModalLoginAgainProps extends BaseModalProps {
+export interface ModalLoginAgainProps extends Omit<ModalProps, "id"> {
   currentUser?: User | null;
   onLoginDone?: (user: User) => void;
 }
@@ -13,7 +18,7 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
     useLoginAgainModalHelper(props);
 
   return (
-    <BaseModal {...props}>
+    <Modal data-testid="login-again-modal" {...props} id={Modals.loginAgain}>
       <form style={{ width: "100%" }} ref={formRef} onSubmit={onSubmitForm}>
         <Typography
           styles={{
@@ -49,6 +54,6 @@ export const ModalLoginAgain = (props: ModalLoginAgainProps) => {
           maxWidth: "150px",
         }}
       />
-    </BaseModal>
+    </Modal>
   );
 };

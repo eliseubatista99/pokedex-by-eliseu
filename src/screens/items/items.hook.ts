@@ -1,22 +1,22 @@
-import { EItemCategory, EOrder, ScreenPaths } from "@constants";
+import { Drawers, EItemCategory, EOrder, ScreenPaths } from "@constants";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { ItemHelper } from "@helpers";
-import { useCustomNavigation, usePokeApi } from "@hooks";
+import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import React from "react";
 import type { ItemShort } from "../../types";
 
 export const useItemsHelper = () => {
   const { showLoader, hideLoader } = useBaseStore();
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { setSelectedItem } = usePokedexStore();
+  const { showItem, hideItem } = useFeedback();
+
   const [itemsToDisplay, setItemsToDisplay] = React.useState<ItemShort[]>([]);
   const limit = React.useRef<number>(20);
-
-  const [categoryFilterDrawerVisible, setCategoryFilterDrawerVisible] =
-    React.useState<boolean>(false);
-
-  const [orderDrawerVisible, setOrderDrawerVisible] =
-    React.useState<boolean>(false);
 
   const selectedCategoryFilter = React.useRef<EItemCategory>(
     EItemCategory.AllCategories
@@ -82,34 +82,36 @@ export const useItemsHelper = () => {
   );
 
   const handleOpenTypesFilterDrawer = () => {
-    setCategoryFilterDrawerVisible(true);
+    showItem(Drawers.categoryFilter);
   };
 
-  const handleCloseTypesFilterDrawer = (type: EItemCategory) => {
-    selectedCategoryFilter.current = type;
-    setCategoryFilterDrawerVisible(false);
+  const handleCloseTypesFilterDrawer = (type: EItemCategory | undefined) => {
+    if (type) {
+      selectedCategoryFilter.current = type;
+    }
+    hideItem(Drawers.categoryFilter);
   };
 
   const handleOpenOrderDrawer = () => {
-    setOrderDrawerVisible(true);
+    showItem(Drawers.order);
   };
 
-  const handleCloseOrderDrawer = (order: EOrder) => {
-    selectedOrder.current = order;
-    setOrderDrawerVisible(false);
+  const handleCloseOrderDrawer = (order: EOrder | undefined) => {
+    if (order) {
+      selectedOrder.current = order;
+    }
+    hideItem(Drawers.order);
   };
 
   return {
     itemsToDisplay,
     categoryFilter: {
       selectedCategoryFilter: selectedCategoryFilter.current,
-      isVisible: categoryFilterDrawerVisible,
       openDrawer: handleOpenTypesFilterDrawer,
       closeDrawer: handleCloseTypesFilterDrawer,
     },
     order: {
       selectedOrder: selectedOrder.current,
-      isVisible: orderDrawerVisible,
       openDrawer: handleOpenOrderDrawer,
       closeDrawer: handleCloseOrderDrawer,
     },

@@ -1,6 +1,7 @@
 import { EMAIL_REGEX } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+
 import { useBaseStore } from "@store";
 import { FirebaseError } from "firebase/app";
 import React, { useState } from "react";
@@ -16,7 +17,7 @@ export interface ForgotPasswordFormData {
 }
 
 export const useForgotPasswordHelper = () => {
-  const { goBack } = useCustomNavigation();
+  const { goBack } = useNavigation();
   const { showLoader, hideLoader } = useBaseStore();
   const { resetPassword } = usePokedexFirebaseAuth();
 

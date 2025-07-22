@@ -1,4 +1,5 @@
-import { ItemHelper, TextHelper } from "@helpers";
+import { TextHelper } from "@eliseubatista99/react-scaffold-core";
+import { ItemHelper } from "@helpers";
 import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore } from "@store";
 import type { ItemFull, ItemShort } from "@types";

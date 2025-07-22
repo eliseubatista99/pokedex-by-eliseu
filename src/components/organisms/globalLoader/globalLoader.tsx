@@ -1,4 +1,4 @@
-import { Typography } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { css, Global } from "@emotion/react";
 import { type LoadingState } from "@store";
 

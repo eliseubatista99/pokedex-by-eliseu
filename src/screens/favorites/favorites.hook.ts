@@ -1,29 +1,27 @@
-import { EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
+import { Drawers, EOrder, EPokemonsTypes, ScreenPaths } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { PokemonHelper } from "@helpers";
-import { useCustomNavigation, usePokeApi } from "@hooks";
+import { usePokeApi } from "@hooks";
 import { useBaseStore, usePokedexStore, useUserStore } from "@store";
 import type { PokemonShort } from "@types";
 import React from "react";
 
 export const useFavoritesHelper = () => {
   const { currentUser } = usePokedexFirebaseAuth();
-
+  const { showItem, hideItem } = useFeedback();
   const userStore = useUserStore();
 
   const { showLoader, hideLoader } = useBaseStore();
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { setSelectedPokemon } = usePokedexStore();
   const [itemsToDisplay, setItemsToDisplay] = React.useState<PokemonShort[]>(
     []
   );
   const limit = React.useRef<number>(20);
-
-  const [typesFilterDrawerVisible, setTypesFilterDrawerVisible] =
-    React.useState<boolean>(false);
-
-  const [orderDrawerVisible, setOrderDrawerVisible] =
-    React.useState<boolean>(false);
 
   const selectedTypeFilter = React.useRef<EPokemonsTypes>(
     EPokemonsTypes.AllTypes
@@ -97,21 +95,25 @@ export const useFavoritesHelper = () => {
   );
 
   const handleOpenTypesFilterDrawer = () => {
-    setTypesFilterDrawerVisible(true);
+    showItem(Drawers.typesFilter);
   };
 
-  const handleCloseTypesFilterDrawer = (type: EPokemonsTypes) => {
-    selectedTypeFilter.current = type;
-    setTypesFilterDrawerVisible(false);
+  const handleCloseTypesFilterDrawer = (type: EPokemonsTypes | undefined) => {
+    if (type) {
+      selectedTypeFilter.current = type;
+    }
+    hideItem(Drawers.typesFilter);
   };
 
   const handleOpenOrderDrawer = () => {
-    setOrderDrawerVisible(true);
+    showItem(Drawers.order);
   };
 
-  const handleCloseOrderDrawer = (order: EOrder) => {
-    selectedOrder.current = order;
-    setOrderDrawerVisible(false);
+  const handleCloseOrderDrawer = (order: EOrder | undefined) => {
+    if (order) {
+      selectedOrder.current = order;
+    }
+    hideItem(Drawers.order);
   };
 
   // React.useEffect(() => {
@@ -127,13 +129,11 @@ export const useFavoritesHelper = () => {
     itemsToDisplay,
     typesFilter: {
       selectedTypeFilter: selectedTypeFilter.current,
-      isVisible: typesFilterDrawerVisible,
       openDrawer: handleOpenTypesFilterDrawer,
       closeDrawer: handleCloseTypesFilterDrawer,
     },
     order: {
       selectedOrder: selectedOrder.current,
-      isVisible: orderDrawerVisible,
       openDrawer: handleOpenOrderDrawer,
       closeDrawer: handleCloseOrderDrawer,
     },

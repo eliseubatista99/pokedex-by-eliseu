@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "tsc -b && vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -12,14 +12,15 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@eliseubatista99/react-scaffold-firebase": "^0.1.1",
+    "@eliseubatista99/react-scaffold-core": "^0.1.0",
+    "@eliseubatista99/react-scaffold-firebase": "^0.1.2",
+    "@eliseubatista99/react-scaffold-store": "^0.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "csstype": "^3.1.3",
     "immer": "^10.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.7.0",
     "zustand": "^5.0.6"
   },
   "devDependencies": {

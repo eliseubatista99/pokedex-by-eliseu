@@ -1,5 +1,10 @@
+import { Toasts } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation, useFirebaseFirestore } from "@hooks";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
+import { useFirebaseFirestore } from "@hooks";
 import { useBaseStore } from "@store";
 import type { FormFieldData } from "@types";
 import React, { useState } from "react";
@@ -9,10 +14,11 @@ interface FormData {
 }
 
 export const useUpdateNameHelper = () => {
-  const { goBack } = useCustomNavigation();
+  const { goBack } = useNavigation();
   const { showLoader, hideLoader, setToastData } = useBaseStore();
   const { updateName } = usePokedexFirebaseAuth();
   const { updateUserName } = useFirebaseFirestore();
+  const { showItem } = useFeedback();
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -38,13 +44,22 @@ export const useUpdateNameHelper = () => {
         setToastData({
           text: "Action performed successfully",
         });
+        showItem(Toasts.base);
         goBack();
       } catch (error: unknown) {
         console.error("Failed to change name. Error: ", error);
         hideLoader();
       }
     },
-    [goBack, hideLoader, setToastData, showLoader, updateName, updateUserName]
+    [
+      goBack,
+      hideLoader,
+      setToastData,
+      showItem,
+      showLoader,
+      updateName,
+      updateUserName,
+    ]
   );
 
   const handleClickContinue = () => {

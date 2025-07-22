@@ -1,5 +1,6 @@
 import { ImageAssets } from "@assets";
-import { CustomImage, Typography } from "@components";
+import { CustomImage } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useAccountInfoHelper } from "./accountInfo.hook";
 
 export const AccountInfo = () => {

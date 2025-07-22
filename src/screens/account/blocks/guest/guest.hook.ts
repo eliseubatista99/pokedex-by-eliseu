@@ -1,8 +1,8 @@
 import { ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 
 export const useGuestHook = () => {
-  const { replaceHistory, goTo } = useCustomNavigation();
+  const { replaceHistory, goTo } = useNavigation();
 
   const handleClickLoginOrRegister = () => {
     replaceHistory([ScreenPaths.onboarding1, ScreenPaths.onboarding2]);

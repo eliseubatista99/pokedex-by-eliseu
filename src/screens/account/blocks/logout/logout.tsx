@@ -1,14 +1,10 @@
-import { Typography } from "@components";
 import { DrawerLogout } from "@drawers";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useLogoutHelper } from "./logout.hook";
 
 export const Logout = () => {
-  const {
-    username,
-    logoutDrawerVisible,
-    onCloseLogoutDrawer,
-    onClickOpenLogoutDrawer,
-  } = useLogoutHelper();
+  const { username, onCloseLogoutDrawer, onClickOpenLogoutDrawer } =
+    useLogoutHelper();
 
   return (
     <>
@@ -45,10 +41,7 @@ export const Logout = () => {
           </Typography>
         </div>
       </div>
-      <DrawerLogout
-        isVisible={logoutDrawerVisible}
-        onCloseDrawer={onCloseLogoutDrawer}
-      />
+      <DrawerLogout onCloseDrawer={onCloseLogoutDrawer} />
     </>
   );
 };

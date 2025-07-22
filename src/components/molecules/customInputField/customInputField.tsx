@@ -1,4 +1,4 @@
-import { Typography } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import styled from "@emotion/styled";
 import {
   type ChangeEvent,

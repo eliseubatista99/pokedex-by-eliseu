@@ -1,5 +1,6 @@
 import { EMAIL_REGEX, ScreenPaths } from "@constants";
-import { useCustomNavigation } from "@hooks";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+
 import { useBaseStore } from "@store";
 import React, { useState } from "react";
 import { usePokedexFirebaseAuth } from "../../contexts";
@@ -17,7 +18,7 @@ export interface loginFormData {
 }
 
 export const useLoginDataHelper = () => {
-  const { goTo } = useCustomNavigation();
+  const { goTo } = useNavigation();
   const { showLoader, hideLoader } = useBaseStore();
   const { logIn } = usePokedexFirebaseAuth();
   const { setFirebaseUser } = useUserStore();

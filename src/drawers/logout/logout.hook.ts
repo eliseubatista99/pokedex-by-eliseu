@@ -1,14 +1,19 @@
 import { ScreenPaths } from "@constants";
 import { usePokedexFirebaseAuth } from "@contexts";
-import { useCustomNavigation } from "@hooks";
+import {
+  useNavigation,
+  type DrawerProps,
+} from "@eliseubatista99/react-scaffold-core";
+
 import { useBaseStore } from "@store";
 import React from "react";
-import { type BaseDrawerProps } from "../_baseDrawer";
 
-export const useLogoutDrawerHelper = ({ onCloseDrawer }: BaseDrawerProps) => {
+export const useLogoutDrawerHelper = ({
+  onCloseDrawer,
+}: Omit<DrawerProps, "id">) => {
   const { logout } = usePokedexFirebaseAuth();
   const { showLoader, hideLoader } = useBaseStore();
-  const { replaceHistory, goTo } = useCustomNavigation();
+  const { replaceHistory, goTo } = useNavigation();
 
   const handleLogout = React.useCallback(async () => {
     try {
