@@ -1,7 +1,7 @@
-import { StoreHelper } from "@eliseubatista99/react-scaffold-store";
 import type { ItemShort, PokemonShort } from "@types";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
+import { StoreHelper } from "../storeHelper";
 
 export interface PokedexState {
   selectedPokemon?: PokemonShort;
